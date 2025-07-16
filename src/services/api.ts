@@ -9,7 +9,7 @@ class BotbleAPI {
   constructor() {
     this.baseURL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000/api/v1';
     this.ecommerceURL = process.env.NEXT_PUBLIC_ECOMMERCE_API_URL || 'http://127.0.0.1:8000/api/v1/ecommerce';
-    this.authURL = 'http://127.0.0.1:8000'; // Force correct auth URL for login
+    this.authURL = process.env.NEXT_PUBLIC_AUTH_URL || 'http://127.0.0.1:8000';
     this.token = typeof window !== 'undefined' ? localStorage.getItem('auth_token') : null;
 
     console.log('API Service initialized with:');
