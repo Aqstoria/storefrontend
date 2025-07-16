@@ -1,0 +1,147 @@
+/* Theme Variables - Dynamically updated by theme options */
+:root {
+  /* Primary Colors */
+  --primary-color: #0989ff;
+  --primary-color-rgb: 9, 137, 255;
+  --secondary-color: #821f40;
+  --tp-theme-secondary: #821f40;
+
+  /* Typography */
+  --primary-font: 'Inter', sans-serif;
+
+  /* Header Colors */
+  --header-top-bg-color: #010f1c;
+  --header-top-text-color: #fff;
+  --header-main-bg-color: #fff;
+  --header-main-text-color: #010f1c;
+
+  /* Footer Colors */
+  --footer-background-color: #fff;
+  --footer-text-color: #010f1c;
+  --footer-title-color: #010f1c;
+  --footer-link-color: #010f1c;
+  --footer-link-hover-color: #0989ff;
+  --footer-border-color: #e5e6e8;
+
+  /* Layout Options */
+  --sticky-header-enabled: 1;
+  --back-to-top-enabled: 1;
+  --header-style: 1;
+  --breadcrumb-style: align-start;
+
+  /* E-commerce Options */
+  --products-page-layout: left-sidebar;
+  --product-item-layout: grid;
+  --products-per-row: 4;
+}
+
+/* Apply theme variables to existing CSS classes */
+.btn-primary {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
+.btn-primary:hover {
+  background-color: var(--secondary-color) !important;
+  border-color: var(--secondary-color) !important;
+}
+
+.text-primary {
+  color: var(--primary-color) !important;
+}
+
+.bg-primary {
+  background-color: var(--primary-color) !important;
+}
+
+/* Header styles based on theme options */
+.header-top {
+  background-color: var(--header-top-bg-color);
+  color: var(--header-top-text-color);
+}
+
+.header-main {
+  background-color: var(--header-main-bg-color);
+  color: var(--header-main-text-color);
+}
+
+/* Footer styles */
+.footer {
+  background-color: var(--footer-background-color);
+  color: var(--footer-text-color);
+}
+
+.footer h5,
+.footer h6 {
+  color: var(--footer-title-color);
+}
+
+.footer a {
+  color: var(--footer-link-color);
+}
+
+.footer a:hover {
+  color: var(--footer-link-hover-color);
+}
+
+.footer .border-top {
+  border-color: var(--footer-border-color) !important;
+}
+
+/* Sticky header behavior */
+.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+/* Back to top button */
+.back-to-top {
+  display: block;
+}
+
+.back-to-top.hidden {
+  display: none;
+}
+
+/* Breadcrumb styles */
+.breadcrumb {
+  text-align: var(--breadcrumb-style);
+}
+
+.breadcrumb.none {
+  display: none;
+}
+
+.breadcrumb.without-title .breadcrumb-item:last-child {
+  display: none;
+}
+
+/* Product layout styles */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--products-per-row), 1fr);
+  gap: 1rem;
+}
+
+.product-item.grid {
+  /* Grid layout styles */
+}
+
+.product-item.list {
+  /* List layout styles */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+} 
