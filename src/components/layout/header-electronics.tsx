@@ -70,7 +70,15 @@ interface TransformedCategory extends Category {
 const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categories: propCategories = [] }: HeaderElectronicsProps) => {
   const pathname = usePathname()
   const [categories, setCategories] = useState<TransformedCategory[]>(propCategories);
-  const { isCategoriesOpen, setIsCategoriesOpen } = useCategories()
+  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false)
+  
+  // Try to use context if available, otherwise use local state
+  let contextCategories
+  try {
+    contextCategories = useCategories()
+  } catch {
+    contextCategories = { isCategoriesOpen, setIsCategoriesOpen }
+  }
 
   const { navbarRef } = useStickyNavbar({ offset: 500 })
   const [stuckNavOpen, setStuckNavOpen] = useState(false)
@@ -316,8 +324,8 @@ const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categorie
                     <Col lg={3}>
                       <Nav>
                         <Dropdown 
-                          show={isCategoriesOpen}
-                          onToggle={(show) => setIsCategoriesOpen(show)}
+                          show={contextCategories.isCategoriesOpen}
+                          onToggle={(show) => contextCategories.setIsCategoriesOpen(show)}
                           autoClose="outside" 
                           className="w-100"
                         >

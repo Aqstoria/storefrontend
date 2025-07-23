@@ -37,14 +37,22 @@ const slides = [
 
 const HeroSliderElectronics = () => {
   const [controlledSwiper, setControlledSwiper] = useState<SwiperType | null>(null)
-  const { isCategoriesOpen } = useCategories()
+  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false)
+  
+  // Try to use context if available, otherwise use local state
+  let contextCategories
+  try {
+    contextCategories = useCategories()
+  } catch {
+    contextCategories = { isCategoriesOpen, setIsCategoriesOpen }
+  }
   
   return (
     <Container as="section" className="pt-4">
       <Row>
         <Col 
-          lg={isCategoriesOpen ? 9 : 12} 
-          className={isCategoriesOpen ? "offset-lg-3" : ""}
+          lg={contextCategories.isCategoriesOpen ? 9 : 12} 
+          className={contextCategories.isCategoriesOpen ? "offset-lg-3" : ""}
         >
           <div className="position-relative">
             <span
