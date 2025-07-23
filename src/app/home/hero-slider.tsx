@@ -104,10 +104,12 @@ const HeroSliderElectronics = () => {
                   }}
                   className="user-select-none"
                 >
-                  {slides.map(({ image }, index) => (
+                  {slides.map(({ image, href }, index) => (
                     <SwiperSlide key={index} className="d-flex justify-content-end">
                       <div style={{ maxWidth: 490 }}>
-                        <Image src={image} width={980} height={1063} alt="Image" />
+                        <Link href={href} className="d-block">
+                          <Image src={image} width={980} height={1063} alt="Image" />
+                        </Link>
                       </div>
                     </SwiperSlide>
                   ))}

@@ -351,13 +351,15 @@ const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categorie
                             data-bs-theme="dark"
                             style={{ transition: 'all 0.3s ease-in-out' }}
                             onClick={() => {
-                              console.log('Categories button clicked, current state:', contextCategories.isCategoriesOpen)
-                              contextCategories.setIsCategoriesOpen(!contextCategories.isCategoriesOpen)
-                              setLocalCategoriesOpen(!contextCategories.isCategoriesOpen)
+                              const newState = !contextCategories.isCategoriesOpen
+                              console.log('Categories button clicked, toggling to:', newState)
+                              contextCategories.setIsCategoriesOpen(newState)
+                              setLocalCategoriesOpen(newState)
                             }}
                           >
                             <i className="ci-grid fs-lg" />
                             <span className="ms-2 me-auto">Categories</span>
+                            <i className={`ci-chevron-down ms-auto ${contextCategories.isCategoriesOpen ? 'rotate-180' : ''}`} style={{ transition: 'transform 0.3s ease' }} />
                           </Button>
                           {/* Button visible on screens < 992px wide (lg breakpoint) */}
                           <Button
@@ -366,13 +368,15 @@ const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categorie
                             className="w-100 justify-content-start d-lg-none mb-2"
                             style={{ transition: 'all 0.3s ease-in-out' }}
                             onClick={() => {
-                              console.log('Categories button clicked (mobile), current state:', contextCategories.isCategoriesOpen)
-                              contextCategories.setIsCategoriesOpen(!contextCategories.isCategoriesOpen)
-                              setLocalCategoriesOpen(!contextCategories.isCategoriesOpen)
+                              const newState = !contextCategories.isCategoriesOpen
+                              console.log('Categories button clicked (mobile), toggling to:', newState)
+                              contextCategories.setIsCategoriesOpen(newState)
+                              setLocalCategoriesOpen(newState)
                             }}
                           >
                             <i className="ci-grid fs-lg" />
                             <span className="ms-2 me-auto">Categories</span>
+                            <i className={`ci-chevron-down ms-auto ${contextCategories.isCategoriesOpen ? 'rotate-180' : ''}`} style={{ transition: 'transform 0.3s ease' }} />
                           </Button>
 
                           {/* Mega menu */}

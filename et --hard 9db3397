@@ -1,0 +1,5 @@
+[33m6883b53[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Replace Bootstrap Dropdown with custom implementation for better control
+[33m9db3397[m Fix dropdown state conflicts - remove manual onClick handlers and simplify state management
+[33maab1fad[m Fix dropdown getting stuck - improve state management and add click outside handler
+[33m29f0dd8[m Fix Categories dropdown: remove duplicate chevron icons, improve state management, and add smooth transitions
+[33m36aa65a[m Fix build errors by making HeaderElectronics handle context internally with fallback
