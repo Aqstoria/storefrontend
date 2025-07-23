@@ -12,7 +12,11 @@ const CategoriesContext = createContext<CategoriesContextType | undefined>(undef
 export const useCategories = () => {
   const context = useContext(CategoriesContext)
   if (context === undefined) {
-    throw new Error('useCategories must be used within a CategoriesProvider')
+    // Return a fallback context instead of throwing an error
+    return {
+      isCategoriesOpen: false,
+      setIsCategoriesOpen: () => {} // No-op function
+    }
   }
   return context
 }
