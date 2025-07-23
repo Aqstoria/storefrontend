@@ -323,29 +323,21 @@ const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categorie
                         >
                           {/* Button visible on screens > 991px wide (lg breakpoint) */}
                           <Dropdown.Toggle
-                            as="div"
-                            bsPrefix="cursor-pointer d-none d-lg-block"
-                            className="with-focus"
+                            as={Button}
+                            variant="secondary"
+                            size="lg"
+                            className="w-100 rounded-bottom-0 justify-content-start d-none d-lg-block"
                             data-bs-theme="dark"
                           >
-                            <Link href="/shop" className="position-absolute top-0 start-0 w-100 h-100">
-                              <span className="visually-hidden">Categories</span>
-                            </Link>
-                            <Button
-                              variant="secondary"
-                              size="lg"
-                              className="dropdown-toggle w-100 rounded-bottom-0 justify-content-start pe-none"
-                            >
-                              <i className="ci-grid fs-lg" />
-                              <span className="ms-2 me-auto">Categories</span>
-                              <i className="ci-chevron-down fs-lg ms-auto me-n1" />
-                            </Button>
+                            <i className="ci-grid fs-lg" />
+                            <span className="ms-2 me-auto">Categories</span>
+                            <i className="ci-chevron-down fs-lg ms-auto me-n1" />
                           </Dropdown.Toggle>
                           {/* Button visible on screens < 992px wide (lg breakpoint) */}
                           <Dropdown.Toggle
                             variant="secondary"
                             size="lg"
-                            className="with-focus w-100 justify-content-start d-lg-none mb-2"
+                            className="w-100 justify-content-start d-lg-none mb-2"
                           >
                             <i className="ci-grid fs-lg" />
                             <span className="ms-2 me-auto">Categories</span>
