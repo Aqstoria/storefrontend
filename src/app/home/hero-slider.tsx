@@ -12,6 +12,7 @@ import type { Swiper as SwiperType } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/scrollbar'
 import 'swiper/css/effect-fade'
+import { useCategories } from '@/contexts/categories-context'
 
 const slides = [
   {
@@ -36,10 +37,15 @@ const slides = [
 
 const HeroSliderElectronics = () => {
   const [controlledSwiper, setControlledSwiper] = useState<SwiperType | null>(null)
+  const { isCategoriesOpen } = useCategories()
+  
   return (
     <Container as="section" className="pt-4">
       <Row>
-        <Col lg={9} className="offset-lg-3">
+        <Col 
+          lg={isCategoriesOpen ? 9 : 12} 
+          className={isCategoriesOpen ? "offset-lg-3" : ""}
+        >
           <div className="position-relative">
             <span
               className="position-absolute top-0 start-0 w-100 h-100 rounded-5 d-none-dark rtl-flip"

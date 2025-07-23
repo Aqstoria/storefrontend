@@ -13,6 +13,7 @@ import NavLink from 'react-bootstrap/NavLink'
 import BrandsSection from '../brands/BrandsSection'
 import { ProductService } from '@/services/products'
 import { Product, Category, Brand } from '@/services/products'
+import { CategoriesProvider } from '@/contexts/categories-context'
 
 export const revalidate = 60 // ISR: Regenerate every 60 seconds
 
@@ -59,7 +60,7 @@ export default async function ElectronicsHomePage() {
   }))
 
   return (
-    <>
+    <CategoriesProvider>
       {/* Navigation bar (Page header) */}
       <HeaderElectronics logoHref="/" expandedCategories categories={transformedCategories} />
 
@@ -466,6 +467,6 @@ export default async function ElectronicsHomePage() {
         {/* Footer */}
         <FooterElectronics />
       </main>
-    </>
+    </CategoriesProvider>
   )
 }

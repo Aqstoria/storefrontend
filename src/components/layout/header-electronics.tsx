@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { useStickyNavbar } from '@/hooks/use-sticky-navbar'
 import { useOffcanvas } from '@/contexts/offcanvas-context'
 import { useCart } from '@/contexts/cart-context'
+import { useCategories } from '@/contexts/categories-context'
 import Link from 'next/link'
 import Image from 'next/image'
 import Navbar from 'react-bootstrap/Navbar'
@@ -69,7 +70,7 @@ interface TransformedCategory extends Category {
 const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categories: propCategories = [] }: HeaderElectronicsProps) => {
   const pathname = usePathname()
   const [categories, setCategories] = useState<TransformedCategory[]>(propCategories);
-  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false)
+  const { isCategoriesOpen, setIsCategoriesOpen } = useCategories()
 
   const { navbarRef } = useStickyNavbar({ offset: 500 })
   const [stuckNavOpen, setStuckNavOpen] = useState(false)
