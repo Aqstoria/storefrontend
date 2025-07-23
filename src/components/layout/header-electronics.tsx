@@ -342,137 +342,102 @@ const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categorie
                     {/* Categories mega menu */}
                     <Col lg={3}>
                       <Nav>
-                        <Dropdown 
-                          show={contextCategories.isCategoriesOpen}
-                          onToggle={(show) => {
-                            console.log('Dropdown onToggle called with:', show)
-                            contextCategories.setIsCategoriesOpen(show)
-                            setLocalCategoriesOpen(show)
-                          }}
-                          autoClose={true}
-                          className="w-100"
-                        >
+                        <div className="position-relative w-100">
                           {/* Button visible on screens > 991px wide (lg breakpoint) */}
-                          <Dropdown.Toggle
-                            as={Button}
+                          <Button
                             variant="secondary"
                             size="lg"
                             className="w-100 rounded-bottom-0 justify-content-start d-none d-lg-block"
                             data-bs-theme="dark"
                             style={{ transition: 'all 0.3s ease-in-out' }}
+                            onClick={() => {
+                              console.log('Categories button clicked, current state:', contextCategories.isCategoriesOpen)
+                              contextCategories.setIsCategoriesOpen(!contextCategories.isCategoriesOpen)
+                              setLocalCategoriesOpen(!contextCategories.isCategoriesOpen)
+                            }}
                           >
                             <i className="ci-grid fs-lg" />
                             <span className="ms-2 me-auto">Categories</span>
-                          </Dropdown.Toggle>
+                          </Button>
                           {/* Button visible on screens < 992px wide (lg breakpoint) */}
-                          <Dropdown.Toggle
+                          <Button
                             variant="secondary"
                             size="lg"
                             className="w-100 justify-content-start d-lg-none mb-2"
                             style={{ transition: 'all 0.3s ease-in-out' }}
+                            onClick={() => {
+                              console.log('Categories button clicked (mobile), current state:', contextCategories.isCategoriesOpen)
+                              contextCategories.setIsCategoriesOpen(!contextCategories.isCategoriesOpen)
+                              setLocalCategoriesOpen(!contextCategories.isCategoriesOpen)
+                            }}
                           >
                             <i className="ci-grid fs-lg" />
                             <span className="ms-2 me-auto">Categories</span>
-                          </Dropdown.Toggle>
+                          </Button>
 
                           {/* Mega menu */}
-                          <Dropdown.Menu
-                            as="ul"
-                            className={`w-100 rounded-top-0 rounded-bottom-4 py-1 p-lg-1${expandedCategories ? ' dropdown-menu-static' : ''}`}
-                            style={
-                              {
-                                '--cz-dropdown-spacer': 0,
-                                '--cz-dropdown-item-padding-y': '.625rem',
-                                '--cz-dropdown-item-spacer': 0,
-                                transition: 'all 0.3s ease-in-out',
-                              } as CSSProperties
-                            }
-                          >
-                            <li className="d-lg-none pt-2">
-                              <Dropdown.Item as={Link} href="/shop" className="fw-medium">
-                                <i className="ci-grid fs-xl opacity-60 pe-1 me-2" />
-                                All Categories 
-                                <i className="ci-chevron-right fs-base ms-auto me-n1" />
-                              </Dropdown.Item>
-                            </li>
-                         
-                          {categories.map(({ name, href, icon, icon_image, subcategories }, index) => (
-                            <DropdownHover key={index} as="li" drop="end" className="position-static">
-                              <DropdownToggle
-                                as="div"
-                                className="with-focus"
-                                bsPrefix={`position-relative rounded pb-1 px-lg-2${index === 0 ? ' pt-2' : ''}`}
-                              >
-                                <Link href={href} className="dropdown-item fw-medium stretched-link d-none d-lg-flex">
-                                  {/* Parent icon */}
-                                  {icon && <i className={`${icon} fs-xl opacity-60 pe-1 me-2`} />}
-                                  {icon_image && (
-                                    <img
-                                      src={icon_image}
-                                      alt={name}
-                                      width={24}
-                                      height={24}
-                                      className="me-2"
-                                      style={{ objectFit: 'contain' }}
-                                    />
-                                  )}
-                                  <span className="text-truncate">{name}</span>
+                          {contextCategories.isCategoriesOpen && (
+                            <ul
+                              className={`w-100 rounded-top-0 rounded-bottom-4 py-1 p-lg-1 position-absolute top-100 start-0 bg-white border shadow-lg${expandedCategories ? ' dropdown-menu-static' : ''}`}
+                              style={
+                                {
+                                  '--cz-dropdown-spacer': 0,
+                                  '--cz-dropdown-item-padding-y': '.625rem',
+                                  '--cz-dropdown-item-spacer': 0,
+                                  transition: 'all 0.3s ease-in-out',
+                                  zIndex: 1000,
+                                } as CSSProperties
+                              }
+                            >
+                              <li className="d-lg-none pt-2">
+                                <Link href="/shop" className="dropdown-item fw-medium d-block">
+                                  <i className="ci-grid fs-xl opacity-60 pe-1 me-2" />
+                                  All Categories 
                                   <i className="ci-chevron-right fs-base ms-auto me-n1" />
                                 </Link>
+                              </li>
+                           
+                            {categories.map(({ name, href, icon, icon_image, subcategories }, index) => (
+                              <li key={index} className="position-static">
+                                <div className="position-relative rounded pb-1 px-lg-2">
+                                  <Link href={href} className="dropdown-item fw-medium d-block d-none d-lg-block">
+                                    {/* Parent icon */}
+                                    {icon && <i className={`${icon} fs-xl opacity-60 pe-1 me-2`} />}
+                                    {icon_image && (
+                                      <img
+                                        src={icon_image}
+                                        alt={name}
+                                        width={24}
+                                        height={24}
+                                        className="me-2"
+                                        style={{ objectFit: 'contain' }}
+                                      />
+                                    )}
+                                    <span className="text-truncate">{name}</span>
+                                    <i className="ci-chevron-right fs-base ms-auto me-n1" />
+                                  </Link>
 
-                                <DropdownItem as="div" className="fw-medium text-wrap stretched-link d-lg-none">
-                                  {icon && <i className={`${icon} fs-xl opacity-60 pe-1 me-2`} />}
-                                  {icon_image && (
-                                    <img
-                                      src={icon_image}
-                                      alt={name}
-                                      width={24}
-                                      height={24}
-                                      className="me-2"
-                                      style={{ objectFit: 'contain' }}
-                                    />
-                                  )}
-                                  {name}
-                                  <i className="ci-chevron-down fs-base ms-auto me-n1" />
-                                </DropdownItem>
-                              </DropdownToggle>
-
-                              {subcategories && subcategories.length > 0 && (
-                                <DropdownMenu
-                                  className="rounded-4 p-4"
-                                  style={
-                                    {
-                                      top: '1rem',
-                                      height: 'calc(100% - .1875rem)',
-                                      animation: 'none',
-                                      '--cz-dropdown-spacer': '.3125rem',
-                                    } as React.CSSProperties
-                                  }
-                                >
-                                  <div className="d-flex flex-column flex-lg-row h-100 gap-4">
-                                    <div style={{ minWidth: 194 }}>
-                                      <div className="h6 mb-2">Subcategories</div>
-                                      <Nav as="ul" navbar={false} className="flex-column gap-2 mt-n2">
-                                        {subcategories.map(({ title, href }, index) => (
-                                          <li key={index} className="d-flex w-100 pt-1">
-                                            <Nav.Link
-                                              as={Link}
-                                              href={href}
-                                              className="animate-underline animate-target d-inline fw-normal text-truncate p-0"
-                                            >
-                                              {title}
-                                            </Nav.Link>
-                                          </li>
-                                        ))}
-                                      </Nav>
-                                    </div>
+                                  <div className="fw-medium text-wrap d-block d-lg-none">
+                                    {icon && <i className={`${icon} fs-xl opacity-60 pe-1 me-2`} />}
+                                    {icon_image && (
+                                      <img
+                                        src={icon_image}
+                                        alt={name}
+                                        width={24}
+                                        height={24}
+                                        className="me-2"
+                                        style={{ objectFit: 'contain' }}
+                                      />
+                                    )}
+                                    {name}
+                                    <i className="ci-chevron-down fs-base ms-auto me-n1" />
                                   </div>
-                                </DropdownMenu>
-                              )}
-                            </DropdownHover>
-                          ))}
-                          </Dropdown.Menu>
-                        </Dropdown>
+                                </div>
+                              </li>
+                            ))}
+                            </ul>
+                          )}
+                        </div>
                       </Nav>
                     </Col>
 
