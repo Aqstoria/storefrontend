@@ -65,7 +65,7 @@ const FooterElectronics = ({ className, logoHref }: { className?: string; logoHr
                     { label: 'Shipping rates & policies', href: '#shipping-rates' },
                     { label: 'Refunds & replacements', href: '#refunds' },
                     { label: 'Delivery info', href: '#delivery' },
-                    { label: 'Order tracking', href: '#order-tracking' },
+                    { label: 'Order tracking', href: '/order-tracking' },
                     { label: 'Taxes & fees', href: '#taxes' },
                   ],
                 },
