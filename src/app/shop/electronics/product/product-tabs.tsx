@@ -43,7 +43,17 @@ const generateGalleryFromProduct = (product: CartzillaProduct) => {
 }
 
 const ProductTabsElectronics = ({ product }: ProductTabsElectronicsProps) => {
-  const [activeTab, setActiveTab] = useState('description')
+  const searchParams = useSearchParams()
+  const tabParam = searchParams.get('tab')
+  
+  // Set initial active tab based on URL parameter
+  const getInitialTab = () => {
+    if (tabParam === 'details') return 'details'
+    if (tabParam === 'reviews') return 'reviews'
+    return 'general'
+  }
+  
+  const [activeTab, setActiveTab] = useState(getInitialTab())
   const { addToCart } = useCart('electronics')
   const { createToast, ToastRenderer } = useToast()
 
@@ -208,17 +218,29 @@ const ProductTabsElectronics = ({ product }: ProductTabsElectronicsProps) => {
         <div className="d-flex align-items-center border-bottom">
           <Nav as="ul" variant="underline" className="flex-nowrap gap-4">
             <NavItem as="li" className="me-sm-2">
-              <NavLink as={Link} href="./product" active={activeTab === 'general'}>
+              <NavLink 
+                as="button" 
+                className={`btn btn-link p-0 border-0 ${activeTab === 'general' ? 'active' : ''}`}
+                onClick={() => setActiveTab('general')}
+              >
                 General info
               </NavLink>
             </NavItem>
             <NavItem as="li" className="me-sm-2">
-              <NavLink as={Link} href="./product?tab=details" active={activeTab === 'details'}>
+              <NavLink 
+                as="button" 
+                className={`btn btn-link p-0 border-0 ${activeTab === 'details' ? 'active' : ''}`}
+                onClick={() => setActiveTab('details')}
+              >
                 Product details
               </NavLink>
             </NavItem>
             <NavItem as="li">
-              <NavLink as={Link} href="./product?tab=reviews" active={activeTab === 'reviews'}>
+              <NavLink 
+                as="button" 
+                className={`btn btn-link p-0 border-0 ${activeTab === 'reviews' ? 'active' : ''}`}
+                onClick={() => setActiveTab('reviews')}
+              >
                 Reviews {productData.reviews && `(${productData.reviews[1]})`}
               </NavLink>
             </NavItem>
