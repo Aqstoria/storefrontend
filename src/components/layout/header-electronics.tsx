@@ -70,14 +70,17 @@ interface TransformedCategory extends Category {
 const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categories: propCategories = [] }: HeaderElectronicsProps) => {
   const pathname = usePathname()
   const [categories, setCategories] = useState<TransformedCategory[]>(propCategories);
-  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false)
+  const [localCategoriesOpen, setLocalCategoriesOpen] = useState(false)
   
   // Try to use context if available, otherwise use local state
   let contextCategories
   try {
     contextCategories = useCategories()
   } catch {
-    contextCategories = { isCategoriesOpen, setIsCategoriesOpen }
+    contextCategories = { 
+      isCategoriesOpen: localCategoriesOpen, 
+      setIsCategoriesOpen: setLocalCategoriesOpen 
+    }
   }
 
   const { navbarRef } = useStickyNavbar({ offset: 500 })
@@ -325,7 +328,13 @@ const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categorie
                       <Nav>
                         <Dropdown 
                           show={contextCategories.isCategoriesOpen}
-                          onToggle={(show) => contextCategories.setIsCategoriesOpen(show)}
+                          onToggle={(show) => {
+                            contextCategories.setIsCategoriesOpen(show)
+                            // Also update local state if using context
+                            if (contextCategories.isCategoriesOpen !== localCategoriesOpen) {
+                              setLocalCategoriesOpen(show)
+                            }
+                          }}
                           autoClose="outside" 
                           className="w-100"
                         >
@@ -336,20 +345,20 @@ const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categorie
                             size="lg"
                             className="w-100 rounded-bottom-0 justify-content-start d-none d-lg-block"
                             data-bs-theme="dark"
+                            style={{ transition: 'all 0.3s ease-in-out' }}
                           >
                             <i className="ci-grid fs-lg" />
                             <span className="ms-2 me-auto">Categories</span>
-                            <i className="ci-chevron-down fs-lg ms-auto me-n1" />
                           </Dropdown.Toggle>
                           {/* Button visible on screens < 992px wide (lg breakpoint) */}
                           <Dropdown.Toggle
                             variant="secondary"
                             size="lg"
                             className="w-100 justify-content-start d-lg-none mb-2"
+                            style={{ transition: 'all 0.3s ease-in-out' }}
                           >
                             <i className="ci-grid fs-lg" />
                             <span className="ms-2 me-auto">Categories</span>
-                            <i className="ci-chevron-down fs-lg ms-auto me-n1" />
                           </Dropdown.Toggle>
 
                           {/* Mega menu */}
@@ -361,6 +370,7 @@ const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categorie
                                 '--cz-dropdown-spacer': 0,
                                 '--cz-dropdown-item-padding-y': '.625rem',
                                 '--cz-dropdown-item-spacer': 0,
+                                transition: 'all 0.3s ease-in-out',
                               } as CSSProperties
                             }
                           >
