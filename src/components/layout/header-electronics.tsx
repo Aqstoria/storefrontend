@@ -382,19 +382,19 @@ const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categorie
                           {/* Mega menu */}
                           {contextCategories.isCategoriesOpen && (
                             <ul
-                              className={`w-100 rounded-top-0 rounded-bottom-4 py-1 p-lg-1 position-absolute top-100 start-0 bg-white border shadow-lg${expandedCategories ? ' dropdown-menu-static' : ''}`}
+                              className="w-100 rounded-top-0 rounded-bottom-4 position-absolute top-100 start-0 bg-white border shadow-lg"
                               style={
                                 {
-                                  '--cz-dropdown-spacer': 0,
-                                  '--cz-dropdown-item-padding-y': '.625rem',
-                                  '--cz-dropdown-item-spacer': 0,
+                                  maxHeight: '70vh',
+                                  overflowY: 'auto',
                                   transition: 'all 0.3s ease-in-out',
                                   zIndex: 1000,
+                                  padding: '0.5rem 0',
                                 } as CSSProperties
                               }
                             >
-                              <li className="d-lg-none pt-2">
-                                <Link href="/shop" className="dropdown-item fw-medium d-block">
+                              <li className="d-lg-none pt-2 px-3">
+                                <Link href="/shop" className="dropdown-item fw-medium d-block text-decoration-none">
                                   <i className="ci-grid fs-xl opacity-60 pe-1 me-2" />
                                   All Categories 
                                   <i className="ci-chevron-right fs-base ms-auto me-n1" />
@@ -402,39 +402,66 @@ const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categorie
                               </li>
                            
                             {categories.map(({ name, href, icon, icon_image, subcategories }, index) => (
-                              <li key={index} className="position-static">
-                                <div className="position-relative rounded pb-1 px-lg-2">
-                                  <Link href={href} className="dropdown-item fw-medium d-block d-none d-lg-block">
-                                    {/* Parent icon */}
-                                    {icon && <i className={`${icon} fs-xl opacity-60 pe-1 me-2`} />}
-                                    {icon_image && (
-                                      <img
-                                        src={icon_image}
-                                        alt={name}
-                                        width={24}
-                                        height={24}
-                                        className="me-2"
-                                        style={{ objectFit: 'contain' }}
-                                      />
-                                    )}
-                                    <span className="text-truncate">{name}</span>
-                                    <i className="ci-chevron-right fs-base ms-auto me-n1" />
+                              <li key={index} className="list-unstyled">
+                                <div className="px-3 py-2">
+                                  <Link 
+                                    href={href} 
+                                    className="dropdown-item fw-medium d-block text-decoration-none d-none d-lg-block"
+                                    style={{ 
+                                      padding: '0.5rem 0',
+                                      borderBottom: '1px solid #f8f9fa',
+                                      transition: 'all 0.2s ease',
+                                      color: '#495057'
+                                    }}
+                                    onMouseEnter={(e) => {
+                                      e.currentTarget.style.backgroundColor = '#f8f9fa'
+                                      e.currentTarget.style.color = '#0d6efd'
+                                    }}
+                                    onMouseLeave={(e) => {
+                                      e.currentTarget.style.backgroundColor = 'transparent'
+                                      e.currentTarget.style.color = '#495057'
+                                    }}
+                                  >
+                                    <div className="d-flex align-items-center">
+                                      {/* Parent icon */}
+                                      {icon && <i className={`${icon} fs-xl opacity-60 me-2`} style={{ minWidth: '20px' }} />}
+                                      {icon_image && (
+                                        <img
+                                          src={icon_image}
+                                          alt={name}
+                                          width={20}
+                                          height={20}
+                                          className="me-2"
+                                          style={{ objectFit: 'contain', minWidth: '20px' }}
+                                        />
+                                      )}
+                                      <span className="text-truncate flex-grow-1">{name}</span>
+                                      <i className="ci-chevron-right fs-base ms-2" />
+                                    </div>
                                   </Link>
 
-                                  <div className="fw-medium text-wrap d-block d-lg-none">
-                                    {icon && <i className={`${icon} fs-xl opacity-60 pe-1 me-2`} />}
-                                    {icon_image && (
-                                      <img
-                                        src={icon_image}
-                                        alt={name}
-                                        width={24}
-                                        height={24}
-                                        className="me-2"
-                                        style={{ objectFit: 'contain' }}
-                                      />
-                                    )}
-                                    {name}
-                                    <i className="ci-chevron-down fs-base ms-auto me-n1" />
+                                  <div 
+                                    className="fw-medium text-wrap d-block d-lg-none"
+                                    style={{ 
+                                      padding: '0.5rem 0',
+                                      borderBottom: '1px solid #f8f9fa'
+                                    }}
+                                  >
+                                    <div className="d-flex align-items-center">
+                                      {icon && <i className={`${icon} fs-xl opacity-60 me-2`} style={{ minWidth: '20px' }} />}
+                                      {icon_image && (
+                                        <img
+                                          src={icon_image}
+                                          alt={name}
+                                          width={20}
+                                          height={20}
+                                          className="me-2"
+                                          style={{ objectFit: 'contain', minWidth: '20px' }}
+                                        />
+                                      )}
+                                      <span className="flex-grow-1">{name}</span>
+                                      <i className="ci-chevron-down fs-base ms-2" />
+                                    </div>
                                   </div>
                                 </div>
                               </li>
