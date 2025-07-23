@@ -105,9 +105,7 @@ const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categorie
       const target = event.target as Element
       if (contextCategories.isCategoriesOpen && !target.closest('.dropdown')) {
         contextCategories.setIsCategoriesOpen(false)
-        if (contextCategories.isCategoriesOpen !== localCategoriesOpen) {
-          setLocalCategoriesOpen(false)
-        }
+        setLocalCategoriesOpen(false)
       }
     }
 
@@ -115,7 +113,7 @@ const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categorie
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [contextCategories.isCategoriesOpen, localCategoriesOpen])
+  }, [contextCategories.isCategoriesOpen])
 
   // Cart quantity badge (counter)
   const cartCounter = Array.isArray(cart) ? cart.map((item) => item.qty || item.quantity || 0).reduce((a, b) => a + b, 0) : 0
@@ -347,11 +345,9 @@ const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categorie
                         <Dropdown 
                           show={contextCategories.isCategoriesOpen}
                           onToggle={(show) => {
+                            console.log('Dropdown onToggle called with:', show)
                             contextCategories.setIsCategoriesOpen(show)
-                            // Also update local state if using context
-                            if (contextCategories.isCategoriesOpen !== localCategoriesOpen) {
-                              setLocalCategoriesOpen(show)
-                            }
+                            setLocalCategoriesOpen(show)
                           }}
                           autoClose={true}
                           className="w-100"
@@ -364,13 +360,6 @@ const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categorie
                             className="w-100 rounded-bottom-0 justify-content-start d-none d-lg-block"
                             data-bs-theme="dark"
                             style={{ transition: 'all 0.3s ease-in-out' }}
-                            onClick={() => {
-                              // Toggle the dropdown state
-                              contextCategories.setIsCategoriesOpen(!contextCategories.isCategoriesOpen)
-                              if (contextCategories.isCategoriesOpen !== localCategoriesOpen) {
-                                setLocalCategoriesOpen(!contextCategories.isCategoriesOpen)
-                              }
-                            }}
                           >
                             <i className="ci-grid fs-lg" />
                             <span className="ms-2 me-auto">Categories</span>
@@ -381,13 +370,6 @@ const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categorie
                             size="lg"
                             className="w-100 justify-content-start d-lg-none mb-2"
                             style={{ transition: 'all 0.3s ease-in-out' }}
-                            onClick={() => {
-                              // Toggle the dropdown state
-                              contextCategories.setIsCategoriesOpen(!contextCategories.isCategoriesOpen)
-                              if (contextCategories.isCategoriesOpen !== localCategoriesOpen) {
-                                setLocalCategoriesOpen(!contextCategories.isCategoriesOpen)
-                              }
-                            }}
                           >
                             <i className="ci-grid fs-lg" />
                             <span className="ms-2 me-auto">Categories</span>
