@@ -16,6 +16,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas'
 import Collapse from 'react-bootstrap/Collapse'
 import Nav from 'react-bootstrap/Nav'
 import DropdownHover from '@/components/dropdown-hover'
+import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownToggle from 'react-bootstrap/DropdownToggle'
 import DropdownMenu from 'react-bootstrap/DropdownMenu'
 import DropdownItem from 'react-bootstrap/DropdownItem'
@@ -68,6 +69,7 @@ interface TransformedCategory extends Category {
 const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categories: propCategories = [] }: HeaderElectronicsProps) => {
   const pathname = usePathname()
   const [categories, setCategories] = useState<TransformedCategory[]>(propCategories);
+  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false)
 
   const { navbarRef } = useStickyNavbar({ offset: 500 })
   const [stuckNavOpen, setStuckNavOpen] = useState(false)
@@ -312,9 +314,14 @@ const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categorie
                     {/* Categories mega menu */}
                     <Col lg={3}>
                       <Nav>
-                        <DropdownHover autoClose="outside" className="w-100">
-                          {/* Buttton visible on screens > 991px wide (lg breakpoint) */}
-                          <DropdownToggle
+                        <Dropdown 
+                          show={isCategoriesOpen}
+                          onToggle={(show) => setIsCategoriesOpen(show)}
+                          autoClose="outside" 
+                          className="w-100"
+                        >
+                          {/* Button visible on screens > 991px wide (lg breakpoint) */}
+                          <Dropdown.Toggle
                             as="div"
                             bsPrefix="cursor-pointer d-none d-lg-block"
                             className="with-focus"
@@ -330,22 +337,23 @@ const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categorie
                             >
                               <i className="ci-grid fs-lg" />
                               <span className="ms-2 me-auto">Categories</span>
+                              <i className="ci-chevron-down fs-lg ms-auto me-n1" />
                             </Button>
-                          </DropdownToggle>
-                          {/* Buttton visible on screens < 992px wide (lg breakpoint) */}
-                          <DropdownToggle
+                          </Dropdown.Toggle>
+                          {/* Button visible on screens < 992px wide (lg breakpoint) */}
+                          <Dropdown.Toggle
                             variant="secondary"
                             size="lg"
                             className="with-focus w-100 justify-content-start d-lg-none mb-2"
                           >
                             <i className="ci-grid fs-lg" />
                             <span className="ms-2 me-auto">Categories</span>
-                          </DropdownToggle>
+                            <i className="ci-chevron-down fs-lg ms-auto me-n1" />
+                          </Dropdown.Toggle>
 
                           {/* Mega menu */}
-                          <DropdownMenu
+                          <Dropdown.Menu
                             as="ul"
-                            renderOnMount
                             className={`w-100 rounded-top-0 rounded-bottom-4 py-1 p-lg-1${expandedCategories ? ' dropdown-menu-static' : ''}`}
                             style={
                               {
@@ -356,11 +364,11 @@ const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categorie
                             }
                           >
                             <li className="d-lg-none pt-2">
-                              <DropdownItem as={Link} href="/shop" className="fw-medium">
+                              <Dropdown.Item as={Link} href="/shop" className="fw-medium">
                                 <i className="ci-grid fs-xl opacity-60 pe-1 me-2" />
                                 All Categories 
                                 <i className="ci-chevron-right fs-base ms-auto me-n1" />
-                              </DropdownItem>
+                              </Dropdown.Item>
                             </li>
                          
                           {categories.map(({ name, href, icon, icon_image, subcategories }, index) => (
@@ -419,39 +427,27 @@ const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categorie
                                   <div className="d-flex flex-column flex-lg-row h-100 gap-4">
                                     <div style={{ minWidth: 194 }}>
                                       <div className="h6 mb-2">Subcategories</div>
-                                      <ul className="nav flex-column gap-2 mt-0">
-                                        {subcategories.map(({ title, href, icon, icon_image }, subIndex) => (
-                                          <li key={subIndex} className="d-flex w-100 pt-1">
+                                      <Nav as="ul" navbar={false} className="flex-column gap-2 mt-n2">
+                                        {subcategories.map(({ title, href }, index) => (
+                                          <li key={index} className="d-flex w-100 pt-1">
                                             <Nav.Link
                                               as={Link}
                                               href={href}
                                               className="animate-underline animate-target d-inline fw-normal text-truncate p-0"
                                             >
-                                              {icon && <i className={`${icon} me-2`} />}
-                                              {icon_image && (
-                                                <img
-                                                  src={icon_image}
-                                                  alt={title}
-                                                  width={18}
-                                                  height={18}
-                                                  className="me-2"
-                                                  style={{ objectFit: 'contain' }}
-                                                />
-                                              )}
                                               {title}
                                             </Nav.Link>
                                           </li>
                                         ))}
-                                      </ul>
+                                      </Nav>
                                     </div>
                                   </div>
                                 </DropdownMenu>
                               )}
                             </DropdownHover>
                           ))}
-
-                          </DropdownMenu>
-                        </DropdownHover>
+                          </Dropdown.Menu>
+                        </Dropdown>
                       </Nav>
                     </Col>
 
