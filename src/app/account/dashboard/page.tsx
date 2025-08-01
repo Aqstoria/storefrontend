@@ -572,63 +572,361 @@ const AccountDashboardPage = () => {
     </Card>
   )
 
-  const renderAddressesView = () => (
-    <Card className="border-0 shadow-sm">
-      <Card.Header className="bg-light">
-        <div className="d-flex justify-content-between align-items-center">
-          <h5 className="mb-0">
-            <i className="ci-map-pin me-2"></i>
-            My Addresses
-          </h5>
-          <Button variant="primary" size="sm">
-            Add New Address
-          </Button>
-        </div>
-      </Card.Header>
-      <Card.Body>
-        {addresses.length > 0 ? (
-          <Row>
-            {addresses.map((address) => (
-              <Col md={6} key={address.id} className="mb-3">
-                <Card className="h-100">
-                  <Card.Body>
-                    <div className="d-flex justify-content-between align-items-start mb-2">
-                      <h6 className="mb-0">{address.name}</h6>
-                      {address.is_default && (
-                        <Badge bg="success">Default</Badge>
-                      )}
-                    </div>
-                    <p className="text-muted mb-2">
-                      {address.address}<br />
-                      {address.city}, {address.state} {address.zip_code}<br />
-                      {address.country}
-                    </p>
-                    <div className="d-flex gap-2">
-                      <Button variant="outline-primary" size="sm">
-                        Edit
-                      </Button>
-                      <Button variant="outline-danger" size="sm">
-                        Delete
-                      </Button>
-                    </div>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        ) : (
-          <div className="text-center py-4">
-            <i className="ci-map-pin display-4 text-muted"></i>
-            <h5 className="mt-3">No addresses yet</h5>
-            <p className="text-muted">Add your shipping addresses for faster checkout.</p>
-            <Button variant="primary">
+  const renderAddressesView = () => {
+    const [showAddForm, setShowAddForm] = useState(false)
+    const [editingAddress, setEditingAddress] = useState<Address | null>(null)
+    const [formData, setFormData] = useState({
+      name: '',
+      address: '',
+      city: '',
+      state: '',
+      country: '',
+      zip_code: '',
+      is_default: false
+    })
+
+    const handleAddAddress = () => {
+      // Mock add functionality - replace with actual API call
+      const newAddress: Address = {
+        id: Date.now(),
+        ...formData
+      }
+      setAddresses([...addresses, newAddress])
+      setShowAddForm(false)
+      setFormData({
+        name: '',
+        address: '',
+        city: '',
+        state: '',
+        country: '',
+        zip_code: '',
+        is_default: false
+      })
+    }
+
+    const handleEditAddress = (address: Address) => {
+      setEditingAddress(address)
+      setFormData({
+        name: address.name,
+        address: address.address,
+        city: address.city,
+        state: address.state,
+        country: address.country,
+        zip_code: address.zip_code,
+        is_default: address.is_default
+      })
+    }
+
+    const handleUpdateAddress = () => {
+      if (editingAddress) {
+        // Mock update functionality - replace with actual API call
+        setAddresses(addresses.map(addr => 
+          addr.id === editingAddress.id ? { ...addr, ...formData } : addr
+        ))
+        setEditingAddress(null)
+        setFormData({
+          name: '',
+          address: '',
+          city: '',
+          state: '',
+          country: '',
+          zip_code: '',
+          is_default: false
+        })
+      }
+    }
+
+    const handleDeleteAddress = (addressId: number) => {
+      // Mock delete functionality - replace with actual API call
+      setAddresses(addresses.filter(addr => addr.id !== addressId))
+    }
+
+    return (
+      <Card className="border-0 shadow-sm">
+        <Card.Header className="bg-light">
+          <div className="d-flex justify-content-between align-items-center">
+            <h5 className="mb-0">
+              <i className="ci-map-pin me-2"></i>
+              My Addresses
+            </h5>
+            <Button 
+              variant="primary" 
+              size="sm"
+              onClick={() => setShowAddForm(true)}
+            >
               Add New Address
             </Button>
           </div>
-        )}
-      </Card.Body>
-    </Card>
-  )
+        </Card.Header>
+        <Card.Body>
+          {showAddForm && (
+            <Card className="mb-4 border-primary">
+              <Card.Header className="bg-primary text-white">
+                <h6 className="mb-0">Add New Address</h6>
+              </Card.Header>
+              <Card.Body>
+                <Form>
+                  <Row>
+                    <Col md={6}>
+                      <Form.Group className="mb-3">
+                        <Form.Label>Address Name</Form.Label>
+                        <Form.Control 
+                          type="text" 
+                          value={formData.name}
+                          onChange={(e) => setFormData({...formData, name: e.target.value})}
+                          placeholder="e.g., Home, Office"
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col md={6}>
+                      <Form.Group className="mb-3">
+                        <Form.Label>Street Address</Form.Label>
+                        <Form.Control 
+                          type="text" 
+                          value={formData.address}
+                          onChange={(e) => setFormData({...formData, address: e.target.value})}
+                          placeholder="123 Main Street"
+                        />
+                      </Form.Group>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col md={4}>
+                      <Form.Group className="mb-3">
+                        <Form.Label>City</Form.Label>
+                        <Form.Control 
+                          type="text" 
+                          value={formData.city}
+                          onChange={(e) => setFormData({...formData, city: e.target.value})}
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col md={4}>
+                      <Form.Group className="mb-3">
+                        <Form.Label>State</Form.Label>
+                        <Form.Control 
+                          type="text" 
+                          value={formData.state}
+                          onChange={(e) => setFormData({...formData, state: e.target.value})}
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col md={4}>
+                      <Form.Group className="mb-3">
+                        <Form.Label>ZIP Code</Form.Label>
+                        <Form.Control 
+                          type="text" 
+                          value={formData.zip_code}
+                          onChange={(e) => setFormData({...formData, zip_code: e.target.value})}
+                        />
+                      </Form.Group>
+                    </Col>
+                  </Row>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Country</Form.Label>
+                    <Form.Control 
+                      type="text" 
+                      value={formData.country}
+                      onChange={(e) => setFormData({...formData, country: e.target.value})}
+                    />
+                  </Form.Group>
+                  <Form.Group className="mb-3">
+                    <Form.Check 
+                      type="checkbox" 
+                      label="Set as default address"
+                      checked={formData.is_default}
+                      onChange={(e) => setFormData({...formData, is_default: e.target.checked})}
+                    />
+                  </Form.Group>
+                  <div className="d-flex gap-2">
+                    <Button 
+                      variant="primary" 
+                      onClick={handleAddAddress}
+                    >
+                      Save Address
+                    </Button>
+                    <Button 
+                      variant="outline-secondary" 
+                      onClick={() => {
+                        setShowAddForm(false)
+                        setFormData({
+                          name: '',
+                          address: '',
+                          city: '',
+                          state: '',
+                          country: '',
+                          zip_code: '',
+                          is_default: false
+                        })
+                      }}
+                    >
+                      Cancel
+                    </Button>
+                  </div>
+                </Form>
+              </Card.Body>
+            </Card>
+          )}
+
+          {editingAddress && (
+            <Card className="mb-4 border-warning">
+              <Card.Header className="bg-warning text-white">
+                <h6 className="mb-0">Edit Address</h6>
+              </Card.Header>
+              <Card.Body>
+                <Form>
+                  <Row>
+                    <Col md={6}>
+                      <Form.Group className="mb-3">
+                        <Form.Label>Address Name</Form.Label>
+                        <Form.Control 
+                          type="text" 
+                          value={formData.name}
+                          onChange={(e) => setFormData({...formData, name: e.target.value})}
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col md={6}>
+                      <Form.Group className="mb-3">
+                        <Form.Label>Street Address</Form.Label>
+                        <Form.Control 
+                          type="text" 
+                          value={formData.address}
+                          onChange={(e) => setFormData({...formData, address: e.target.value})}
+                        />
+                      </Form.Group>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col md={4}>
+                      <Form.Group className="mb-3">
+                        <Form.Label>City</Form.Label>
+                        <Form.Control 
+                          type="text" 
+                          value={formData.city}
+                          onChange={(e) => setFormData({...formData, city: e.target.value})}
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col md={4}>
+                      <Form.Group className="mb-3">
+                        <Form.Label>State</Form.Label>
+                        <Form.Control 
+                          type="text" 
+                          value={formData.state}
+                          onChange={(e) => setFormData({...formData, state: e.target.value})}
+                        />
+                      </Form.Group>
+                    </Col>
+                    <Col md={4}>
+                      <Form.Group className="mb-3">
+                        <Form.Label>ZIP Code</Form.Label>
+                        <Form.Control 
+                          type="text" 
+                          value={formData.zip_code}
+                          onChange={(e) => setFormData({...formData, zip_code: e.target.value})}
+                        />
+                      </Form.Group>
+                    </Col>
+                  </Row>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Country</Form.Label>
+                    <Form.Control 
+                      type="text" 
+                      value={formData.country}
+                      onChange={(e) => setFormData({...formData, country: e.target.value})}
+                    />
+                  </Form.Group>
+                  <Form.Group className="mb-3">
+                    <Form.Check 
+                      type="checkbox" 
+                      label="Set as default address"
+                      checked={formData.is_default}
+                      onChange={(e) => setFormData({...formData, is_default: e.target.checked})}
+                    />
+                  </Form.Group>
+                  <div className="d-flex gap-2">
+                    <Button 
+                      variant="warning" 
+                      onClick={handleUpdateAddress}
+                    >
+                      Update Address
+                    </Button>
+                    <Button 
+                      variant="outline-secondary" 
+                      onClick={() => {
+                        setEditingAddress(null)
+                        setFormData({
+                          name: '',
+                          address: '',
+                          city: '',
+                          state: '',
+                          country: '',
+                          zip_code: '',
+                          is_default: false
+                        })
+                      }}
+                    >
+                      Cancel
+                    </Button>
+                  </div>
+                </Form>
+              </Card.Body>
+            </Card>
+          )}
+
+          {addresses.length > 0 ? (
+            <Row>
+              {addresses.map((address) => (
+                <Col md={6} key={address.id} className="mb-3">
+                  <Card className="h-100">
+                    <Card.Body>
+                      <div className="d-flex justify-content-between align-items-start mb-2">
+                        <h6 className="mb-0">{address.name}</h6>
+                        {address.is_default && (
+                          <Badge bg="success">Default</Badge>
+                        )}
+                      </div>
+                      <p className="text-muted mb-2">
+                        {address.address}<br />
+                        {address.city}, {address.state} {address.zip_code}<br />
+                        {address.country}
+                      </p>
+                      <div className="d-flex gap-2">
+                        <Button 
+                          variant="outline-primary" 
+                          size="sm"
+                          onClick={() => handleEditAddress(address)}
+                        >
+                          Edit
+                        </Button>
+                        <Button 
+                          variant="outline-danger" 
+                          size="sm"
+                          onClick={() => handleDeleteAddress(address.id)}
+                        >
+                          Delete
+                        </Button>
+                      </div>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+          ) : (
+            <div className="text-center py-4">
+              <i className="ci-map-pin display-4 text-muted"></i>
+              <h5 className="mt-3">No addresses yet</h5>
+              <p className="text-muted">Add your shipping addresses for faster checkout.</p>
+              <Button variant="primary" onClick={() => setShowAddForm(true)}>
+                Add New Address
+              </Button>
+            </div>
+          )}
+        </Card.Body>
+      </Card>
+    )
+  }
 
   const renderWishlistView = () => (
     <Card className="border-0 shadow-sm">
@@ -646,6 +944,50 @@ const AccountDashboardPage = () => {
           <Button variant="primary" href="/shop">
             Start Shopping
           </Button>
+        </div>
+      </Card.Body>
+    </Card>
+  )
+
+  const renderPaymentView = () => (
+    <Card className="border-0 shadow-sm">
+      <Card.Header className="bg-light">
+        <div className="d-flex justify-content-between align-items-center">
+          <h5 className="mb-0">
+            <i className="ci-credit-card me-2"></i>
+            Payment Methods
+          </h5>
+          <Button variant="primary" size="sm">
+            Add New Card
+          </Button>
+        </div>
+      </Card.Header>
+      <Card.Body>
+        <div className="text-center py-4">
+          <i className="ci-credit-card display-4 text-muted"></i>
+          <h5 className="mt-3">No payment methods yet</h5>
+          <p className="text-muted">Add your payment methods for faster checkout.</p>
+          <Button variant="primary">
+            Add New Card
+          </Button>
+        </div>
+      </Card.Body>
+    </Card>
+  )
+
+  const renderNotificationsView = () => (
+    <Card className="border-0 shadow-sm">
+      <Card.Header className="bg-light">
+        <h5 className="mb-0">
+          <i className="ci-bell me-2"></i>
+          Notifications
+        </h5>
+      </Card.Header>
+      <Card.Body>
+        <div className="text-center py-4">
+          <i className="ci-bell display-4 text-muted"></i>
+          <h5 className="mt-3">No notifications yet</h5>
+          <p className="text-muted">You'll see your notifications here.</p>
         </div>
       </Card.Body>
     </Card>
@@ -705,6 +1047,10 @@ const AccountDashboardPage = () => {
         return renderWishlistView()
       case 'info':
         return renderInfoView()
+      case 'payment':
+        return renderPaymentView()
+      case 'notifications':
+        return renderNotificationsView()
       default:
         return renderDashboardView()
     }
