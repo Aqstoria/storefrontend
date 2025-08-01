@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation'
 import { botbleAPI } from '@/services/api'
 import HeaderElectronics from '@/components/layout/header-electronics'
 import FooterElectronics from '@/components/layout/footer-electronics'
-import AccountSidebarShop from '@/components/account/account-sidebar-shop'
+import AccountSidebarDashboard from '@/components/account/account-sidebar-dashboard'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -200,7 +200,7 @@ const AccountDashboardPage = () => {
 
   // Show loading state while checking authentication
   if (authLoading) {
-    console.log('Dashboard: Auth loading...')
+    console.log('Dashboard: Auth loading...', { authLoading, isAuthenticated, user })
     return (
       <div className="d-flex justify-content-center align-items-center min-vh-100">
         <div className="text-center">
@@ -236,7 +236,7 @@ const AccountDashboardPage = () => {
           <Row className="pt-md-2 pt-lg-3 pb-sm-2 pb-md-3 pb-lg-4 pb-xl-5">
             {/* Sidebar */}
             <Col as="aside" lg={3}>
-              <AccountSidebarShop 
+              <AccountSidebarDashboard 
                 name={user.name || user.email || 'User'} 
               />
             </Col>

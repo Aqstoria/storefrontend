@@ -47,24 +47,33 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const checkAuth = async () => {
     try {
+      console.log('Auth: Starting checkAuth...');
       // Only check localStorage on client side
       if (typeof window === 'undefined') {
+        console.log('Auth: Server side, skipping...');
         setIsLoading(false);
         return;
       }
 
       const token = localStorage.getItem('auth_token');
+      console.log('Auth: Token found:', !!token);
       if (token) {
         botbleAPI.updateToken(token);
+        console.log('Auth: Calling getUser...');
         const response = await botbleAPI.getUser();
+        console.log('Auth: getUser response:', response);
         if (response.success && response.data) {
+          console.log('Auth: Setting user and authenticated');
           setUser(response.data);
           setIsAuthenticated(true);
         } else {
+          console.log('Auth: Token invalid, removing...');
           // Token is invalid, remove it
           localStorage.removeItem('auth_token');
           botbleAPI.updateToken(null);
         }
+      } else {
+        console.log('Auth: No token found');
       }
     } catch (error) {
       console.error('Auth check failed:', error);
@@ -73,6 +82,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       }
       botbleAPI.updateToken(null);
     } finally {
+      console.log('Auth: Setting loading to false');
       setIsLoading(false);
     }
   };
