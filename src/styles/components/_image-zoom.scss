@@ -21,3 +21,25 @@
 .drift-inline {
   z-index: 10 !important;
 }
+
+// Enhanced overlay zoom styles
+.drift-zoom-pane {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+  border-radius: 8px !important;
+  
+  img {
+    border-radius: 6px !important;
+  }
+}
+
+// Better touch interaction for mobile
+@media (max-width: 767.98px) {
+  [data-zoom] {
+    cursor: zoom-in;
+  }
+  
+  .drift-zoom-pane {
+    max-width: 90vw !important;
+    max-height: 90vh !important;
+  }
+}

@@ -201,10 +201,10 @@ const ProductGalleryOptionsElectronics = ({ product, gallery, botbleProduct }: P
                     priority
                     src={slide}
                     zoomSrc={slide}
-                    paneContainerId="zoomPane"
-                    inlinePane={768}
-                    hoverDelay={500}
-                    touchDisable={true}
+                    inlinePane={9999}
+                    hoverDelay={300}
+                    touchDelay={300}
+                    touchDisable={false}
                     width={1272}
                     height={1272}
                     alt="Image"
@@ -276,7 +276,6 @@ const ProductGalleryOptionsElectronics = ({ product, gallery, botbleProduct }: P
           {/* Product options */}
           <Col as="aside" md={6} xl={5} className="offset-xl-1 pt-4">
             <div className="ps-md-4 ps-xl-0">
-              <div className="position-relative" id="zoomPane">
                 {/* Model - only show if we have specification attributes */}
                 {hasSpecificationAttributes && modelOptions.length > 0 && (
                   <div className="pb-3 mb-2 mb-lg-3">
