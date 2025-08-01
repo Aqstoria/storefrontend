@@ -18,7 +18,7 @@ import Badge from 'react-bootstrap/Badge'
 interface AccountSidebarDashboardProps {
   name: string
   currentView?: string
-  onViewChange?: (view: string) => void
+  onViewChange?: (view: any) => void
 }
 
 interface LinkItem {
@@ -64,7 +64,7 @@ const AccountSidebarDashboard = ({ name, currentView = 'dashboard', onViewChange
   const { openOffcanvas, closeOffcanvas, isOpen } = useOffcanvas()
   const { openModal, closeModal, isShown } = useModal()
 
-  const handleItemClick = (view: string) => {
+  const handleItemClick = (view: any) => {
     if (view === 'logout') {
       // Handle logout
       window.location.href = '/account'
