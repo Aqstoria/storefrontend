@@ -17,6 +17,8 @@ import Badge from 'react-bootstrap/Badge'
 import Spinner from 'react-bootstrap/Spinner'
 import Alert from 'react-bootstrap/Alert'
 import Link from 'next/link'
+import Table from 'react-bootstrap/Table'
+import Form from 'react-bootstrap/Form'
 
 interface DashboardStats {
   totalOrders: number
@@ -35,10 +37,32 @@ interface RecentOrder {
   payment_method?: string
 }
 
+interface Review {
+  id: number
+  product_name: string
+  rating: number
+  comment: string
+  created_at: string
+}
+
+interface Address {
+  id: number
+  name: string
+  address: string
+  city: string
+  state: string
+  country: string
+  zip_code: string
+  is_default: boolean
+}
+
+type DashboardView = 'dashboard' | 'orders' | 'wishlist' | 'payment' | 'reviews' | 'info' | 'addresses' | 'notifications'
+
 const AccountDashboardPage = () => {
   const { user, isAuthenticated, isLoading: authLoading } = useAuth()
-
   const router = useRouter()
+  
+  const [currentView, setCurrentView] = useState<DashboardView>('dashboard')
   const [stats, setStats] = useState<DashboardStats>({
     totalOrders: 0,
     pendingOrders: 0,
@@ -47,11 +71,12 @@ const AccountDashboardPage = () => {
     wishlistItems: 0
   })
   const [recentOrders, setRecentOrders] = useState<RecentOrder[]>([])
+  const [reviews, setReviews] = useState<Review[]>([])
+  const [addresses, setAddresses] = useState<Address[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    // Set document title
     document.title = 'Cartzilla | Account Dashboard'
   }, [])
 
@@ -67,74 +92,45 @@ const AccountDashboardPage = () => {
     }
   }, [isAuthenticated, authLoading, router])
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      fetchViewData()
+    }
+  }, [currentView, isAuthenticated])
+
   const fetchDashboardData = async () => {
     try {
       setLoading(true)
       setError(null)
       console.log('Dashboard: Starting to fetch data...')
       
-      // Test authentication first
       const authToken = localStorage.getItem('auth_token')
       console.log('Dashboard: Auth token exists:', !!authToken)
-      console.log('Dashboard: Auth token (first 20 chars):', authToken?.substring(0, 20))
       
-      // Test API call manually
-      try {
-        const testResponse = await fetch(`${process.env.NEXT_PUBLIC_ECOMMERCE_API_URL || 'http://127.0.0.1:8000/api/v1/ecommerce'}/orders?per_page=10`, {
-          method: 'GET',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            ...(authToken ? { 'Authorization': `Bearer ${authToken}` } : {})
-          }
-        })
-        const testData = await testResponse.json()
-        console.log('Dashboard: Manual API test response status:', testResponse.status)
-        console.log('Dashboard: Manual API test response:', testData)
-      } catch (testError) {
-        console.error('Dashboard: Manual API test failed:', testError)
-      }
-
-      // Fetch orders for stats and recent orders
       const ordersResponse = await botbleAPI.getOrders({ per_page: 10 })
       console.log('Dashboard: Orders response:', ordersResponse)
-      console.log('Dashboard: Full response structure:', JSON.stringify(ordersResponse, null, 2))
       
       if (ordersResponse.success && ordersResponse.data) {
         const orders = ordersResponse.data.data || ordersResponse.data || []
         console.log('Dashboard: Orders data:', orders)
-        console.log('Dashboard: Orders length:', orders.length)
-        console.log('Dashboard: First order (if any):', orders[0])
         
-        // Calculate stats
         const totalOrders = orders.length
         const pendingOrders = orders.filter((order: any) => order.status === 'pending').length
         const completedOrders = orders.filter((order: any) => order.status === 'completed').length
         const totalSpent = orders.reduce((sum: number, order: any) => sum + parseFloat(order.amount || 0), 0)
-        
-        console.log('Dashboard: Calculated stats:', {
-          totalOrders,
-          pendingOrders,
-          completedOrders,
-          totalSpent
-        })
         
         setStats({
           totalOrders,
           pendingOrders,
           completedOrders,
           totalSpent,
-          wishlistItems: 0 // Will be updated below
+          wishlistItems: 0
         })
 
-        // Set recent orders (first 5)
         const recentOrdersData = orders.slice(0, 5)
-        console.log('Dashboard: Recent orders:', recentOrdersData)
         setRecentOrders(recentOrdersData)
       } else {
         console.warn('Orders fetch failed:', ordersResponse.message)
-        console.warn('Full failed response:', ordersResponse)
-        // Don't set error, just use default stats
         setStats({
           totalOrders: 0,
           pendingOrders: 0,
@@ -145,7 +141,6 @@ const AccountDashboardPage = () => {
         setRecentOrders([])
       }
 
-      // Fetch wishlist count
       try {
         const wishlistResponse = await botbleAPI.getWishlist()
         console.log('Dashboard: Wishlist response:', wishlistResponse)
@@ -162,6 +157,119 @@ const AccountDashboardPage = () => {
       setError('Failed to load dashboard data. Please try again.')
     } finally {
       setLoading(false)
+    }
+  }
+
+  const fetchViewData = async () => {
+    try {
+      setLoading(true)
+      setError(null)
+
+      switch (currentView) {
+        case 'reviews':
+          await fetchReviews()
+          break
+        case 'addresses':
+          await fetchAddresses()
+          break
+        case 'orders':
+          await fetchOrders()
+          break
+        case 'wishlist':
+          await fetchWishlist()
+          break
+        default:
+          break
+      }
+    } catch (err) {
+      console.error('Error fetching view data:', err)
+      setError('Failed to load data. Please try again.')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const fetchReviews = async () => {
+    try {
+      // Mock reviews data - replace with actual API call
+      const mockReviews: Review[] = [
+        {
+          id: 1,
+          product_name: 'Wireless Headphones',
+          rating: 5,
+          comment: 'Great sound quality and comfortable to wear!',
+          created_at: '2024-01-15T10:30:00Z'
+        },
+        {
+          id: 2,
+          product_name: 'Smart Watch',
+          rating: 4,
+          comment: 'Good features but battery life could be better.',
+          created_at: '2024-01-10T14:20:00Z'
+        }
+      ]
+      setReviews(mockReviews)
+    } catch (error) {
+      console.error('Error fetching reviews:', error)
+      setError('Failed to load reviews.')
+    }
+  }
+
+  const fetchAddresses = async () => {
+    try {
+      // Mock addresses data - replace with actual API call
+      const mockAddresses: Address[] = [
+        {
+          id: 1,
+          name: 'Home',
+          address: '123 Main Street',
+          city: 'New York',
+          state: 'NY',
+          country: 'USA',
+          zip_code: '10001',
+          is_default: true
+        },
+        {
+          id: 2,
+          name: 'Office',
+          address: '456 Business Ave',
+          city: 'Los Angeles',
+          state: 'CA',
+          country: 'USA',
+          zip_code: '90210',
+          is_default: false
+        }
+      ]
+      setAddresses(mockAddresses)
+    } catch (error) {
+      console.error('Error fetching addresses:', error)
+      setError('Failed to load addresses.')
+    }
+  }
+
+  const fetchOrders = async () => {
+    try {
+      const ordersResponse = await botbleAPI.getOrders({ per_page: 20 })
+      if (ordersResponse.success && ordersResponse.data) {
+        const orders = ordersResponse.data.data || ordersResponse.data || []
+        setRecentOrders(orders)
+      }
+    } catch (error) {
+      console.error('Error fetching orders:', error)
+      setError('Failed to load orders.')
+    }
+  }
+
+  const fetchWishlist = async () => {
+    try {
+      const wishlistResponse = await botbleAPI.getWishlist()
+      if (wishlistResponse.success && wishlistResponse.data) {
+        // Handle wishlist data
+        console.log('Wishlist data:', wishlistResponse.data)
+      }
+    } catch (error) {
+      console.error('Error fetching wishlist:', error)
+      setError('Failed to load wishlist.')
     }
   }
 
@@ -196,6 +304,410 @@ const AccountDashboardPage = () => {
       style: 'currency',
       currency: 'USD'
     }).format(amount)
+  }
+
+  const renderDashboardView = () => (
+    <>
+      {/* Statistics Cards */}
+      <Row className="g-4 mb-4">
+        <Col sm={6} lg={3}>
+          <Card className="border-0 shadow-sm h-100">
+            <Card.Body className="text-center">
+              <div className="bg-primary-subtle rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{ width: '3rem', height: '3rem' }}>
+                <i className="ci-shopping-bag text-primary fs-5"></i>
+              </div>
+              <h3 className="h4 mb-1">{stats.totalOrders}</h3>
+              <p className="text-muted mb-0">Total Orders</p>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col sm={6} lg={3}>
+          <Card className="border-0 shadow-sm h-100">
+            <Card.Body className="text-center">
+              <div className="bg-warning-subtle rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{ width: '3rem', height: '3rem' }}>
+                <i className="ci-time text-warning fs-5"></i>
+              </div>
+              <h3 className="h4 mb-1">{stats.pendingOrders}</h3>
+              <p className="text-muted mb-0">Pending Orders</p>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col sm={6} lg={3}>
+          <Card className="border-0 shadow-sm h-100">
+            <Card.Body className="text-center">
+              <div className="bg-success-subtle rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{ width: '3rem', height: '3rem' }}>
+                <i className="ci-check-circle text-success fs-5"></i>
+              </div>
+              <h3 className="h4 mb-1">{stats.completedOrders}</h3>
+              <p className="text-muted mb-0">Completed</p>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col sm={6} lg={3}>
+          <Card className="border-0 shadow-sm h-100">
+            <Card.Body className="text-center">
+              <div className="bg-info-subtle rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{ width: '3rem', height: '3rem' }}>
+                <i className="ci-heart text-info fs-5"></i>
+              </div>
+              <h3 className="h4 mb-1">{stats.wishlistItems}</h3>
+              <p className="text-muted mb-0">Wishlist Items</p>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+
+      <Row>
+        {/* Recent Orders */}
+        <Col lg={8}>
+          <Card className="border-0 shadow-sm">
+            <Card.Header className="bg-light">
+              <div className="d-flex align-items-center justify-content-between">
+                <h5 className="mb-0">
+                  <i className="ci-package me-2"></i>
+                  Recent Orders
+                </h5>
+                <Button 
+                  variant="outline-primary" 
+                  size="sm"
+                  onClick={() => setCurrentView('orders')}
+                >
+                  View All
+                </Button>
+              </div>
+            </Card.Header>
+            <Card.Body>
+              {recentOrders.length > 0 ? (
+                <div className="table-responsive">
+                  <Table className="table-hover mb-0">
+                    <thead>
+                      <tr>
+                        <th>Order</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Total</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {recentOrders.map((order) => (
+                        <tr key={order.id}>
+                          <td>
+                            <a href="#" className="text-decoration-none">
+                              #{order.code}
+                            </a>
+                          </td>
+                          <td>{formatDate(order.created_at)}</td>
+                          <td>
+                            <Badge bg={getStatusVariant(order.status)}>
+                              {order.status}
+                            </Badge>
+                          </td>
+                          <td>{formatCurrency(order.amount)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </Table>
+                </div>
+              ) : (
+                <div className="text-center py-4">
+                  <i className="ci-package display-4 text-muted"></i>
+                  <h5 className="mt-3">No orders yet</h5>
+                  <p className="text-muted">Start shopping to see your orders here.</p>
+                  <Button variant="primary" href="/shop">
+                    Start Shopping
+                  </Button>
+                </div>
+              )}
+            </Card.Body>
+          </Card>
+        </Col>
+
+        {/* Quick Actions */}
+        <Col lg={4}>
+          <Card className="border-0 shadow-sm">
+            <Card.Header className="bg-light">
+              <h5 className="mb-0">
+                <i className="ci-lightning me-2"></i>
+                Quick Actions
+              </h5>
+            </Card.Header>
+            <Card.Body>
+              <div className="d-grid gap-2">
+                <Button 
+                  variant="outline-danger" 
+                  onClick={() => setCurrentView('orders')}
+                >
+                  View All Orders
+                </Button>
+                <Button 
+                  variant="outline-danger" 
+                  onClick={() => setCurrentView('wishlist')}
+                >
+                  My Wishlist
+                </Button>
+                <Button 
+                  variant="outline-danger" 
+                  onClick={() => setCurrentView('addresses')}
+                >
+                  Manage Addresses
+                </Button>
+                <Button 
+                  variant="outline-danger" 
+                  onClick={() => setCurrentView('info')}
+                >
+                  Edit Profile
+                </Button>
+              </div>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </>
+  )
+
+  const renderOrdersView = () => (
+    <Card className="border-0 shadow-sm">
+      <Card.Header className="bg-light">
+        <h5 className="mb-0">
+          <i className="ci-package me-2"></i>
+          My Orders
+        </h5>
+      </Card.Header>
+      <Card.Body>
+        {recentOrders.length > 0 ? (
+          <div className="table-responsive">
+            <Table className="table-hover mb-0">
+              <thead>
+                <tr>
+                  <th>Order</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th>Total</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {recentOrders.map((order) => (
+                  <tr key={order.id}>
+                    <td>
+                      <a href="#" className="text-decoration-none">
+                        #{order.code}
+                      </a>
+                    </td>
+                    <td>{formatDate(order.created_at)}</td>
+                    <td>
+                      <Badge bg={getStatusVariant(order.status)}>
+                        {order.status}
+                      </Badge>
+                    </td>
+                    <td>{formatCurrency(order.amount)}</td>
+                    <td>
+                      <Button variant="outline-primary" size="sm">
+                        View Details
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </div>
+        ) : (
+          <div className="text-center py-4">
+            <i className="ci-package display-4 text-muted"></i>
+            <h5 className="mt-3">No orders yet</h5>
+            <p className="text-muted">Start shopping to see your orders here.</p>
+            <Button variant="primary" href="/shop">
+              Start Shopping
+            </Button>
+          </div>
+        )}
+      </Card.Body>
+    </Card>
+  )
+
+  const renderReviewsView = () => (
+    <Card className="border-0 shadow-sm">
+      <Card.Header className="bg-light">
+        <h5 className="mb-0">
+          <i className="ci-star me-2"></i>
+          My Reviews
+        </h5>
+      </Card.Header>
+      <Card.Body>
+        {reviews.length > 0 ? (
+          <div>
+            {reviews.map((review) => (
+              <div key={review.id} className="border-bottom pb-3 mb-3">
+                <div className="d-flex justify-content-between align-items-start">
+                  <div>
+                    <h6 className="mb-1">{review.product_name}</h6>
+                    <div className="mb-2">
+                      {[...Array(5)].map((_, i) => (
+                        <i 
+                          key={i} 
+                          className={`ci-star${i < review.rating ? '-filled' : ''} text-warning`}
+                        />
+                      ))}
+                    </div>
+                    <p className="text-muted mb-1">{review.comment}</p>
+                    <small className="text-muted">{formatDate(review.created_at)}</small>
+                  </div>
+                  <Button variant="outline-primary" size="sm">
+                    Edit
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-4">
+            <i className="ci-star display-4 text-muted"></i>
+            <h5 className="mt-3">No reviews yet</h5>
+            <p className="text-muted">Start shopping and leave reviews for products you've purchased.</p>
+            <Button variant="primary" href="/shop">
+              Start Shopping
+            </Button>
+          </div>
+        )}
+      </Card.Body>
+    </Card>
+  )
+
+  const renderAddressesView = () => (
+    <Card className="border-0 shadow-sm">
+      <Card.Header className="bg-light">
+        <div className="d-flex justify-content-between align-items-center">
+          <h5 className="mb-0">
+            <i className="ci-map-pin me-2"></i>
+            My Addresses
+          </h5>
+          <Button variant="primary" size="sm">
+            Add New Address
+          </Button>
+        </div>
+      </Card.Header>
+      <Card.Body>
+        {addresses.length > 0 ? (
+          <Row>
+            {addresses.map((address) => (
+              <Col md={6} key={address.id} className="mb-3">
+                <Card className="h-100">
+                  <Card.Body>
+                    <div className="d-flex justify-content-between align-items-start mb-2">
+                      <h6 className="mb-0">{address.name}</h6>
+                      {address.is_default && (
+                        <Badge bg="success">Default</Badge>
+                      )}
+                    </div>
+                    <p className="text-muted mb-2">
+                      {address.address}<br />
+                      {address.city}, {address.state} {address.zip_code}<br />
+                      {address.country}
+                    </p>
+                    <div className="d-flex gap-2">
+                      <Button variant="outline-primary" size="sm">
+                        Edit
+                      </Button>
+                      <Button variant="outline-danger" size="sm">
+                        Delete
+                      </Button>
+                    </div>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        ) : (
+          <div className="text-center py-4">
+            <i className="ci-map-pin display-4 text-muted"></i>
+            <h5 className="mt-3">No addresses yet</h5>
+            <p className="text-muted">Add your shipping addresses for faster checkout.</p>
+            <Button variant="primary">
+              Add New Address
+            </Button>
+          </div>
+        )}
+      </Card.Body>
+    </Card>
+  )
+
+  const renderWishlistView = () => (
+    <Card className="border-0 shadow-sm">
+      <Card.Header className="bg-light">
+        <h5 className="mb-0">
+          <i className="ci-heart me-2"></i>
+          My Wishlist
+        </h5>
+      </Card.Header>
+      <Card.Body>
+        <div className="text-center py-4">
+          <i className="ci-heart display-4 text-muted"></i>
+          <h5 className="mt-3">Your wishlist is empty</h5>
+          <p className="text-muted">Start adding products to your wishlist.</p>
+          <Button variant="primary" href="/shop">
+            Start Shopping
+          </Button>
+        </div>
+      </Card.Body>
+    </Card>
+  )
+
+  const renderInfoView = () => (
+    <Card className="border-0 shadow-sm">
+      <Card.Header className="bg-light">
+        <h5 className="mb-0">
+          <i className="ci-user me-2"></i>
+          Personal Information
+        </h5>
+      </Card.Header>
+      <Card.Body>
+        <Form>
+          <Row>
+            <Col md={6}>
+              <Form.Group className="mb-3">
+                <Form.Label>First Name</Form.Label>
+                <Form.Control type="text" defaultValue={user?.name?.split(' ')[0] || ''} />
+              </Form.Group>
+            </Col>
+            <Col md={6}>
+              <Form.Group className="mb-3">
+                <Form.Label>Last Name</Form.Label>
+                <Form.Control type="text" defaultValue={user?.name?.split(' ')[1] || ''} />
+              </Form.Group>
+            </Col>
+          </Row>
+          <Form.Group className="mb-3">
+            <Form.Label>Email</Form.Label>
+            <Form.Control type="email" defaultValue={user?.email || ''} />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Phone</Form.Label>
+            <Form.Control type="tel" defaultValue={user?.phone || ''} />
+          </Form.Group>
+          <Button variant="primary" type="submit">
+            Save Changes
+          </Button>
+        </Form>
+      </Card.Body>
+    </Card>
+  )
+
+  const renderCurrentView = () => {
+    switch (currentView) {
+      case 'dashboard':
+        return renderDashboardView()
+      case 'orders':
+        return renderOrdersView()
+      case 'reviews':
+        return renderReviewsView()
+      case 'addresses':
+        return renderAddressesView()
+      case 'wishlist':
+        return renderWishlistView()
+      case 'info':
+        return renderInfoView()
+      default:
+        return renderDashboardView()
+    }
   }
 
   // Show loading state while checking authentication
@@ -238,6 +750,8 @@ const AccountDashboardPage = () => {
             <Col as="aside" lg={3}>
               <AccountSidebarDashboard 
                 name={user.name || user.email || 'User'} 
+                currentView={currentView}
+                onViewChange={setCurrentView}
               />
             </Col>
 
@@ -264,192 +778,10 @@ const AccountDashboardPage = () => {
                 {loading ? (
                   <div className="text-center py-5">
                     <Spinner animation="border" variant="primary" />
-                    <p className="mt-3 text-muted">Loading dashboard...</p>
+                    <p className="mt-3 text-muted">Loading...</p>
                   </div>
                 ) : (
-                  <>
-                    {/* Statistics Cards */}
-                    <Row className="g-4 mb-4">
-                      <Col sm={6} lg={3}>
-                        <Card className="border-0 shadow-sm h-100">
-                          <Card.Body className="text-center">
-                            <div className="bg-primary-subtle rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{ width: '3rem', height: '3rem' }}>
-                              <i className="ci-shopping-bag text-primary fs-5"></i>
-                            </div>
-                            <h3 className="h4 mb-1">{stats.totalOrders}</h3>
-                            <p className="text-muted mb-0">Total Orders</p>
-                          </Card.Body>
-                        </Card>
-                      </Col>
-                      <Col sm={6} lg={3}>
-                        <Card className="border-0 shadow-sm h-100">
-                          <Card.Body className="text-center">
-                            <div className="bg-warning-subtle rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{ width: '3rem', height: '3rem' }}>
-                              <i className="ci-time text-warning fs-5"></i>
-                            </div>
-                            <h3 className="h4 mb-1">{stats.pendingOrders}</h3>
-                            <p className="text-muted mb-0">Pending Orders</p>
-                          </Card.Body>
-                        </Card>
-                      </Col>
-                      <Col sm={6} lg={3}>
-                        <Card className="border-0 shadow-sm h-100">
-                          <Card.Body className="text-center">
-                            <div className="bg-success-subtle rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{ width: '3rem', height: '3rem' }}>
-                              <i className="ci-check-circle text-success fs-5"></i>
-                            </div>
-                            <h3 className="h4 mb-1">{stats.completedOrders}</h3>
-                            <p className="text-muted mb-0">Completed</p>
-                          </Card.Body>
-                        </Card>
-                      </Col>
-                      <Col sm={6} lg={3}>
-                        <Card className="border-0 shadow-sm h-100">
-                          <Card.Body className="text-center">
-                            <div className="bg-info-subtle rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{ width: '3rem', height: '3rem' }}>
-                              <i className="ci-heart text-info fs-5"></i>
-                            </div>
-                            <h3 className="h4 mb-1">{stats.wishlistItems}</h3>
-                            <p className="text-muted mb-0">Wishlist Items</p>
-                          </Card.Body>
-                        </Card>
-                      </Col>
-                    </Row>
-
-                    <Row>
-                      {/* Recent Orders */}
-                      <Col lg={8}>
-                        <Card className="border-0 shadow-sm">
-                          <Card.Header className="bg-light">
-                            <div className="d-flex align-items-center justify-content-between">
-                              <h5 className="mb-0">
-                                <i className="ci-package me-2"></i>
-                                Recent Orders
-                              </h5>
-                              <Link href="/account/orders" className="btn btn-sm btn-outline-primary">
-                                View All
-                              </Link>
-                            </div>
-                          </Card.Header>
-                          <Card.Body className="p-0">
-                            {recentOrders.length === 0 ? (
-                              <div className="text-center py-5">
-                                <i className="ci-package text-muted mb-3" style={{ fontSize: '3rem' }}></i>
-                                <h5 className="text-muted mb-2">No orders yet</h5>
-                                <p className="text-muted mb-3">Start shopping to see your orders here.</p>
-                                <Link href="/shop" className="btn btn-primary">
-                                  Start Shopping
-                                </Link>
-                              </div>
-                            ) : (
-                              <div className="table-responsive">
-                                <table className="table table-hover mb-0">
-                                  <thead className="table-light">
-                                    <tr>
-                                      <th>Order</th>
-                                      <th>Date</th>
-                                      <th>Status</th>
-                                      <th>Total</th>
-                                      <th>Payment</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    {recentOrders.map((order) => (
-                                      <tr key={order.id}>
-                                        <td>
-                                          <Link href={`/account/orders/${order.id}`} className="text-decoration-none">
-                                            <strong>#{order.code || order.id}</strong>
-                                          </Link>
-                                        </td>
-                                        <td className="text-muted">{formatDate(order.created_at)}</td>
-                                        <td>
-                                          <Badge bg={getStatusVariant(order.status)} className="text-capitalize">
-                                            {order.status}
-                                          </Badge>
-                                        </td>
-                                        <td>
-                                          <strong>{formatCurrency(order.amount)}</strong>
-                                        </td>
-                                        <td className="text-muted text-capitalize">
-                                          {order.payment_method || 'N/A'}
-                                        </td>
-                                      </tr>
-                                    ))}
-                                  </tbody>
-                                </table>
-                              </div>
-                            )}
-                          </Card.Body>
-                        </Card>
-                      </Col>
-
-                      {/* Quick Actions & Account Info */}
-                      <Col lg={4}>
-                        {/* Quick Actions */}
-                        <Card className="border-0 shadow-sm mb-4">
-                          <Card.Header className="bg-light">
-                            <h5 className="mb-0">
-                              <i className="ci-zap me-2"></i>
-                              Quick Actions
-                            </h5>
-                          </Card.Header>
-                          <Card.Body>
-                            <div className="d-grid gap-2">
-                              <Link href="/account/orders" className="btn btn-outline-primary btn-sm">
-                                <i className="ci-package me-2"></i>
-                                View All Orders
-                              </Link>
-                              <Link href="/account/shop/wishlist" className="btn btn-outline-primary btn-sm">
-                                <i className="ci-heart me-2"></i>
-                                My Wishlist
-                              </Link>
-                              <Link href="/account/shop/addresses" className="btn btn-outline-primary btn-sm">
-                                <i className="ci-map-pin me-2"></i>
-                                Manage Addresses
-                              </Link>
-                              <Link href="/account/shop/info" className="btn btn-outline-primary btn-sm">
-                                <i className="ci-user me-2"></i>
-                                Edit Profile
-                              </Link>
-                            </div>
-                          </Card.Body>
-                        </Card>
-
-                        {/* Account Info */}
-                        <Card className="border-0 shadow-sm">
-                          <Card.Header className="bg-light">
-                            <h5 className="mb-0">
-                              <i className="ci-user me-2"></i>
-                              Account Info
-                            </h5>
-                          </Card.Header>
-                          <Card.Body>
-                            <div className="d-flex align-items-center mb-3">
-                              <div className="flex-shrink-0">
-                                <div className="bg-primary rounded-circle d-flex align-items-center justify-content-center" style={{ width: '3rem', height: '3rem' }}>
-                                  <i className="ci-user text-white fs-5"></i>
-                                </div>
-                              </div>
-                              <div className="flex-grow-1 ms-3">
-                                <h6 className="mb-1">{user.name || user.email || 'User'}</h6>
-                                <p className="text-muted mb-0 small">{user.email || 'No email'}</p>
-                              </div>
-                            </div>
-                            <hr />
-                            <div className="d-flex justify-content-between align-items-center mb-2">
-                              <span className="text-muted">Total Spent:</span>
-                              <strong>{formatCurrency(stats.totalSpent)}</strong>
-                            </div>
-
-                            <div className="d-flex justify-content-between align-items-center">
-                              <span className="text-muted">Member Since:</span>
-                              <span className="small">{user.created_at ? formatDate(user.created_at) : 'N/A'}</span>
-                            </div>
-                          </Card.Body>
-                        </Card>
-                      </Col>
-                    </Row>
-                  </>
+                  renderCurrentView()
                 )}
               </div>
             </Col>
@@ -457,7 +789,7 @@ const AccountDashboardPage = () => {
         </Container>
       </main>
 
-      <FooterElectronics className="border-top" />
+      <FooterElectronics />
     </>
   )
 }

@@ -17,50 +17,73 @@ import Badge from 'react-bootstrap/Badge'
 
 interface AccountSidebarDashboardProps {
   name: string
+  currentView?: string
+  onViewChange?: (view: string) => void
 }
 
 interface LinkItem {
   icon: string
   label: string
-  href: string
+  view: string
   badge?: number | string
 }
 
 const menuItems: { heading?: string; links: LinkItem[] }[] = [
   {
     links: [
-      { icon: 'ci-grid', label: 'Dashboard', href: '/account/dashboard' },
-      { icon: 'ci-shopping-bag', label: 'Orders', href: '/account/orders', badge: 1 },
-      { icon: 'ci-heart', label: 'Wishlist', href: '/account/shop/wishlist' },
-      { icon: 'ci-credit-card', label: 'Payment methods', href: '/account/shop/payment' },
-      { icon: 'ci-star', label: 'My reviews', href: '/account/shop/reviews' },
+      { icon: 'ci-grid', label: 'Dashboard', view: 'dashboard' },
+      { icon: 'ci-shopping-bag', label: 'Orders', view: 'orders', badge: 1 },
+      { icon: 'ci-heart', label: 'Wishlist', view: 'wishlist' },
+      { icon: 'ci-credit-card', label: 'Payment methods', view: 'payment' },
+      { icon: 'ci-star', label: 'My reviews', view: 'reviews' },
     ],
   },
   {
     heading: 'Manage account',
     links: [
-      { icon: 'ci-user', label: 'Personal info', href: '/account/shop/info' },
-      { icon: 'ci-map-pin', label: 'Addresses', href: '/account/shop/addresses' },
-      { icon: 'ci-bell', label: 'Notifications', href: '/account/shop/notifications' },
+      { icon: 'ci-user', label: 'Personal info', view: 'info' },
+      { icon: 'ci-map-pin', label: 'Addresses', view: 'addresses' },
+      { icon: 'ci-bell', label: 'Notifications', view: 'notifications' },
     ],
   },
   {
     heading: 'Customer service',
     links: [
-      { icon: 'ci-help-circle', label: 'Help center', href: '/help' },
-      { icon: 'ci-info', label: 'Terms and conditions', href: '/terms' },
+      { icon: 'ci-help-circle', label: 'Help center', view: 'help' },
+      { icon: 'ci-info', label: 'Terms and conditions', view: 'terms' },
     ],
   },
   {
-    links: [{ icon: 'ci-log-out', label: 'Log out', href: '/account' }],
+    links: [{ icon: 'ci-log-out', label: 'Log out', view: 'logout' }],
   },
 ]
 
-const AccountSidebarDashboard = ({ name }: AccountSidebarDashboardProps) => {
+const AccountSidebarDashboard = ({ name, currentView = 'dashboard', onViewChange }: AccountSidebarDashboardProps) => {
   const pathname = usePathname()
 
   const { openOffcanvas, closeOffcanvas, isOpen } = useOffcanvas()
   const { openModal, closeModal, isShown } = useModal()
+
+  const handleItemClick = (view: string) => {
+    if (view === 'logout') {
+      // Handle logout
+      window.location.href = '/account'
+      return
+    }
+    
+    if (view === 'help' || view === 'terms') {
+      // Navigate to external pages
+      window.location.href = `/${view}`
+      return
+    }
+    
+    if (onViewChange) {
+      onViewChange(view)
+    }
+    
+    // Close offcanvas on mobile
+    closeOffcanvas('accountSidebar')
+  }
 
   return (
     <Fragment>
@@ -91,15 +114,13 @@ const AccountSidebarDashboard = ({ name }: AccountSidebarDashboardProps) => {
             <Fragment key={index}>
               {heading && <h6 className="pt-4 ps-2 ms-1">{heading}</h6>}
               <ListGroup as="nav" variant="borderless" className={index === arr.length - 1 && !heading ? 'pt-3' : ''}>
-                {links.map(({ icon, label, href, badge }, index) => (
+                {links.map(({ icon, label, view, badge }, index) => (
                   <ListGroup.Item
                     key={index}
                     action
-                    as={Link}
-                    href={href}
                     className="d-flex align-items-center"
-                    active={pathname === href}
-                    onClick={() => closeOffcanvas('accountSidebar')}
+                    active={currentView === view}
+                    onClick={() => handleItemClick(view)}
                   >
                     <i className={`${icon} fs-base opacity-75 me-2`} />
                     {label}
