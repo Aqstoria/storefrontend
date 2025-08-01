@@ -75,6 +75,19 @@ const AccountDashboardPage = () => {
   const [addresses, setAddresses] = useState<Address[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  
+  // Address form state
+  const [showAddForm, setShowAddForm] = useState(false)
+  const [editingAddress, setEditingAddress] = useState<Address | null>(null)
+  const [addressFormData, setAddressFormData] = useState({
+    name: '',
+    address: '',
+    city: '',
+    state: '',
+    country: '',
+    zip_code: '',
+    is_default: false
+  })
 
   useEffect(() => {
     document.title = 'Cartzilla | Account Dashboard'
@@ -573,27 +586,15 @@ const AccountDashboardPage = () => {
   )
 
   const renderAddressesView = () => {
-    const [showAddForm, setShowAddForm] = useState(false)
-    const [editingAddress, setEditingAddress] = useState<Address | null>(null)
-    const [formData, setFormData] = useState({
-      name: '',
-      address: '',
-      city: '',
-      state: '',
-      country: '',
-      zip_code: '',
-      is_default: false
-    })
-
     const handleAddAddress = () => {
       // Mock add functionality - replace with actual API call
       const newAddress: Address = {
         id: Date.now(),
-        ...formData
+        ...addressFormData
       }
       setAddresses([...addresses, newAddress])
       setShowAddForm(false)
-      setFormData({
+      setAddressFormData({
         name: '',
         address: '',
         city: '',
@@ -606,7 +607,7 @@ const AccountDashboardPage = () => {
 
     const handleEditAddress = (address: Address) => {
       setEditingAddress(address)
-      setFormData({
+      setAddressFormData({
         name: address.name,
         address: address.address,
         city: address.city,
@@ -621,10 +622,10 @@ const AccountDashboardPage = () => {
       if (editingAddress) {
         // Mock update functionality - replace with actual API call
         setAddresses(addresses.map(addr => 
-          addr.id === editingAddress.id ? { ...addr, ...formData } : addr
+          addr.id === editingAddress.id ? { ...addr, ...addressFormData } : addr
         ))
         setEditingAddress(null)
-        setFormData({
+        setAddressFormData({
           name: '',
           address: '',
           city: '',
@@ -670,23 +671,23 @@ const AccountDashboardPage = () => {
                     <Col md={6}>
                       <Form.Group className="mb-3">
                         <Form.Label>Address Name</Form.Label>
-                        <Form.Control 
-                          type="text" 
-                          value={formData.name}
-                          onChange={(e) => setFormData({...formData, name: e.target.value})}
-                          placeholder="e.g., Home, Office"
-                        />
+                                                 <Form.Control 
+                           type="text" 
+                           value={addressFormData.name}
+                           onChange={(e) => setAddressFormData({...addressFormData, name: e.target.value})}
+                           placeholder="e.g., Home, Office"
+                         />
                       </Form.Group>
                     </Col>
                     <Col md={6}>
                       <Form.Group className="mb-3">
                         <Form.Label>Street Address</Form.Label>
-                        <Form.Control 
-                          type="text" 
-                          value={formData.address}
-                          onChange={(e) => setFormData({...formData, address: e.target.value})}
-                          placeholder="123 Main Street"
-                        />
+                                                 <Form.Control 
+                           type="text" 
+                           value={addressFormData.address}
+                           onChange={(e) => setAddressFormData({...addressFormData, address: e.target.value})}
+                           placeholder="123 Main Street"
+                         />
                       </Form.Group>
                     </Col>
                   </Row>
