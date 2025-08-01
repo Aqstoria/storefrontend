@@ -697,8 +697,8 @@ const AccountDashboardPage = () => {
                         <Form.Label>City</Form.Label>
                         <Form.Control 
                           type="text" 
-                          value={formData.city}
-                          onChange={(e) => setFormData({...formData, city: e.target.value})}
+                          value={addressFormData.city}
+                          onChange={(e) => setAddressFormData({...addressFormData, city: e.target.value})}
                         />
                       </Form.Group>
                     </Col>
@@ -707,8 +707,8 @@ const AccountDashboardPage = () => {
                         <Form.Label>State</Form.Label>
                         <Form.Control 
                           type="text" 
-                          value={formData.state}
-                          onChange={(e) => setFormData({...formData, state: e.target.value})}
+                          value={addressFormData.state}
+                          onChange={(e) => setAddressFormData({...addressFormData, state: e.target.value})}
                         />
                       </Form.Group>
                     </Col>
@@ -717,8 +717,8 @@ const AccountDashboardPage = () => {
                         <Form.Label>ZIP Code</Form.Label>
                         <Form.Control 
                           type="text" 
-                          value={formData.zip_code}
-                          onChange={(e) => setFormData({...formData, zip_code: e.target.value})}
+                          value={addressFormData.zip_code}
+                          onChange={(e) => setAddressFormData({...addressFormData, zip_code: e.target.value})}
                         />
                       </Form.Group>
                     </Col>
@@ -727,16 +727,16 @@ const AccountDashboardPage = () => {
                     <Form.Label>Country</Form.Label>
                     <Form.Control 
                       type="text" 
-                      value={formData.country}
-                      onChange={(e) => setFormData({...formData, country: e.target.value})}
+                      value={addressFormData.country}
+                      onChange={(e) => setAddressFormData({...addressFormData, country: e.target.value})}
                     />
                   </Form.Group>
                   <Form.Group className="mb-3">
                     <Form.Check 
                       type="checkbox" 
                       label="Set as default address"
-                      checked={formData.is_default}
-                      onChange={(e) => setFormData({...formData, is_default: e.target.checked})}
+                      checked={addressFormData.is_default}
+                      onChange={(e) => setAddressFormData({...addressFormData, is_default: e.target.checked})}
                     />
                   </Form.Group>
                   <div className="d-flex gap-2">
@@ -750,7 +750,7 @@ const AccountDashboardPage = () => {
                       variant="outline-secondary" 
                       onClick={() => {
                         setShowAddForm(false)
-                        setFormData({
+                        setAddressFormData({
                           name: '',
                           address: '',
                           city: '',
@@ -782,8 +782,8 @@ const AccountDashboardPage = () => {
                         <Form.Label>Address Name</Form.Label>
                         <Form.Control 
                           type="text" 
-                          value={formData.name}
-                          onChange={(e) => setFormData({...formData, name: e.target.value})}
+                          value={addressFormData.name}
+                          onChange={(e) => setAddressFormData({...addressFormData, name: e.target.value})}
                         />
                       </Form.Group>
                     </Col>
@@ -792,8 +792,8 @@ const AccountDashboardPage = () => {
                         <Form.Label>Street Address</Form.Label>
                         <Form.Control 
                           type="text" 
-                          value={formData.address}
-                          onChange={(e) => setFormData({...formData, address: e.target.value})}
+                          value={addressFormData.address}
+                          onChange={(e) => setAddressFormData({...addressFormData, address: e.target.value})}
                         />
                       </Form.Group>
                     </Col>
@@ -804,8 +804,8 @@ const AccountDashboardPage = () => {
                         <Form.Label>City</Form.Label>
                         <Form.Control 
                           type="text" 
-                          value={formData.city}
-                          onChange={(e) => setFormData({...formData, city: e.target.value})}
+                          value={addressFormData.city}
+                          onChange={(e) => setAddressFormData({...addressFormData, city: e.target.value})}
                         />
                       </Form.Group>
                     </Col>
@@ -814,8 +814,8 @@ const AccountDashboardPage = () => {
                         <Form.Label>State</Form.Label>
                         <Form.Control 
                           type="text" 
-                          value={formData.state}
-                          onChange={(e) => setFormData({...formData, state: e.target.value})}
+                          value={addressFormData.state}
+                          onChange={(e) => setAddressFormData({...addressFormData, state: e.target.value})}
                         />
                       </Form.Group>
                     </Col>
@@ -824,8 +824,8 @@ const AccountDashboardPage = () => {
                         <Form.Label>ZIP Code</Form.Label>
                         <Form.Control 
                           type="text" 
-                          value={formData.zip_code}
-                          onChange={(e) => setFormData({...formData, zip_code: e.target.value})}
+                          value={addressFormData.zip_code}
+                          onChange={(e) => setAddressFormData({...addressFormData, zip_code: e.target.value})}
                         />
                       </Form.Group>
                     </Col>
@@ -834,16 +834,16 @@ const AccountDashboardPage = () => {
                     <Form.Label>Country</Form.Label>
                     <Form.Control 
                       type="text" 
-                      value={formData.country}
-                      onChange={(e) => setFormData({...formData, country: e.target.value})}
+                      value={addressFormData.country}
+                      onChange={(e) => setAddressFormData({...addressFormData, country: e.target.value})}
                     />
                   </Form.Group>
                   <Form.Group className="mb-3">
                     <Form.Check 
                       type="checkbox" 
                       label="Set as default address"
-                      checked={formData.is_default}
-                      onChange={(e) => setFormData({...formData, is_default: e.target.checked})}
+                      checked={addressFormData.is_default}
+                      onChange={(e) => setAddressFormData({...addressFormData, is_default: e.target.checked})}
                     />
                   </Form.Group>
                   <div className="d-flex gap-2">
@@ -857,7 +857,7 @@ const AccountDashboardPage = () => {
                       variant="outline-secondary" 
                       onClick={() => {
                         setEditingAddress(null)
-                        setFormData({
+                        setAddressFormData({
                           name: '',
                           address: '',
                           city: '',
