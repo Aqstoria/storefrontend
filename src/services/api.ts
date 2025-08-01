@@ -115,8 +115,8 @@ class BotbleAPI {
   async logout() {
     try {
       if (this.token) {
-        await fetch(`${this.baseURL}/logout`, {
-          method: 'GET',
+        await fetch(`${this.authURL}/api/logout`, {
+          method: 'POST',
           headers: this.getHeaders(),
         });
       }
