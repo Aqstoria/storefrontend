@@ -181,6 +181,17 @@ const ProductGalleryOptionsElectronics = ({ product, gallery, botbleProduct }: P
 
   return (
     <>
+      {/* 
+        Product page layout with hover zoom functionality:
+        - Left column (md-6): Product image gallery with ImageZoom component
+        - Middle column (md-3): Zoom pane container where hover zoom appears (desktop only)
+        - Right column (md-6): Product options, price, and purchase controls
+        
+        The ImageZoom component uses Drift.js with:
+        - External pane on desktop (appears in zoomPane container)
+        - Inline pane on mobile (appears as overlay on image)
+        - Touch support enabled for mobile devices
+      */}
       <Container as="section" className="pb-5 mb-1 mb-sm-2 mb-md-3 mb-lg-4 mb-xl-5">
         <Row>
           {/* Product gallery */}
@@ -204,7 +215,8 @@ const ProductGalleryOptionsElectronics = ({ product, gallery, botbleProduct }: P
                     paneContainerId="zoomPane"
                     inlinePane={768}
                     hoverDelay={500}
-                    touchDisable={true}
+                    touchDelay={300}
+                    touchDisable={false}
                     width={1272}
                     height={1272}
                     alt="Image"
@@ -273,279 +285,227 @@ const ProductGalleryOptionsElectronics = ({ product, gallery, botbleProduct }: P
             </Swiper>
           </Col>
 
-          {/* Product options */}
-          <Col as="aside" md={6} xl={5} className="offset-xl-1 pt-4">
-            <div className="ps-md-4 ps-xl-0">
-              <div className="position-relative" id="zoomPane">
-                {/* Model - only show if we have specification attributes */}
-                {hasSpecificationAttributes && modelOptions.length > 0 && (
-                  <div className="pb-3 mb-2 mb-lg-3">
-                    <FormLabel className="fw-semibold pb-1 mb-2">Specifications</FormLabel>
-                    <div className="d-flex flex-wrap gap-2">
-                      {modelOptions.map((model: string, index: number) => (
-                        <ToggleButton
-                          key={index}
-                          type="radio"
-                          id={`model-${index}`}
-                          variant="outline-secondary"
-                          size="sm"
-                          name="model-options"
-                          value={model}
-                          checked={modelValue === model}
-                          onChange={(e) => setModelValue(e.currentTarget.value)}
-                        >
-                          {model}
-                        </ToggleButton>
-                      ))}
-                    </div>
-                  </div>
-                )}
+          {/* Zoom pane container - positioned next to the image */}
+          <Col md={3} className="d-none d-md-block">
+            <div className="position-relative" id="zoomPane">
+              {/* Zoom content will be inserted here by Drift.js */}
+            </div>
+          </Col>
 
-                {/* Color - only show if we have specification attributes */}
-                {hasSpecificationAttributes && colorOptions.length > 0 && (
-                  <div className="pb-3 mb-2 mb-lg-3">
-                    <FormLabel className="fw-semibold pb-1 mb-2">Color</FormLabel>
-                    <div className="d-flex flex-wrap gap-2">
-                      {colorOptions.map((color: any, index: number) => (
-                        <ToggleButton
-                          key={index}
-                          type="radio"
-                          id={`color-${index}`}
-                          variant="outline-secondary"
-                          size="sm"
-                          name="color-options"
-                          value={color.colorName}
-                          checked={colorValue === color.colorName}
-                          onChange={(e) => setColorValue(e.currentTarget.value)}
+          {/* Product options */}
+          <Col as="aside" md={6} xl={3} className="offset-xl-0 pt-4">
+            <div className="ps-md-4 ps-xl-0">
+              {/* Model - only show if we have specification attributes */}
+              {hasSpecificationAttributes && modelOptions.length > 0 && (
+                <div className="pb-3 mb-2 mb-lg-3">
+                  <FormLabel className="fw-semibold pb-1 mb-2">Specifications</FormLabel>
+                  <div className="d-flex flex-wrap gap-2">
+                    {modelOptions.map((model: string, index: number) => (
+                      <ToggleButton
+                        key={index}
+                        type="radio"
+                        id={`model-${index}`}
+                        variant="outline-secondary"
+                        size="sm"
+                        name="model-options"
+                        value={model}
+                        checked={modelValue === model}
+                        onChange={(e) => setModelValue(e.currentTarget.value)}
+                      >
+                        {model}
+                      </ToggleButton>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Color - only show if we have specification attributes */}
+              {hasSpecificationAttributes && colorOptions.length > 0 && (
+                <div className="pb-3 mb-2 mb-lg-3">
+                  <FormLabel className="fw-semibold pb-1 mb-2">Color</FormLabel>
+                  <div className="d-flex flex-wrap gap-2">
+                    {colorOptions.map((color: any, index: number) => (
+                      <ToggleButton
+                        key={index}
+                        type="radio"
+                        id={`color-${index}`}
+                        variant="outline-secondary"
+                        size="sm"
+                        name="color-options"
+                        value={color.colorName}
+                        checked={colorValue === color.colorName}
+                        onChange={(e) => setColorValue(e.currentTarget.value)}
+                      >
+                        <div
+                          className="d-flex align-items-center gap-2"
+                          style={{ color: color.colorHex }}
                         >
                           <div
-                            className="d-flex align-items-center gap-2"
-                            style={{ color: color.colorHex }}
-                          >
-                            <div
-                              className="rounded-circle"
-                              style={{
-                                width: 16,
-                                height: 16,
-                                backgroundColor: color.colorHex,
-                                border: '1px solid #dee2e6',
-                              }}
-                            />
-                            {color.colorName}
-                          </div>
-                        </ToggleButton>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* Price */}
-                <div className="d-flex flex-wrap align-items-center mb-3">
-                  <div className="h4 mb-0 me-3">
-                    $
-                    {product.price[0].toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}{' '}
-                    {product.price[1] !== undefined && (
-                      <del className="fs-base fw-normal text-body-tertiary">
-                        $
-                        {product.price[1]?.toLocaleString(undefined, {
-                          minimumFractionDigits: 2,
-                          maximumFractionDigits: 2,
-                        })}
-                      </del>
-                    )}
-                  </div>
-                  <div className="d-flex align-items-center text-success fs-sm ms-auto">
-                    <i className="ci-check-circle fs-base me-2" />
-                    Available to order
+                            className="rounded-circle"
+                            style={{
+                              width: 16,
+                              height: 16,
+                              backgroundColor: color.colorHex,
+                              border: '1px solid #dee2e6',
+                            }}
+                          />
+                          {color.colorName}
+                        </div>
+                      </ToggleButton>
+                    ))}
                   </div>
                 </div>
+              )}
 
-                {/* Count + Buttons */}
-                <div className="d-flex flex-wrap flex-sm-nowrap flex-md-wrap flex-lg-nowrap gap-3 gap-lg-2 gap-xl-3 mb-4">
-                  <CountInput
-                    size="lg"
-                    value={count}
-                    min={1}
-                    onChange={(value) => {
-                      setCount(value)
-                    }}
-                    aria-label="Count input"
-                    className="flex-shrink-0 order-sm-1"
-                  />
-                  <OverlayTrigger
-                    placement="top"
-                    overlay={
-                      <Tooltip className="tooltip-sm">{`${wishlist ? 'Remove from' : 'Add to'} Wishlist`}</Tooltip>
-                    }
-                  >
-                    <Button
-                      variant="secondary"
-                      size="lg"
-                      className="btn-icon animate-pulse order-sm-3 order-md-2 order-lg-3"
-                      onClick={handleToggleWishlist}
-                    >
-                      <i className={`ci-heart${wishlist ? '-filled' : ''} fs-lg animate-target`} />
-                    </Button>
-                  </OverlayTrigger>
-                  <OverlayTrigger
-                    placement="top"
-                    overlay={
-                      <Tooltip className="tooltip-sm">{comparison ? 'Remove from Comparison' : 'Compare'}</Tooltip>
-                    }
-                  >
-                    <Button
-                      variant="secondary"
-                      size="lg"
-                      className={`btn-icon animate-${comparison ? 'scale' : 'rotate'} order-sm-4 order-md-3 order-lg-4`}
-                      onClick={handleToggleCompare}
-                    >
-                      <i className={`ci-${comparison ? 'check-circle' : 'refresh-cw'} fs-lg animate-target`} />
-                    </Button>
-                  </OverlayTrigger>
-                  <Button
-                    size="lg"
-                    className="w-100 animate-slide-end order-sm-2 order-md-4 order-lg-2"
-                    onClick={handleAddToCart}
-                  >
-                    <i className="ci-shopping-cart fs-lg animate-target ms-n1 me-2" />
-                    Add to cart
-                  </Button>
+              {/* Price */}
+              <div className="d-flex flex-wrap align-items-center mb-3">
+                <div className="h4 mb-0 me-3">
+                  $
+                  {product.price[0].toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}{' '}
+                  {product.price[1] !== undefined && (
+                    <del className="fs-base fw-normal text-body-tertiary">
+                      $
+                      {product.price[1]?.toLocaleString(undefined, {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}
+                    </del>
+                  )}
                 </div>
+                <div className="d-flex align-items-center text-success fs-sm ms-auto">
+                  <i className="ci-check-circle fs-base me-2" />
+                  Available to order
+                </div>
+              </div>
 
-                {/* Features */}
-                <div className="d-flex flex-wrap gap-3 gap-xl-4 pb-4 pb-lg-5 mb-2 mb-lg-0 mb-xl-2">
-                  <div className="d-flex align-items-center fs-sm">
-                    <svg
-                      className="text-warning me-2"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width={16}
-                      height={16}
-                      fill="currentColor"
-                    >
-                      <path d="M1.333 9.667H7.5V16h-5c-.64 0-1.167-.527-1.167-1.167V9.667zm13.334 0v5.167c0 .64-.527 1.167-1.167 1.167h-5V9.667h6.167zM0 5.833V7.5c0 .64.527 1.167 1.167 1.167h.167H7.5v-1-3H1.167C.527 4.667 0 5.193 0 5.833zm14.833-1.166H8.5v3 1h6.167.167C15.473 8.667 16 8.14 16 7.5V5.833c0-.64-.527-1.167-1.167-1.167z" />
-                      <path d="M8 5.363a.5.5 0 0 1-.495-.573C7.752 3.123 9.054-.03 12.219-.03c1.807.001 2.447.977 2.447 1.813 0 1.486-2.069 3.58-6.667 3.58zM12.219.971c-2.388 0-3.295 2.27-3.595 3.377 1.884-.088 3.072-.565 3.756-.971.949-.563 1.287-1.193 1.287-1.595 0-.599-.747-.811-1.447-.811z" />
-                      <path d="M8.001 5.363c-4.598 0-6.667-2.094-6.667-3.58 0-.836.641-1.812 2.448-1.812 3.165 0 4.467 3.153 4.713 4.819a.5.5 0 0 1-.495.573zM3.782.971c-.7 0-1.448.213-1.448.812 0 .851 1.489 2.403 5.042 2.566C7.076 3.241 6.169.971 3.782.971z" />
-                    </svg>
-                    <div className="text-body-emphasis text-nowrap">
-                      <span className="fw-semibold">+32</span> bonuses
-                    </div>
-                  </div>
-                  <div className="d-flex align-items-center fs-sm">
-                    <svg
-                      className="text-primary me-2"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width={16}
-                      height={16}
-                      fill="none"
-                    >
-                      <path
-                        d="M15.264 8.001l.702-1.831a.5.5 0 0 0-.152-.568l-1.522-1.234-.308-1.937a.5.5 0 0 0-.416-.415l-1.937-.308L10.399.185a.5.5 0 0 0-.567-.152L8 .736 6.169.034a.5.5 0 0 0-.567.152L4.368 1.709l-1.937.308a.5.5 0 0 0-.415.415l-.308 1.937L.185 5.603a.5.5 0 0 0-.152.567l.702 1.831-.702 1.831a.5.5 0 0 0 .152.567l1.523 1.233.308 1.937a.5.5 0 0 0 .415.416l1.937.308 1.234 1.522c.137.17.366.23.568.152L8 15.265l1.831.702a.5.5 0 0 0 .568-.153l1.233-1.522 1.937-.308a.5.5 0 0 0 .416-.416l.308-1.937 1.522-1.233a.5.5 0 0 0 .152-.567l-.702-1.831z"
-                        fill="currentColor"
-                      />
-                      <path
-                        d="M6.5 7.001a1.5 1.5 0 1 1 0-3 1.5 1.5 0 1 1 0 3zm0-2a.5.5 0 1 0 0 1 .5.5 0 1 0 0-1zM9.5 12a1.5 1.5 0 1 1 0-3 1.5 1.5 0 1 1 0 3zm0-2a.5.5 0 1 0 0 1 .5.5 0 1 0 0-1zm-4 2c-.101 0-.202-.03-.29-.093a.5.5 0 0 1-.116-.698l5-7a.5.5 0 1 1 .814.581l-5 7A.5.5 0 0 1 5.5 12z"
-                        fill="white"
-                      />
-                    </svg>
-                    <div className="text-body-emphasis text-nowrap">Interest-free loan</div>
-                  </div>
-                  <div className="d-flex align-items-center fs-sm">
-                    <svg className="me-2" xmlns="http://www.w3.org/2000/svg" width={16} height={16}>
-                      <path
-                        className="text-success"
-                        d="M7.42169 1.15662C3.3228 1.15662 0 4.47941 0 8.5783C0 12.6772 3.3228 16 7.42169 16C11.5206 16 14.8434 12.6772 14.8434 8.5783H7.42169V1.15662Z"
-                        fill="currentColor"
-                      />
-                      <path
-                        className="text-info"
-                        d="M8.57812 0V7.42169H15.9998C15.9998 3.3228 12.677 0 8.57812 0Z"
-                        fill="currentColor"
-                      />
-                      <defs>
-                        <rect width={16} height={16} fill="white"></rect>
-                      </defs>
-                    </svg>
-                    <div className="text-body-emphasis text-nowrap">Pay by installments</div>
-                  </div>
-                </div>
+              {/* Count + Buttons */}
+              <div className="d-flex flex-wrap flex-sm-nowrap flex-md-wrap flex-lg-nowrap gap-3 gap-lg-2 gap-xl-3 mb-4">
+                <CountInput
+                  size="lg"
+                  value={count}
+                  min={1}
+                  onChange={(value) => {
+                    setCount(value)
+                  }}
+                />
+                <Button
+                  size="lg"
+                  className="flex-fill animate-slide-end"
+                  onClick={handleAddToCart}
+                >
+                  <i className="ci-shopping-cart fs-lg animate-target me-2" />
+                  Add to cart
+                </Button>
+              </div>
+
+              {/* Wishlist + Compare buttons */}
+              <div className="d-flex gap-2 mb-4">
+                <Button
+                  variant="outline-secondary"
+                  className="flex-fill animate-slide-end"
+                  onClick={handleToggleWishlist}
+                >
+                  <i className={`ci-heart${wishlist ? '-filled' : ''} animate-target me-2`} />
+                  {wishlist ? 'Remove from' : 'Add to'} Wishlist
+                </Button>
+                <Button
+                  variant="outline-secondary"
+                  className="flex-fill animate-slide-end"
+                  onClick={handleToggleCompare}
+                >
+                  <i className={`ci-compare${comparison ? '-filled' : ''} animate-target me-2`} />
+                  {comparison ? 'Remove from' : 'Add to'} Compare
+                </Button>
               </div>
 
               {/* Shipping options */}
-              <div className="d-flex align-items-center pb-2">
-                <h3 className="h6 mb-0">Shipping options</h3>
-                <Button href="#" variant="secondary" size="sm" className="ms-auto">
-                  <i className="ci-map-pin fs-sm ms-n1 me-1" />
-                  Find local store
-                </Button>
+              <div className="border-top pt-4 mb-4">
+                <div className="d-flex align-items-center justify-content-between mb-3">
+                  <h6 className="mb-0">Shipping options</h6>
+                  <Button variant="link" className="p-0 text-decoration-none">
+                    <i className="ci-location me-1" />
+                    Find local store
+                  </Button>
+                </div>
+                <div className="d-flex align-items-center justify-content-between mb-2">
+                  <div className="d-flex align-items-center">
+                    <i className="ci-truck fs-4 me-3" />
+                    <div>
+                      <div className="fw-semibold">Pickup from the store</div>
+                      <div className="text-body-tertiary fs-sm">Today</div>
+                    </div>
+                  </div>
+                  <span className="text-success fw-semibold">Free</span>
+                </div>
+                <div className="d-flex align-items-center justify-content-between mb-2">
+                  <div className="d-flex align-items-center">
+                    <i className="ci-truck fs-4 me-3" />
+                    <div>
+                      <div className="fw-semibold">Pickup from postal offices</div>
+                      <div className="text-body-tertiary fs-sm">Tomorrow</div>
+                    </div>
+                  </div>
+                  <span className="fw-semibold">$25.00</span>
+                </div>
+                <div className="d-flex align-items-center justify-content-between">
+                  <div className="d-flex align-items-center">
+                    <i className="ci-truck fs-4 me-3" />
+                    <div>
+                      <div className="fw-semibold">Delivery by courier</div>
+                      <div className="text-body-tertiary fs-sm">2-3 days</div>
+                    </div>
+                  </div>
+                  <span className="fw-semibold">$35.00</span>
+                </div>
               </div>
-              <Table borderless className="fs-sm mb-2">
-                <tbody>
-                  {[
-                    ['Pickup from the store', 'Today', 'Free'],
-                    ['Pickup from postal offices', 'Tomorrow', 25],
-                    ['Delivery by courier', '2-3 days', 35],
-                  ].map((items, index) => (
-                    <tr key={index}>
-                      {items.map((item, index, arr) => (
-                        <td
-                          key={index}
-                          className={`py-2${index === 0 ? ' ps-0' : index === arr.length - 1 ? ' text-body-emphasis fw-semibold text-end pe-0' : ''}`}
-                        >
-                          {index === arr.length - 1 && typeof item === 'number'
-                            ? `$${item.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
-                            : item}
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
 
-              {/* Warranty + Payment info accordion */}
-              <Accordion>
-                <Accordion.Item eventKey="warranty">
-                  <Accordion.Header as="h3" className="animate-underline">
-                    <span className="animate-target me-2">Warranty information</span>
-                  </Accordion.Header>
-                  <Accordion.Body>
-                    <Alert variant="info" className="d-flex mb-3">
-                      <i className="ci-check-shield fs-xl mt-1 me-2" />
-                      <div className="fs-sm">
-                        <span className="fw-semibold">Warranty:</span> 12 months of official manufacturer&apos;s
-                        warranty. Exchange/return of the product within 14 days.
-                      </div>
-                    </Alert>
-                    <p className="mb-0">
-                      Explore the details of our{' '}
-                      <a className="fw-medium" href="#!">
-                        product warranties here
-                      </a>
-                      , including duration, coverage, and any additional protection plans available. We prioritize your
-                      satisfaction, and our warranty information is designed to keep you informed and confident in your
-                      purchase.
-                    </p>
-                  </Accordion.Body>
-                </Accordion.Item>
-                <Accordion.Item eventKey="payment">
-                  <Accordion.Header as="h3" className="animate-underline">
-                    <span className="animate-target me-2">Payment and credit</span>
-                  </Accordion.Header>
-                  <Accordion.Body>
-                    Experience hassle-free transactions with our{' '}
-                    <a href="#" className="fw-medium">
-                      flexible payment options
-                    </a>{' '}
-                    and credit facilities. Learn more about the various payment methods accepted, installment plans, and
-                    any exclusive credit offers available to make your shopping experience seamless.
-                  </Accordion.Body>
-                </Accordion.Item>
-              </Accordion>
+              {/* Collapsible sections */}
+              <div className="accordion" id="productAccordion">
+                <div className="accordion-item">
+                  <h3 className="accordion-header">
+                    <Button
+                      className="accordion-button collapsed"
+                      variant="link"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#warrantyInfo"
+                    >
+                      Warranty information
+                    </Button>
+                  </h3>
+                  <div className="accordion-collapse collapse" id="warrantyInfo" data-bs-parent="#productAccordion">
+                    <div className="accordion-body">
+                      <p className="mb-0">
+                        This product comes with a 2-year warranty covering manufacturing defects and hardware failures.
+                        Extended warranty options are available for purchase.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="accordion-item">
+                  <h3 className="accordion-header">
+                    <Button
+                      className="accordion-button collapsed"
+                      variant="link"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#paymentInfo"
+                    >
+                      Payment and credit
+                    </Button>
+                  </h3>
+                  <div className="accordion-collapse collapse" id="paymentInfo" data-bs-parent="#productAccordion">
+                    <div className="accordion-body">
+                      <p className="mb-0">
+                        We accept all major credit cards, PayPal, and bank transfers. Financing options available
+                        for purchases over $500.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </Col>
         </Row>
       </Container>
-
-      {/* Toast notification stack */}
       <ToastRenderer />
     </>
   )

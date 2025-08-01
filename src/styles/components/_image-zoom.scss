@@ -21,3 +21,23 @@
 .drift-inline {
   z-index: 10 !important;
 }
+
+// Additional styles for product page zoom pane
+#zoomPane {
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  .drift-zoom-pane {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+// Responsive adjustments for zoom pane
+@media (max-width: 767.98px) {
+  #zoomPane {
+    display: none;
+  }
+}
