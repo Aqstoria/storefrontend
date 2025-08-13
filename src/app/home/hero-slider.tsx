@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Container from 'react-bootstrap/Container'
@@ -13,8 +13,9 @@ import 'swiper/css'
 import 'swiper/css/scrollbar'
 import 'swiper/css/effect-fade'
 import { useCategories } from '@/contexts/categories-context'
+import { ProductService } from '@/services/products'
 
-const slides = [
+const initialSlides = [
   {
     image: '/img/home/electronics/hero-slider/01.png',
     title: 'Headphones ProMax',
@@ -37,7 +38,28 @@ const slides = [
 
 const HeroSliderElectronics = () => {
   const [controlledSwiper, setControlledSwiper] = useState<SwiperType | null>(null)
+  const [slides, setSlides] = useState(initialSlides)
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false)
+  // Try to replace placeholder slides with real products (if API is available)
+  useEffect(() => {
+    ;(async () => {
+      try {
+        const { data } = await ProductService.getProducts({ per_page: 3, is_featured: true })
+        if (Array.isArray(data) && data.length > 0) {
+          const dynamicSlides = data.slice(0, 3).map((p) => ({
+            image: ProductService.getProductImage(p),
+            title: p.name,
+            eyebrowText: 'Hot deal',
+            href: ProductService.getProductUrl(p),
+          }))
+          setSlides(dynamicSlides)
+        }
+      } catch (e) {
+        // keep defaults
+      }
+    })()
+  }, [])
+
   
   // Try to use context if available, otherwise use local state
   let contextCategories
