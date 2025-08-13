@@ -45,6 +45,7 @@ interface HeaderElectronicsProps {
   }
   expandedCategories?: boolean
   categories?: TransformedCategory[]
+  className?: string
 }
 interface Category {
   id: number;
@@ -67,7 +68,7 @@ interface TransformedCategory extends Category {
   subcategories: Subcategory[];
 }
 
-const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categories: propCategories = [] }: HeaderElectronicsProps) => {
+const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categories: propCategories = [], className }: HeaderElectronicsProps) => {
   const pathname = usePathname()
   const [categories, setCategories] = useState<TransformedCategory[]>(propCategories);
   const [localCategoriesOpen, setLocalCategoriesOpen] = useState(false)
@@ -171,7 +172,7 @@ const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categorie
   return (
     <Fragment>
       {/* Header: light white / blue with top utility bar */}
-      <Navbar ref={navbarRef} as="header" variant="light" expand="lg" bg="body" className="d-block z-fixed p-0 border-bottom">
+      <Navbar ref={navbarRef} as="header" variant="light" expand="lg" bg="body" className={`d-block z-fixed p-0 border-bottom ${className ?? ''}`}> 
         <Container className="d-block py-1 py-lg-2" suppressHydrationWarning>
           <div className="navbar-stuck-hide pt-1" suppressHydrationWarning />
           <Row className="flex-nowrap align-items-center g-0" suppressHydrationWarning>
