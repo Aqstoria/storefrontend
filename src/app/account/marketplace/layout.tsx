@@ -13,7 +13,6 @@ const MarketplaceAccountLayout = ({ children }: React.PropsWithChildren) => (
         name: 'Createx Studio',
         href: '/account/marketplace'
       }}
-      className="bg-body"
     />
 
     {/* Account page sidebar + content */}
