@@ -10,17 +10,8 @@ const MarketplaceAccountLayout = ({ children }: React.PropsWithChildren) => (
     {/* Navigation bar (Page header) */}
     <HeaderMarketplace
       isLoggedIn={{
-        avatar: '/img/account/avatar-sm.png',
         name: 'Createx Studio',
-        dropdown: [
-          ['ci-grid', 'Dashboard', '/account/marketplace'],
-          ['ci-layers', 'Products (4)', '/account/marketplace/products'],
-          ['ci-pie-chart', 'Sales', '/account/marketplace/sales'],
-          ['ci-dollar-sign', 'Payouts', '/account/marketplace/payouts'],
-          ['ci-shopping-bag', 'Purchases (6)', '/account/marketplace/purchases'],
-          ['ci-heart', 'Favorites', '/account/marketplace/favorites'],
-          ['ci-settings', 'Settings', '/account/marketplace/settings'],
-        ],
+        href: '/account/marketplace'
       }}
       className="bg-body"
     />
