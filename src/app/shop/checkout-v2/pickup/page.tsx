@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const Checkout_V2_PickupPage = () => (
   <>
     {/* Navigation bar (Page header) */}
-    <HeaderGrocery featuredCategories={false} />
+    <HeaderGrocery />
 
     {/* Page content */}
     <main className="content-wrapper">

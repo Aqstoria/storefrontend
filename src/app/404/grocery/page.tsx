@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const Grocery404ErrorPage = () => (
   <>
     {/* Navigation bar (Page header) */}
-    <HeaderGrocery featuredCategories={false} />
+    <HeaderGrocery />
 
     {/* Page content */}
     <main className="content-wrapper position-relative d-flex align-items-center justify-content-center overflow-hidden">
