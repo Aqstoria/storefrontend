@@ -170,9 +170,9 @@ const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categorie
 
   return (
     <Fragment>
-      {/* Sticky navba (Header) */}
-      <Navbar ref={navbarRef} as="header" variant="dark" expand="lg" bg="dark" className="d-block z-fixed p-0">
-        <Container className="d-block py-1 py-lg-3" data-bs-theme="dark" suppressHydrationWarning>
+      {/* Header: light white / blue with top utility bar */}
+      <Navbar ref={navbarRef} as="header" variant="light" expand="lg" bg="body" className="d-block z-fixed p-0 border-bottom">
+        <Container className="d-block py-1 py-lg-2" suppressHydrationWarning>
           <div className="navbar-stuck-hide pt-1" suppressHydrationWarning />
           <Row className="flex-nowrap align-items-center g-0" suppressHydrationWarning>
             <Col xs={true} lg={3} className="d-flex align-items-center" suppressHydrationWarning>
@@ -187,12 +187,12 @@ const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categorie
             <Col xs={true} lg={9} className="d-flex align-items-center justify-content-end" suppressHydrationWarning>
               {/* Search visible on screens > 991px wide (lg breakpoint) */}
               <div className="position-relative flex-fill d-none d-lg-block pe-4 pe-xl-5" suppressHydrationWarning>
-                <i className="ci-search position-absolute top-50 translate-middle-y d-flex fs-lg text-white ms-3" />
+                <i className="ci-search position-absolute top-50 translate-middle-y d-flex fs-lg text-primary ms-3" />
                 <FormControl
                   type="search"
                   size="lg"
-                  className="form-icon-start border-white rounded-pill"
-                  placeholder="Search the products"
+                  className="form-icon-start rounded-pill"
+                  placeholder="Search for products"
                 />
               </div>
 
@@ -206,7 +206,7 @@ const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categorie
                 </div>
                 <div className="ps-2 text-nowrap">
                   <div className="fs-xs text-body">Only this month</div>
-                  <div className="fw-medium text-white">Super Sale 20%</div>
+                  <div className="fw-medium text-primary">Super Sale 20%</div>
                 </div>
               </Link>
 
@@ -282,7 +282,7 @@ const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categorie
 
                 {/* Cart button */}
                 <Button
-                  variant="secondary"
+                  variant="primary"
                   size="lg"
                   onClick={() => openOffcanvas('cart')}
                   className="btn-icon position-relative rounded-circle ms-2"
@@ -315,15 +315,15 @@ const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categorie
         </Container>
 
         {/* Search visible on screens < 992px wide (lg breakpoint). It is hidden inside collapse by default */}
-        <Collapse in={searchOpen} className="position-absolute top-100 z-2 w-100 bg-dark d-lg-none">
+        <Collapse in={searchOpen} className="position-absolute top-100 z-2 w-100 bg-body d-lg-none border-bottom">
           <div id="searchBar">
-            <Container className="position-relative my-3" data-bs-theme="dark">
-              <i className="ci-search position-absolute top-50 translate-middle-y d-flex fs-lg text-white ms-3" />
+            <Container className="position-relative my-3">
+              <i className="ci-search position-absolute top-50 translate-middle-y d-flex fs-lg text-primary ms-3" />
               <FormControl
                 ref={searchRef}
                 type="search"
-                className="form-icon-start border-white rounded-pill"
-                placeholder="Search the products"
+                className="form-icon-start rounded-pill"
+                placeholder="Search for products"
               />
             </Container>
           </div>
@@ -670,6 +670,18 @@ const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categorie
                   </Row>
                 </Container>
               </Offcanvas.Body>
+              {/* Quick category links row (visible on desktop) */}
+              <div className="d-none d-lg-block border-top">
+                <Container className="px-0 px-lg-3">
+                  <Nav className="flex-wrap gap-3 py-2 px-0 fs-sm">
+                    {categories.slice(0, 16).map((cat, i) => (
+                      <Nav.Link key={`catlink-${cat.id ?? i}`} as={Link} href={cat.href} className="px-0 text-body">
+                        {cat.name}
+                      </Nav.Link>
+                    ))}
+                  </Nav>
+                </Container>
+              </div>
               {isLoggedIn ? (
                 <>
                   {/* Account button logged in state visible on screens < 768px wide (md breakpoint) */}
