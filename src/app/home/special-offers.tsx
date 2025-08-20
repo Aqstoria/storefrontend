@@ -1,66 +1,85 @@
 'use client'
 
 import Link from 'next/link'
-import ProductsCarouselElectronics from '@/components/shop/products-carousel-electronics'
-import Nav from 'react-bootstrap/Nav'
-import { Timezz } from 'timezz/react'
+import Image from 'next/image'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Navigation, Autoplay } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/navigation'
 
-const demoDate = () => {
-  const currentDate = new Date()
+const WeeklyPromotionSection = () => {
+  const promotionCards = [
+    {
+      title: 'Bestsellers for less',
+      subtitle: 'Summer Sale',
+      image: '/img/home/electronics/special-offers/01.jpg',
+      href: '/shop/bestsellers',
+    },
+    {
+      title: 'Hot deals',
+      subtitle: 'Summer Sale',
+      image: '/img/home/electronics/special-offers/02.jpg',
+      href: '/shop/hot-deals',
+    },
+    {
+      title: 'All sale items here',
+      subtitle: 'Summer Sale',
+      image: '/img/home/electronics/special-offers/03.jpg',
+      href: '/shop/sale',
+    },
+  ]
 
-  currentDate.setDate(currentDate.getDate() + 13)
+  return (
+    <Container as="section" className="pt-5">
+      <Row className="g-4">
+        {promotionCards.map((card, index) => (
+          <Col lg={4} md={6} key={index}>
+            <div className="position-relative bg-warning bg-opacity-10 rounded-4 p-4 h-100">
+              <div className="text-center">
+                <h3 className="h4 mb-2">{card.title}</h3>
+                <p className="text-muted mb-3">{card.subtitle}</p>
+                
+                {/* Product Images Placeholder */}
+                <div className="d-flex justify-content-center align-items-center mb-3" style={{ minHeight: '200px' }}>
+                  <div className="bg-white rounded p-3 me-2">
+                    <div className="w-100 h-100 d-flex align-items-center justify-content-center">
+                      <span className="text-muted">Product 1</span>
+                    </div>
+                  </div>
+                  <div className="bg-white rounded p-3 me-2">
+                    <div className="w-100 h-100 d-flex align-items-center justify-content-center">
+                      <span className="text-muted">Product 2</span>
+                    </div>
+                  </div>
+                  <div className="bg-white rounded p-3">
+                    <div className="w-100 h-100 d-flex align-items-center justify-content-center">
+                      <span className="text-muted">Product 3</span>
+                    </div>
+                  </div>
+                </div>
 
-  const year = currentDate.getFullYear()
-  const month = (currentDate.getMonth() + 1).toString().padStart(2, '0')
-  const day = currentDate.getDate().toString().padStart(2, '0')
-  const hours = '12'
-  const minutes = '00'
-  const seconds = '00'
-
-  const formattedDate = `${month}/${day}/${year} ${hours}:${minutes}:${seconds}`
-
-  return formattedDate
+                {/* Navigation Arrows */}
+                <div className="d-flex justify-content-between align-items-center">
+                  <button className="btn btn-outline-secondary btn-sm rounded-circle p-2">
+                    <i className="ci-chevron-left" />
+                  </button>
+                  <Link href={card.href} className="btn btn-primary">
+                    View All
+                  </Link>
+                  <button className="btn btn-outline-secondary btn-sm rounded-circle p-2">
+                    <i className="ci-chevron-right" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </Col>
+        ))}
+      </Row>
+    </Container>
+  )
 }
 
-const SpecialOffersElectronics = () => (
-  <>
-    <div className="d-flex align-items-start align-items-md-center justify-content-between border-bottom pb-3 pb-md-4">
-      <div className="d-md-flex align-items-center">
-        <h2 className="h3 pe-3 me-3 mb-md-0">Special offers for you</h2>
-
-        {/* Replace "demoDate" inside data-countdown-date attribute with the real date, ex: "10/15/2025 12:00:00" */}
-        <Timezz
-          date={demoDate()}
-          pause={false}
-          stopOnZero={true}
-          onUpdate={() => {}}
-          className="d-flex align-items-center"
-        >
-          <div className="btn btn-primary pe-none px-2">
-            <span data-days />
-            <span>d</span>
-          </div>
-          <div className="animate-blinking text-body-tertiary fs-lg fw-medium mx-2">:</div>
-          <div className="btn btn-primary pe-none px-2">
-            <span data-hours />
-            <span>h</span>
-          </div>
-          <div className="animate-blinking text-body-tertiary fs-lg fw-medium mx-2">:</div>
-          <div className="btn btn-primary pe-none px-2">
-            <span data-minutes />
-            <span>m</span>
-          </div>
-        </Timezz>
-      </div>
-      <Nav className="ms-3">
-        <Nav.Link as={Link} href="/shop/electronics" className="animate-underline px-0 py-2">
-          <span className="animate-target text-nowrap">View all</span>
-          <i className="ci-chevron-right fs-base ms-1" />
-        </Nav.Link>
-      </Nav>
-    </div>
-    <ProductsCarouselElectronics />
-  </>
-)
-
-export default SpecialOffersElectronics
+export default WeeklyPromotionSection

@@ -10,3 +10,34 @@
     }
   }
 }
+
+// Hero Banner Styles
+.hero-swiper {
+  border-radius: 1rem;
+}
+
+.hero-pagination {
+  .swiper-pagination-bullet {
+    background: white;
+    opacity: 0.5;
+  }
+  
+  .swiper-pagination-bullet-active {
+    opacity: 1;
+  }
+}
+
+.hero-prev:hover,
+.hero-next:hover {
+  background-color: white !important;
+}
+
+// Category Navigation Styles
+.category-nav {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

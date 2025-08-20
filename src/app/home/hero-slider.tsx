@@ -1,150 +1,116 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Controller, Scrollbar, Autoplay, EffectFade } from 'swiper/modules'
-import type { Swiper as SwiperType } from 'swiper'
+import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 import 'swiper/css'
-import 'swiper/css/scrollbar'
-import 'swiper/css/effect-fade'
-import { useCategories } from '@/contexts/categories-context'
-import { ProductService } from '@/services/products'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
 
-const initialSlides = [
-  {
-    image: '/img/home/electronics/hero-slider/01.png',
-    title: 'Headphones ProMax',
-    eyebrowText: 'Feel the real quality sound',
-    href: '/shop/electronics/product?slug=headphones-promax',
-  },
-  {
-    image: '/img/home/electronics/hero-slider/02.png',
-    title: 'Powerful iPad Pro M2',
-    eyebrowText: 'Deal of the week',
-    href: '/shop/electronics/product?slug=ipad-pro-m2',
-  },
-  {
-    image: '/img/home/electronics/hero-slider/03.png',
-    title: 'Experience New Reality',
-    eyebrowText: 'Virtual reality glasses',
-    href: '/shop/electronics/product?slug=virtual-reality-glasses',
-  },
-]
+const HeroBannerJoom = () => {
+  const [currentSlide, setCurrentSlide] = useState(0)
 
-const HeroSliderElectronics = () => {
-  const [controlledSwiper, setControlledSwiper] = useState<SwiperType | null>(null)
-  const [slides, setSlides] = useState(initialSlides)
-  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false)
-  // Try to replace placeholder slides with real products (if API is available)
-  useEffect(() => {
-    ;(async () => {
-      try {
-        const { data } = await ProductService.getProducts({ per_page: 3, is_featured: true })
-        if (Array.isArray(data) && data.length > 0) {
-          const dynamicSlides = data.slice(0, 3).map((p) => ({
-            image: ProductService.getProductImage(p),
-            title: p.name,
-            eyebrowText: 'Hot deal',
-            href: ProductService.getProductUrl(p),
-          }))
-          setSlides(dynamicSlides)
-        }
-      } catch (e) {
-        // keep defaults
-      }
-    })()
-  }, [])
+  const heroSlides = [
+    {
+      title: 'Outlet',
+      subtitle: 'Summer Sale',
+      image: '/img/home/electronics/hero-slider/01.png',
+      href: '/shop/outlet',
+    },
+    {
+      title: 'New Arrivals',
+      subtitle: 'Fresh Collection',
+      image: '/img/home/electronics/hero-slider/02.png',
+      href: '/shop/new-arrivals',
+    },
+    {
+      title: 'Hot Deals',
+      subtitle: 'Limited Time',
+      image: '/img/home/electronics/hero-slider/03.png',
+      href: '/shop/hot-deals',
+    },
+  ]
 
-  
-  // Try to use context if available, otherwise use local state
-  let contextCategories
-  try {
-    contextCategories = useCategories()
-  } catch {
-    contextCategories = { isCategoriesOpen, setIsCategoriesOpen }
-  }
-  
   return (
     <Container as="section" className="pt-4">
       <Row>
-        <Col 
-          lg={contextCategories.isCategoriesOpen ? 9 : 12} 
-          className={contextCategories.isCategoriesOpen ? "offset-lg-3" : ""}
-        >
+        <Col xs={12}>
           <div className="position-relative">
-            <span
-              className="position-absolute top-0 start-0 w-100 h-100 rounded-5 d-none-dark rtl-flip"
-              style={{ background: 'linear-gradient(90deg, #accbee 0%, #e7f0fd 100%)' }}
-            />
-            <span
-              className="position-absolute top-0 start-0 w-100 h-100 rounded-5 d-none d-block-dark rtl-flip"
-              style={{ background: 'linear-gradient(90deg, #1b273a 0%, #1f2632 100%)' }}
-            />
-            <Row className="justify-content-center position-relative z-2">
-              <Col xl={5} xxl={4} className="offset-xxl-1 d-flex align-items-center mt-xl-n3">
-                <Swiper
-                  modules={[Controller, Autoplay, Scrollbar]}
-                  spaceBetween={64}
-                  loop={true}
-                  speed={400}
-                  controller={{ control: controlledSwiper }}
-                  autoplay={{
-                    delay: 5500,
-                    disableOnInteraction: false,
-                  }}
-                  scrollbar={{
-                    el: '.swiper-scrollbar',
-                  }}
-                  className="px-5 pe-xl-0 ps-xxl-0 me-xl-n5"
-                >
-                  {slides.map(({ title, eyebrowText, href }, index) => (
-                    <SwiperSlide key={index} className="text-center text-xl-start pt-5 py-xl-5">
-                      <p className="text-body">{eyebrowText}</p>
-                      <h2 className="display-4 pb-2 pb-xl-4">{title}</h2>
-                      <Link href={href} className="btn btn-lg btn-primary">
-                        Shop now
-                        <i className="ci-arrow-up-right fs-lg ms-2 me-n1" />
-                      </Link>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-              </Col>
-              <Col xs={9} sm={7} md={6} lg={5} xl={7}>
-                <Swiper
-                  modules={[Controller, EffectFade]}
-                  onSwiper={setControlledSwiper}
-                  allowTouchMove={false}
-                  loop={true}
-                  effect="fade"
-                  fadeEffect={{
-                    crossFade: true,
-                  }}
-                  className="user-select-none"
-                >
-                  {slides.map(({ image, href }, index) => (
-                    <SwiperSlide key={index} className="d-flex justify-content-end">
-                      <div style={{ maxWidth: 490 }}>
-                        <Link href={href} className="d-block">
-                          <Image src={image} width={980} height={1063} alt="Image" />
-                        </Link>
-                      </div>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-              </Col>
-            </Row>
-            <Row className="justify-content-center" data-bs-theme="dark">
-              <Col xxl={10}>
-                <div className="position-relative mx-5 mx-xxl-0">
-                  <div className="swiper-scrollbar mb-4" />
-                </div>
-              </Col>
-            </Row>
+            {/* Hero Banner */}
+            <div className="position-relative overflow-hidden rounded-4 hero-swiper">
+              <Swiper
+                modules={[Navigation, Pagination, Autoplay]}
+                spaceBetween={0}
+                loop={true}
+                autoplay={{
+                  delay: 5000,
+                  disableOnInteraction: false,
+                }}
+                pagination={{
+                  clickable: true,
+                  el: '.hero-pagination',
+                }}
+                navigation={{
+                  nextEl: '.hero-next',
+                  prevEl: '.hero-prev',
+                }}
+                onSlideChange={(swiper) => setCurrentSlide(swiper.realIndex)}
+              >
+                {heroSlides.map((slide, index) => (
+                  <SwiperSlide key={index}>
+                    <div className="position-relative">
+                      {/* Background with orange gradient */}
+                      <div 
+                        className="w-100 h-100 position-absolute"
+                        style={{
+                          background: 'linear-gradient(135deg, #ff6b35 0%, #f7931e 100%)',
+                          minHeight: '400px'
+                        }}
+                      />
+                      
+                      {/* Content */}
+                      <Row className="align-items-center position-relative z-2 py-5 px-4">
+                        <Col lg={6} className="text-white text-center text-lg-start">
+                          <h1 className="display-3 fw-bold mb-2">{slide.title}</h1>
+                          <h2 className="display-5 fw-medium mb-4">{slide.subtitle}</h2>
+                          <Link href={slide.href} className="btn btn-light btn-lg px-4 py-2 fw-semibold">
+                            Shop Now
+                            <i className="ci-arrow-right ms-2" />
+                          </Link>
+                        </Col>
+                        <Col lg={6} className="text-center">
+                          <div className="position-relative">
+                            <Image 
+                              src={slide.image} 
+                              width={400} 
+                              height={400} 
+                              alt={slide.title}
+                              className="img-fluid"
+                            />
+                          </div>
+                        </Col>
+                      </Row>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+
+              {/* Navigation Arrows */}
+              <button className="hero-prev position-absolute top-50 start-0 translate-middle-y bg-white bg-opacity-75 border-0 rounded-circle p-3 ms-3 z-3">
+                <i className="ci-chevron-left fs-4 text-dark" />
+              </button>
+              <button className="hero-next position-absolute top-50 end-0 translate-middle-y bg-white bg-opacity-75 border-0 rounded-circle p-3 me-3 z-3">
+                <i className="ci-chevron-right fs-4 text-dark" />
+              </button>
+
+              {/* Pagination Dots */}
+              <div className="hero-pagination position-absolute bottom-0 start-50 translate-middle-x mb-3 z-3" />
+            </div>
           </div>
         </Col>
       </Row>
@@ -152,4 +118,4 @@ const HeroSliderElectronics = () => {
   )
 }
 
-export default HeroSliderElectronics
+export default HeroBannerJoom

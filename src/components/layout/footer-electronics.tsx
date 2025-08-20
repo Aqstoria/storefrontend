@@ -15,27 +15,13 @@ const FooterElectronics = ({ className, logoHref }: { className?: string; logoHr
           <div className="bg-secondary bg-opacity-25 rounded-3 p-4 h-100">
             <h5 className="mb-3">More deals & promos in the Cartzilla app</h5>
             <div className="text-center mb-3">
-              {/* QR Code Placeholder - Replace with actual QR code image */}
+              {/* QR Code - Replace with your actual QR code image */}
               <div className="bg-white rounded p-3 d-inline-block mb-2">
                 <div className="w-100 h-100 d-flex align-items-center justify-content-center">
                   <span className="text-dark fw-bold">QR Code</span>
                 </div>
               </div>
               <p className="mb-3">Scan to download app</p>
-            </div>
-            <div className="d-flex flex-column gap-2">
-              <Link href="#" className="btn btn-outline-light btn-sm d-flex align-items-center justify-content-center gap-2">
-                <i className="ci-apple fs-5"></i>
-                <span>App Store</span>
-              </Link>
-              <Link href="#" className="btn btn-outline-light btn-sm d-flex align-items-center justify-content-center gap-2">
-                <i className="ci-google-play fs-5"></i>
-                <span>Google Play</span>
-              </Link>
-              <Link href="#" className="btn btn-outline-light btn-sm d-flex align-items-center justify-content-center gap-2">
-                <i className="ci-huawei fs-5"></i>
-                <span>AppGallery</span>
-              </Link>
             </div>
           </div>
         </Col>
@@ -45,32 +31,32 @@ const FooterElectronics = ({ className, logoHref }: { className?: string; logoHr
           <h6 className="fw-bold mb-3">Users:</h6>
           <ul className="list-unstyled">
             <li className="mb-2">
-              <Link href="/shop" className="text-white-50 text-decoration-none footer-link">
+              <Link href="/shop" className="text-white text-decoration-none footer-link">
                 Catalogue
               </Link>
             </li>
             <li className="mb-2">
-              <Link href="/help" className="text-white-50 text-decoration-none footer-link">
+              <Link href="/help" className="text-white text-decoration-none footer-link">
                 Help centre
               </Link>
             </li>
             <li className="mb-2">
-              <Link href="/privacy" className="text-white-50 text-decoration-none footer-link">
+              <Link href="/privacy" className="text-white text-decoration-none footer-link">
                 Privacy policy
               </Link>
             </li>
             <li className="mb-2">
-              <Link href="/terms" className="text-white-50 text-decoration-none footer-link">
+              <Link href="/terms" className="text-white text-decoration-none footer-link">
                 Terms of use
               </Link>
             </li>
             <li className="mb-2">
-              <Link href="/accessibility" className="text-white-50 text-decoration-none footer-link">
+              <Link href="/accessibility" className="text-white text-decoration-none footer-link">
                 Accessibility settings
               </Link>
             </li>
             <li className="mb-2">
-              <Link href="/trending" className="text-white-50 text-decoration-none footer-link">
+              <Link href="/trending" className="text-white text-decoration-none footer-link">
                 Top searches on Cartzilla
               </Link>
             </li>
@@ -82,12 +68,12 @@ const FooterElectronics = ({ className, logoHref }: { className?: string; logoHr
           <h6 className="fw-bold mb-3">Partners:</h6>
           <ul className="list-unstyled">
             <li className="mb-2">
-              <Link href="/become-seller" className="text-white-50 text-decoration-none footer-link">
+              <Link href="/become-seller" className="text-white text-decoration-none footer-link">
                 Become a seller
               </Link>
             </li>
             <li className="mb-2">
-              <Link href="/partner-terms" className="text-white-50 text-decoration-none footer-link">
+              <Link href="/partner-terms" className="text-white text-decoration-none footer-link">
                 Terms of service
               </Link>
             </li>
@@ -99,17 +85,17 @@ const FooterElectronics = ({ className, logoHref }: { className?: string; logoHr
           <h6 className="fw-bold mb-3">Company:</h6>
           <ul className="list-unstyled">
             <li className="mb-2">
-              <Link href="/about" className="text-white-50 text-decoration-none footer-link">
+              <Link href="/about" className="text-white text-decoration-none footer-link">
                 About us
               </Link>
             </li>
             <li className="mb-2">
-              <Link href="/copyright" className="text-white-50 text-decoration-none footer-link">
+              <Link href="/copyright" className="text-white text-decoration-none footer-link">
                 Copyright protection
               </Link>
             </li>
             <li className="mb-2">
-              <Link href="/safety" className="text-white-50 text-decoration-none footer-link">
+              <Link href="/safety" className="text-white text-decoration-none footer-link">
                 Product safety
               </Link>
             </li>
@@ -121,12 +107,12 @@ const FooterElectronics = ({ className, logoHref }: { className?: string; logoHr
           <h6 className="fw-bold mb-3">Cartzilla Group companies:</h6>
           <ul className="list-unstyled">
             <li className="mb-2">
-              <Link href="/logistics" className="text-white-50 text-decoration-none footer-link">
+              <Link href="/logistics" className="text-white text-decoration-none footer-link">
                 Cartzilla Logistics
               </Link>
             </li>
             <li className="mb-2">
-              <Link href="/onfy" className="text-white-50 text-decoration-none footer-link">
+              <Link href="/onfy" className="text-white text-decoration-none footer-link">
                 Onfy
               </Link>
             </li>
@@ -136,7 +122,7 @@ const FooterElectronics = ({ className, logoHref }: { className?: string; logoHr
               <i className="ci-check-circle text-white"></i>
               <span className="text-white small">On the list! 2023</span>
             </div>
-            <div className="text-white-50 small">Payment Card Security Standard</div>
+            <div className="text-white small">Payment Card Security Standard</div>
           </div>
         </Col>
       </Row>
@@ -144,13 +130,13 @@ const FooterElectronics = ({ className, logoHref }: { className?: string; logoHr
       {/* Bottom Section */}
       <Row className="mt-4 pt-4 border-top border-secondary">
         <Col md={6}>
-          <p className="text-white-50 mb-0">
-            © 2025 Cartzilla Group (Latvia)
+          <p className="text-white mb-0">
+            2025 Cartzilla All Rights Reserved.
           </p>
         </Col>
         <Col md={6} className="text-md-end">
-          <span className="text-white-50 small">Page ID: </span>
-          <span className="text-white-50 small font-monospace">7a4ba3ba0fb8f6c383745e0d6ffec1c1fab910193a75b3db89f26d0fd5f7d428</span>
+          <span className="text-white small">Page ID: </span>
+          <span className="text-white small font-monospace">7a4ba3ba0fb8f6c383745e0d6ffec1c1fab910193a75b3db89f26d0fd5f7d428</span>
         </Col>
       </Row>
     </Container>
