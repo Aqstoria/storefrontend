@@ -27,10 +27,11 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     // Fetch products from the backend API
     const productsResponse = await ProductService.getProducts()
     
-    // Filter products by category (you may need to adjust this based on your backend structure)
-    // For now, we'll show all products and you can implement category filtering based on your backend
+    // Filter products by category based on the Product interface structure
     const categoryProducts = productsResponse.data.filter(product => 
-      product.category?.toLowerCase().includes(categoryName.toLowerCase()) ||
+      product.categories?.some(cat => 
+        cat.name?.toLowerCase().includes(categoryName.toLowerCase())
+      ) ||
       product.name?.toLowerCase().includes(categoryName.toLowerCase())
     )
     
@@ -117,12 +118,12 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                           />
                         </div>
                       </Link>
-                      {product.discount && (
+                      {product.is_on_sale && product.sale_price && (
                         <Badge 
                           bg="danger" 
                           className="position-absolute top-0 end-0 m-2"
                         >
-                          -{product.discount}%
+                          Sale
                         </Badge>
                       )}
                     </div>
@@ -136,42 +137,42 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                             {product.name}
                           </h6>
                         </Link>
-                        {product.brand && (
-                          <small className="text-muted d-block">
-                            Brand: {product.brand}
-                          </small>
-                        )}
+                                                 {product.brand && (
+                           <small className="text-muted d-block">
+                             Brand: {product.brand.name}
+                           </small>
+                         )}
                       </div>
                       
                       <div className="mt-auto">
-                        <div className="d-flex align-items-center mb-2">
-                          {product.rating && (
-                            <div className="d-flex align-items-center me-2">
-                              <div className="text-warning me-1">
-                                {[...Array(5)].map((_, i) => (
-                                  <i 
-                                    key={i} 
-                                    className={`ci-star${i < Math.floor(product.rating) ? '-filled' : ''}`}
-                                  />
-                                ))}
-                              </div>
-                              <small className="text-muted">({product.rating})</small>
-                            </div>
-                          )}
-                        </div>
+                                                 <div className="d-flex align-items-center mb-2">
+                           {product.average_rating && (
+                             <div className="d-flex align-items-center me-2">
+                               <div className="text-warning me-1">
+                                 {[...Array(5)].map((_, i) => (
+                                   <i 
+                                     key={i} 
+                                     className={`ci-star${i < Math.floor(product.average_rating) ? '-filled' : ''}`}
+                                   />
+                                 ))}
+                               </div>
+                               <small className="text-muted">({product.average_rating})</small>
+                             </div>
+                           )}
+                         </div>
                         
-                        <div className="d-flex align-items-center justify-content-between mb-3">
-                          <div>
-                            {product.oldPrice && (
-                              <small className="text-muted text-decoration-line-through me-2">
-                                ${product.oldPrice}
-                              </small>
-                            )}
-                            <span className="h5 text-primary mb-0">
-                              ${product.price}
-                            </span>
-                          </div>
-                        </div>
+                                                 <div className="d-flex align-items-center justify-content-between mb-3">
+                           <div>
+                             {product.is_on_sale && product.sale_price && (
+                               <small className="text-muted text-decoration-line-through me-2">
+                                 ${product.price}
+                               </small>
+                             )}
+                             <span className="h5 text-primary mb-0">
+                               ${product.is_on_sale && product.sale_price ? product.sale_price : product.price}
+                             </span>
+                           </div>
+                         </div>
                         
                         <Button 
                           variant="primary" 

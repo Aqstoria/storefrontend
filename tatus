@@ -5,3 +5,8 @@
 [33m16a8e7a[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Fix Categories dropdown to be expandable/collapsible instead of always open
 [33m2705e22[m Fix CORS configuration and API endpoints for production
 [33mf055e03[m Update page.tsx
+[33m5df7451[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Fix TypeScript error: Access products.data array from ProductsResponse
+[33md6fa8fe[m Fix Next.js 15 compatibility: Make params async in category page
+[33ma6cf7a3[m Fix page routing: Add header and footer to all pages for proper navigation and layout
+[33m35b5b43[m Add Help Centre, Delivery, and Warranty pages with dynamic category routing and product display
+[33m6a356b8[m Implement exact Joom-style header: cookie consent banner, proper icon spacing, backend categories integration, and improved visual hierarchy
