@@ -70,7 +70,7 @@ export default async function ElectronicsHomePage() {
         <HeroBannerJoom />
 
         {/* Weekly Promotion Section */}
-        <WeeklyPromotionSection />
+        <WeeklyPromotionSection products={featuredProducts} />
 
         {/* Low Prices on Trending Items + The Populars Section */}
         <Container as="section" className="pt-5">
@@ -81,18 +81,27 @@ export default async function ElectronicsHomePage() {
                 <h3 className="h4 mb-3">Low prices on trending items</h3>
                 <p className="text-muted mb-3">Summer Sale</p>
                 
-                {/* Product Images Placeholder */}
+                {/* Product Images from Backend */}
                 <div className="d-flex justify-content-center align-items-center mb-3">
-                  <div className="bg-white rounded p-3 me-2">
-                    <div className="w-100 h-100 d-flex align-items-center justify-content-center">
-                      <span className="text-muted">Roller Skates</span>
-                    </div>
-                  </div>
-                  <div className="bg-white rounded p-3">
-                    <div className="w-100 h-100 d-flex align-items-center justify-content-center">
-                      <span className="text-muted">Water Bottle</span>
-                    </div>
-                  </div>
+                  {trendingProducts.slice(0, 2).map((product, index) => (
+                    <Link key={product.id} href={ProductService.getProductUrl(product)} className="text-decoration-none">
+                      <div className="bg-white rounded p-3 me-2">
+                        {product.images && product.images.length > 0 ? (
+                          <Image 
+                            src={ProductService.getProductImage(product)} 
+                            width={80} 
+                            height={80} 
+                            alt={product.name}
+                            className="img-fluid"
+                          />
+                        ) : (
+                          <div className="w-100 h-100 d-flex align-items-center justify-content-center">
+                            <span className="text-muted small">{product.name}</span>
+                          </div>
+                        )}
+                      </div>
+                    </Link>
+                  ))}
                 </div>
               </div>
             </Col>
@@ -107,21 +116,33 @@ export default async function ElectronicsHomePage() {
               </div>
               
               <Row xs={2} sm={3} md={4} className="g-3">
-                {Array.from({ length: 8 }, (_, i) => (
-                  <Col key={i}>
-                    <div className="text-center">
-                      <div className="bg-white rounded p-2 mb-2">
-                        <div className="w-100 h-100 d-flex align-items-center justify-content-center">
-                          <span className="text-muted small">Product {i + 1}</span>
+                {trendingProducts.slice(0, 8).map((product) => (
+                  <Col key={product.id}>
+                    <Link href={ProductService.getProductUrl(product)} className="text-decoration-none">
+                      <div className="text-center">
+                        <div className="bg-white rounded p-2 mb-2">
+                          {product.images && product.images.length > 0 ? (
+                            <Image 
+                              src={ProductService.getProductImage(product)} 
+                              width={80} 
+                              height={80} 
+                              alt={product.name}
+                              className="img-fluid"
+                            />
+                          ) : (
+                            <div className="w-100 h-100 d-flex align-items-center justify-content-center">
+                              <span className="text-muted small">{product.name}</span>
+                            </div>
+                          )}
+                        </div>
+                        <h6 className="small mb-1 text-dark">{product.name}</h6>
+                        <p className="text-primary mb-1 fw-bold">${ProductService.getProductPrice(product).toFixed(2)}</p>
+                        <div className="d-flex align-items-center justify-content-center">
+                          <i className="ci-star-filled text-warning me-1"></i>
+                          <span className="small text-muted">4.5 (120)</span>
                         </div>
                       </div>
-                      <h6 className="small mb-1">Product Name</h6>
-                      <p className="text-primary mb-1 fw-bold">$29.99</p>
-                      <div className="d-flex align-items-center justify-content-center">
-                        <i className="ci-star-filled text-warning me-1"></i>
-                        <span className="small">4.5 (120)</span>
-                      </div>
-                    </div>
+                    </Link>
                   </Col>
                 ))}
               </Row>
@@ -134,17 +155,29 @@ export default async function ElectronicsHomePage() {
           <h3 className="h4 mb-4">New Arrivals</h3>
           <div className="overflow-auto">
             <Row className="flex-nowrap g-3" style={{ minWidth: 'max-content' }}>
-              {Array.from({ length: 6 }, (_, i) => (
-                <Col xs={6} sm={4} md={3} lg={2} key={i} style={{ minWidth: '200px' }}>
-                  <div className="text-center">
-                    <div className="bg-white rounded p-3 mb-2">
-                      <div className="w-100 h-100 d-flex align-items-center justify-content-center">
-                        <span className="text-muted small">New Product {i + 1}</span>
+              {featuredProducts.slice(0, 6).map((product) => (
+                <Col xs={6} sm={4} md={3} lg={2} key={product.id} style={{ minWidth: '200px' }}>
+                  <Link href={ProductService.getProductUrl(product)} className="text-decoration-none">
+                    <div className="text-center">
+                      <div className="bg-white rounded p-3 mb-2">
+                        {product.images && product.images.length > 0 ? (
+                          <Image 
+                            src={ProductService.getProductImage(product)} 
+                            width={80} 
+                            height={80} 
+                            alt={product.name}
+                            className="img-fluid"
+                          />
+                        ) : (
+                          <div className="w-100 h-100 d-flex align-items-center justify-content-center">
+                            <span className="text-muted small">{product.name}</span>
+                          </div>
+                        )}
                       </div>
+                      <p className="text-primary mb-1 fw-bold">${ProductService.getProductPrice(product).toFixed(2)}</p>
+                      <small className="text-muted">From Japan</small>
                     </div>
-                    <p className="text-primary mb-1 fw-bold">$19.99</p>
-                    <small className="text-muted">From Japan</small>
-                  </div>
+                  </Link>
                 </Col>
               ))}
             </Row>
@@ -184,21 +217,33 @@ export default async function ElectronicsHomePage() {
         <Container as="section" className="pt-5">
           <h3 className="h4 mb-4">Our Top Picks Just For You</h3>
           <Row xs={2} sm={3} md={4} lg={6} className="g-3">
-            {Array.from({ length: 24 }, (_, i) => (
-              <Col key={i}>
-                <div className="text-center">
-                  <div className="bg-white rounded p-2 mb-2">
-                    <div className="w-100 h-100 d-flex align-items-center justify-content-center">
-                      <span className="text-muted small">Top Pick {i + 1}</span>
+            {featuredProducts.slice(0, 24).map((product) => (
+              <Col key={product.id}>
+                <Link href={ProductService.getProductUrl(product)} className="text-decoration-none">
+                  <div className="text-center">
+                    <div className="bg-white rounded p-2 mb-2">
+                      {product.images && product.images.length > 0 ? (
+                        <Image 
+                          src={ProductService.getProductImage(product)} 
+                          width={80} 
+                          height={80} 
+                          alt={product.name}
+                          className="img-fluid"
+                        />
+                      ) : (
+                        <div className="w-100 h-100 d-flex align-items-center justify-content-center">
+                          <span className="text-muted small">{product.name}</span>
+                        </div>
+                      )}
+                    </div>
+                    <h6 className="small mb-1 text-dark">{product.name}</h6>
+                    <p className="text-primary mb-1 fw-bold">${ProductService.getProductPrice(product).toFixed(2)}</p>
+                    <div className="d-flex align-items-center justify-content-center">
+                      <i className="ci-star-filled text-warning me-1"></i>
+                      <span className="small text-muted">4.2 (85)</span>
                     </div>
                   </div>
-                  <h6 className="small mb-1">Product Name</h6>
-                  <p className="text-primary mb-1 fw-bold">$24.99</p>
-                  <div className="d-flex align-items-center justify-content-center">
-                    <i className="ci-star-filled text-warning me-1"></i>
-                    <span className="small">4.2 (85)</span>
-                  </div>
-                </div>
+                </Link>
               </Col>
             ))}
           </Row>

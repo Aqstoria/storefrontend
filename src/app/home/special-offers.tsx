@@ -9,25 +9,30 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Autoplay } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/navigation'
+import { ProductService } from '@/services/products'
 
-const WeeklyPromotionSection = () => {
+interface WeeklyPromotionSectionProps {
+  products?: any[]
+}
+
+const WeeklyPromotionSection = ({ products = [] }: WeeklyPromotionSectionProps) => {
   const promotionCards = [
     {
       title: 'Bestsellers for less',
       subtitle: 'Summer Sale',
-      image: '/img/home/electronics/special-offers/01.jpg',
+      products: products.slice(0, 3),
       href: '/shop/bestsellers',
     },
     {
       title: 'Hot deals',
       subtitle: 'Summer Sale',
-      image: '/img/home/electronics/special-offers/02.jpg',
+      products: products.slice(3, 6),
       href: '/shop/hot-deals',
     },
     {
       title: 'All sale items here',
       subtitle: 'Summer Sale',
-      image: '/img/home/electronics/special-offers/03.jpg',
+      products: products.slice(6, 9),
       href: '/shop/sale',
     },
   ]
@@ -42,23 +47,36 @@ const WeeklyPromotionSection = () => {
                 <h3 className="h4 mb-2">{card.title}</h3>
                 <p className="text-muted mb-3">{card.subtitle}</p>
                 
-                {/* Product Images Placeholder */}
+                {/* Product Images from Backend */}
                 <div className="d-flex justify-content-center align-items-center mb-3" style={{ minHeight: '200px' }}>
-                  <div className="bg-white rounded p-3 me-2">
-                    <div className="w-100 h-100 d-flex align-items-center justify-content-center">
-                      <span className="text-muted">Product 1</span>
-                    </div>
-                  </div>
-                  <div className="bg-white rounded p-3 me-2">
-                    <div className="w-100 h-100 d-flex align-items-center justify-content-center">
-                      <span className="text-muted">Product 2</span>
-                    </div>
-                  </div>
-                  <div className="bg-white rounded p-3">
-                    <div className="w-100 h-100 d-flex align-items-center justify-content-center">
-                      <span className="text-muted">Product 3</span>
-                    </div>
-                  </div>
+                  {card.products.length > 0 ? (
+                    card.products.map((product, productIndex) => (
+                      <div key={product.id || productIndex} className="bg-white rounded p-3 me-2">
+                        {product.images && product.images.length > 0 ? (
+                          <Image 
+                            src={ProductService.getProductImage(product)} 
+                            width={80} 
+                            height={80} 
+                            alt={product.name}
+                            className="img-fluid"
+                          />
+                        ) : (
+                          <div className="w-100 h-100 d-flex align-items-center justify-content-center">
+                            <span className="text-muted small">{product.name || `Product ${productIndex + 1}`}</span>
+                          </div>
+                        )}
+                      </div>
+                    ))
+                  ) : (
+                    // Fallback placeholders if no products
+                    Array.from({ length: 3 }, (_, i) => (
+                      <div key={i} className="bg-white rounded p-3 me-2">
+                        <div className="w-100 h-100 d-flex align-items-center justify-content-center">
+                          <span className="text-muted small">Product {i + 1}</span>
+                        </div>
+                      </div>
+                    ))
+                  )}
                 </div>
 
                 {/* Navigation Arrows */}
