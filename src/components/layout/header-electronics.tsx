@@ -71,6 +71,7 @@ const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categorie
   const pathname = usePathname()
   const [categories, setCategories] = useState<TransformedCategory[]>(propCategories);
   const [localCategoriesOpen, setLocalCategoriesOpen] = useState(false)
+  const [cookieConsent, setCookieConsent] = useState(true)
   
   // Try to use context if available, otherwise use local state
   let contextCategories
@@ -99,24 +100,52 @@ const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categorie
     }
   }, [searchOpen])
 
-  // Joom-style category navigation
+  // Joom-style category navigation with backend categories
   const joomCategories = [
-    'All categories', 'Outlet', 'Free gift with purchase', 'Xiaomi', 'Men\'s Fashion', 
-    'Pet Supplies', 'Shoes', 'Home Improvement', 'Electronics', 'Smartphone Cases', 
-    'Home Appliances', 'Home & Kitchen', 'Kids', 'Parties & Events', 'Beauty', 
-    'Health', 'Bags & Suitcases', 'Women\'s Fashion', 'Office & School', 'Watches & Clocks'
+    'All categories',
+    ...(categories.map(cat => cat.name).slice(0, 20)) // Use first 20 backend categories
   ]
 
   return (
     <>
-      {/* Top Bar - Language and Currency Selector */}
-      <div className="bg-light border-bottom">
+      {/* Cookie Consent Banner - Dark Grey */}
+      {cookieConsent && (
+        <div className="bg-dark py-2">
+          <Container>
+            <Row className="align-items-center">
+              <Col xs={12} md={8}>
+                <small className="text-white">
+                  By using this site, you agree to our use of cookies. Learn more in our{' '}
+                  <Link href="/privacy" className="text-decoration-underline text-white">
+                    Privacy Policy
+                  </Link>
+                </small>
+              </Col>
+              <Col xs={12} md={4} className="text-md-end">
+                <Button 
+                  variant="outline-light" 
+                  size="sm" 
+                  onClick={() => setCookieConsent(false)}
+                  className="px-3"
+                >
+                  OK
+                </Button>
+              </Col>
+            </Row>
+          </Container>
+        </div>
+      )}
+
+      {/* Main Header Section - White Background */}
+      <div className="bg-white border-bottom">
         <Container>
+          {/* Top Row - Language, Currency, Help Links */}
           <Row className="align-items-center py-2">
-            <Col xs={6}>
+            <Col xs={12} md={6}>
               <div className="d-flex align-items-center gap-3">
                 <Dropdown>
-                  <DropdownToggle variant="link" className="text-decoration-none text-dark p-0">
+                  <DropdownToggle variant="link" className="text-decoration-none text-dark p-0 d-flex align-items-center gap-2">
+                    <span className="fi fi-gb"></span>
                     English
                   </DropdownToggle>
                   <DropdownMenu>
@@ -137,25 +166,26 @@ const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categorie
                 </Dropdown>
               </div>
             </Col>
-            <Col xs={6} className="text-end">
-              <small className="text-muted">
-                By using this site, you agree to our use of cookies. 
-                <Link href="/privacy" className="text-decoration-none ms-1">Learn more in our Privacy Policy</Link>
-              </small>
-              <Button variant="outline-primary" size="sm" className="ms-2">OK</Button>
+            <Col xs={12} md={6} className="text-md-end">
+              <div className="d-flex align-items-center justify-content-md-end gap-3">
+                <Link href="/help" className="text-decoration-none text-dark small">Help centre</Link>
+                <Link href="/delivery" className="text-decoration-none text-dark small">Delivery</Link>
+                <Link href="/warranty" className="text-decoration-none text-dark small">Warranty</Link>
+                <Button variant="dark" size="sm" className="rounded-pill px-3">
+                  Cartzilla Geek
+                </Button>
+              </div>
             </Col>
           </Row>
-        </Container>
-      </div>
 
-      {/* Main Navigation Bar */}
-      <Navbar ref={navbarRef} expand="lg" className="bg-white border-bottom py-3">
-        <Container>
-          <Row className="w-100 align-items-center">
+          {/* Main Navigation Row - Logo, Search, User Actions */}
+          <Row className="align-items-center py-3">
             {/* Logo */}
             <Col xs={12} lg={3} className="mb-3 mb-lg-0">
               <Link href={logoHref || '/'} className="text-decoration-none">
-                <h1 className="h3 mb-0 fw-bold text-dark">CARTZILLA</h1>
+                <h1 className="h2 mb-0 fw-bold text-dark d-flex align-items-center">
+                  <span className="text-danger me-1">C</span>ARTZILLA
+                </h1>
               </Link>
             </Col>
 
@@ -165,52 +195,73 @@ const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categorie
                 <FormControl
                   type="search"
                   placeholder="What are you looking for?"
-                  className="rounded-start"
+                  className="rounded-start border-end-0"
+                  size="lg"
                 />
-                <Button variant="danger" className="rounded-end">
+                <Button variant="danger" className="rounded-end px-4" size="lg">
                   Search
                 </Button>
               </div>
             </Col>
 
             {/* User Actions */}
-            <Col xs={12} lg={3} className="d-flex justify-content-end gap-3">
-              <Link href="/notifications" className="text-decoration-none text-dark">
-                <i className="ci-bell fs-5"></i>
-                <span className="ms-1 d-none d-lg-inline">Notifications</span>
-              </Link>
-              <Link href="/login" className="text-decoration-none text-dark">
-                <i className="ci-user fs-5"></i>
-                <span className="ms-1 d-none d-lg-inline">Log in</span>
-              </Link>
-              <Link href="/orders" className="text-decoration-none text-dark">
-                <i className="ci-package fs-5"></i>
-                <span className="ms-1 d-none d-lg-inline">My orders</span>
-              </Link>
-              <Link href="/cart" className="text-decoration-none text-dark position-relative">
-                <i className="ci-cart fs-5"></i>
-                <span className="ms-1 d-none d-lg-inline">Shopping cart</span>
-                {cart.length > 0 && (
-                  <Badge bg="danger" className="position-absolute top-0 start-100 translate-middle rounded-pill">
-                    {cart.length}
-                  </Badge>
-                )}
-              </Link>
+            <Col xs={12} lg={3} className="d-flex justify-content-center justify-content-lg-end">
+              <div className="d-flex gap-4">
+                <Link href="/notifications" className="text-decoration-none text-dark text-center">
+                  <div className="position-relative mb-1">
+                    <i className="ci-bell fs-4"></i>
+                    <Badge bg="danger" className="position-absolute top-0 start-100 translate-middle rounded-pill" style={{ fontSize: '0.6rem' }}>
+                      1
+                    </Badge>
+                  </div>
+                  <div className="small">Notifications</div>
+                </Link>
+                <Link href="/login" className="text-decoration-none text-dark text-center">
+                  <i className="ci-user fs-4 mb-1 d-block"></i>
+                  <div className="small">Log in</div>
+                </Link>
+                <Link href="/orders" className="text-decoration-none text-dark text-center">
+                  <i className="ci-package fs-4 mb-1 d-block"></i>
+                  <div className="small">My orders</div>
+                </Link>
+                <Link href="/cart" className="text-decoration-none text-dark text-center position-relative">
+                  <i className="ci-cart fs-4 mb-1 d-block"></i>
+                  <div className="small">Shopping cart</div>
+                  {cart.length > 0 && (
+                    <Badge bg="danger" className="position-absolute top-0 start-100 translate-middle rounded-pill" style={{ fontSize: '0.6rem' }}>
+                      {cart.length}
+                    </Badge>
+                  )}
+                </Link>
+              </div>
             </Col>
           </Row>
         </Container>
-      </Navbar>
+      </div>
 
-      {/* Category Navigation Bar */}
+      {/* Category Navigation Bar - White Background */}
       <div className="bg-white border-bottom">
         <Container>
-          <Nav className="flex-nowrap overflow-auto py-2 category-nav">
-            {joomCategories.map((category, index) => (
-              <Nav.Link key={index} as={Link} href={`/category/${category.toLowerCase().replace(/\s+/g, '-')}`} className="text-nowrap px-3 py-2 text-dark text-decoration-none">
-                {category}
-              </Nav.Link>
-            ))}
-          </Nav>
+          <div className="d-flex align-items-center py-2">
+            {/* All Categories Button */}
+            <Button
+              variant="outline-dark"
+              className="me-3 d-flex align-items-center gap-2"
+              onClick={() => setLocalCategoriesOpen(!localCategoriesOpen)}
+            >
+              <i className="ci-menu"></i>
+              All categories
+            </Button>
+
+            {/* Horizontal Category List */}
+            <Nav className="flex-nowrap overflow-auto py-2 category-nav flex-grow-1">
+              {joomCategories.slice(1).map((category, index) => (
+                <Nav.Link key={index} as={Link} href={`/category/${category.toLowerCase().replace(/\s+/g, '-')}`} className="text-nowrap px-3 py-2 text-dark text-decoration-none">
+                  {category}
+                </Nav.Link>
+              ))}
+            </Nav>
+          </div>
         </Container>
       </div>
 
