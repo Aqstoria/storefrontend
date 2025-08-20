@@ -8,6 +8,8 @@ import AccordionButton from 'react-bootstrap/AccordionButton'
 import AccordionCollapse from 'react-bootstrap/AccordionCollapse'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
+import HeaderElectronics from '@/components/layout/header-electronics'
+import FooterElectronics from '@/components/layout/footer-electronics'
 
 export default function HelpCentrePage() {
   const faqCategories = [
@@ -110,115 +112,119 @@ export default function HelpCentrePage() {
   ]
 
   return (
-    <div className="bg-light min-vh-100">
-      {/* Hero Section */}
-      <div className="bg-primary text-white py-5">
-        <Container>
-          <Row className="text-center">
+    <>
+      <HeaderElectronics />
+      <div className="bg-light min-vh-100">
+        {/* Hero Section */}
+        <div className="bg-primary text-white py-5">
+          <Container>
+            <Row className="text-center">
+              <Col xs={12}>
+                <h1 className="display-4 fw-bold mb-3">Help Centre</h1>
+                <p className="lead mb-4">
+                  Find answers to your questions and get the support you need
+                </p>
+                <div className="d-flex justify-content-center">
+                  <div className="position-relative" style={{ maxWidth: '500px' }}>
+                    <input
+                      type="search"
+                      className="form-control form-control-lg"
+                      placeholder="Search for help articles..."
+                    />
+                    <Button variant="light" className="position-absolute end-0 top-0 h-100 rounded-start-0">
+                      <i className="ci-search"></i>
+                    </Button>
+                  </div>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+        </div>
+
+        <Container className="py-5">
+          {/* Contact Methods */}
+          <Row className="mb-5">
             <Col xs={12}>
-              <h1 className="display-4 fw-bold mb-3">Help Centre</h1>
-              <p className="lead mb-4">
-                Find answers to your questions and get the support you need
-              </p>
-              <div className="d-flex justify-content-center">
-                <div className="position-relative" style={{ maxWidth: '500px' }}>
-                  <input
-                    type="search"
-                    className="form-control form-control-lg"
-                    placeholder="Search for help articles..."
-                  />
-                  <Button variant="light" className="position-absolute end-0 top-0 h-100 rounded-start-0">
-                    <i className="ci-search"></i>
-                  </Button>
+              <h2 className="h3 mb-4 text-center">Need Help? Contact Us</h2>
+            </Col>
+            {contactMethods.map((method, index) => (
+              <Col lg={4} md={6} key={index} className="mb-4">
+                <Card className="h-100 text-center border-0 shadow-sm">
+                  <Card.Body className="p-4">
+                    <div className="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{ width: '60px', height: '60px' }}>
+                      <i className={`${method.icon} fs-2 text-primary`}></i>
+                    </div>
+                    <h5 className="card-title mb-2">{method.title}</h5>
+                    <p className="card-text text-muted mb-3">{method.description}</p>
+                    <Link href={method.href} className="btn btn-primary">
+                      {method.action}
+                    </Link>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+
+          {/* FAQ Categories */}
+          <Row>
+            <Col xs={12}>
+              <h2 className="h3 mb-4 text-center">Frequently Asked Questions</h2>
+            </Col>
+            {faqCategories.map((category, categoryIndex) => (
+              <Col lg={6} key={categoryIndex} className="mb-4">
+                <Card className="h-100 border-0 shadow-sm">
+                  <Card.Header className="bg-light border-0">
+                    <h5 className="mb-0 d-flex align-items-center">
+                      <i className={`${category.icon} me-2 text-primary`}></i>
+                      {category.title}
+                    </h5>
+                  </Card.Header>
+                  <Card.Body className="p-0">
+                    <Accordion flush>
+                      {category.items.map((item, itemIndex) => (
+                        <AccordionItem key={itemIndex} eventKey={`${categoryIndex}-${itemIndex}`}>
+                          <AccordionButton className="px-4 py-3">
+                            <span className="fw-medium">{item.question}</span>
+                          </AccordionButton>
+                          <AccordionCollapse eventKey={`${categoryIndex}-${itemIndex}`}>
+                            <div className="px-4 pb-3">
+                              <p className="text-muted mb-0">{item.answer}</p>
+                            </div>
+                          </AccordionCollapse>
+                        </AccordionItem>
+                      ))}
+                    </Accordion>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+
+          {/* Additional Help Resources */}
+          <Row className="mt-5">
+            <Col xs={12}>
+              <div className="bg-white rounded-4 p-5 text-center shadow-sm">
+                <h3 className="mb-3">Still Need Help?</h3>
+                <p className="text-muted mb-4">
+                  Can't find what you're looking for? Our customer support team is here to help you 24/7.
+                </p>
+                <div className="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+                  <Link href="/contact" className="btn btn-primary btn-lg">
+                    Contact Support
+                  </Link>
+                  <Link href="/delivery" className="btn btn-outline-primary btn-lg">
+                    Delivery Information
+                  </Link>
+                  <Link href="/warranty" className="btn btn-outline-primary btn-lg">
+                    Warranty Details
+                  </Link>
                 </div>
               </div>
             </Col>
           </Row>
         </Container>
       </div>
-
-      <Container className="py-5">
-        {/* Contact Methods */}
-        <Row className="mb-5">
-          <Col xs={12}>
-            <h2 className="h3 mb-4 text-center">Need Help? Contact Us</h2>
-          </Col>
-          {contactMethods.map((method, index) => (
-            <Col lg={4} md={6} key={index} className="mb-4">
-              <Card className="h-100 text-center border-0 shadow-sm">
-                <Card.Body className="p-4">
-                  <div className="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{ width: '60px', height: '60px' }}>
-                    <i className={`${method.icon} fs-2 text-primary`}></i>
-                  </div>
-                  <h5 className="card-title mb-2">{method.title}</h5>
-                  <p className="card-text text-muted mb-3">{method.description}</p>
-                  <Link href={method.href} className="btn btn-primary">
-                    {method.action}
-                  </Link>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
-        </Row>
-
-        {/* FAQ Categories */}
-        <Row>
-          <Col xs={12}>
-            <h2 className="h3 mb-4 text-center">Frequently Asked Questions</h2>
-          </Col>
-          {faqCategories.map((category, categoryIndex) => (
-            <Col lg={6} key={categoryIndex} className="mb-4">
-              <Card className="h-100 border-0 shadow-sm">
-                <Card.Header className="bg-light border-0">
-                  <h5 className="mb-0 d-flex align-items-center">
-                    <i className={`${category.icon} me-2 text-primary`}></i>
-                    {category.title}
-                  </h5>
-                </Card.Header>
-                <Card.Body className="p-0">
-                  <Accordion flush>
-                    {category.items.map((item, itemIndex) => (
-                      <AccordionItem key={itemIndex} eventKey={`${categoryIndex}-${itemIndex}`}>
-                        <AccordionButton className="px-4 py-3">
-                          <span className="fw-medium">{item.question}</span>
-                        </AccordionButton>
-                        <AccordionCollapse eventKey={`${categoryIndex}-${itemIndex}`}>
-                          <div className="px-4 pb-3">
-                            <p className="text-muted mb-0">{item.answer}</p>
-                          </div>
-                        </AccordionCollapse>
-                      </AccordionItem>
-                    ))}
-                  </Accordion>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
-        </Row>
-
-        {/* Additional Help Resources */}
-        <Row className="mt-5">
-          <Col xs={12}>
-            <div className="bg-white rounded-4 p-5 text-center shadow-sm">
-              <h3 className="mb-3">Still Need Help?</h3>
-              <p className="text-muted mb-4">
-                Can't find what you're looking for? Our customer support team is here to help you 24/7.
-              </p>
-              <div className="d-flex flex-column flex-sm-row gap-3 justify-content-center">
-                <Link href="/contact" className="btn btn-primary btn-lg">
-                  Contact Support
-                </Link>
-                <Link href="/delivery" className="btn btn-outline-primary btn-lg">
-                  Delivery Information
-                </Link>
-                <Link href="/warranty" className="btn btn-outline-primary btn-lg">
-                  Warranty Details
-                </Link>
-              </div>
-            </div>
-          </Col>
-        </Row>
-      </Container>
-    </div>
+      <FooterElectronics />
+    </>
   )
 }
