@@ -249,6 +249,36 @@ export default async function ElectronicsHomePage() {
           </Row>
         </Container>
 
+        {/* Newsletter Signup Section */}
+        <Container as="section" className="pt-5 mt-5">
+          <div className="bg-primary bg-opacity-10 rounded-4 p-5 text-center">
+            <div className="row justify-content-center">
+              <div className="col-lg-8 col-xl-6">
+                <h2 className="h3 mb-3 fw-bold">Stay Updated with Cartzilla</h2>
+                <p className="text-muted mb-4 fs-5">
+                  Subscribe to our newsletter and get the latest deals, product updates, and exclusive offers delivered to your inbox.
+                </p>
+                <form className="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+                  <div className="flex-grow-1" style={{ maxWidth: '400px' }}>
+                    <input
+                      type="email"
+                      className="form-control form-control-lg"
+                      placeholder="Enter your email address"
+                      required
+                    />
+                  </div>
+                  <button type="submit" className="btn btn-primary btn-lg px-4">
+                    Subscribe Now
+                  </button>
+                </form>
+                <p className="text-muted small mt-3 mb-0">
+                  By subscribing, you agree to our Privacy Policy and consent to receive updates from our company.
+                </p>
+              </div>
+            </div>
+          </div>
+        </Container>
+
         {/* Footer */}
         <FooterElectronics />
       </main>

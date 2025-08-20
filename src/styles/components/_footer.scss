@@ -5,9 +5,47 @@
     transition: color 0.2s ease-in-out, text-decoration 0.2s ease-in-out;
     
     &:hover {
-      color: white !important;
+      color: rgba(255, 255, 255, 0.8) !important;
       text-decoration: underline !important;
     }
+  }
+
+  // Typography improvements
+  .letter-spacing-1 {
+    letter-spacing: 0.5px;
+  }
+
+  .fs-6 {
+    font-size: 0.875rem !important;
+  }
+
+  // Better contrast for secondary text
+  .text-white-75 {
+    color: rgba(255, 255, 255, 0.75) !important;
+  }
+
+  // Enhanced headings
+  h5, h6 {
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  // Improved link styling
+  a {
+    transition: all 0.2s ease-in-out;
+    
+    &:hover {
+      transform: translateY(-1px);
+    }
+  }
+
+  // Better spacing
+  ul {
+    margin-bottom: 0;
+  }
+
+  li {
+    line-height: 1.6;
   }
 }
 
