@@ -12,13 +12,13 @@ import HeaderElectronics from '@/components/layout/header-electronics'
 import FooterElectronics from '@/components/layout/footer-electronics'
 
 interface CategoryPageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
-  const { slug } = params
+  const { slug } = await params
   
   // Decode the slug back to readable format
   const categoryName = slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
