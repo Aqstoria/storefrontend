@@ -1,0 +1,12 @@
+// Footer Component Styles
+
+.footer {
+  .footer-link {
+    transition: color 0.2s ease-in-out, text-decoration 0.2s ease-in-out;
+    
+    &:hover {
+      color: white !important;
+      text-decoration: underline !important;
+    }
+  }
+}

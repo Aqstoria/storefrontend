@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import Image from 'next/image'
 import Container from 'react-bootstrap/Container'
@@ -43,32 +45,32 @@ const FooterElectronics = ({ className, logoHref }: { className?: string; logoHr
           <h6 className="fw-bold mb-3">Users:</h6>
           <ul className="list-unstyled">
             <li className="mb-2">
-              <Link href="/shop" className="text-white-50 text-decoration-none hover-text-white">
+              <Link href="/shop" className="text-white-50 text-decoration-none footer-link">
                 Catalogue
               </Link>
             </li>
             <li className="mb-2">
-              <Link href="/help" className="text-white-50 text-decoration-none hover-text-white">
+              <Link href="/help" className="text-white-50 text-decoration-none footer-link">
                 Help centre
               </Link>
             </li>
             <li className="mb-2">
-              <Link href="/privacy" className="text-white-50 text-decoration-none hover-text-white">
+              <Link href="/privacy" className="text-white-50 text-decoration-none footer-link">
                 Privacy policy
               </Link>
             </li>
             <li className="mb-2">
-              <Link href="/terms" className="text-white-50 text-decoration-none hover-text-white">
+              <Link href="/terms" className="text-white-50 text-decoration-none footer-link">
                 Terms of use
               </Link>
             </li>
             <li className="mb-2">
-              <Link href="/accessibility" className="text-white-50 text-decoration-none hover-text-white">
+              <Link href="/accessibility" className="text-white-50 text-decoration-none footer-link">
                 Accessibility settings
               </Link>
             </li>
             <li className="mb-2">
-              <Link href="/trending" className="text-white-50 text-decoration-none hover-text-white">
+              <Link href="/trending" className="text-white-50 text-decoration-none footer-link">
                 Top searches on Cartzilla
               </Link>
             </li>
@@ -80,12 +82,12 @@ const FooterElectronics = ({ className, logoHref }: { className?: string; logoHr
           <h6 className="fw-bold mb-3">Partners:</h6>
           <ul className="list-unstyled">
             <li className="mb-2">
-              <Link href="/become-seller" className="text-white-50 text-decoration-none hover-text-white">
+              <Link href="/become-seller" className="text-white-50 text-decoration-none footer-link">
                 Become a seller
               </Link>
             </li>
             <li className="mb-2">
-              <Link href="/partner-terms" className="text-white-50 text-decoration-none hover-text-white">
+              <Link href="/partner-terms" className="text-white-50 text-decoration-none footer-link">
                 Terms of service
               </Link>
             </li>
@@ -97,17 +99,17 @@ const FooterElectronics = ({ className, logoHref }: { className?: string; logoHr
           <h6 className="fw-bold mb-3">Company:</h6>
           <ul className="list-unstyled">
             <li className="mb-2">
-              <Link href="/about" className="text-white-50 text-decoration-none hover-text-white">
+              <Link href="/about" className="text-white-50 text-decoration-none footer-link">
                 About us
               </Link>
             </li>
             <li className="mb-2">
-              <Link href="/copyright" className="text-white-50 text-decoration-none hover-text-white">
+              <Link href="/copyright" className="text-white-50 text-decoration-none footer-link">
                 Copyright protection
               </Link>
             </li>
             <li className="mb-2">
-              <Link href="/safety" className="text-white-50 text-decoration-none hover-text-white">
+              <Link href="/safety" className="text-white-50 text-decoration-none footer-link">
                 Product safety
               </Link>
             </li>
@@ -119,12 +121,12 @@ const FooterElectronics = ({ className, logoHref }: { className?: string; logoHr
           <h6 className="fw-bold mb-3">Cartzilla Group companies:</h6>
           <ul className="list-unstyled">
             <li className="mb-2">
-              <Link href="/logistics" className="text-white-50 text-decoration-none hover-text-white">
+              <Link href="/logistics" className="text-white-50 text-decoration-none footer-link">
                 Cartzilla Logistics
               </Link>
             </li>
             <li className="mb-2">
-              <Link href="/onfy" className="text-white-50 text-decoration-none hover-text-white">
+              <Link href="/onfy" className="text-white-50 text-decoration-none footer-link">
                 Onfy
               </Link>
             </li>
@@ -152,13 +154,6 @@ const FooterElectronics = ({ className, logoHref }: { className?: string; logoHr
         </Col>
       </Row>
     </Container>
-
-    <style jsx>{`
-      .hover-text-white:hover {
-        color: white !important;
-        text-decoration: underline !important;
-      }
-    `}</style>
   </footer>
 )
 
