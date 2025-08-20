@@ -3,194 +3,162 @@ import Image from 'next/image'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Accordion from 'react-bootstrap/Accordion'
-import AccordionItem from 'react-bootstrap/AccordionItem'
-import AccordionButton from 'react-bootstrap/AccordionButton'
-import AccordionCollapse from 'react-bootstrap/AccordionCollapse'
-import Dropdown from 'react-bootstrap/Dropdown'
-import DropdownToggle from 'react-bootstrap/DropdownToggle'
-import DropdownMenu from 'react-bootstrap/DropdownMenu'
-import DropdownItem from 'react-bootstrap/DropdownItem'
-import Nav from 'react-bootstrap/Nav'
-import NavItem from 'react-bootstrap/NavItem'
-import NavLink from 'react-bootstrap/NavLink'
 
 const FooterElectronics = ({ className, logoHref }: { className?: string; logoHref?: string }) => (
-  <footer className={`footer position-relative bg-info bg-opacity-10${className ? ` ${className}` : ''}`}>
-    <span className="position-absolute top-0 start-0 w-100 h-100 bg-body d-none d-block-dark"></span>
-    <Container className="position-relative z-1 pt-sm-2 pt-md-3 pt-lg-4" data-bs-theme="light">
-      {/* Columns with links that are turned into accordion on screens < 500px wide (sm breakpoint) */}
-      <Accordion className="py-5">
-        <Row>
-          <Col md={4} className="d-sm-flex flex-md-column align-items-center align-items-md-start pb-3 mb-sm-4">
-            <h4 className="mb-sm-0 mb-md-4 me-4">
-              <Link href={logoHref ? logoHref : '/home'} className="text-dark-emphasis text-decoration-none">
-                Cartzilla
-              </Link>
-            </h4>
-            <p className="text-body fs-sm text-sm-end text-md-start mb-sm-0 mb-md-3 ms-0 ms-sm-auto ms-md-0 me-4">
-              Got questions? Contact us 24/7
-            </p>
-            <Dropdown style={{ maxWidth: 250 }}>
-              <DropdownToggle variant="secondary" className="justify-content-between w-100">
-                Help and consultation
-              </DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem href="#">Help center &amp; FAQ</DropdownItem>
-                <DropdownItem href="#">Support chat</DropdownItem>
-                <DropdownItem href="#">Open support ticket</DropdownItem>
-                <DropdownItem href="#">Call center</DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-          </Col>
-          <Col md={8}>
-            <Row xs={1} sm={3} className="gx-3 gx-md-4">
-              {[
-                {
-                  id: 'companyLinks',
-                  title: 'Company',
-                  links: [
-                    { label: 'About company', href: '/about' },
-                    { label: 'Our team', href: '/about' },
-                    { label: 'Careers', href: '/about' },
-                    { label: 'Contact us', href: '/contact' },
-                    { label: 'News', href: '/blog' },
-                  ],
-                },
-                {
-                  id: 'accountLinks',
-                  title: 'Account',
-                  links: [
-                    { label: 'Your account', href: '/account' },
-                    { label: 'Shipping rates & policies', href: '/help' },
-                    { label: 'Refunds & replacements', href: '/help' },
-                    { label: 'Delivery info', href: '/help' },
-                    { label: 'Order tracking', href: '/order-tracking' },
-                    { label: 'Taxes & fees', href: '/help' },
-                  ],
-                },
-                {
-                  id: 'customerLinks',
-                  title: 'Customer service',
-                  links: [
-                    { label: 'Payment methods', href: '/help' },
-                    { label: 'Money back guarantee', href: '/help' },
-                    { label: 'Product returns', href: '/help' },
-                    { label: 'Support center', href: '/help' },
-                    { label: 'Shipping', href: '/help' },
-                    { label: 'Terms & conditions', href: '/terms' },
-                  ],
-                },
-              ].map(({ id, title, links }) => (
-                <Col key={id} as={AccordionItem} className="border-0" eventKey={id}>
-                  <h6 className="accordion-header" id={id}>
-                    <span className="text-dark-emphasis d-none d-sm-block">{title}</span>
-                    <AccordionButton className="py-3 d-sm-none">{title}</AccordionButton>
-                  </h6>
-                  <AccordionCollapse eventKey={id} className="d-sm-block" aria-labelledby={id}>
-                    <Nav as="ul" className="flex-column gap-2 pt-sm-3 pb-3 mt-n1 mb-1">
-                      {links.map(({ label, href }, index) => (
-                        <NavItem key={index} as="li" className="d-flex w-100 pt-1">
-                          <NavLink
-                            as={Link}
-                            href={href}
-                            active={false}
-                            className="animate-underline animate-target d-inline fw-normal text-truncate p-0"
-                          >
-                            {label}
-                          </NavLink>
-                        </NavItem>
-                      ))}
-                    </Nav>
-                  </AccordionCollapse>
-                  <hr className="d-sm-none my-0" />
-                </Col>
-              ))}
-            </Row>
-          </Col>
-        </Row>
-      </Accordion>
-
-      {/* Category / tag links */}
-      <div className="d-flex flex-column gap-3 pb-3 pb-md-4 pb-lg-5 mt-n2 mt-sm-n4 mt-lg-0 mb-4">
-        <Nav as="ul" className="align-items-center text-body-tertiary gap-2">
-          {[
-            { label: 'Computers', href: '#computers' },
-            { label: 'Smartphones', href: '#smartphones' },
-            { label: 'TV, Video', href: '#tv' },
-            { label: 'Speakers', href: '#speakers' },
-            { label: 'Cameras', href: '#cameras' },
-            { label: 'Printers', href: '#printers' },
-            { label: 'Video Games', href: '#games' },
-            { label: 'Headphones', href: '#headphones' },
-            { label: 'Wearable', href: '#wearable' },
-            { label: 'HDD/SSD', href: '#hsd' },
-            { label: 'Smart Home', href: '#smart-home' },
-            { label: 'Apple Devices', href: '#apple' },
-            { label: 'Tablets', href: '#tablets' },
-          ].map(({ label, href }, index, array) => (
-            <NavItem key={index} as="li" className="d-flex animate-underline gap-2">
-              <NavLink as={Link} href={href} active={false} className="fw-normal p-0 animate-target">
-                {label}
-              </NavLink>
-              {index < array.length - 1 && <span className="px-1">/</span>}
-            </NavItem>
-          ))}
-        </Nav>
-        <Nav as="ul" className="align-items-center text-body-tertiary gap-2">
-          {[
-            { label: 'Monitors', href: '#monitors' },
-            { label: 'Scanners', href: '#scanners' },
-            { label: 'Servers', href: '#servers' },
-            { label: 'Heating and Cooling', href: '#heating' },
-            { label: 'E-readers', href: '#ereaders' },
-            { label: 'Data Storage', href: '#data-storage' },
-            { label: 'Networking', href: '#networking' },
-            { label: 'Power Strips', href: '#power-strips' },
-            { label: 'Plugs and Outlets', href: '#plugs' },
-            { label: 'Detectors and Sensors', href: '#detectors' },
-            { label: 'Accessories', href: '#accessories' },
-          ].map(({ label, href }, index, array) => (
-            <NavItem key={index} as="li" className="d-flex animate-underline gap-2">
-              <NavLink as={Link} href={href} active={false} className="fw-normal p-0 animate-target">
-                {label}
-              </NavLink>
-              {index < array.length - 1 && <span className="px-1">/</span>}
-            </NavItem>
-          ))}
-        </Nav>
-      </div>
-
-      {/* Copyright + Payment methods */}
-      <div className="d-md-flex align-items-center border-top py-4">
-        <div className="d-flex gap-2 gap-sm-3 justify-content-center ms-md-auto mb-4 mb-md-0 order-md-2">
-          {[
-            { src: '/img/payment-methods/visa-dark-mode.svg', alt: 'Visa' },
-            { src: '/img/payment-methods/mastercard.svg', alt: 'Mastercard' },
-            { src: '/img/payment-methods/paypal-dark-mode.svg', alt: 'PayPal' },
-            { src: '/img/payment-methods/google-pay-dark-mode.svg', alt: 'Google Pay' },
-            { src: '/img/payment-methods/apple-pay-dark-mode.svg', alt: 'Apple Pay' },
-          ].map(({ src, alt }, index) => (
-            <div key={index}>
-              <Image src={src} width={58} height={40} alt={alt} />
+  <footer className={`footer position-relative bg-dark text-white${className ? ` ${className}` : ''}`}>
+    <Container className="pt-5 pb-4">
+      <Row className="g-4">
+        {/* App Download Section */}
+        <Col lg={3} md={6}>
+          <div className="bg-secondary bg-opacity-25 rounded-3 p-4 h-100">
+            <h5 className="mb-3">More deals & promos in the Cartzilla app</h5>
+            <div className="text-center mb-3">
+              {/* QR Code Placeholder - Replace with actual QR code image */}
+              <div className="bg-white rounded p-3 d-inline-block mb-2">
+                <div className="w-100 h-100 d-flex align-items-center justify-content-center">
+                  <span className="text-dark fw-bold">QR Code</span>
+                </div>
+              </div>
+              <p className="mb-3">Scan to download app</p>
             </div>
-          ))}
-        </div>
-        <p className="text-body fs-xs text-center text-md-start mb-0 me-4 order-md-1">
-          &copy; All rights reserved. Made by{' '}
-          <span className="animate-underline">
-            <a
-              className="animate-target text-dark-emphasis fw-medium text-decoration-none"
-              href="https://createx.studio/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Createx Studio
-            </a>
-          </span>
-        </p>
-      </div>
+            <div className="d-flex flex-column gap-2">
+              <Link href="#" className="btn btn-outline-light btn-sm d-flex align-items-center justify-content-center gap-2">
+                <i className="ci-apple fs-5"></i>
+                <span>App Store</span>
+              </Link>
+              <Link href="#" className="btn btn-outline-light btn-sm d-flex align-items-center justify-content-center gap-2">
+                <i className="ci-google-play fs-5"></i>
+                <span>Google Play</span>
+              </Link>
+              <Link href="#" className="btn btn-outline-light btn-sm d-flex align-items-center justify-content-center gap-2">
+                <i className="ci-huawei fs-5"></i>
+                <span>AppGallery</span>
+              </Link>
+            </div>
+          </div>
+        </Col>
+
+        {/* Users Column */}
+        <Col lg={2} md={6}>
+          <h6 className="fw-bold mb-3">Users:</h6>
+          <ul className="list-unstyled">
+            <li className="mb-2">
+              <Link href="/shop" className="text-white-50 text-decoration-none hover-text-white">
+                Catalogue
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link href="/help" className="text-white-50 text-decoration-none hover-text-white">
+                Help centre
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link href="/privacy" className="text-white-50 text-decoration-none hover-text-white">
+                Privacy policy
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link href="/terms" className="text-white-50 text-decoration-none hover-text-white">
+                Terms of use
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link href="/accessibility" className="text-white-50 text-decoration-none hover-text-white">
+                Accessibility settings
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link href="/trending" className="text-white-50 text-decoration-none hover-text-white">
+                Top searches on Cartzilla
+              </Link>
+            </li>
+          </ul>
+        </Col>
+
+        {/* Partners Column */}
+        <Col lg={2} md={6}>
+          <h6 className="fw-bold mb-3">Partners:</h6>
+          <ul className="list-unstyled">
+            <li className="mb-2">
+              <Link href="/become-seller" className="text-white-50 text-decoration-none hover-text-white">
+                Become a seller
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link href="/partner-terms" className="text-white-50 text-decoration-none hover-text-white">
+                Terms of service
+              </Link>
+            </li>
+          </ul>
+        </Col>
+
+        {/* Company Column */}
+        <Col lg={2} md={6}>
+          <h6 className="fw-bold mb-3">Company:</h6>
+          <ul className="list-unstyled">
+            <li className="mb-2">
+              <Link href="/about" className="text-white-50 text-decoration-none hover-text-white">
+                About us
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link href="/copyright" className="text-white-50 text-decoration-none hover-text-white">
+                Copyright protection
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link href="/safety" className="text-white-50 text-decoration-none hover-text-white">
+                Product safety
+              </Link>
+            </li>
+          </ul>
+        </Col>
+
+        {/* Cartzilla Group Companies Column */}
+        <Col lg={3} md={6}>
+          <h6 className="fw-bold mb-3">Cartzilla Group companies:</h6>
+          <ul className="list-unstyled">
+            <li className="mb-2">
+              <Link href="/logistics" className="text-white-50 text-decoration-none hover-text-white">
+                Cartzilla Logistics
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link href="/onfy" className="text-white-50 text-decoration-none hover-text-white">
+                Onfy
+              </Link>
+            </li>
+          </ul>
+          <div className="mt-3">
+            <div className="bg-primary rounded-pill px-3 py-1 d-inline-flex align-items-center gap-2 mb-2">
+              <i className="ci-check-circle text-white"></i>
+              <span className="text-white small">On the list! 2023</span>
+            </div>
+            <div className="text-white-50 small">Payment Card Security Standard</div>
+          </div>
+        </Col>
+      </Row>
+
+      {/* Bottom Section */}
+      <Row className="mt-4 pt-4 border-top border-secondary">
+        <Col md={6}>
+          <p className="text-white-50 mb-0">
+            © 2025 Cartzilla Group (Latvia)
+          </p>
+        </Col>
+        <Col md={6} className="text-md-end">
+          <span className="text-white-50 small">Page ID: </span>
+          <span className="text-white-50 small font-monospace">7a4ba3ba0fb8f6c383745e0d6ffec1c1fab910193a75b3db89f26d0fd5f7d428</span>
+        </Col>
+      </Row>
     </Container>
+
+    <style jsx>{`
+      .hover-text-white:hover {
+        color: white !important;
+        text-decoration: underline !important;
+      }
+    `}</style>
   </footer>
 )
 
