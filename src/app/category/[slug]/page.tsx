@@ -152,7 +152,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                                  {[...Array(5)].map((_, i) => (
                                    <i 
                                      key={i} 
-                                     className={`ci-star${i < Math.floor(product.average_rating) ? '-filled' : ''}`}
+                                     className={`ci-star${i < Math.floor(product.average_rating || 0) ? '-filled' : ''}`}
                                    />
                                  ))}
                                </div>
