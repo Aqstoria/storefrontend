@@ -25,11 +25,11 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   
   try {
     // Fetch products from the backend API
-    const products = await ProductService.getProducts()
+    const productsResponse = await ProductService.getProducts()
     
     // Filter products by category (you may need to adjust this based on your backend structure)
     // For now, we'll show all products and you can implement category filtering based on your backend
-    const categoryProducts = products.filter(product => 
+    const categoryProducts = productsResponse.data.filter(product => 
       product.category?.toLowerCase().includes(categoryName.toLowerCase()) ||
       product.name?.toLowerCase().includes(categoryName.toLowerCase())
     )
