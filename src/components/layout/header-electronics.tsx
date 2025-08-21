@@ -16,13 +16,16 @@ interface HeaderElectronicsProps {
     href: string
   }
   expandedCategories?: boolean
+  categories?: any[]
 }
 
-const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories }: HeaderElectronicsProps = {}) => {
+const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, categories }: HeaderElectronicsProps = {}) => {
   const [cookieConsent, setCookieConsent] = useState(true)
   
-  // Simplified categories for now
-  const joomCategories = ['All categories', 'Electronics', 'Headphones', 'Desktop', 'With Bluetooth', 'Microscope', 'Best Sellers']
+  // Use provided categories or fallback to simplified ones
+  const joomCategories = categories && categories.length > 0 
+    ? ['All categories', ...categories.map((cat: any) => cat.name).slice(0, 20)]
+    : ['All categories', 'Electronics', 'Headphones', 'Desktop', 'With Bluetooth', 'Microscope', 'Best Sellers']
 
   return (
     <>
