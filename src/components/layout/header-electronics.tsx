@@ -10,13 +10,15 @@ import FormControl from 'react-bootstrap/FormControl'
 import Badge from 'react-bootstrap/Badge'
 
 interface HeaderElectronicsProps {
+  logoHref?: string
   isLoggedIn?: {
     name: string
     href: string
   }
+  expandedCategories?: boolean
 }
 
-const HeaderElectronics = ({ isLoggedIn }: HeaderElectronicsProps = {}) => {
+const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories }: HeaderElectronicsProps = {}) => {
   const [cookieConsent, setCookieConsent] = useState(true)
   
   // Simplified categories for now
@@ -79,7 +81,7 @@ const HeaderElectronics = ({ isLoggedIn }: HeaderElectronicsProps = {}) => {
           {/* Main Navigation Row */}
           <Row className="py-3 align-items-center">
             <Col xs={12} lg={3}>
-              <Link href="/" className="text-decoration-none">
+              <Link href={logoHref} className="text-decoration-none">
                 <span className="h3 text-danger mb-0">C</span>
                 <span className="h3 text-dark mb-0">ARTZILLA</span>
               </Link>
