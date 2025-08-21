@@ -8,8 +8,6 @@ import AccordionButton from 'react-bootstrap/AccordionButton'
 import AccordionCollapse from 'react-bootstrap/AccordionCollapse'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
-import HeaderElectronics from '@/components/layout/header-electronics'
-import FooterElectronics from '@/components/layout/footer-electronics'
 
 export default function HelpCentrePage() {
   const faqCategories = [
@@ -113,7 +111,6 @@ export default function HelpCentrePage() {
 
   return (
     <>
-      <HeaderElectronics />
       <div className="bg-light min-vh-100">
         {/* Hero Section */}
         <div className="bg-primary text-white py-5">
@@ -224,7 +221,6 @@ export default function HelpCentrePage() {
           </Row>
         </Container>
       </div>
-      <FooterElectronics />
     </>
   )
 }
