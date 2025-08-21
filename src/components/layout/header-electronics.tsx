@@ -9,7 +9,14 @@ import Button from 'react-bootstrap/Button'
 import FormControl from 'react-bootstrap/FormControl'
 import Badge from 'react-bootstrap/Badge'
 
-const HeaderElectronics = () => {
+interface HeaderElectronicsProps {
+  isLoggedIn?: {
+    name: string
+    href: string
+  }
+}
+
+const HeaderElectronics = ({ isLoggedIn }: HeaderElectronicsProps = {}) => {
   const [cookieConsent, setCookieConsent] = useState(true)
   
   // Simplified categories for now
@@ -97,8 +104,17 @@ const HeaderElectronics = () => {
                   <Badge bg="danger" className="position-absolute top-0 start-100 translate-middle">3</Badge>
                 </div>
                 <div className="text-center">
-                  <i className="ci-user fs-4 text-dark"></i>
-                  <div className="small">Log in</div>
+                  {isLoggedIn ? (
+                    <Link href={isLoggedIn.href} className="text-dark text-decoration-none">
+                      <i className="ci-user fs-4 text-dark"></i>
+                      <div className="small">{isLoggedIn.name}</div>
+                    </Link>
+                  ) : (
+                    <Link href="/login" className="text-dark text-decoration-none">
+                      <i className="ci-user fs-4 text-dark"></i>
+                      <div className="small">Log in</div>
+                    </Link>
+                  )}
                 </div>
                 <div className="text-center">
                   <i className="ci-cart fs-4 text-dark"></i>
