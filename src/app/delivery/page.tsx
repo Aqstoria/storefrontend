@@ -5,8 +5,6 @@ import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import Badge from 'react-bootstrap/Badge'
 import Table from 'react-bootstrap/Table'
-// import HeaderElectronics from '@/components/layout/header-electronics'
-// import FooterElectronics from '@/components/layout/footer-electronics'
 
 export default function DeliveryPage() {
   const shippingOptions = [
