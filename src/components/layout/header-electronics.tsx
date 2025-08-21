@@ -2,10 +2,10 @@
 
 import { useState, useEffect, useRef, Fragment, type CSSProperties } from 'react'
 import { usePathname } from 'next/navigation'
-import { useStickyNavbar } from '@/hooks/use-sticky-navbar'
-import { useOffcanvas } from '@/contexts/offcanvas-context'
-import { useCart } from '@/contexts/cart-context'
-import { useCategories } from '@/contexts/categories-context'
+// import { useStickyNavbar } from '@/hooks/use-sticky-navbar'
+// import { useOffcanvas } from '@/contexts/offcanvas-context'
+// import { useCart } from '@/contexts/cart-context'
+// import { useCategories } from '@/contexts/categories-context'
 import Link from 'next/link'
 import Image from 'next/image'
 import Navbar from 'react-bootstrap/Navbar'
@@ -34,8 +34,8 @@ import ShoppingCartListItem from '@/components/shop/shopping-cart-list-item'
 import { mainNavigation, categoriesElectronics } from '@/app/navigation'
 import axiosInstance from '@/utils/axiosInstance'
 import axios from 'axios'
-import { useBrands } from '@/contexts/BrandContext'
-import CardListGroupDemo from '@/app/docs/card/card-list-group'
+// import { useBrands } from '@/contexts/BrandContext'
+// import CardListGroupDemo from '@/app/docs/card/card-list-group'
 
 interface HeaderElectronicsProps {
   logoHref?: string
@@ -73,24 +73,26 @@ const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categorie
   const [localCategoriesOpen, setLocalCategoriesOpen] = useState(false)
   const [cookieConsent, setCookieConsent] = useState(true)
   
-  // Try to use context if available, otherwise use local state
-  let contextCategories
-  try {
-    contextCategories = useCategories()
-  } catch {
-    contextCategories = { 
-      isCategoriesOpen: localCategoriesOpen, 
-      setIsCategoriesOpen: setLocalCategoriesOpen 
-    }
+  // Simplified context handling
+  const contextCategories = { 
+    isCategoriesOpen: localCategoriesOpen, 
+    setIsCategoriesOpen: setLocalCategoriesOpen 
   }
 
-  const { navbarRef } = useStickyNavbar({ offset: 500 })
+  // Simplified hooks
+  const navbarRef = useRef<HTMLDivElement>(null)
   const [stuckNavOpen, setStuckNavOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
-  const { openOffcanvas, closeOffcanvas, isOpen } = useOffcanvas()
-  const { cart, calculateTotal, removeFromCart, increaseQuantity, decreaseQuantity, reloadCart } =
-    useCart('electronics')
-  const { brands } = useBrands();
+  const [isOpen, setIsOpen] = useState(false)
+  const openOffcanvas = () => setIsOpen(true)
+  const closeOffcanvas = () => setIsOpen(false)
+  
+  // Simplified cart state
+  const cart: any[] = []
+  const brands: any[] = []
+
+  // Simplified categories for now
+  const joomCategories = ['All categories', 'Electronics', 'Headphones', 'Desktop', 'With Bluetooth', 'Microscope', 'Best Sellers']
 
   // Autofocus search input when it is open on mobile devices
   const searchRef = useRef<HTMLInputElement>(null)
@@ -99,12 +101,6 @@ const HeaderElectronics = ({ logoHref, isLoggedIn, expandedCategories, categorie
       setTimeout(() => searchRef.current?.focus(), 0)
     }
   }, [searchOpen])
-
-  // Joom-style category navigation with backend categories
-  const joomCategories = [
-    'All categories',
-    ...(categories.map(cat => cat.name).slice(0, 20)) // Use first 20 backend categories
-  ]
 
   return (
     <>
