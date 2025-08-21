@@ -5,8 +5,8 @@ import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import Badge from 'react-bootstrap/Badge'
 import Table from 'react-bootstrap/Table'
-import HeaderElectronics from '@/components/layout/header-electronics'
-import FooterElectronics from '@/components/layout/footer-electronics'
+// import HeaderElectronics from '@/components/layout/header-electronics'
+// import FooterElectronics from '@/components/layout/footer-electronics'
 
 export default function DeliveryPage() {
   const shippingOptions = [
@@ -80,7 +80,7 @@ export default function DeliveryPage() {
 
   return (
     <>
-      <HeaderElectronics />
+      {/* <HeaderElectronics /> */}
       <div className="bg-light min-vh-100">
         {/* Hero Section */}
         <div className="bg-primary text-white py-5">
@@ -100,23 +100,21 @@ export default function DeliveryPage() {
           {/* Shipping Options */}
           <Row className="mb-5">
             <Col xs={12}>
-              <h2 className="h3 mb-4 text-center">Shipping Options</h2>
+              <h2 className="h3 fw-bold mb-4">Shipping Options</h2>
             </Col>
             {shippingOptions.map((option, index) => (
-              <Col lg={3} md={6} key={index} className="mb-4">
-                <Card className="h-100 text-center border-0 shadow-sm">
-                  <Card.Body className="p-4">
+              <Col key={index} lg={3} md={6} className="mb-4">
+                <Card className="h-100 border-0 shadow-sm">
+                  <Card.Body className="text-center p-4">
                     <div className={`bg-${option.color} bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3`} style={{ width: '60px', height: '60px' }}>
-                      <i className={`${option.icon} fs-2 text-${option.color}`}></i>
+                      <i className={`${option.icon} fs-3 text-${option.color}`}></i>
                     </div>
-                    <h5 className="card-title mb-2">{option.name}</h5>
+                    <h5 className="fw-bold mb-2">{option.name}</h5>
                     <div className="mb-2">
-                      <Badge bg={option.color} className="fs-6 px-3 py-2">
-                        {option.price}
-                      </Badge>
+                      <Badge bg={option.color} className="fs-6 px-3 py-2">{option.price}</Badge>
                     </div>
                     <p className="text-muted mb-2">{option.time}</p>
-                    <p className="card-text small">{option.description}</p>
+                    <p className="small text-muted mb-0">{option.description}</p>
                   </Card.Body>
                 </Card>
               </Col>
@@ -126,15 +124,15 @@ export default function DeliveryPage() {
           {/* Delivery Features */}
           <Row className="mb-5">
             <Col xs={12}>
-              <h2 className="h3 mb-4 text-center">Why Choose Cartzilla Delivery?</h2>
+              <h2 className="h3 fw-bold mb-4">Why Choose Our Delivery?</h2>
             </Col>
             {deliveryFeatures.map((feature, index) => (
-              <Col lg={3} md={6} key={index} className="mb-4">
+              <Col key={index} lg={3} md={6} className="mb-4">
                 <div className="text-center">
                   <div className="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{ width: '60px', height: '60px' }}>
-                    <i className={`${feature.icon} fs-2 text-primary`}></i>
+                    <i className={`${feature.icon} fs-3 text-primary`}></i>
                   </div>
-                  <h5 className="h6 mb-2">{feature.title}</h5>
+                  <h6 className="fw-bold mb-2">{feature.title}</h6>
                   <p className="text-muted small mb-0">{feature.description}</p>
                 </div>
               </Col>
@@ -144,21 +142,21 @@ export default function DeliveryPage() {
           {/* International Shipping */}
           <Row className="mb-5">
             <Col xs={12}>
-              <h2 className="h3 mb-4 text-center">International Shipping</h2>
+              <h2 className="h3 fw-bold mb-4">International Shipping</h2>
               <Card className="border-0 shadow-sm">
                 <Card.Body className="p-0">
-                  <Table responsive className="mb-0">
+                  <Table className="mb-0">
                     <thead className="bg-light">
                       <tr>
                         <th className="border-0 px-4 py-3">Country</th>
                         <th className="border-0 px-4 py-3">Delivery Time</th>
-                        <th className="border-0 px-4 py-3">Shipping Cost</th>
+                        <th className="border-0 px-4 py-3">Cost</th>
                       </tr>
                     </thead>
                     <tbody>
                       {countries.map((country, index) => (
                         <tr key={index}>
-                          <td className="px-4 py-3 fw-medium">{country.name}</td>
+                          <td className="px-4 py-3 fw-bold">{country.name}</td>
                           <td className="px-4 py-3">{country.time}</td>
                           <td className="px-4 py-3">{country.cost}</td>
                         </tr>
@@ -170,72 +168,55 @@ export default function DeliveryPage() {
             </Col>
           </Row>
 
-          {/* Delivery Process */}
-          <Row className="mb-5">
-            <Col xs={12}>
-              <h2 className="h3 mb-4 text-center">How Delivery Works</h2>
-            </Col>
-            <Col xs={12}>
-              <div className="bg-white rounded-4 p-5 shadow-sm">
-                <Row className="g-4">
-                  <Col md={3} className="text-center">
-                    <div className="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{ width: '80px', height: '80px' }}>
-                      <span className="display-6 fw-bold text-primary">1</span>
-                    </div>
-                    <h5 className="h6 mb-2">Order Placed</h5>
-                    <p className="text-muted small">Your order is confirmed and processed</p>
-                  </Col>
-                  <Col md={3} className="text-center">
-                    <div className="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{ width: '80px', height: '80px' }}>
-                      <span className="display-6 fw-bold text-primary">2</span>
-                    </div>
-                    <h5 className="h6 mb-2">Order Shipped</h5>
-                    <p className="text-muted small">Your package is packed and shipped</p>
-                  </Col>
-                  <Col md={3} className="text-center">
-                    <div className="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{ width: '80px', height: '80px' }}>
-                      <span className="display-6 fw-bold text-primary">3</span>
-                    </div>
-                    <h5 className="h6 mb-2">In Transit</h5>
-                    <p className="text-muted small">Track your package in real-time</p>
-                  </Col>
-                  <Col md={3} className="text-center">
-                    <div className="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{ width: '80px', height: '80px' }}>
-                      <span className="display-6 fw-bold text-primary">4</span>
-                    </div>
-                    <h5 className="h6 mb-2">Delivered</h5>
-                    <p className="text-muted small">Your package arrives safely</p>
-                  </Col>
-                </Row>
-              </div>
-            </Col>
-          </Row>
-
-          {/* Additional Information */}
+          {/* FAQ Section */}
           <Row>
             <Col xs={12}>
-              <div className="bg-white rounded-4 p-5 text-center shadow-sm">
-                <h3 className="mb-3">Need More Information?</h3>
-                <p className="text-muted mb-4">
-                  Have questions about delivery? Our customer support team is here to help.
-                </p>
-                <div className="d-flex flex-column flex-sm-row gap-3 justify-content-center">
-                  <Link href="/help" className="btn btn-primary btn-lg">
-                    Visit Help Centre
-                  </Link>
-                  <Link href="/warranty" className="btn btn-outline-primary btn-lg">
-                    Warranty Information
-                  </Link>
-                  <Link href="/contact" className="btn btn-outline-primary btn-lg">
-                    Contact Support
-                  </Link>
-                </div>
+              <h2 className="h3 fw-bold mb-4">Frequently Asked Questions</h2>
+              <div className="accordion" id="deliveryFAQ">
+                <Card className="mb-3 border-0 shadow-sm">
+                  <Card.Header className="bg-white border-0 p-0">
+                    <button className="btn btn-link text-decoration-none text-dark w-100 text-start p-4" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                      <h6 className="mb-0 fw-bold">How can I track my order?</h6>
+                    </button>
+                  </Card.Header>
+                  <div id="faq1" className="collapse show" data-bs-parent="#deliveryFAQ">
+                    <Card.Body className="p-4 pt-0">
+                      <p className="mb-0">You can track your order using the tracking number provided in your shipping confirmation email. Simply enter it on our tracking page for real-time updates.</p>
+                    </Card.Body>
+                  </div>
+                </Card>
+
+                <Card className="mb-3 border-0 shadow-sm">
+                  <Card.Header className="bg-white border-0 p-0">
+                    <button className="btn btn-link text-decoration-none text-dark w-100 text-start p-4" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                      <h6 className="mb-0 fw-bold">What if my package is damaged?</h6>
+                    </button>
+                  </Card.Header>
+                  <div id="faq2" className="collapse" data-bs-parent="#deliveryFAQ">
+                    <Card.Body className="p-4 pt-0">
+                      <p className="mb-0">If your package arrives damaged, please take photos and contact our customer service within 48 hours. We'll arrange a replacement or refund.</p>
+                    </Card.Body>
+                  </div>
+                </Card>
+
+                <Card className="mb-3 border-0 shadow-sm">
+                  <Card.Header className="bg-white border-0 p-0">
+                    <button className="btn btn-link text-decoration-none text-dark w-100 text-start p-4" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                      <h6 className="mb-0 fw-bold">Can I change my delivery address?</h6>
+                    </button>
+                  </Card.Header>
+                  <div id="faq3" className="collapse" data-bs-parent="#deliveryFAQ">
+                    <Card.Body className="p-4 pt-0">
+                      <p className="mb-0">You can change your delivery address up to 24 hours after placing your order by contacting our customer service team.</p>
+                    </Card.Body>
+                  </div>
+                </Card>
               </div>
             </Col>
           </Row>
         </Container>
       </div>
-      <FooterElectronics />
+      {/* <FooterElectronics /> */}
     </>
   )
 }
