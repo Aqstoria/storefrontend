@@ -294,35 +294,48 @@ export default async function ElectronicsHomePage() {
           ))}
         </Container>
 
-        {/* Newsletter Signup Section */}
-        <Container as="section" className="pt-5 mt-5">
-          <div className="bg-primary bg-opacity-10 rounded-4 p-5 text-center">
-            <div className="row justify-content-center">
-              <div className="col-lg-8 col-xl-6">
-                <h2 className="h3 mb-3 fw-bold">Stay Updated with Cartzilla</h2>
-                <p className="text-muted mb-4 fs-5">
-                  Subscribe to our newsletter and get the latest deals, product updates, and exclusive offers delivered to your inbox.
-                </p>
-                <form className="d-flex flex-column flex-sm-row gap-3 justify-content-center">
-                  <div className="flex-grow-1" style={{ maxWidth: '400px' }}>
-                    <input
-                      type="email"
-                      className="form-control form-control-lg"
-                      placeholder="Enter your email address"
-                      required
-                    />
-                  </div>
-                  <button type="submit" className="btn btn-primary btn-lg px-4">
-                    Subscribe Now
-                  </button>
-                </form>
-                <p className="text-muted small mt-3 mb-0">
-                  By subscribing, you agree to our Privacy Policy and consent to receive updates from our company.
-                </p>
-              </div>
+        {/* Newsletter Signup Section - Full Width with Theme Colors */}
+        <section className="py-4" style={{ background: 'linear-gradient(135deg, #ff6b35 0%, #f7931e 100%)' }}>
+          <Container>
+            <div className="text-center">
+              <h3 className="h4 mb-2 fw-bold text-white">Stay Updated with Cartzilla</h3>
+              <p className="text-white-75 mb-3" style={{ fontSize: '14px' }}>
+                Subscribe to our newsletter and get the latest deals, product updates, and exclusive offers delivered to your inbox.
+              </p>
+              <form className="d-flex flex-column flex-sm-row gap-2 justify-content-center align-items-center">
+                <div className="flex-grow-1" style={{ maxWidth: '350px' }}>
+                  <input
+                    type="email"
+                    className="form-control border-0"
+                    placeholder="Enter your email address"
+                    style={{ 
+                      height: '48px',
+                      fontSize: '14px',
+                      backgroundColor: 'rgba(255, 255, 255, 0.9)'
+                    }}
+                    required
+                  />
+                </div>
+                <button 
+                  type="submit" 
+                  className="btn border-0 px-4"
+                  style={{ 
+                    height: '48px',
+                    backgroundColor: '#dc3545',
+                    color: 'white',
+                    fontWeight: '600',
+                    fontSize: '14px'
+                  }}
+                >
+                  Subscribe Now
+                </button>
+              </form>
+              <p className="text-white-75 small mt-2 mb-0" style={{ fontSize: '12px' }}>
+                By subscribing, you agree to our Privacy Policy and consent to receive updates from our company.
+              </p>
             </div>
-          </div>
-        </Container>
+          </Container>
+        </section>
 
         {/* Footer */}
         <FooterElectronics />
