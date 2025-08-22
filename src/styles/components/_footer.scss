@@ -1,51 +1,198 @@
-// Footer Component Styles
-
+// Footer Styles
 .footer {
+  position: relative;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  
+  // Premium gradient overlay
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, #ff6b35 50%, transparent 100%);
+  }
+
+  // Footer links
   .footer-link {
-    transition: color 0.2s ease-in-out, text-decoration 0.2s ease-in-out;
+    position: relative;
+    transition: all 0.3s ease;
+    font-weight: 400;
     
     &:hover {
-      color: rgba(255, 255, 255, 0.8) !important;
-      text-decoration: underline !important;
+      color: #ff6b35 !important;
+      transform: translateX(3px);
+      
+      &::before {
+        content: '';
+        position: absolute;
+        left: -8px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 4px;
+        height: 4px;
+        background: #ff6b35;
+        border-radius: 50%;
+        opacity: 1;
+      }
+    }
+    
+    &::before {
+      content: '';
+      position: absolute;
+      left: -8px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 4px;
+      background: #ff6b35;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
   }
 
-  // Typography improvements
-  .letter-spacing-1 {
-    letter-spacing: 0.5px;
+  // Section headings
+  h6 {
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 30px;
+      height: 2px;
+      background: linear-gradient(90deg, #ff6b35, #f7931e);
+      border-radius: 1px;
+    }
   }
 
-  .fs-6 {
-    font-size: 0.875rem !important;
+  // App download section
+  .bg-gradient-primary {
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+      animation: shimmer 3s ease-in-out infinite;
+    }
   }
 
-  // Better contrast for secondary text
-  .text-white-75 {
-    color: rgba(255, 255, 255, 0.75) !important;
+  // Social media icons
+  .bg-white.bg-opacity-10 {
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    
+    &:hover {
+      background: rgba(255, 107, 53, 0.2) !important;
+      border-color: #ff6b35;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+    }
   }
 
-  // Enhanced headings
-  h5, h6 {
-    font-weight: 700;
-    line-height: 1.3;
+  // Security badges
+  .ci-shield-check, .ci-credit-card {
+    transition: transform 0.3s ease;
+  }
+  
+  .d-flex.align-items-center:hover {
+    .ci-shield-check, .ci-credit-card {
+      transform: scale(1.1);
+    }
   }
 
-  // Improved link styling
-  a {
-    transition: all 0.2s ease-in-out;
+  // Payment method icons
+  .bg-white.rounded {
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
     
     &:hover {
       transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      border-color: #ff6b35;
     }
   }
 
-  // Better spacing
-  ul {
-    margin-bottom: 0;
+  // Bottom section
+  .border-top {
+    border-color: rgba(255, 255, 255, 0.1) !important;
   }
 
-  li {
-    line-height: 1.6;
+  // Responsive improvements
+  @media (max-width: 768px) {
+    .py-5 {
+      padding-top: 3rem !important;
+      padding-bottom: 3rem !important;
+    }
+    
+    h6 {
+      font-size: 13px !important;
+      margin-bottom: 1.5rem !important;
+    }
+    
+    .footer-link {
+      font-size: 13px !important;
+      margin-bottom: 0.75rem !important;
+    }
+    
+    .social-media {
+      justify-content: center !important;
+    }
+  }
+}
+
+// Shimmer animation
+@keyframes shimmer {
+  0%, 100% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  50% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+// Premium hover effects for entire footer
+.footer:hover {
+  .footer-link {
+    transition-delay: 0.1s;
+  }
+}
+
+// Enhanced typography
+.footer {
+  .text-white-75 {
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+  
+  .small {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+  
+  // Premium spacing
+  .mb-4 {
+    margin-bottom: 2rem !important;
+  }
+  
+  .mb-3 {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .gap-3 {
+    gap: 1.5rem !important;
+  }
+  
+  .gap-4 {
+    gap: 2rem !important;
   }
 }
 
