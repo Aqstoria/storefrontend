@@ -76,15 +76,15 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
             </Col>
 
             {/* Search Bar - Prominent Center Style */}
-            <Col xs={12} lg={9}>
+            <Col xs={12} lg={7}>
               <div className="position-relative d-flex align-items-center">
                 <FormControl 
                   type="text" 
                   placeholder="What are you looking for?" 
                   className="border-0 bg-light rounded-pill ps-4 pe-5 py-3 flex-grow-1"
                   style={{ 
-                    fontSize: '18px', 
-                    minHeight: '60px',
+                    fontSize: '16px', 
+                    minHeight: '56px',
                     backgroundColor: '#f8f9fa',
                     boxShadow: '0 4px 16px rgba(0,0,0,0.15)',
                     border: '2px solid transparent',
@@ -92,16 +92,16 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
                   }}
                 />
                 {/* Camera Icon inside search bar */}
-                <i className="ci-camera position-absolute" style={{ right: '110px', top: '50%', transform: 'translateY(-50%)', color: '#6c757d', fontSize: '20px' }}></i>
+                <i className="ci-camera position-absolute" style={{ right: '100px', top: '50%', transform: 'translateY(-50%)', color: '#6c757d', fontSize: '18px' }}></i>
                 {/* Search Button */}
                 <Button 
                   variant="danger" 
-                  className="position-absolute end-0 top-50 translate-middle-y rounded-pill px-6 py-3"
+                  className="position-absolute end-0 top-50 translate-middle-y rounded-pill px-5 py-3"
                   style={{ 
                     backgroundColor: '#dc3545', 
                     borderColor: '#dc3545',
-                    minHeight: '60px',
-                    fontSize: '18px',
+                    minHeight: '56px',
+                    fontSize: '16px',
                     fontWeight: '600',
                     boxShadow: '0 4px 16px rgba(220, 53, 69, 0.4)',
                     transition: 'all 0.3s ease'
@@ -113,8 +113,8 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
             </Col>
 
             {/* Right Icons - Exact Joom Style */}
-            <Col xs={12} lg={1}>
-              <div className="d-flex gap-4 align-items-center justify-content-center justify-content-lg-end">
+            <Col xs={12} lg={3}>
+              <div className="d-flex gap-3 align-items-center justify-content-center justify-content-lg-end">
                 {/* Notifications */}
                 <div className="text-center position-relative">
                   <i className="ci-bell fs-4 text-dark"></i>
@@ -131,7 +131,7 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
                 {/* My orders */}
                 <div className="text-center">
                   <i className="ci-package fs-4 text-dark"></i>
-                  <div className="small text-dark">My orders</div>
+                  <div className="small text-dark">Orders</div>
                 </div>
 
                 {/* Shopping cart */}
@@ -150,19 +150,19 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
         <Container>
           <Row className="py-2">
             <Col>
-              <div className="d-flex gap-3 align-items-center overflow-auto category-nav" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+              <div className="d-flex gap-2 align-items-center overflow-auto category-nav" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                 {/* All Categories Button */}
-                <Button variant="outline-dark" size="sm" className="text-nowrap border-2">
+                <Button variant="outline-dark" size="sm" className="text-nowrap border-2 me-2">
                   <i className="ci-menu me-1"></i>
                   All categories
                 </Button>
                 
                 {/* Special Links with Icons */}
-                <Link href="/outlet" className="text-dark text-decoration-none small text-nowrap d-flex align-items-center">
+                <Link href="/outlet" className="text-dark text-decoration-none small text-nowrap d-flex align-items-center me-3">
                   <i className="ci-tag text-danger me-1"></i>
                   Outlet
                 </Link>
-                <Link href="/free-gift" className="text-dark text-decoration-none small text-nowrap d-flex align-items-center">
+                <Link href="/free-gift" className="text-dark text-decoration-none small text-nowrap d-flex align-items-center me-3">
                   <i className="ci-gift text-danger me-1"></i>
                   Free gift with purchase
                 </Link>
@@ -172,8 +172,8 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
                   <Link 
                     key={index}
                     href={`/category/${category.toLowerCase().replace(/\s+/g, '-')}`}
-                    className="text-muted text-decoration-none text-nowrap small"
-                    style={{ fontSize: '13px' }}
+                    className="text-muted text-decoration-none text-nowrap small me-3"
+                    style={{ fontSize: '12px' }}
                   >
                     {category}
                   </Link>

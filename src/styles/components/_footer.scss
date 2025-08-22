@@ -152,6 +152,17 @@
 
 // Header Styles for Prominent Search
 .header-electronics {
+  // Prevent overlapping issues
+  .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  .col, .col-lg-2, .col-lg-7, .col-lg-3 {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  
   // Prominent search bar
   .form-control {
     &:focus {
@@ -197,6 +208,48 @@
     
     .bg-danger {
       background-color: #ff6b35 !important;
+    }
+  }
+  
+  // Category navigation fixes
+  .category-nav {
+    .btn, a {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 150px;
+    }
+    
+    .me-3 {
+      margin-right: 1rem !important;
+    }
+  }
+  
+  // Right icons spacing
+  .d-flex.gap-3 > * {
+    min-width: 60px;
+    text-align: center;
+    
+    .small {
+      font-size: 11px;
+      line-height: 1.2;
+      margin-top: 2px;
+    }
+  }
+  
+  // Responsive fixes
+  @media (max-width: 1200px) {
+    .col-lg-2, .col-lg-7, .col-lg-3 {
+      padding-left: 4px;
+      padding-right: 4px;
+    }
+    
+    .category-nav {
+      gap: 0.5rem !important;
+      
+      .me-3 {
+        margin-right: 0.5rem !important;
+      }
     }
   }
 }
