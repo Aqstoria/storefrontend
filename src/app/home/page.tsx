@@ -299,7 +299,7 @@ export default async function ElectronicsHomePage() {
           <Container>
             <div className="text-center">
               <h3 className="h4 mb-2 fw-bold text-white">Stay Updated with Cartzilla</h3>
-              <p className="text-white-75 mb-3" style={{ fontSize: '14px' }}>
+              <p className="text-white mb-3" style={{ fontSize: '14px' }}>
                 Subscribe to our newsletter and get the latest deals, product updates, and exclusive offers delivered to your inbox.
               </p>
               <form className="d-flex flex-column flex-sm-row gap-2 justify-content-center align-items-center">
@@ -330,7 +330,7 @@ export default async function ElectronicsHomePage() {
                   Subscribe Now
                 </button>
               </form>
-              <p className="text-white-75 small mt-2 mb-0" style={{ fontSize: '12px' }}>
+              <p className="text-white small mt-2 mb-0" style={{ fontSize: '12px' }}>
                 By subscribing, you agree to our Privacy Policy and consent to receive updates from our company.
               </p>
             </div>
