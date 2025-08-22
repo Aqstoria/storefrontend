@@ -75,22 +75,37 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
               </Link>
             </Col>
 
-            {/* Search Bar - Exact Joom Style */}
-            <Col xs={12} lg={7}>
-              <div className="position-relative">
+            {/* Search Bar - Prominent Center Style */}
+            <Col xs={12} lg={9}>
+              <div className="position-relative d-flex align-items-center">
                 <FormControl 
                   type="text" 
                   placeholder="What are you looking for?" 
-                  className="border-0 bg-light rounded-pill ps-4 pe-5 py-3"
-                  style={{ fontSize: '16px' }}
+                  className="border-0 bg-light rounded-pill ps-4 pe-5 py-3 flex-grow-1"
+                  style={{ 
+                    fontSize: '18px', 
+                    minHeight: '60px',
+                    backgroundColor: '#f8f9fa',
+                    boxShadow: '0 4px 16px rgba(0,0,0,0.15)',
+                    border: '2px solid transparent',
+                    transition: 'all 0.3s ease'
+                  }}
                 />
                 {/* Camera Icon inside search bar */}
-                <i className="ci-camera position-absolute" style={{ right: '80px', top: '50%', transform: 'translateY(-50%)', color: '#6c757d' }}></i>
+                <i className="ci-camera position-absolute" style={{ right: '110px', top: '50%', transform: 'translateY(-50%)', color: '#6c757d', fontSize: '20px' }}></i>
                 {/* Search Button */}
                 <Button 
                   variant="danger" 
-                  className="position-absolute end-0 top-50 translate-middle-y rounded-pill px-4 py-2"
-                  style={{ backgroundColor: '#dc3545', borderColor: '#dc3545' }}
+                  className="position-absolute end-0 top-50 translate-middle-y rounded-pill px-6 py-3"
+                  style={{ 
+                    backgroundColor: '#dc3545', 
+                    borderColor: '#dc3545',
+                    minHeight: '60px',
+                    fontSize: '18px',
+                    fontWeight: '600',
+                    boxShadow: '0 4px 16px rgba(220, 53, 69, 0.4)',
+                    transition: 'all 0.3s ease'
+                  }}
                 >
                   Search
                 </Button>
@@ -98,7 +113,7 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
             </Col>
 
             {/* Right Icons - Exact Joom Style */}
-            <Col xs={12} lg={3}>
+            <Col xs={12} lg={1}>
               <div className="d-flex gap-4 align-items-center justify-content-center justify-content-lg-end">
                 {/* Notifications */}
                 <div className="text-center position-relative">
