@@ -13,103 +13,58 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
 const HeroBannerJoom = () => {
-  const [currentSlide, setCurrentSlide] = useState(0)
-
-  const heroSlides = [
-    {
-      title: 'Outlet',
-      subtitle: 'Summer Sale',
-      image: '/img/home/electronics/hero-slider/01.png',
-      href: '/shop/outlet',
-    },
-    {
-      title: 'New Arrivals',
-      subtitle: 'Fresh Collection',
-      image: '/img/home/electronics/hero-slider/02.png',
-      href: '/shop/new-arrivals',
-    },
-    {
-      title: 'Hot Deals',
-      subtitle: 'Limited Time',
-      image: '/img/home/electronics/hero-slider/03.png',
-      href: '/shop/hot-deals',
-    },
-  ]
-
   return (
-    <Container as="section" className="pt-4">
+    <Container as="section" className="py-4">
       <Row>
         <Col xs={12}>
-          <div className="position-relative">
-            {/* Hero Banner */}
-            <div className="position-relative overflow-hidden rounded-4 hero-swiper">
-              <Swiper
-                modules={[Navigation, Pagination, Autoplay]}
-                spaceBetween={0}
-                loop={true}
-                autoplay={{
-                  delay: 5000,
-                  disableOnInteraction: false,
-                }}
-                pagination={{
-                  clickable: true,
-                  el: '.hero-pagination',
-                }}
-                navigation={{
-                  nextEl: '.hero-next',
-                  prevEl: '.hero-prev',
-                }}
-                onSlideChange={(swiper) => setCurrentSlide(swiper.realIndex)}
-              >
-                {heroSlides.map((slide, index) => (
-                  <SwiperSlide key={index}>
-                    <div className="position-relative">
-                      {/* Background with orange gradient */}
-                      <div 
-                        className="w-100 h-100 position-absolute"
-                        style={{
-                          background: 'linear-gradient(135deg, #ff6b35 0%, #f7931e 100%)',
-                          minHeight: '400px'
-                        }}
-                      />
-                      
-                      {/* Content */}
-                      <Row className="align-items-center position-relative z-2 py-5 px-4">
-                        <Col lg={6} className="text-white text-center text-lg-start">
-                          <h1 className="display-3 fw-bold mb-2">{slide.title}</h1>
-                          <h2 className="display-5 fw-medium mb-4">{slide.subtitle}</h2>
-                          <Link href={slide.href} className="btn btn-light btn-lg px-4 py-2 fw-semibold">
-                            Shop Now
-                            <i className="ci-arrow-right ms-2" />
-                          </Link>
-                        </Col>
-                        <Col lg={6} className="text-center">
-                          <div className="position-relative">
-                            <Image 
-                              src={slide.image} 
-                              width={400} 
-                              height={400} 
-                              alt={slide.title}
-                              className="img-fluid"
-                            />
-                          </div>
-                        </Col>
-                      </Row>
-                    </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-
-              {/* Navigation Arrows */}
-              <button className="hero-prev position-absolute top-50 start-0 translate-middle-y bg-white bg-opacity-75 border-0 rounded-circle p-3 ms-3 z-3">
-                <i className="ci-chevron-left fs-4 text-dark" />
-              </button>
-              <button className="hero-next position-absolute top-50 end-0 translate-middle-y bg-white bg-opacity-75 border-0 rounded-circle p-3 me-3 z-3">
-                <i className="ci-chevron-right fs-4 text-dark" />
-              </button>
-
-              {/* Pagination Dots */}
-              <div className="hero-pagination position-absolute bottom-0 start-50 translate-middle-x mb-3 z-3" />
+          {/* Joom Style Orange Banner */}
+          <div 
+            className="position-relative overflow-hidden rounded-4 p-4 p-lg-5"
+            style={{
+              background: 'linear-gradient(135deg, #ff6b35 0%, #f7931e 100%)',
+              minHeight: '200px'
+            }}
+          >
+            <Row className="align-items-center h-100">
+              <Col lg={6}>
+                <div className="text-white">
+                  <h1 className="display-4 fw-bold mb-2">Outlet</h1>
+                  <p className="fs-5 mb-4">Summer Sale</p>
+                </div>
+              </Col>
+              <Col lg={6} className="text-center">
+                {/* Product illustration placeholder */}
+                <div className="position-relative">
+                  <div 
+                    className="bg-white bg-opacity-20 rounded-circle d-inline-flex align-items-center justify-content-center"
+                    style={{ width: '120px', height: '120px' }}
+                  >
+                    <i className="ci-shopping-bag fs-1 text-white"></i>
+                  </div>
+                  {/* Navigation arrows like Joom */}
+                  <button 
+                    className="position-absolute top-50 start-0 translate-middle-y bg-white bg-opacity-20 border-0 rounded-circle p-2"
+                    style={{ left: '-20px' }}
+                  >
+                    <i className="ci-chevron-left text-white"></i>
+                  </button>
+                  <button 
+                    className="position-absolute top-50 end-0 translate-middle-y bg-white bg-opacity-20 border-0 rounded-circle p-2"
+                    style={{ right: '-20px' }}
+                  >
+                    <i className="ci-chevron-right text-white"></i>
+                  </button>
+                </div>
+              </Col>
+            </Row>
+            
+            {/* Pagination dots at bottom */}
+            <div className="position-absolute bottom-0 start-50 translate-middle-x mb-3">
+              <div className="d-flex gap-2">
+                <div className="bg-white rounded-circle" style={{ width: '8px', height: '8px' }}></div>
+                <div className="bg-white bg-opacity-50 rounded-circle" style={{ width: '8px', height: '8px' }}></div>
+                <div className="bg-white bg-opacity-50 rounded-circle" style={{ width: '8px', height: '8px' }}></div>
+              </div>
             </div>
           </div>
         </Col>

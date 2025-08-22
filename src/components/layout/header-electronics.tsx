@@ -20,112 +20,62 @@ interface HeaderElectronicsProps {
 }
 
 const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, categories }: HeaderElectronicsProps = {}) => {
-  const [cookieConsent, setCookieConsent] = useState(true)
-  
   // Use provided categories or fallback to simplified ones
   const joomCategories = categories && categories.length > 0 
-    ? ['All categories', ...categories.map((cat: any) => cat.name).slice(0, 20)]
-    : ['All categories', 'Electronics', 'Headphones', 'Desktop', 'With Bluetooth', 'Microscope', 'Best Sellers']
+    ? categories.map((cat: any) => cat.name).slice(0, 15)
+    : ['Electronics', 'Headphones', 'Desktop', 'With Bluetooth', 'Microscope', 'Best Sellers', 'Home Appliances', 'Sports & Outdoor', 'Kids', 'Pets & Animals', 'Beauty', 'Health', 'Bags & Suitcases', 'Women\'s Clothes', 'Watches & Clocks']
 
   return (
     <>
-      {/* Cookie Consent Banner */}
-      {!cookieConsent && (
-        <div className="bg-dark text-white py-2">
-          <Container>
-            <Row className="align-items-center">
-              <Col>
-                <small>We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.</small>
-              </Col>
-              <Col xs="auto">
-                <Button 
-                  variant="outline-light" 
-                  size="sm"
-                  onClick={() => setCookieConsent(true)}
-                >
-                  OK
-                </Button>
-              </Col>
-            </Row>
-          </Container>
-        </div>
-      )}
-
-      {/* Main Header Section */}
-      <div className="bg-white border-bottom">
+      {/* Main Header Section - Joom Style */}
+      <div className="bg-white shadow-sm">
         <Container>
-          {/* Top Row */}
-          <Row className="py-2 align-items-center">
-            <Col className="d-none d-lg-block">
-              <div className="d-flex gap-4 align-items-center">
-                <div className="dropdown">
-                  <Button variant="link" className="text-dark text-decoration-none p-0">
-                    <i className="fi fi-gb me-1"></i>
-                    English
-                  </Button>
-                </div>
-                <div className="dropdown">
-                  <Button variant="link" className="text-dark text-decoration-none p-0">
-                    USD
-                  </Button>
-                </div>
-              </div>
-            </Col>
-            <Col className="text-center text-lg-end">
-              <div className="d-flex gap-3 align-items-center justify-content-center justify-content-lg-end">
-                <Link href="/help" className="text-dark text-decoration-none small">Help centre</Link>
-                <Link href="/delivery" className="text-dark text-decoration-none small">Delivery</Link>
-                <Link href="/warranty" className="text-dark text-decoration-none small">Warranty</Link>
-                <Button variant="dark" size="sm">Cartzilla Geek</Button>
-              </div>
-            </Col>
-          </Row>
-
-          {/* Main Navigation Row */}
           <Row className="py-3 align-items-center">
-            <Col xs={12} lg={3}>
-              <Link href={logoHref} className="text-decoration-none">
-                <span className="h3 text-danger mb-0">C</span>
-                <span className="h3 text-dark mb-0">ARTZILLA</span>
+            {/* Logo */}
+            <Col xs={12} lg={2}>
+              <Link href={logoHref} className="text-decoration-none d-flex align-items-center">
+                <span className="h2 mb-0 fw-bold" style={{ color: '#ff6b35' }}>JOOM</span>
               </Link>
             </Col>
-            <Col xs={12} lg={6}>
-              <div className="d-flex">
+
+            {/* Search Bar */}
+            <Col xs={12} lg={7}>
+              <div className="position-relative">
                 <FormControl 
                   type="text" 
-                  placeholder="Search for products..." 
-                  className="rounded-start"
+                  placeholder="What are you looking for?" 
+                  className="border-0 bg-light rounded-pill ps-4 pe-5 py-2"
+                  style={{ fontSize: '14px' }}
                 />
-                <Button variant="danger" className="rounded-end">
-                  Search
+                <Button 
+                  variant="link" 
+                  className="position-absolute end-0 top-50 translate-middle-y me-2 p-0"
+                  style={{ color: '#ff6b35' }}
+                >
+                  <i className="ci-search fs-5"></i>
                 </Button>
               </div>
             </Col>
+
+            {/* Right Icons */}
             <Col xs={12} lg={3}>
-              <div className="d-flex gap-4 align-items-center justify-content-center justify-content-lg-end">
-                <div className="text-center">
-                  <i className="ci-bell fs-4 text-dark"></i>
-                  <div className="small">Notifications</div>
-                  <Badge bg="danger" className="position-absolute top-0 start-100 translate-middle">3</Badge>
-                </div>
-                <div className="text-center">
-                  {isLoggedIn ? (
-                    <Link href={isLoggedIn.href} className="text-dark text-decoration-none">
-                      <i className="ci-user fs-4 text-dark"></i>
-                      <div className="small">{isLoggedIn.name}</div>
-                    </Link>
-                  ) : (
-                    <Link href="/login" className="text-dark text-decoration-none">
-                      <i className="ci-user fs-4 text-dark"></i>
-                      <div className="small">Log in</div>
-                    </Link>
-                  )}
-                </div>
-                <div className="text-center">
-                  <i className="ci-cart fs-4 text-dark"></i>
-                  <div className="small">My orders</div>
-                  <Badge bg="danger" className="position-absolute top-0 start-100 translate-middle">2</Badge>
-                </div>
+              <div className="d-flex gap-3 align-items-center justify-content-center justify-content-lg-end">
+                {/* Wishlist */}
+                <Link href="/wishlist" className="text-dark text-decoration-none position-relative">
+                  <i className="ci-heart fs-4"></i>
+                  <Badge bg="danger" className="position-absolute top-0 start-100 translate-middle rounded-pill" style={{ fontSize: '10px' }}>0</Badge>
+                </Link>
+
+                {/* Account */}
+                <Link href={isLoggedIn ? isLoggedIn.href : "/login"} className="text-dark text-decoration-none">
+                  <i className="ci-user fs-4"></i>
+                </Link>
+
+                {/* Shopping Cart */}
+                <Link href="/cart" className="text-dark text-decoration-none position-relative">
+                  <i className="ci-shopping-bag fs-4"></i>
+                  <Badge bg="danger" className="position-absolute top-0 start-100 translate-middle rounded-pill" style={{ fontSize: '10px' }}>2</Badge>
+                </Link>
               </div>
             </Col>
           </Row>
@@ -133,19 +83,21 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
       </div>
 
       {/* Category Navigation Bar */}
-      <div className="bg-white border-bottom">
+      <div className="bg-white border-top border-bottom">
         <Container>
           <Row className="py-2">
             <Col>
-              <div className="d-flex gap-3 align-items-center overflow-auto">
-                <Button variant="outline-dark" className="text-nowrap">
+              <div className="d-flex gap-4 align-items-center overflow-auto category-nav" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                <Button variant="outline-primary" size="sm" className="text-nowrap rounded-pill">
+                  <i className="ci-menu me-1"></i>
                   All categories
                 </Button>
-                {joomCategories.slice(1).map((category, index) => (
+                {joomCategories.map((category, index) => (
                   <Link 
                     key={index}
                     href={`/category/${category.toLowerCase().replace(/\s+/g, '-')}`}
-                    className="text-dark text-decoration-none small text-nowrap"
+                    className="text-muted text-decoration-none text-nowrap"
+                    style={{ fontSize: '14px' }}
                   >
                     {category}
                   </Link>
