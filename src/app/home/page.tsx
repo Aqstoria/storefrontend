@@ -146,25 +146,27 @@ export default async function ElectronicsHomePage() {
             <Col lg={8}>
               <Row className="g-3 h-100">
                 {trendingProducts.slice(0, 6).map((product, index) => (
-                  <Col md={4} sm={6} key={product.id}>
+                  <Col lg={4} md={6} sm={6} xs={6} key={product.id}>
                     <Link href={ProductService.getProductUrl(product)} className="text-decoration-none">
-                      <div className="bg-white border rounded-3 p-3 h-100 text-center">
+                      <div className="bg-white border rounded-3 p-3 h-100 text-center product-card">
                         {product.images && product.images.length > 0 ? (
                           <Image 
                             src={ProductService.getProductImage(product)} 
                             width={80} 
                             height={80} 
                             alt={product.name}
-                            className="mb-2"
+                            className="mb-2 img-fluid"
+                            style={{ objectFit: 'cover' }}
                           />
                         ) : (
                           <div className="bg-light rounded mb-2 d-flex align-items-center justify-content-center" style={{ height: '80px' }}>
                             <span className="text-muted small">No Image</span>
                           </div>
                         )}
+                        <h6 className="small mb-1 text-dark text-truncate" style={{ fontSize: '12px' }}>{product.name}</h6>
                         <p className="text-danger fw-bold mb-1">${ProductService.getProductPrice(product).toFixed(2)}</p>
                         <div className="d-flex align-items-center justify-content-center">
-                          <div className="text-warning me-1">★★★★</div>
+                          <div className="text-warning me-1" style={{ fontSize: '12px' }}>★★★★</div>
                           <small className="text-muted">(85)</small>
                         </div>
                       </div>
@@ -259,10 +261,10 @@ export default async function ElectronicsHomePage() {
           </div>
           
           {/* Multiple rows of products */}
-          {[0, 6, 12, 18].map((startIndex) => (
-            <Row className="g-3 mb-4" key={startIndex}>
-              {featuredProducts.slice(startIndex, startIndex + 6).map((product) => (
-                <Col lg={2} md={3} sm={4} xs={6} key={product.id}>
+                      {[0, 6, 12, 18].map((startIndex) => (
+              <Row className="g-3 mb-4" key={startIndex}>
+                {featuredProducts.slice(startIndex, startIndex + 6).map((product) => (
+                  <Col xl={2} lg={3} md={4} sm={6} xs={6} key={product.id}>
                   <Link href={ProductService.getProductUrl(product)} className="text-decoration-none">
                     <div className="bg-white border rounded-3 p-3 text-center h-100">
                       {product.images && product.images.length > 0 ? (

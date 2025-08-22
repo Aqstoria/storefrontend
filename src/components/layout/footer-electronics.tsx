@@ -13,7 +13,7 @@ const FooterElectronics = ({ className, logoHref }: { className?: string; logoHr
         {/* App Download Section */}
         <Col lg={3} md={6}>
           <div className="bg-secondary bg-opacity-25 rounded-3 p-4 h-100">
-            <h5 className="mb-3 fw-bold fs-5">More deals & promos in the Cartzilla app</h5>
+            <h5 className="mb-3 fw-bold fs-6 text-uppercase" style={{ letterSpacing: '0.5px' }}>More deals & promos in the Cartzilla app</h5>
             <div className="text-center mb-3">
               {/* QR Code - Replace with your actual QR code image */}
               <div className="bg-white rounded p-3 d-inline-block mb-2">
@@ -21,42 +21,42 @@ const FooterElectronics = ({ className, logoHref }: { className?: string; logoHr
                   <span className="text-dark fw-bold">QR Code</span>
                 </div>
               </div>
-              <p className="mb-3 text-white-75">Scan to download app</p>
+              <p className="mb-3 text-white-75 small">Scan to download app</p>
             </div>
           </div>
         </Col>
 
         {/* Users Column */}
         <Col lg={2} md={6}>
-          <h6 className="fw-bold mb-3 fs-6 text-uppercase letter-spacing-1">Users</h6>
+          <h6 className="fw-bold mb-3 fs-6 text-uppercase" style={{ letterSpacing: '0.5px' }}>Users</h6>
           <ul className="list-unstyled">
             <li className="mb-2">
-              <Link href="/shop" className="text-white text-decoration-none footer-link fw-normal">
+              <Link href="/shop" className="text-white-75 text-decoration-none footer-link small">
                 Catalogue
               </Link>
             </li>
             <li className="mb-2">
-              <Link href="/help" className="text-white text-decoration-none footer-link fw-normal">
+              <Link href="/help" className="text-white-75 text-decoration-none footer-link small">
                 Help centre
               </Link>
             </li>
             <li className="mb-2">
-              <Link href="/privacy" className="text-white text-decoration-none footer-link fw-normal">
+              <Link href="/privacy" className="text-white-75 text-decoration-none footer-link small">
                 Privacy policy
               </Link>
             </li>
             <li className="mb-2">
-              <Link href="/terms" className="text-white text-decoration-none footer-link fw-normal">
+              <Link href="/terms" className="text-white-75 text-decoration-none footer-link small">
                 Terms of use
               </Link>
             </li>
             <li className="mb-2">
-              <Link href="/accessibility" className="text-white text-decoration-none footer-link fw-normal">
+              <Link href="/accessibility" className="text-white-75 text-decoration-none footer-link small">
                 Accessibility settings
               </Link>
             </li>
             <li className="mb-2">
-              <Link href="/trending" className="text-white text-decoration-none footer-link fw-normal">
+              <Link href="/trending" className="text-white-75 text-decoration-none footer-link small">
                 Top searches on Cartzilla
               </Link>
             </li>
@@ -65,15 +65,15 @@ const FooterElectronics = ({ className, logoHref }: { className?: string; logoHr
 
         {/* Partners Column */}
         <Col lg={2} md={6}>
-          <h6 className="fw-bold mb-3 fs-6 text-uppercase letter-spacing-1">Partners</h6>
+          <h6 className="fw-bold mb-3 fs-6 text-uppercase" style={{ letterSpacing: '0.5px' }}>Partners</h6>
           <ul className="list-unstyled">
             <li className="mb-2">
-              <Link href="/become-seller" className="text-white text-decoration-none footer-link fw-normal">
+              <Link href="/become-seller" className="text-white-75 text-decoration-none footer-link small">
                 Become a seller
               </Link>
             </li>
             <li className="mb-2">
-              <Link href="/partner-terms" className="text-white text-decoration-none footer-link fw-normal">
+              <Link href="/partner-terms" className="text-white-75 text-decoration-none footer-link small">
                 Terms of service
               </Link>
             </li>
@@ -82,20 +82,20 @@ const FooterElectronics = ({ className, logoHref }: { className?: string; logoHr
 
         {/* Company Column */}
         <Col lg={2} md={6}>
-          <h6 className="fw-bold mb-3 fs-6 text-uppercase letter-spacing-1">Company</h6>
+          <h6 className="fw-bold mb-3 fs-6 text-uppercase" style={{ letterSpacing: '0.5px' }}>Company</h6>
           <ul className="list-unstyled">
             <li className="mb-2">
-              <Link href="/about" className="text-white text-decoration-none footer-link fw-normal">
+              <Link href="/about" className="text-white-75 text-decoration-none footer-link small">
                 About us
               </Link>
             </li>
             <li className="mb-2">
-              <Link href="/copyright" className="text-white text-decoration-none footer-link fw-normal">
+              <Link href="/copyright" className="text-white-75 text-decoration-none footer-link small">
                 Copyright protection
               </Link>
             </li>
             <li className="mb-2">
-              <Link href="/safety" className="text-white text-decoration-none footer-link fw-normal">
+              <Link href="/safety" className="text-white-75 text-decoration-none footer-link small">
                 Product safety
               </Link>
             </li>
@@ -104,15 +104,15 @@ const FooterElectronics = ({ className, logoHref }: { className?: string; logoHr
 
         {/* Cartzilla Group Companies Column */}
         <Col lg={3} md={6}>
-          <h6 className="fw-bold mb-3 fs-6 text-uppercase letter-spacing-1">Cartzilla Group companies</h6>
+          <h6 className="fw-bold mb-3 fs-6 text-uppercase" style={{ letterSpacing: '0.5px' }}>Cartzilla Group companies</h6>
           <ul className="list-unstyled">
             <li className="mb-2">
-              <Link href="/logistics" className="text-white text-decoration-none footer-link fw-normal">
+              <Link href="/logistics" className="text-white-75 text-decoration-none footer-link small">
                 Cartzilla Logistics
               </Link>
             </li>
             <li className="mb-2">
-              <Link href="/onfy" className="text-white text-decoration-none footer-link fw-normal">
+              <Link href="/onfy" className="text-white-75 text-decoration-none footer-link small">
                 Onfy
               </Link>
             </li>
@@ -130,7 +130,7 @@ const FooterElectronics = ({ className, logoHref }: { className?: string; logoHr
       {/* Bottom Section */}
       <Row className="mt-4 pt-4 border-top border-secondary">
         <Col md={6}>
-          <p className="text-white mb-0 fw-normal">
+          <p className="text-white mb-0 small">
             2025 Cartzilla All Rights Reserved.
           </p>
         </Col>

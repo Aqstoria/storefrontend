@@ -182,52 +182,59 @@
   background-color: white !important;
 }
 
-// Category Navigation Styles
-.category-nav {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+// Product Card Styles
+.product-card {
+  transition: all 0.2s ease-in-out;
+  border: 1px solid #e9ecef !important;
   
-  &::-webkit-scrollbar {
-    display: none;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-color: #ff6b35 !important;
+  }
+  
+  // Image improvements
+  img {
+    transition: transform 0.2s ease-in-out;
+    
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+  
+  // Price styling
+  .text-danger {
+    color: #ff6b35 !important;
+  }
+  
+  // Rating stars
+  .text-warning {
+    color: #ffc107 !important;
   }
 }
 
-// Product Card Styles
-.product-card {
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-  
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
-  }
-  
-  .product-image-container {
-    position: relative;
-    overflow: hidden;
+// Responsive improvements
+@media (max-width: 768px) {
+  .product-card {
+    padding: 0.75rem !important;
     
-    .product-image {
-      transition: transform 0.3s ease-in-out;
+    h6 {
+      font-size: 11px !important;
+    }
+    
+    .text-danger {
+      font-size: 14px !important;
     }
   }
   
-  &:hover .product-image {
-    transform: scale(1.05);
-  }
-  
-  .product-title {
-    transition: color 0.2s ease-in-out;
-    
-    &:hover {
-      color: #dc3545 !important;
-    }
-  }
-  
-  .btn-primary {
-    transition: all 0.2s ease-in-out;
-    
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+  .header-electronics {
+    .category-nav {
+      gap: 0.5rem !important;
+      
+      .btn, a {
+        font-size: 12px !important;
+        padding: 0.25rem 0.5rem !important;
+      }
     }
   }
 }
