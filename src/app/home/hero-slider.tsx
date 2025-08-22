@@ -14,15 +14,15 @@ import 'swiper/css/pagination'
 
 const HeroBannerJoom = () => {
   return (
-    <Container as="section" className="py-5">
+    <Container as="section" className="py-6">
       <Row>
         <Col xs={12}>
           {/* Joom Style Orange Banner */}
           <div 
-            className="position-relative overflow-hidden rounded-4 p-5 p-lg-6"
+            className="position-relative overflow-hidden rounded-4 p-6 p-lg-7"
             style={{
               background: 'linear-gradient(135deg, #ff6b35 0%, #f7931e 100%)',
-              minHeight: '240px'
+              minHeight: '320px'
             }}
           >
             <Row className="align-items-center h-100">
