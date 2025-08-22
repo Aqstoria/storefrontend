@@ -66,16 +66,24 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
       <div className="bg-white">
         <Container>
           <Row className="py-3 align-items-center">
-            {/* Logo - Cartzilla with red C */}
+            {/* Logo - Cartzilla with red C - Fixed Positioning */}
             <Col xs={12} lg={2}>
               <Link href={logoHref} className="text-decoration-none d-flex align-items-center">
-                <span className="h2 mb-0 fw-bold" style={{ color: '#dc3545' }}>C</span>
-                <span className="h2 mb-0 fw-bold text-dark">ARTZILLA</span>
-                <div className="bg-danger rounded-circle ms-1" style={{ width: '6px', height: '6px' }}></div>
+                <div className="position-relative">
+                  <span className="h2 mb-0 fw-bold" style={{ color: '#dc3545' }}>C</span>
+                  <div className="bg-danger rounded-circle position-absolute" style={{ 
+                    width: '8px', 
+                    height: '8px', 
+                    left: '-12px',
+                    top: '50%',
+                    transform: 'translateY(-50%)'
+                  }}></div>
+                </div>
+                <span className="h2 mb-0 fw-bold text-dark ms-2">ARTZILLA</span>
               </Link>
             </Col>
 
-            {/* Search Bar - Prominent Center Style */}
+            {/* Search Bar - Perfect Center Balance */}
             <Col xs={12} lg={7}>
               <div className="position-relative d-flex align-items-center">
                 <FormControl 
@@ -84,26 +92,32 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
                   className="border-0 bg-light rounded-pill ps-4 pe-5 py-3 flex-grow-1"
                   style={{ 
                     fontSize: '16px', 
-                    minHeight: '56px',
+                    minHeight: '52px',
                     backgroundColor: '#f8f9fa',
-                    boxShadow: '0 4px 16px rgba(0,0,0,0.15)',
-                    border: '2px solid transparent',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                    border: '1px solid transparent',
                     transition: 'all 0.3s ease'
                   }}
                 />
-                {/* Camera Icon inside search bar */}
-                <i className="ci-camera position-absolute" style={{ right: '100px', top: '50%', transform: 'translateY(-50%)', color: '#6c757d', fontSize: '18px' }}></i>
-                {/* Search Button */}
+                {/* Camera Icon inside search bar - Perfect Positioning */}
+                <i className="ci-camera position-absolute" style={{ 
+                  right: '90px', 
+                  top: '50%', 
+                  transform: 'translateY(-50%)', 
+                  color: '#6c757d', 
+                  fontSize: '16px' 
+                }}></i>
+                {/* Search Button - Perfect Size */}
                 <Button 
                   variant="danger" 
-                  className="position-absolute end-0 top-50 translate-middle-y rounded-pill px-5 py-3"
+                  className="position-absolute end-0 top-50 translate-middle-y rounded-pill px-4 py-2"
                   style={{ 
                     backgroundColor: '#dc3545', 
                     borderColor: '#dc3545',
-                    minHeight: '56px',
-                    fontSize: '16px',
+                    minHeight: '52px',
+                    fontSize: '15px',
                     fontWeight: '600',
-                    boxShadow: '0 4px 16px rgba(220, 53, 69, 0.4)',
+                    boxShadow: '0 2px 8px rgba(220, 53, 69, 0.3)',
                     transition: 'all 0.3s ease'
                   }}
                 >
@@ -112,32 +126,37 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
               </div>
             </Col>
 
-            {/* Right Icons - Exact Joom Style */}
+            {/* Right Icons - Perfect Symmetry */}
             <Col xs={12} lg={3}>
-              <div className="d-flex gap-3 align-items-center justify-content-center justify-content-lg-end">
+              <div className="d-flex gap-4 align-items-center justify-content-center justify-content-lg-end">
                 {/* Notifications */}
                 <div className="text-center position-relative">
                   <i className="ci-bell fs-4 text-dark"></i>
-                  <div className="small text-dark">Notifications</div>
-                  <Badge bg="danger" className="position-absolute top-0 start-100 translate-middle rounded-pill" style={{ fontSize: '10px', padding: '2px 4px' }}>1</Badge>
+                  <div className="small text-dark" style={{ fontSize: '12px', marginTop: '2px' }}>Notifications</div>
+                  <Badge bg="danger" className="position-absolute top-0 start-100 translate-middle rounded-pill" style={{ 
+                    fontSize: '9px', 
+                    padding: '1px 3px',
+                    minWidth: '16px',
+                    height: '16px'
+                  }}>1</Badge>
                 </div>
 
                 {/* Log in */}
                 <div className="text-center">
                   <i className="ci-user fs-4 text-dark"></i>
-                  <div className="small text-dark">Log in</div>
+                  <div className="small text-dark" style={{ fontSize: '12px', marginTop: '2px' }}>Log in</div>
                 </div>
 
                 {/* My orders */}
                 <div className="text-center">
                   <i className="ci-package fs-4 text-dark"></i>
-                  <div className="small text-dark">Orders</div>
+                  <div className="small text-dark" style={{ fontSize: '12px', marginTop: '2px' }}>My orders</div>
                 </div>
 
                 {/* Shopping cart */}
                 <div className="text-center">
                   <i className="ci-cart fs-4 text-dark"></i>
-                  <div className="small text-dark">Shopping cart</div>
+                  <div className="small text-dark" style={{ fontSize: '12px', marginTop: '2px' }}>Shopping cart</div>
                 </div>
               </div>
             </Col>
@@ -145,24 +164,24 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
         </Container>
       </div>
 
-      {/* Category Navigation Bar - Exact Joom Style */}
+      {/* Category Navigation Bar - Perfect Spacing */}
       <div className="bg-white border-top border-bottom">
         <Container>
           <Row className="py-2">
             <Col>
-              <div className="d-flex gap-2 align-items-center overflow-auto category-nav" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+              <div className="d-flex gap-3 align-items-center overflow-auto category-nav" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                 {/* All Categories Button */}
-                <Button variant="outline-dark" size="sm" className="text-nowrap border-2 me-2">
+                <Button variant="outline-dark" size="sm" className="text-nowrap border me-3">
                   <i className="ci-menu me-1"></i>
                   All categories
                 </Button>
                 
                 {/* Special Links with Icons */}
-                <Link href="/outlet" className="text-dark text-decoration-none small text-nowrap d-flex align-items-center me-3">
+                <Link href="/outlet" className="text-dark text-decoration-none small text-nowrap d-flex align-items-center me-4">
                   <i className="ci-tag text-danger me-1"></i>
                   Outlet
                 </Link>
-                <Link href="/free-gift" className="text-dark text-decoration-none small text-nowrap d-flex align-items-center me-3">
+                <Link href="/free-gift" className="text-dark text-decoration-none small text-nowrap d-flex align-items-center me-4">
                   <i className="ci-gift text-danger me-1"></i>
                   Free gift with purchase
                 </Link>
@@ -172,8 +191,8 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
                   <Link 
                     key={index}
                     href={`/category/${category.toLowerCase().replace(/\s+/g, '-')}`}
-                    className="text-muted text-decoration-none text-nowrap small me-3"
-                    style={{ fontSize: '12px' }}
+                    className="text-muted text-decoration-none text-nowrap small me-4"
+                    style={{ fontSize: '13px' }}
                   >
                     {category}
                   </Link>
