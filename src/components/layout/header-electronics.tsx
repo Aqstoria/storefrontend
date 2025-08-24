@@ -153,10 +153,10 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
                 </Link>
 
                 {/* Shopping cart with button and count */}
-                <Link href="/shop" className="text-decoration-none">
+                <Link href="/cart" className="text-decoration-none">
                   <div className="text-center position-relative">
                     <div className="position-relative">
-                      <i className="ci-cart fs-4 text-dark" style={{ fontSize: '20px', color: '#333' }}></i>
+                      <i className="ci-shopping-cart fs-4 text-dark" style={{ fontSize: '20px', color: '#333' }}></i>
                       {/* Cart count badge */}
                       <Badge bg="danger" className="position-absolute top-0 start-100 translate-middle rounded-pill" style={{ 
                         fontSize: '10px', 
