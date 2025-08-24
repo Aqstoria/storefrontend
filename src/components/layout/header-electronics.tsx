@@ -122,35 +122,53 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
             <Col xs={12} lg={3}>
               <div className="d-flex gap-4 align-items-center justify-content-center justify-content-lg-end">
                 {/* Notifications */}
-                <div className="text-center position-relative">
-                  <i className="ci-bell fs-4 text-dark" style={{ fontSize: '20px', color: '#333' }}></i>
-                  <div className="small text-dark" style={{ fontSize: '13px', marginTop: '4px', color: '#333' }}>Notifications</div>
-                  <Badge bg="danger" className="position-absolute top-0 start-100 translate-middle rounded-pill" style={{ 
-                    fontSize: '10px', 
-                    padding: '2px 4px',
-                    minWidth: '18px',
-                    height: '18px',
-                    backgroundColor: '#dc3545'
-                  }}>1</Badge>
-                </div>
+                <Link href="/notifications" className="text-decoration-none">
+                  <div className="text-center position-relative">
+                    <i className="ci-bell fs-4 text-dark" style={{ fontSize: '20px', color: '#333' }}></i>
+                    <div className="small text-dark" style={{ fontSize: '13px', marginTop: '4px', color: '#333' }}>Notifications</div>
+                    <Badge bg="danger" className="position-absolute top-0 start-100 translate-middle rounded-pill" style={{ 
+                      fontSize: '10px', 
+                      padding: '2px 4px',
+                      minWidth: '18px',
+                      height: '18px',
+                      backgroundColor: '#dc3545'
+                    }}>1</Badge>
+                  </div>
+                </Link>
 
                 {/* Log in */}
-                <div className="text-center">
-                  <i className="ci-user fs-4 text-dark" style={{ fontSize: '20px', color: '#333' }}></i>
-                  <div className="small text-dark" style={{ fontSize: '13px', marginTop: '4px', color: '#333' }}>Log in</div>
-                </div>
+                <Link href="/login" className="text-decoration-none">
+                  <div className="text-center">
+                    <i className="ci-user fs-4 text-dark" style={{ fontSize: '20px', color: '#333' }}></i>
+                    <div className="small text-dark" style={{ fontSize: '13px', marginTop: '4px', color: '#333' }}>Log in</div>
+                  </div>
+                </Link>
 
                 {/* My orders */}
-                <div className="text-center">
-                  <i className="ci-package fs-4 text-dark" style={{ fontSize: '20px', color: '#333' }}></i>
-                  <div className="small text-dark" style={{ fontSize: '13px', marginTop: '4px', color: '#333' }}>My orders</div>
-                </div>
+                <Link href="/orders" className="text-decoration-none">
+                  <div className="text-center">
+                    <i className="ci-package fs-4 text-dark" style={{ fontSize: '20px', color: '#333' }}></i>
+                    <div className="small text-dark" style={{ fontSize: '13px', marginTop: '4px', color: '#333' }}>My orders</div>
+                  </div>
+                </Link>
 
-                {/* Shopping cart */}
-                <div className="text-center">
-                  <i className="ci-cart fs-4 text-dark" style={{ fontSize: '20px', color: '#333' }}></i>
-                  <div className="small text-dark" style={{ fontSize: '13px', marginTop: '4px', color: '#333' }}>Shopping cart</div>
-                </div>
+                {/* Shopping cart with button and count */}
+                <Link href="/cart" className="text-decoration-none">
+                  <div className="text-center position-relative">
+                    <div className="position-relative">
+                      <i className="ci-cart fs-4 text-dark" style={{ fontSize: '20px', color: '#333' }}></i>
+                      {/* Cart count badge */}
+                      <Badge bg="danger" className="position-absolute top-0 start-100 translate-middle rounded-pill" style={{ 
+                        fontSize: '10px', 
+                        padding: '2px 4px',
+                        minWidth: '18px',
+                        height: '18px',
+                        backgroundColor: '#dc3545'
+                      }}>3</Badge>
+                    </div>
+                    <div className="small text-dark" style={{ fontSize: '13px', marginTop: '4px', color: '#333' }}>Shopping cart</div>
+                  </div>
+                </Link>
               </div>
             </Col>
           </Row>
