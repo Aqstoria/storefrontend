@@ -254,6 +254,56 @@
   }
 }
 
+// Header icon visibility and link styling
+.header-electronics {
+  // Ensure icons are visible
+  .ci-bell,
+  .ci-user,
+  .ci-package,
+  .ci-cart {
+    display: inline-block !important;
+    font-size: 20px !important;
+    color: #333 !important;
+    line-height: 1;
+  }
+  
+  // Make links clickable and styled
+  a {
+    text-decoration: none !important;
+    color: inherit !important;
+    
+    &:hover {
+      text-decoration: none !important;
+      
+      .ci-bell,
+      .ci-user,
+      .ci-package,
+      .ci-cart {
+        color: #dc3545 !important;
+      }
+      
+      .small {
+        color: #dc3545 !important;
+      }
+    }
+  }
+  
+  // Badge positioning
+  .badge {
+    z-index: 10;
+  }
+  
+  // Icon container styling
+  .text-center {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+}
+
 // Shimmer animation
 @keyframes shimmer {
   0%, 100% {

@@ -137,7 +137,7 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
                 </Link>
 
                 {/* Log in */}
-                <Link href="/login" className="text-decoration-none">
+                <Link href="/account" className="text-decoration-none">
                   <div className="text-center">
                     <i className="ci-user fs-4 text-dark" style={{ fontSize: '20px', color: '#333' }}></i>
                     <div className="small text-dark" style={{ fontSize: '13px', marginTop: '4px', color: '#333' }}>Log in</div>
@@ -145,7 +145,7 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
                 </Link>
 
                 {/* My orders */}
-                <Link href="/orders" className="text-decoration-none">
+                <Link href="/account/orders" className="text-decoration-none">
                   <div className="text-center">
                     <i className="ci-package fs-4 text-dark" style={{ fontSize: '20px', color: '#333' }}></i>
                     <div className="small text-dark" style={{ fontSize: '13px', marginTop: '4px', color: '#333' }}>My orders</div>
@@ -153,7 +153,7 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
                 </Link>
 
                 {/* Shopping cart with button and count */}
-                <Link href="/cart" className="text-decoration-none">
+                <Link href="/shop" className="text-decoration-none">
                   <div className="text-center position-relative">
                     <div className="position-relative">
                       <i className="ci-cart fs-4 text-dark" style={{ fontSize: '20px', color: '#333' }}></i>
