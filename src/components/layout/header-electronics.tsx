@@ -62,63 +62,55 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
         </Container>
       </div>
 
-      {/* Main Navigation Bar - EXACT Joom Layout: Logo (left) + Search (left) + Icons (right) */}
+      {/* Main Header - CORRECT Layout: Logo (left) + Search (left) + Icons (right) */}
       <div className="bg-white">
         <Container>
           <Row className="py-4 align-items-center">
-            {/* Logo - JOOM Style with red dot - LEFT SIDE */}
-            <Col xs={12} lg={2}>
+            {/* Logo - LEFT SIDE */}
+            <Col xs={12} lg={3}>
               <Link href={logoHref} className="text-decoration-none d-flex align-items-center">
-                <div className="position-relative">
-                  <span className="h2 mb-0 fw-bold text-dark">JOOM</span>
-                  <div className="bg-danger rounded-circle position-absolute" style={{ 
-                    width: '8px', 
-                    height: '8px', 
-                    left: '-12px',
-                    top: '50%',
-                    transform: 'translateY(-50%)'
-                  }}></div>
+                <div className="d-flex align-items-center">
+                  <span className="h2 mb-0 fw-bold bg-danger text-white px-2 py-1 rounded me-2">C</span>
+                  <span className="h2 mb-0 fw-bold text-dark">ARTZILLA</span>
                 </div>
               </Link>
             </Col>
 
-            {/* Search Bar - LEFT SIDE (not center) - Exact Image Match */}
+            {/* Search Bar - LEFT SIDE (next to logo) */}
             <Col xs={12} lg={6}>
-              <div className="position-relative d-flex align-items-center">
-                <FormControl 
-                  type="text" 
-                  placeholder="What are you looking for?" 
-                  className="border-0 rounded-pill ps-4 pe-5 py-3 flex-grow-1"
-                  style={{ 
-                    fontSize: '16px', 
-                    minHeight: '52px',
-                    backgroundColor: '#F0F0F5',
-                    boxShadow: 'none',
-                    border: 'none',
-                    transition: 'all 0.3s ease',
-                    color: '#333'
-                  }}
-                />
-                {/* Camera Icon inside search bar - Perfect Positioning */}
-                <i className="ci-camera position-absolute" style={{ 
-                  right: '90px', 
-                  top: '50%', 
-                  transform: 'translateY(-50%)', 
-                  color: '#6c757d', 
-                  fontSize: '16px' 
-                }}></i>
-                {/* Search Button - Perfect Size - Exact Red Color */}
+              <div className="d-flex align-items-center">
+                <div className="position-relative d-flex flex-grow-1">
+                  <FormControl 
+                    type="text" 
+                    placeholder="What are you looking for?" 
+                    className="border border-secondary rounded-start-pill ps-4 pe-5 py-3"
+                    style={{ 
+                      fontSize: '16px', 
+                      minHeight: '52px',
+                      backgroundColor: '#F0F0F5',
+                      borderRight: 'none'
+                    }}
+                  />
+                  {/* Camera Icon inside search bar */}
+                  <i className="ci-camera position-absolute" style={{ 
+                    right: '90px', 
+                    top: '50%', 
+                    transform: 'translateY(-50%)', 
+                    color: '#6c757d', 
+                    fontSize: '16px' 
+                  }}></i>
+                </div>
+                {/* Search Button - Connected to input */}
                 <Button 
                   variant="danger" 
-                  className="position-absolute end-0 top-50 translate-middle-y rounded-pill px-4 py-2"
+                  className="rounded-end-pill px-4 py-3"
                   style={{ 
                     backgroundColor: '#dc3545', 
                     borderColor: '#dc3545',
                     minHeight: '52px',
                     fontSize: '15px',
                     fontWeight: '600',
-                    boxShadow: 'none',
-                    transition: 'all 0.3s ease'
+                    borderLeft: 'none'
                   }}
                 >
                   Search
@@ -126,8 +118,8 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
               </div>
             </Col>
 
-            {/* Right Icons - RIGHT SIDE - Exact Image Match */}
-            <Col xs={12} lg={4}>
+            {/* Right Icons - RIGHT SIDE */}
+            <Col xs={12} lg={3}>
               <div className="d-flex gap-4 align-items-center justify-content-center justify-content-lg-end">
                 {/* Notifications */}
                 <div className="text-center position-relative">

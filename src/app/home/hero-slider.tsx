@@ -17,11 +17,11 @@ const HeroBannerJoom = () => {
     <Container as="section" className="pt-8 pb-6">
       <Row>
         <Col xs={12}>
-          {/* Joom Style Orange Banner */}
+          {/* Hero Banner - Exact Joom Style */}
           <div 
-            className="position-relative overflow-hidden rounded-4 p-6 p-lg-7"
+            className="position-relative overflow-hidden rounded-4 p-6 p-lg-7 mb-4"
             style={{
-              background: 'linear-gradient(135deg, #ff6b35 0%, #f7931e 100%)',
+              background: 'linear-gradient(to right, #f97316, #fb923c)',
               minHeight: '320px'
             }}
           >
@@ -33,32 +33,43 @@ const HeroBannerJoom = () => {
                 </div>
               </Col>
               <Col lg={6} className="text-center">
-                {/* Product illustration placeholder */}
+                {/* Summer hat illustration placeholder */}
                 <div className="position-relative">
                   <div 
                     className="bg-white bg-opacity-20 rounded-circle d-inline-flex align-items-center justify-content-center"
-                    style={{ width: '120px', height: '120px' }}
+                    style={{ width: '128px', height: '128px' }}
                   >
                     <i className="ci-shopping-bag fs-1 text-white"></i>
                   </div>
-                  {/* Navigation arrows like Joom */}
-                  <button 
-                    className="position-absolute top-50 start-0 translate-middle-y bg-white bg-opacity-20 border-0 rounded-circle p-2"
-                    style={{ left: '-20px' }}
-                  >
-                    <i className="ci-chevron-left text-white"></i>
-                  </button>
-                  <button 
-                    className="position-absolute top-50 end-0 translate-middle-y bg-white bg-opacity-20 border-0 rounded-circle p-2"
-                    style={{ right: '-20px' }}
-                  >
-                    <i className="ci-chevron-right text-white"></i>
-                  </button>
                 </div>
               </Col>
             </Row>
             
-            {/* Pagination dots at bottom */}
+            {/* Navigation arrows - exactly like reference */}
+            <button 
+              className="position-absolute top-50 start-0 translate-middle-y bg-white bg-opacity-20 border-0 rounded-circle d-flex align-items-center justify-content-center text-white"
+              style={{ 
+                left: '1rem', 
+                width: '32px', 
+                height: '32px',
+                fontSize: '20px'
+              }}
+            >
+              ‹
+            </button>
+            <button 
+              className="position-absolute top-50 end-0 translate-middle-y bg-white bg-opacity-20 border-0 rounded-circle d-flex align-items-center justify-content-center text-white"
+              style={{ 
+                right: '1rem', 
+                width: '32px', 
+                height: '32px',
+                fontSize: '20px'
+              }}
+            >
+              ›
+            </button>
+            
+            {/* Pagination dots at bottom - exactly like reference */}
             <div className="position-absolute bottom-0 start-50 translate-middle-x mb-3">
               <div className="d-flex gap-2">
                 <div className="bg-white rounded-circle" style={{ width: '8px', height: '8px' }}></div>
