@@ -254,6 +254,121 @@
   }
 }
 
+// Header Styles - Perfect Symmetry and Image Match
+.header-electronics {
+  // Search bar exact styling
+  .form-control {
+    &::placeholder {
+      color: #6c757d !important;
+      font-weight: 400;
+    }
+    
+    &:focus {
+      background-color: #F0F0F5 !important;
+      box-shadow: none !important;
+      border: none !important;
+    }
+  }
+  
+  // Icon perfect alignment
+  .ci-bell,
+  .ci-user,
+  .ci-package,
+  .ci-cart {
+    display: block;
+    margin: 0 auto;
+    line-height: 1;
+  }
+  
+  // Text labels perfect spacing
+  .text-center {
+    .small {
+      display: block;
+      margin-top: 4px !important;
+      line-height: 1.2;
+    }
+  }
+  
+  // Notification badge perfect positioning
+  .badge {
+    top: -2px !important;
+    right: -8px !important;
+    z-index: 10;
+  }
+  
+  // Perfect spacing between icon groups
+  .gap-4 {
+    gap: 2rem !important;
+  }
+  
+  // Search button perfect styling
+  .btn-danger {
+    &:hover {
+      background-color: #c82333 !important;
+      border-color: #c82333 !important;
+    }
+    
+    &:focus {
+      box-shadow: none !important;
+    }
+  }
+  
+  // Camera icon perfect positioning
+  .ci-camera {
+    pointer-events: none;
+    z-index: 5;
+  }
+  
+  // Logo perfect alignment
+  .h2 {
+    line-height: 1;
+    margin: 0;
+  }
+  
+  // Category nav perfect scrolling
+  .category-nav {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+}
+
+// Responsive header adjustments
+@media (max-width: 991px) {
+  .header-electronics {
+    .py-4 {
+      padding-top: 1rem !important;
+      padding-bottom: 1rem !important;
+    }
+    
+    .gap-4 {
+      gap: 1rem !important;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .header-electronics {
+    .form-control {
+      min-height: 48px !important;
+      font-size: 14px !important;
+    }
+    
+    .btn-danger {
+      min-height: 48px !important;
+      font-size: 14px !important;
+    }
+    
+    .ci-camera {
+      right: 80px !important;
+      font-size: 14px !important;
+    }
+  }
+}
+
 // Shimmer animation
 @keyframes shimmer {
   0%, 100% {

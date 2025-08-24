@@ -62,10 +62,10 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
         </Container>
       </div>
 
-      {/* Main Navigation Bar - Exact Joom Style */}
+      {/* Main Navigation Bar - Exact Joom Style with 100% Symmetry */}
       <div className="bg-white">
         <Container>
-          <Row className="py-3 align-items-center">
+          <Row className="py-4 align-items-center">
             {/* Logo - Cartzilla with red C - Fixed Positioning */}
             <Col xs={12} lg={2}>
               <Link href={logoHref} className="text-decoration-none d-flex align-items-center">
@@ -83,20 +83,21 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
               </Link>
             </Col>
 
-            {/* Search Bar - Perfect Center Balance */}
+            {/* Search Bar - Perfect Center Balance - Exact Image Match */}
             <Col xs={12} lg={7}>
               <div className="position-relative d-flex align-items-center">
                 <FormControl 
                   type="text" 
                   placeholder="What are you looking for?" 
-                  className="border-0 bg-light rounded-pill ps-4 pe-5 py-3 flex-grow-1"
+                  className="border-0 rounded-pill ps-4 pe-5 py-3 flex-grow-1"
                   style={{ 
                     fontSize: '16px', 
                     minHeight: '52px',
-                    backgroundColor: '#f8f9fa',
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-                    border: '1px solid transparent',
-                    transition: 'all 0.3s ease'
+                    backgroundColor: '#F0F0F5',
+                    boxShadow: 'none',
+                    border: 'none',
+                    transition: 'all 0.3s ease',
+                    color: '#333'
                   }}
                 />
                 {/* Camera Icon inside search bar - Perfect Positioning */}
@@ -107,7 +108,7 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
                   color: '#6c757d', 
                   fontSize: '16px' 
                 }}></i>
-                {/* Search Button - Perfect Size */}
+                {/* Search Button - Perfect Size - Exact Red Color */}
                 <Button 
                   variant="danger" 
                   className="position-absolute end-0 top-50 translate-middle-y rounded-pill px-4 py-2"
@@ -117,7 +118,7 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
                     minHeight: '52px',
                     fontSize: '15px',
                     fontWeight: '600',
-                    boxShadow: '0 2px 8px rgba(220, 53, 69, 0.3)',
+                    boxShadow: 'none',
                     transition: 'all 0.3s ease'
                   }}
                 >
@@ -126,37 +127,38 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
               </div>
             </Col>
 
-            {/* Right Icons - Perfect Symmetry */}
+            {/* Right Icons - Perfect Symmetry - Exact Image Match */}
             <Col xs={12} lg={3}>
               <div className="d-flex gap-4 align-items-center justify-content-center justify-content-lg-end">
                 {/* Notifications */}
                 <div className="text-center position-relative">
-                  <i className="ci-bell fs-4 text-dark"></i>
-                  <div className="small text-dark" style={{ fontSize: '12px', marginTop: '2px' }}>Notifications</div>
+                  <i className="ci-bell fs-4 text-dark" style={{ fontSize: '20px', color: '#333' }}></i>
+                  <div className="small text-dark" style={{ fontSize: '13px', marginTop: '4px', color: '#333' }}>Notifications</div>
                   <Badge bg="danger" className="position-absolute top-0 start-100 translate-middle rounded-pill" style={{ 
-                    fontSize: '9px', 
-                    padding: '1px 3px',
-                    minWidth: '16px',
-                    height: '16px'
+                    fontSize: '10px', 
+                    padding: '2px 4px',
+                    minWidth: '18px',
+                    height: '18px',
+                    backgroundColor: '#dc3545'
                   }}>1</Badge>
                 </div>
 
                 {/* Log in */}
                 <div className="text-center">
-                  <i className="ci-user fs-4 text-dark"></i>
-                  <div className="small text-dark" style={{ fontSize: '12px', marginTop: '2px' }}>Log in</div>
+                  <i className="ci-user fs-4 text-dark" style={{ fontSize: '20px', color: '#333' }}></i>
+                  <div className="small text-dark" style={{ fontSize: '13px', marginTop: '4px', color: '#333' }}>Log in</div>
                 </div>
 
                 {/* My orders */}
                 <div className="text-center">
-                  <i className="ci-package fs-4 text-dark"></i>
-                  <div className="small text-dark" style={{ fontSize: '12px', marginTop: '2px' }}>My orders</div>
+                  <i className="ci-package fs-4 text-dark" style={{ fontSize: '20px', color: '#333' }}></i>
+                  <div className="small text-dark" style={{ fontSize: '13px', marginTop: '4px', color: '#333' }}>My orders</div>
                 </div>
 
                 {/* Shopping cart */}
                 <div className="text-center">
-                  <i className="ci-cart fs-4 text-dark"></i>
-                  <div className="small text-dark" style={{ fontSize: '12px', marginTop: '2px' }}>Shopping cart</div>
+                  <i className="ci-cart fs-4 text-dark" style={{ fontSize: '20px', color: '#333' }}></i>
+                  <div className="small text-dark" style={{ fontSize: '13px', marginTop: '4px', color: '#333' }}>Shopping cart</div>
                 </div>
               </div>
             </Col>
