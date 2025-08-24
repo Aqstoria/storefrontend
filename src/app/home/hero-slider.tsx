@@ -17,42 +17,48 @@ const HeroBannerJoom = () => {
     <Container as="section" className="pt-8 pb-6">
       <Row>
         <Col xs={12}>
-          {/* Hero Banner - Exact Joom Style */}
+          {/* Hero Banner - EXACT Joom Style */}
           <div 
-            className="position-relative overflow-hidden rounded-4 p-6 p-lg-7 mb-4"
+            className="position-relative overflow-hidden rounded-4 p-8 mb-4"
             style={{
-              background: 'linear-gradient(to right, #f97316, #fb923c)',
+              background: 'linear-gradient(135deg, #ff6b35 0%, #f7931e 100%)',
               minHeight: '320px'
             }}
           >
             <Row className="align-items-center h-100">
               <Col lg={6}>
                 <div className="text-white">
-                  <h1 className="display-4 fw-bold mb-2">Outlet</h1>
-                  <p className="fs-5 mb-4">Summer Sale</p>
+                  <h1 className="display-4 fw-bold mb-3" style={{ fontSize: '2.5rem', lineHeight: '1.2' }}>Outlet</h1>
+                  <p className="fs-4 mb-0" style={{ fontSize: '1.25rem', opacity: '0.95' }}>Summer Sale</p>
                 </div>
               </Col>
               <Col lg={6} className="text-center">
-                {/* Summer hat illustration placeholder */}
-                <div className="position-relative">
+                {/* Summer hat illustration - exactly like Joom */}
+                <div className="position-relative d-flex justify-content-center">
                   <div 
-                    className="bg-white bg-opacity-20 rounded-circle d-inline-flex align-items-center justify-content-center"
-                    style={{ width: '128px', height: '128px' }}
+                    className="bg-white bg-opacity-20 rounded-circle d-flex align-items-center justify-content-center"
+                    style={{ 
+                      width: '140px', 
+                      height: '140px',
+                      border: '2px solid rgba(255, 255, 255, 0.3)'
+                    }}
                   >
-                    <i className="ci-shopping-bag fs-1 text-white"></i>
+                    {/* Summer hat icon placeholder */}
+                    <i className="ci-shopping-bag fs-1 text-white" style={{ fontSize: '3rem' }}></i>
                   </div>
                 </div>
               </Col>
             </Row>
             
-            {/* Navigation arrows - exactly like reference */}
+            {/* Navigation arrows - EXACT Joom style */}
             <button 
               className="position-absolute top-50 start-0 translate-middle-y bg-white bg-opacity-20 border-0 rounded-circle d-flex align-items-center justify-content-center text-white"
               style={{ 
-                left: '1rem', 
-                width: '32px', 
-                height: '32px',
-                fontSize: '20px'
+                left: '1.5rem', 
+                width: '40px', 
+                height: '40px',
+                fontSize: '24px',
+                border: '1px solid rgba(255, 255, 255, 0.3)'
               }}
             >
               ‹
@@ -60,21 +66,22 @@ const HeroBannerJoom = () => {
             <button 
               className="position-absolute top-50 end-0 translate-middle-y bg-white bg-opacity-20 border-0 rounded-circle d-flex align-items-center justify-content-center text-white"
               style={{ 
-                right: '1rem', 
-                width: '32px', 
-                height: '32px',
-                fontSize: '20px'
+                right: '1.5rem', 
+                width: '40px', 
+                height: '40px',
+                fontSize: '24px',
+                border: '1px solid rgba(255, 255, 255, 0.3)'
               }}
             >
               ›
             </button>
             
-            {/* Pagination dots at bottom - exactly like reference */}
-            <div className="position-absolute bottom-0 start-50 translate-middle-x mb-3">
-              <div className="d-flex gap-2">
-                <div className="bg-white rounded-circle" style={{ width: '8px', height: '8px' }}></div>
-                <div className="bg-white bg-opacity-50 rounded-circle" style={{ width: '8px', height: '8px' }}></div>
-                <div className="bg-white bg-opacity-50 rounded-circle" style={{ width: '8px', height: '8px' }}></div>
+            {/* Pagination dots - EXACT Joom style */}
+            <div className="position-absolute bottom-0 start-50 translate-middle-x mb-4">
+              <div className="d-flex gap-3">
+                <div className="bg-white rounded-circle" style={{ width: '10px', height: '10px' }}></div>
+                <div className="bg-white bg-opacity-50 rounded-circle" style={{ width: '10px', height: '10px' }}></div>
+                <div className="bg-white bg-opacity-50 rounded-circle" style={{ width: '10px', height: '10px' }}></div>
               </div>
             </div>
           </div>
