@@ -14,6 +14,7 @@ import BrandsSection from '../brands/BrandsSection'
 import { ProductService } from '@/services/products'
 import { Product, Category, Brand } from '@/services/products'
 import { CategoriesProvider } from '@/contexts/categories-context'
+import Button from 'react-bootstrap/Button'
 
 export const revalidate = 60 // ISR: Regenerate every 60 seconds
 
@@ -69,41 +70,65 @@ export default async function ElectronicsHomePage() {
         {/* Hero banner - Joom Style Outlet */}
         <HeroBannerJoom />
 
-        {/* Weekly Promotion Section - 3 Cards */}
+        {/* Weekly Promotion Section - EXACT Joom Layout: 1 small left + 3 large right */}
         <Container as="section" className="py-4">
           <h4 className="mb-4">Weekly promotion</h4>
           <Row className="g-3">
-            {featuredProducts.slice(0, 3).map((product, index) => {
-              const titles = ['Accessories for less', 'Hot deals', 'All sale items here']
-              const subtitles = ['Summer Sale', 'Summer Sale', 'Summer Sale']
-              const colors = ['success', 'warning', 'info']
-              
-              return (
-                <Col lg={4} md={6} key={product.id}>
-                  <div className={`bg-${colors[index]} bg-opacity-10 rounded-3 p-4 h-100 position-relative`}>
-                    <h5 className="mb-2">{titles[index]}</h5>
-                    <p className="text-muted small mb-3">{subtitles[index]}</p>
-                    <div className="d-flex justify-content-between align-items-end">
-                      <div>
-                        <p className="mb-0 fw-bold text-danger">${ProductService.getProductPrice(product).toFixed(2)}</p>
-                        <small className="text-muted">{product.name}</small>
-                      </div>
-                      {product.images && product.images.length > 0 && (
-                        <div className="position-absolute end-0 bottom-0 me-3">
-                          <Image 
-                            src={ProductService.getProductImage(product)} 
-                            width={60} 
-                            height={60} 
-                            alt={product.name}
-                            className="rounded"
-                          />
+            {/* Small card on the left */}
+            <Col lg={3}>
+              <div className="bg-warning bg-opacity-20 rounded-3 p-4 h-100">
+                <h5 className="mb-2">Low prices on trending items</h5>
+                <p className="text-muted small mb-3">Summer Sale</p>
+                
+                <div className="text-center">
+                  {trendingProducts[0] && trendingProducts[0].images && trendingProducts[0].images.length > 0 && (
+                    <Image 
+                      src={ProductService.getProductImage(trendingProducts[0])} 
+                      width={120} 
+                      height={120} 
+                      alt={trendingProducts[0].name}
+                      className="mb-3"
+                    />
+                  )}
+                </div>
+              </div>
+            </Col>
+            
+            {/* 3 large cards on the right */}
+            <Col lg={9}>
+              <Row className="g-3">
+                {featuredProducts.slice(0, 3).map((product, index) => {
+                  const titles = ['Bestsellers for less', 'Hot deals', 'All sale items here']
+                  const subtitles = ['Summer Sale', 'Summer Sale', 'Summer Sale']
+                  
+                  return (
+                    <Col lg={4} key={product.id}>
+                      <div className="bg-warning bg-opacity-20 rounded-3 p-4 h-100 position-relative">
+                        <h5 className="mb-2">{titles[index]}</h5>
+                        <p className="text-muted small mb-3">{subtitles[index]}</p>
+                        <div className="d-flex justify-content-between align-items-end">
+                          <div>
+                            <p className="mb-0 fw-bold text-danger">${ProductService.getProductPrice(product).toFixed(2)}</p>
+                            <small className="text-muted">{product.name}</small>
+                          </div>
+                          {product.images && product.images.length > 0 && (
+                            <div className="position-absolute end-0 bottom-0 me-3">
+                              <Image 
+                                src={ProductService.getProductImage(product)} 
+                                width={80} 
+                                height={80} 
+                                alt={product.name}
+                                className="rounded"
+                              />
+                            </div>
+                          )}
                         </div>
-                      )}
-                    </div>
-                  </div>
-                </Col>
-              )
-            })}
+                      </div>
+                    </Col>
+                  )
+                })}
+              </Row>
+            </Col>
           </Row>
         </Container>
 
@@ -119,6 +144,11 @@ export default async function ElectronicsHomePage() {
               {/* Large featured item */}
               {featuredProducts[0] && (
                 <div className="bg-light rounded-3 p-4 h-100 position-relative">
+                  {/* Heart icon - top right */}
+                  <div className="position-absolute top-0 end-0 m-3">
+                    <i className="ci-heart text-muted" style={{ fontSize: '18px', cursor: 'pointer' }}></i>
+                  </div>
+                  
                   <div className="position-absolute top-0 start-0 m-3">
                     <span className="badge bg-warning">Top buy today</span>
                   </div>
@@ -134,9 +164,13 @@ export default async function ElectronicsHomePage() {
                     )}
                     <h6 className="mb-2">{featuredProducts[0].name}</h6>
                     <p className="text-danger fw-bold mb-2">${ProductService.getProductPrice(featuredProducts[0]).toFixed(2)}</p>
-                    <div className="d-flex align-items-center justify-content-center">
+                    <div className="d-flex align-items-center justify-content-center mb-3">
                       <div className="text-warning me-1">★★★★★</div>
                       <small className="text-muted">(120)</small>
+                    </div>
+                    {/* Shopping cart icon - bottom */}
+                    <div className="text-center">
+                      <i className="ci-cart text-muted" style={{ fontSize: '18px', cursor: 'pointer' }}></i>
                     </div>
                   </div>
                 </div>
@@ -148,7 +182,12 @@ export default async function ElectronicsHomePage() {
                 {trendingProducts.slice(0, 6).map((product, index) => (
                   <Col lg={4} md={6} sm={6} xs={6} key={product.id}>
                     <Link href={ProductService.getProductUrl(product)} className="text-decoration-none">
-                      <div className="bg-white border rounded-3 p-3 h-100 text-center product-card">
+                      <div className="bg-white border rounded-3 p-3 h-100 text-center product-card position-relative">
+                        {/* Heart icon - top right */}
+                        <div className="position-absolute top-0 end-0 m-2">
+                          <i className="ci-heart text-muted" style={{ fontSize: '16px', cursor: 'pointer' }}></i>
+                        </div>
+                        
                         {product.images && product.images.length > 0 ? (
                           <Image 
                             src={ProductService.getProductImage(product)} 
@@ -165,9 +204,13 @@ export default async function ElectronicsHomePage() {
                         )}
                         <h6 className="small mb-1 text-dark text-truncate" style={{ fontSize: '12px' }}>{product.name}</h6>
                         <p className="text-danger fw-bold mb-1">${ProductService.getProductPrice(product).toFixed(2)}</p>
-                        <div className="d-flex align-items-center justify-content-center">
+                        <div className="d-flex align-items-center justify-content-center mb-2">
                           <div className="text-warning me-1" style={{ fontSize: '12px' }}>★★★★</div>
                           <small className="text-muted">(85)</small>
+                        </div>
+                        {/* Shopping cart icon - bottom */}
+                        <div className="text-center">
+                          <i className="ci-cart text-muted" style={{ fontSize: '16px', cursor: 'pointer' }}></i>
                         </div>
                       </div>
                     </Link>
@@ -206,7 +249,12 @@ export default async function ElectronicsHomePage() {
                 {featuredProducts.slice(3, 9).map((product) => (
                   <div key={product.id} className="flex-shrink-0" style={{ minWidth: '150px' }}>
                     <Link href={ProductService.getProductUrl(product)} className="text-decoration-none">
-                      <div className="bg-white border rounded-3 p-3 text-center">
+                      <div className="bg-white border rounded-3 p-3 text-center position-relative">
+                        {/* Heart icon - top right */}
+                        <div className="position-absolute top-0 end-0 m-2">
+                          <i className="ci-heart text-muted" style={{ fontSize: '14px', cursor: 'pointer' }}></i>
+                        </div>
+                        
                         {product.images && product.images.length > 0 ? (
                           <Image 
                             src={ProductService.getProductImage(product)} 
@@ -221,7 +269,11 @@ export default async function ElectronicsHomePage() {
                           </div>
                         )}
                         <p className="text-danger fw-bold mb-1 small">${ProductService.getProductPrice(product).toFixed(2)}</p>
-                        <small className="text-muted d-block">From USA</small>
+                        <small className="text-muted d-block mb-2">From USA</small>
+                        {/* Shopping cart icon - bottom */}
+                        <div className="text-center">
+                          <i className="ci-cart text-muted" style={{ fontSize: '14px', cursor: 'pointer' }}></i>
+                        </div>
                       </div>
                     </Link>
                   </div>
@@ -261,12 +313,17 @@ export default async function ElectronicsHomePage() {
           </div>
           
           {/* Multiple rows of products */}
-                      {[0, 6, 12, 18].map((startIndex) => (
-              <Row className="g-3 mb-4" key={startIndex}>
-                {featuredProducts.slice(startIndex, startIndex + 6).map((product) => (
-                  <Col xl={2} lg={3} md={4} sm={6} xs={6} key={product.id}>
+          {[0, 6, 12, 18].map((startIndex) => (
+            <Row className="g-3 mb-4" key={startIndex}>
+              {featuredProducts.slice(startIndex, startIndex + 6).map((product) => (
+                <Col xl={2} lg={3} md={4} sm={6} xs={6} key={product.id}>
                   <Link href={ProductService.getProductUrl(product)} className="text-decoration-none">
-                    <div className="bg-white border rounded-3 p-3 text-center h-100">
+                    <div className="bg-white border rounded-3 p-3 text-center h-100 position-relative">
+                      {/* Heart icon - top right */}
+                      <div className="position-absolute top-0 end-0 m-2">
+                        <i className="ci-heart text-muted" style={{ fontSize: '14px', cursor: 'pointer' }}></i>
+                      </div>
+                      
                       {product.images && product.images.length > 0 ? (
                         <Image 
                           src={ProductService.getProductImage(product)} 
@@ -282,9 +339,13 @@ export default async function ElectronicsHomePage() {
                       )}
                       <h6 className="small mb-1 text-dark text-truncate">{product.name}</h6>
                       <p className="text-danger fw-bold mb-1">${ProductService.getProductPrice(product).toFixed(2)}</p>
-                      <div className="d-flex align-items-center justify-content-center">
+                      <div className="d-flex align-items-center justify-content-center mb-2">
                         <div className="text-warning me-1">★★★★</div>
                         <small className="text-muted">(42)</small>
+                      </div>
+                      {/* Shopping cart icon - bottom */}
+                      <div className="text-center">
+                        <i className="ci-cart text-muted" style={{ fontSize: '14px', cursor: 'pointer' }}></i>
                       </div>
                     </div>
                   </Link>
@@ -292,6 +353,13 @@ export default async function ElectronicsHomePage() {
               ))}
             </Row>
           ))}
+          
+          {/* Show more button - exactly like Joom.com */}
+          <div className="text-center mt-4">
+            <Button variant="dark" size="lg" className="px-5 py-3">
+              Show more
+            </Button>
+          </div>
         </Container>
 
         {/* Newsletter Signup Section - Full Width with Theme Colors */}

@@ -62,15 +62,15 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
         </Container>
       </div>
 
-      {/* Main Navigation Bar - Exact Joom Style with 100% Symmetry */}
+      {/* Main Navigation Bar - EXACT Joom Layout: Logo (left) + Search (left) + Icons (right) */}
       <div className="bg-white">
         <Container>
           <Row className="py-4 align-items-center">
-            {/* Logo - Cartzilla with red C - Fixed Positioning */}
+            {/* Logo - JOOM Style with red dot - LEFT SIDE */}
             <Col xs={12} lg={2}>
               <Link href={logoHref} className="text-decoration-none d-flex align-items-center">
                 <div className="position-relative">
-                  <span className="h2 mb-0 fw-bold" style={{ color: '#dc3545' }}>C</span>
+                  <span className="h2 mb-0 fw-bold text-dark">JOOM</span>
                   <div className="bg-danger rounded-circle position-absolute" style={{ 
                     width: '8px', 
                     height: '8px', 
@@ -79,12 +79,11 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
                     transform: 'translateY(-50%)'
                   }}></div>
                 </div>
-                <span className="h2 mb-0 fw-bold text-dark ms-2">ARTZILLA</span>
               </Link>
             </Col>
 
-            {/* Search Bar - Perfect Center Balance - Exact Image Match */}
-            <Col xs={12} lg={7}>
+            {/* Search Bar - LEFT SIDE (not center) - Exact Image Match */}
+            <Col xs={12} lg={6}>
               <div className="position-relative d-flex align-items-center">
                 <FormControl 
                   type="text" 
@@ -127,8 +126,8 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
               </div>
             </Col>
 
-            {/* Right Icons - Perfect Symmetry - Exact Image Match */}
-            <Col xs={12} lg={3}>
+            {/* Right Icons - RIGHT SIDE - Exact Image Match */}
+            <Col xs={12} lg={4}>
               <div className="d-flex gap-4 align-items-center justify-content-center justify-content-lg-end">
                 {/* Notifications */}
                 <div className="text-center position-relative">
