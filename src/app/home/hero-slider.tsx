@@ -14,7 +14,7 @@ import 'swiper/css/pagination'
 
 const HeroBannerJoom = () => {
   return (
-    <Container as="section" className="py-6">
+    <Container as="section" className="pt-8 pb-6">
       <Row>
         <Col xs={12}>
           {/* Joom Style Orange Banner */}
