@@ -254,33 +254,6 @@
   }
 }
 
-// Header icon hover effects
-.header-electronics {
-  .text-center {
-    transition: all 0.2s ease;
-    
-    &:hover {
-      transform: translateY(-2px);
-      
-      .ci-bell,
-      .ci-user,
-      .ci-package,
-      .ci-cart {
-        color: #dc3545 !important;
-      }
-      
-      .small {
-        color: #dc3545 !important;
-      }
-    }
-  }
-  
-  // Badge positioning fix
-  .badge {
-    z-index: 10;
-  }
-}
-
 // Shimmer animation
 @keyframes shimmer {
   0%, 100% {
