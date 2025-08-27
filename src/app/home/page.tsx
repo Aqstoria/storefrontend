@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import HeaderElectronics from '@/components/layout/header-electronics'
-import HeroBannerJoom from './hero-slider'
 import WeeklyPromotionSection from './special-offers'
 import SubscriptionVlogElectronics from '@/components/shop/subscription-vlog-electronics'
 import FooterElectronics from '@/components/layout/footer-electronics'
@@ -11,12 +10,13 @@ import Col from 'react-bootstrap/Col'
 import Nav from 'react-bootstrap/Nav'
 import NavLink from 'react-bootstrap/NavLink'
 import BrandsSection from '../brands/BrandsSection'
-import { ProductService } from '@/services/products'
+import { ProductService } from '@/services/product-service'
 import { Product, Category, Brand } from '@/services/products'
 import { CategoriesProvider } from '@/contexts/categories-context'
 import Button from 'react-bootstrap/Button'
 import React from 'react'
 import AcrossBordersSection from '@/components/sections/across-borders-section'
+import HeroBannerJoom from '@/components/sections/hero-banner-joom'
 
 export const revalidate = 60 // ISR: Regenerate every 60 seconds
 
@@ -69,11 +69,11 @@ export default async function ElectronicsHomePage() {
 
       {/* Page content */}
       <main className="content-wrapper">
-        {/* Hero banner - Joom Style Outlet */}
+        {/* Hero Banner - Joom Style Outlet */}
         <HeroBannerJoom />
-
+        
         {/* Weekly Promotion Section - EXACT Joom Layout: 1 small left + 3 large right */}
-        <Container as="section" className="py-4">
+        <Container as="section" className="py-5 mt-4">
           <h4 className="mb-4">Weekly promotion</h4>
           <Row className="g-3">
             {/* Small card on the left */}

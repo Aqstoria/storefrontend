@@ -1,94 +1,113 @@
 'use client'
 
-import { useState } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
+import React, { useState } from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation, Pagination, Autoplay } from 'swiper/modules'
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/pagination'
+import Button from 'react-bootstrap/Button'
 
-const HeroBannerJoom = () => {
+export default function HeroBannerJoom() {
+  const [currentSlide, setCurrentSlide] = useState(0)
+  
+  const slides = [
+    {
+      title: 'Outlet',
+      subtitle: 'Summer Sale',
+      description: 'Discover amazing deals on trending products',
+      buttonText: 'Shop Now',
+      buttonLink: '/shop'
+    }
+  ]
+
   return (
-    <Container as="section" className="pt-8 pb-6">
-      <Row>
-        <Col xs={12}>
-          {/* Hero Banner - EXACT Joom Style */}
-          <div 
-            className="position-relative overflow-hidden rounded-4 p-8 mb-4"
-            style={{
-              background: 'linear-gradient(135deg, #ff6b35 0%, #f7931e 100%)',
-              minHeight: '320px'
-            }}
-          >
-            <Row className="align-items-center h-100">
-              <Col lg={6}>
-                <div className="text-white">
-                  <h1 className="display-4 fw-bold mb-3" style={{ fontSize: '2.5rem', lineHeight: '1.2' }}>Outlet</h1>
-                  <p className="fs-4 mb-0" style={{ fontSize: '1.25rem', opacity: '0.95' }}>Summer Sale</p>
-                </div>
+    <section className="hero-banner-joom">
+      <Container fluid className="px-0">
+        <div 
+          className="hero-banner position-relative d-flex align-items-center"
+          style={{
+            background: 'linear-gradient(135deg, #ff6b35 0%, #f7931e 100%)',
+            minHeight: '500px',
+            padding: '80px 0'
+          }}
+        >
+          {/* Content */}
+          <Container>
+            <Row className="align-items-center">
+              <Col lg={6} className="text-white">
+                <h1 className="display-4 fw-bold mb-3" style={{ fontSize: '3.5rem' }}>
+                  {slides[currentSlide].title}
+                </h1>
+                <h2 className="h3 mb-4" style={{ fontSize: '1.5rem', opacity: 0.9 }}>
+                  {slides[currentSlide].subtitle}
+                </h2>
+                <p className="lead mb-4" style={{ fontSize: '1.1rem', opacity: 0.8 }}>
+                  {slides[currentSlide].description}
+                </p>
+                <Button 
+                  variant="light" 
+                  size="lg" 
+                  className="px-4 py-3 fw-bold"
+                  href={slides[currentSlide].buttonLink}
+                >
+                  {slides[currentSlide].buttonText}
+                </Button>
               </Col>
+              
+              {/* Illustration - Right Side */}
               <Col lg={6} className="text-center">
-                {/* Summer hat illustration - exactly like Joom */}
-                <div className="position-relative d-flex justify-content-center">
+                <div className="hero-illustration">
+                  {/* Placeholder for illustration - you can add your own image here */}
                   <div 
-                    className="bg-white bg-opacity-20 rounded-circle d-flex align-items-center justify-content-center"
+                    className="d-flex align-items-center justify-content-center"
                     style={{ 
-                      width: '140px', 
-                      height: '140px',
-                      border: '2px solid rgba(255, 255, 255, 0.3)'
+                      height: '300px',
+                      color: 'rgba(255,255,255,0.1)',
+                      fontSize: '4rem'
                     }}
                   >
-                    {/* Summer hat icon placeholder */}
-                    <i className="ci-shopping-bag fs-1 text-white" style={{ fontSize: '3rem' }}></i>
+                    🛍️
                   </div>
                 </div>
               </Col>
             </Row>
-            
-            {/* Navigation arrows - EXACT Joom style */}
-            <button 
-              className="position-absolute top-50 start-0 translate-middle-y bg-white bg-opacity-20 border-0 rounded-circle d-flex align-items-center justify-content-center text-white"
-              style={{ 
-                left: '1.5rem', 
-                width: '40px', 
-                height: '40px',
-                fontSize: '24px',
-                border: '1px solid rgba(255, 255, 255, 0.3)'
-              }}
-            >
-              ‹
-            </button>
-            <button 
-              className="position-absolute top-50 end-0 translate-middle-y bg-white bg-opacity-20 border-0 rounded-circle d-flex align-items-center justify-content-center text-white"
-              style={{ 
-                right: '1.5rem', 
-                width: '40px', 
-                height: '40px',
-                fontSize: '24px',
-                border: '1px solid rgba(255, 255, 255, 0.3)'
-              }}
-            >
-              ›
-            </button>
-            
-            {/* Pagination dots - EXACT Joom style */}
-            <div className="position-absolute bottom-0 start-50 translate-middle-x mb-4">
-              <div className="d-flex gap-3">
-                <div className="bg-white rounded-circle" style={{ width: '10px', height: '10px' }}></div>
-                <div className="bg-white bg-opacity-50 rounded-circle" style={{ width: '10px', height: '10px' }}></div>
-                <div className="bg-white bg-opacity-50 rounded-circle" style={{ width: '10px', height: '10px' }}></div>500
-              </div>
+          </Container>
+
+          {/* Navigation Arrows */}
+          <button 
+            className="btn btn-outline-light rounded-circle position-absolute start-0 top-50 translate-middle-y ms-4"
+            style={{ width: '50px', height: '50px' }}
+            onClick={() => setCurrentSlide(0)}
+          >
+            <i className="ci-arrow-left fs-4"></i>
+          </button>
+          
+          <button 
+            className="btn btn-outline-light rounded-circle position-absolute end-0 top-50 translate-middle-y me-4"
+            style={{ width: '50px', height: '50px' }}
+            onClick={() => setCurrentSlide(0)}
+          >
+            <i className="ci-arrow-right fs-4"></i>
+          </button>
+
+          {/* Pagination Dots */}
+          <div className="position-absolute bottom-0 start-50 translate-middle-x mb-4">
+            <div className="d-flex gap-2">
+              <div 
+                className="bg-white rounded-circle" 
+                style={{ width: '12px', height: '12px', opacity: 1 }}
+              ></div>
+              <div 
+                className="bg-white rounded-circle" 
+                style={{ width: '12px', height: '12px', opacity: 0.5 }}
+              ></div>
+              <div 
+                className="bg-white rounded-circle" 
+                style={{ width: '12px', height: '12px', opacity: 0.5 }}
+              ></div>
             </div>
           </div>
-        </Col>
-      </Row>
-    </Container>
+        </div>
+      </Container>
+    </section>
   )
 }
-
-export default HeroBannerJoom
