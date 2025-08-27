@@ -88,11 +88,11 @@ export default async function ElectronicsHomePage() {
                   <div 
                     className="rounded mb-3 mx-auto d-flex align-items-center justify-content-center"
                     style={{ 
-                      width: '120px', 
-                      height: '120px',
+                      width: '700px', 
+                      height: '300px',
                       background: 'linear-gradient(135deg, #ff6b35 0%, #f7931e 100%)',
                       color: 'white',
-                      fontSize: '14px',
+                      fontSize: '24px',
                       fontWeight: '600',
                       textAlign: 'center',
                       lineHeight: '1.2'
@@ -120,11 +120,11 @@ export default async function ElectronicsHomePage() {
                       <div 
                         className="rounded d-flex align-items-center justify-content-center"
                         style={{ 
-                          width: '60px', 
-                          height: '60px',
+                          width: '700px', 
+                          height: '300px',
                           background: 'linear-gradient(135deg, #ffd700 0%, #ffb347 100%)',
                           color: 'white',
-                          fontSize: '10px',
+                          fontSize: '24px',
                           fontWeight: '600',
                           textAlign: 'center',
                           lineHeight: '1.1'
@@ -135,11 +135,11 @@ export default async function ElectronicsHomePage() {
                       <div 
                         className="rounded d-flex align-items-center justify-content-center"
                         style={{ 
-                          width: '60px', 
-                          height: '60px',
+                          width: '700px', 
+                          height: '300px',
                           background: 'linear-gradient(135deg, #ff69b4 0%, #ff1493 100%)',
                           color: 'white',
-                          fontSize: '10px',
+                          fontSize: '24px',
                           fontWeight: '600',
                           textAlign: 'center',
                           lineHeight: '1.1'
@@ -169,11 +169,11 @@ export default async function ElectronicsHomePage() {
                       <div 
                         className="rounded d-flex align-items-center justify-content-center"
                         style={{ 
-                          width: '60px', 
-                          height: '60px',
+                          width: '700px', 
+                          height: '300px',
                           background: 'linear-gradient(135deg, #deb887 0%, #d2691e 100%)',
                           color: 'white',
-                          fontSize: '10px',
+                          fontSize: '24px',
                           fontWeight: '600',
                           textAlign: 'center',
                           lineHeight: '1.1'
@@ -184,11 +184,11 @@ export default async function ElectronicsHomePage() {
                       <div 
                         className="rounded d-flex align-items-center justify-content-center"
                         style={{ 
-                          width: '60px', 
-                          height: '60px',
+                          width: '700px', 
+                          height: '300px',
                           background: 'linear-gradient(135deg, #ff69b4 0%, #ff1493 100%)',
                           color: 'white',
-                          fontSize: '10px',
+                          fontSize: '24px',
                           fontWeight: '600',
                           textAlign: 'center',
                           lineHeight: '1.1'
@@ -217,11 +217,11 @@ export default async function ElectronicsHomePage() {
                     <div 
                       className="rounded mb-3 mx-auto d-block d-flex align-items-center justify-content-center"
                       style={{ 
-                        width: '80px', 
-                        height: '80px',
+                        width: '700px', 
+                        height: '300px',
                         background: 'linear-gradient(135deg, #ffd700 0%, #ffb347 100%)',
                         color: 'white',
-                        fontSize: '12px',
+                        fontSize: '24px',
                         fontWeight: '600',
                         textAlign: 'center',
                         lineHeight: '1.1'
