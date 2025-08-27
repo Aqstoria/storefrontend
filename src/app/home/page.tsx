@@ -84,19 +84,7 @@ export default async function ElectronicsHomePage() {
                 <p className="text-muted small mb-3">Summer Sale</p>
                 
                 <div className="text-center">
-                  {/* TODO: Replace with your frying pan image */}
-                  <div 
-                    className="bg-light rounded mb-3 d-flex align-items-center justify-content-center mx-auto"
-                    style={{ 
-                      width: '120px', 
-                      height: '120px',
-                      background: 'linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%)'
-                    }}
-                  >
-                    <span className="text-muted">🍳</span>
-                  </div>
-                  
-                  {/* TODO: Uncomment and use your actual images:
+                  {/* Frying pan image */}
                   <Image 
                     src="/images/weekly-promotion/frying-pan.png" 
                     width={120} 
@@ -105,7 +93,6 @@ export default async function ElectronicsHomePage() {
                     className="mb-3 rounded"
                     style={{ objectFit: 'cover' }}
                   />
-                  */}
                   
                   <p className="text-danger fw-bold mb-0">$12.99</p>
                 </div>
@@ -122,33 +109,6 @@ export default async function ElectronicsHomePage() {
                     <p className="text-muted small mb-3">Summer Sale</p>
                     
                     {/* Multiple images for this card */}
-                    <div className="d-flex gap-2 mb-3">
-                      {/* TODO: Replace with your gold earrings image */}
-                      <div 
-                        className="bg-light rounded d-flex align-items-center justify-content-center"
-                        style={{ 
-                          width: '60px', 
-                          height: '60px',
-                          background: 'linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%)'
-                        }}
-                      >
-                        <span className="text-muted">💍</span>
-                      </div>
-                      
-                      {/* TODO: Replace with your pink ballet flats image */}
-                      <div 
-                        className="bg-light rounded d-flex align-items-center justify-content-center"
-                        style={{ 
-                          width: '60px', 
-                          height: '60px',
-                          background: 'linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%)'
-                        }}
-                      >
-                        <span className="text-muted">👠</span>
-                      </div>
-                    </div>
-                    
-                    {/* TODO: Uncomment and use your actual images:
                     <div className="d-flex gap-2 mb-3">
                       <Image 
                         src="/images/weekly-promotion/gold-earrings.png" 
@@ -167,7 +127,6 @@ export default async function ElectronicsHomePage() {
                         style={{ objectFit: 'cover' }}
                       />
                     </div>
-                    */}
                     
                     <div className="d-flex justify-content-between align-items-end">
                       <div>
@@ -186,33 +145,6 @@ export default async function ElectronicsHomePage() {
                     
                     {/* Multiple images for this card */}
                     <div className="d-flex gap-2 mb-3">
-                      {/* TODO: Replace with your beige jacket image */}
-                      <div 
-                        className="bg-light rounded d-flex align-items-center justify-content-center"
-                        style={{ 
-                          width: '60px', 
-                          height: '60px',
-                          background: 'linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%)'
-                        }}
-                      >
-                        <span className="text-muted">🧥</span>
-                      </div>
-                      
-                      {/* TODO: Replace with your pink gua sha tool image */}
-                      <div 
-                        className="bg-light rounded d-flex align-items-center justify-content-center"
-                        style={{ 
-                          width: '60px', 
-                          height: '60px',
-                          background: 'linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%)'
-                        }}
-                      >
-                        <span className="text-muted">💆</span>
-                      </div>
-                    </div>
-                    
-                    {/* TODO: Uncomment and use your actual images:
-                    <div className="d-flex gap-2 mb-3">
                       <Image 
                         src="/images/weekly-promotion/beige-jacket.png" 
                         width={60} 
@@ -230,7 +162,6 @@ export default async function ElectronicsHomePage() {
                         style={{ objectFit: 'cover' }}
                       />
                     </div>
-                    */}
                     
                     <div className="d-flex justify-content-between align-items-end">
                       <div>
@@ -247,19 +178,7 @@ export default async function ElectronicsHomePage() {
                     <h5 className="mb-2">Premium deals</h5>
                     <p className="text-muted small mb-3">Summer Sale</p>
                     
-                    {/* TODO: Replace with your GOLD bottle image */}
-                    <div 
-                      className="bg-light rounded mb-3 d-flex align-items-center justify-content-center mx-auto"
-                      style={{ 
-                        width: '80px', 
-                        height: '80px',
-                        background: 'linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%)'
-                      }}
-                    >
-                      <span className="text-muted">🧴</span>
-                    </div>
-                    
-                    {/* TODO: Uncomment and use your actual image:
+                    {/* GOLD bottle image */}
                     <Image 
                       src="/images/weekly-promotion/gold-bottle.png" 
                       width={80} 
@@ -268,7 +187,6 @@ export default async function ElectronicsHomePage() {
                       className="mb-3 rounded mx-auto d-block"
                       style={{ objectFit: 'cover' }}
                     />
-                    */}
                     
                     <div className="d-flex justify-content-between align-items-end">
                       <div>
