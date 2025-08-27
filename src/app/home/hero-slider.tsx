@@ -16,12 +16,13 @@ export default function HeroBannerJoom() {
           style={{
             background: '#ff6b35',
             minHeight: '320px',
-            padding: '48px 20px',
-            width: 'calc(100% - 40px)',
+            padding: '48px 30px',
+            width: 'calc(100% - 60px)',
             marginBottom: '0',
             marginTop: '20px',
-            marginLeft: '20px',
-            marginRight: '20px'
+            marginLeft: '30px',
+            marginRight: '30px',
+            borderRadius: '16px'
           }}
         >
           {/* Content */}
@@ -119,9 +120,10 @@ export default function HeroBannerJoom() {
         .hero-banner {
           background: #ff6b35 !important;
           min-height: 320px !important;
-          padding: 48px 20px !important;
-          width: calc(100% - 40px) !important;
-          margin: 20px 20px 0 20px !important;
+          padding: 48px 30px !important;
+          width: calc(100% - 60px) !important;
+          margin: 20px 30px 0 30px !important;
+          border-radius: 16px !important;
         }
         
         @media (max-width: 768px) {

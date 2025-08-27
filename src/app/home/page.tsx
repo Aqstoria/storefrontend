@@ -69,7 +69,7 @@ export default async function ElectronicsHomePage() {
       {/* Page content */}
       <main className="content-wrapper">
         {/* Hero Banner - Joom Style Outlet */}
-        <div style={{ marginTop: '30px' }}>
+        <div style={{ marginTop: '40px' }}>
           <HeroBannerJoom />
         </div>
         
