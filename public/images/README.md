@@ -18,24 +18,24 @@ Frontend/public/images/
 ### Required Images (PNG format):
 ```
 Frontend/public/images/countries/
-├── korea.png      ← Korea country image (120x120px circular)
-├── india.png      ← India country image (120x120px circular)
-├── france.png     ← France country image (120x120px circular)
-├── japan.png      ← Japan country image (120x120px circular)
-├── italy.png      ← Italy country image (120x120px circular)
-└── germany.png    ← Germany country image (120x120px circular)
+├── korea.png      ← Korea country image (1440x640px HD)
+├── china.png      ← China country image (1440x640px HD)
+├── india.png      ← India country image (1440x640px HD)
+├── france.png     ← France country image (1440x640px HD)
+├── japan.png      ← Japan country image (1440x640px HD)
+└── italy.png      ← Italy country image (1440x640px HD)
 ```
 
 ### Image Specifications:
 - **Format:** PNG
-- **Size:** 120x120 pixels
+- **Size:** 1440x640 pixels (HD resolution)
 - **Shape:** Circular (will be styled with `border-radius: 50%`)
 - **Style:** `object-fit: cover` for proper scaling
 - **Text:** All show "Ultimate finds from around the world"
 
 ### Pagination:
-- **Page 1:** Korea, India, France
-- **Page 2:** Japan, Italy, Germany
+- **Page 1:** Korea, China, India
+- **Page 2:** France, Japan, Italy
 - **Navigation:** Left arrow, 2 dots, right arrow
 
 ---

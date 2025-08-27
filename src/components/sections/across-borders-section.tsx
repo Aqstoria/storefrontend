@@ -14,6 +14,12 @@ export default function AcrossBordersSection() {
       image: '/images/countries/korea.png'
     },
     { 
+      country: 'China', 
+      flag: '🇨🇳', 
+      desc: 'Ultimate finds from around the world',
+      image: '/images/countries/china.png'
+    },
+    { 
       country: 'India', 
       flag: '🇮🇳', 
       desc: 'Ultimate finds from around the world',
@@ -36,12 +42,6 @@ export default function AcrossBordersSection() {
       flag: '🇮🇹', 
       desc: 'Ultimate finds from around the world',
       image: '/images/countries/italy.png'
-    },
-    { 
-      country: 'Germany', 
-      flag: '🇩🇪', 
-      desc: 'Ultimate finds from around the world',
-      image: '/images/countries/germany.png'
     }
   ];
 
@@ -81,55 +81,57 @@ export default function AcrossBordersSection() {
       </Row>
 
       {/* Pagination Controls - Exactly like Joom.com */}
-      <div className="d-flex align-items-center justify-content-center gap-2">
-        {/* Left Arrow */}
-        <button
-          onClick={() => setCurrentPage(prev => Math.max(0, prev - 1))}
-          disabled={currentPage === 0}
-          className="btn btn-outline-secondary rounded-circle p-2"
-          style={{ 
-            width: '40px', 
-            height: '40px',
-            border: '1px solid #dee2e6'
-          }}
-        >
-          <i className="ci-arrow-left" style={{ fontSize: '16px' }}></i>
-        </button>
-        
-        {/* Page Dots */}
-        <div className="d-flex gap-2 mx-3">
-          {Array.from({ length: totalPages }, (_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentPage(index)}
-              className={`btn rounded-circle p-0 ${
-                currentPage === index 
-                  ? 'bg-primary' 
-                  : 'bg-secondary bg-opacity-25'
-              }`}
-              style={{ 
-                width: '10px', 
-                height: '10px',
-                border: 'none'
-              }}
-            />
-          ))}
+      {totalPages > 1 && (
+        <div className="d-flex align-items-center justify-content-center gap-2">
+          {/* Left Arrow */}
+          <button
+            onClick={() => setCurrentPage(prev => Math.max(0, prev - 1))}
+            disabled={currentPage === 0}
+            className="btn btn-outline-secondary rounded-circle p-2"
+            style={{ 
+              width: '40px', 
+              height: '40px',
+              border: '1px solid #dee2e6'
+            }}
+          >
+            <i className="ci-arrow-left" style={{ fontSize: '16px' }}></i>
+          </button>
+          
+          {/* Page Dots */}
+          <div className="d-flex gap-2 mx-3">
+            {Array.from({ length: totalPages }, (_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentPage(index)}
+                className={`btn rounded-circle p-0 ${
+                  currentPage === index 
+                    ? 'bg-primary' 
+                    : 'bg-secondary bg-opacity-25'
+                }`}
+                style={{ 
+                  width: '10px', 
+                  height: '10px',
+                  border: 'none'
+                }}
+              />
+            ))}
+          </div>
+          
+          {/* Right Arrow */}
+          <button
+            onClick={() => setCurrentPage(prev => Math.min(totalPages - 1, prev + 1))}
+            disabled={currentPage === totalPages - 1}
+            className="btn btn-outline-secondary rounded-circle p-2"
+            style={{ 
+              width: '40px', 
+              height: '40px',
+              border: '1px solid #dee2e6'
+            }}
+          >
+            <i className="ci-arrow-right" style={{ fontSize: '16px' }}></i>
+          </button>
         </div>
-        
-        {/* Right Arrow */}
-        <button
-          onClick={() => setCurrentPage(prev => Math.min(totalPages - 1, prev + 1))}
-          disabled={currentPage === totalPages - 1}
-          className="btn btn-outline-secondary rounded-circle p-2"
-          style={{ 
-            width: '40px', 
-            height: '40px',
-            border: '1px solid #dee2e6'
-          }}
-        >
-          <i className="ci-arrow-right" style={{ fontSize: '16px' }}></i>
-        </button>
-      </div>
+      )}
     </>
   );
 }
