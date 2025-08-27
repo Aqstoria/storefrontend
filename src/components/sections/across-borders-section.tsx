@@ -66,15 +66,15 @@ export default function AcrossBordersSection() {
               <div className="mb-2 position-relative">
                 <Image 
                   src={item.image} 
-                  width={600} 
-                  height={400} 
+                  width={1440} 
+                  height={640} 
                   alt={`Products from ${item.country}`}
                   className="mx-auto"
                   style={{ 
                     objectFit: 'cover',
                     borderRadius: '12px',
                     width: '100%',
-                    height: '300px'
+                    height: '400px'
                   }}
                 />
               </div>
