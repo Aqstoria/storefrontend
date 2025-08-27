@@ -69,7 +69,9 @@ export default async function ElectronicsHomePage() {
       {/* Page content */}
       <main className="content-wrapper">
         {/* Hero Banner - Joom Style Outlet */}
-        <HeroBannerJoom />
+        <div style={{ marginTop: '30px' }}>
+          <HeroBannerJoom />
+        </div>
         
         {/* Weekly Promotion Section - EXACT Joom Layout: 1 small left + 3 large right */}
         <Container as="section" className="py-4 mt-3">

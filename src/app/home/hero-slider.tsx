@@ -15,10 +15,13 @@ export default function HeroBannerJoom() {
           className="hero-banner position-relative d-flex align-items-center"
           style={{
             background: '#ff6b35',
-            minHeight: '400px',
-            padding: '60px 0',
-            width: '100%',
-            marginBottom: '0'
+            minHeight: '320px',
+            padding: '48px 20px',
+            width: 'calc(100% - 40px)',
+            marginBottom: '0',
+            marginTop: '20px',
+            marginLeft: '20px',
+            marginRight: '20px'
           }}
         >
           {/* Content */}
@@ -115,16 +118,16 @@ export default function HeroBannerJoom() {
         
         .hero-banner {
           background: #ff6b35 !important;
-          min-height: 400px !important;
-          padding: 60px 0 !important;
-          width: 100% !important;
-          margin-bottom: 0 !important;
+          min-height: 320px !important;
+          padding: 48px 20px !important;
+          width: calc(100% - 40px) !important;
+          margin: 20px 20px 0 20px !important;
         }
         
         @media (max-width: 768px) {
           .hero-banner {
-            min-height: 300px !important;
-            padding: 40px 0 !important;
+            min-height: 240px !important;
+            padding: 32px 20px !important;
           }
           
           .hero-banner h1 {
