@@ -73,6 +73,37 @@ export default async function ElectronicsHomePage() {
           <HeroBannerJoom />
         </div>
         
+        {/* Low Prices on Trending Items - Vertical Banner */}
+        <Container as="section" className="py-4 mt-3">
+          <Row className="justify-content-center">
+            <Col lg={4}>
+              <div className="bg-light rounded-3 p-4" style={{ backgroundColor: '#fff8e1' }}>
+                <h5 className="mb-2">Low prices on trending items</h5>
+                <p className="text-muted small mb-3">Summer Sale</p>
+                
+                <div className="text-center">
+                  {/* Vertical #ff5f14 banner */}
+                  <div 
+                    className="rounded mb-3 mx-auto d-flex align-items-center justify-content-center flex-column"
+                    style={{ 
+                      width: '400px', 
+                      height: '750px',
+                      backgroundColor: '#ff5f14',
+                      color: 'white',
+                      fontSize: '18px',
+                      fontWeight: '600'
+                    }}
+                  >
+                    <div style={{ fontSize: '24px', marginBottom: '10px' }}>👟</div>
+                    <div style={{ fontSize: '20px', marginBottom: '5px' }}>🫙</div>
+                    <div style={{ fontSize: '16px' }}>Trending Items</div>
+                  </div>
+                </div>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+        
         {/* Weekly Promotion Section - EXACT Joom Layout: 3 simple cards */}
         <Container as="section" className="py-4 mt-3">
           <h4 className="mb-4">Weekly promotion</h4>
