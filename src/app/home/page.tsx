@@ -72,7 +72,7 @@ export default async function ElectronicsHomePage() {
         <HeroBannerJoom />
         
         {/* Weekly Promotion Section - EXACT Joom Layout: 1 small left + 3 large right */}
-        <Container as="section" className="py-5 mt-4">
+        <Container as="section" className="py-4 mt-3">
           <h4 className="mb-4">Weekly promotion</h4>
           <Row className="g-3">
             {/* Small card on the left */}
