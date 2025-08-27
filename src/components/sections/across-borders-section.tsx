@@ -59,18 +59,24 @@ export default function AcrossBordersSection() {
       <Row className="g-3 mb-3">
         {currentCountries.map((item, index) => (
           <Col lg={4} key={index}>
-            <div className="bg-light rounded-3 p-4 text-center position-relative">
+            <div className="bg-light rounded-3 p-4 text-center position-relative h-100">
               <h6 className="mb-3">Products from {item.country}</h6>
               
               {/* Country Image */}
               <div className="mb-3 position-relative">
                 <Image 
                   src={item.image} 
-                  width={120} 
-                  height={120} 
+                  width={300} 
+                  height={133} 
                   alt={`Products from ${item.country}`}
-                  className="rounded-circle mx-auto"
-                  style={{ objectFit: 'cover' }}
+                  className="mx-auto"
+                  style={{ 
+                    objectFit: 'cover',
+                    borderRadius: '12px',
+                    width: '100%',
+                    maxWidth: '300px',
+                    height: 'auto'
+                  }}
                 />
               </div>
               
