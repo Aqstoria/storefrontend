@@ -73,7 +73,7 @@ export default async function ElectronicsHomePage() {
           <HeroBannerJoom />
         </div>
         
-        {/* Weekly Promotion Section - EXACT Joom Layout: 3 cards + vertical banner below left card */}
+        {/* Weekly Promotion Section - EXACT Joom Layout: 3 simple cards */}
         <Container as="section" className="py-4 mt-3">
           <h4 className="mb-4">Weekly promotion</h4>
           <Row className="g-3">
@@ -88,39 +88,14 @@ export default async function ElectronicsHomePage() {
                     className="rounded mb-3 mx-auto d-flex align-items-center justify-content-center"
                     style={{ 
                       width: '100%', 
-                      height: '120px',
-                      backgroundColor: '#ff5f14',
-                      color: 'white',
-                      fontSize: '16px',
-                      fontWeight: '600'
-                    }}
-                  >
-                    Bestsellers
-                  </div>
-                </div>
-              </div>
-              
-              {/* Vertical Banner Below Left Card */}
-              <div className="bg-light rounded-3 p-4 mt-3" style={{ backgroundColor: '#fff8e1' }}>
-                <h5 className="mb-2">Low prices on trending items</h5>
-                <p className="text-muted small mb-3">Summer Sale</p>
-                
-                <div className="text-center">
-                  {/* Large vertical #ff5f14 banner */}
-                  <div 
-                    className="rounded mb-3 mx-auto d-flex align-items-center justify-content-center flex-column"
-                    style={{ 
-                      width: '400px', 
-                      height: '720px',
+                      height: '200px',
                       backgroundColor: '#ff5f14',
                       color: 'white',
                       fontSize: '18px',
                       fontWeight: '600'
                     }}
                   >
-                    <div style={{ fontSize: '24px', marginBottom: '10px' }}>👟</div>
-                    <div style={{ fontSize: '20px', marginBottom: '5px' }}>🫙</div>
-                    <div style={{ fontSize: '16px' }}>Trending Items</div>
+                    Bestsellers
                   </div>
                 </div>
               </div>
@@ -137,10 +112,10 @@ export default async function ElectronicsHomePage() {
                     className="rounded mb-3 mx-auto d-flex align-items-center justify-content-center"
                     style={{ 
                       width: '100%', 
-                      height: '120px',
+                      height: '200px',
                       backgroundColor: '#ff5f14',
                       color: 'white',
-                      fontSize: '16px',
+                      fontSize: '18px',
                       fontWeight: '600'
                     }}
                   >
@@ -161,10 +136,10 @@ export default async function ElectronicsHomePage() {
                     className="rounded mb-3 mx-auto d-flex align-items-center justify-content-center"
                     style={{ 
                       width: '100%', 
-                      height: '120px',
+                      height: '200px',
                       backgroundColor: '#ff5f14',
                       color: 'white',
-                      fontSize: '16px',
+                      fontSize: '18px',
                       fontWeight: '600'
                     }}
                   >
