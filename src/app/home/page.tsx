@@ -84,13 +84,13 @@ export default async function ElectronicsHomePage() {
                 <p className="text-muted small mb-3">Summer Sale</p>
                 
                 <div className="text-center">
-                  {/* Simple light orange gradient */}
+                  {/* Simple #ff5f14 color */}
                   <div 
                     className="rounded mb-3 mx-auto d-flex align-items-center justify-content-center"
                     style={{ 
                       width: '100%', 
                       height: '200px',
-                      background: 'linear-gradient(135deg, #ffb347 0%, #ffa500 100%)',
+                      backgroundColor: '#ff5f14',
                       color: 'white',
                       fontSize: '18px',
                       fontWeight: '600'
@@ -98,8 +98,6 @@ export default async function ElectronicsHomePage() {
                   >
                     Bestsellers
                   </div>
-                  
-                  <p className="text-danger fw-bold mb-0">$12.99</p>
                 </div>
               </div>
             </Col>
@@ -111,13 +109,13 @@ export default async function ElectronicsHomePage() {
                 <p className="text-muted small mb-3">Summer Sale</p>
                 
                 <div className="text-center">
-                  {/* Simple light orange gradient */}
+                  {/* Simple #ff5f14 color */}
                   <div 
                     className="rounded mb-3 mx-auto d-flex align-items-center justify-content-center"
                     style={{ 
                       width: '100%', 
                       height: '200px',
-                      background: 'linear-gradient(135deg, #ffb347 0%, #ffa500 100%)',
+                      backgroundColor: '#ff5f14',
                       color: 'white',
                       fontSize: '18px',
                       fontWeight: '600'
@@ -125,8 +123,6 @@ export default async function ElectronicsHomePage() {
                   >
                     Hot deals
                   </div>
-                  
-                  <p className="text-danger fw-bold mb-0">$24.99</p>
                 </div>
               </div>
             </Col>
@@ -138,13 +134,13 @@ export default async function ElectronicsHomePage() {
                 <p className="text-muted small mb-3">Summer Sale</p>
                 
                 <div className="text-center">
-                  {/* Simple light orange gradient */}
+                  {/* Simple #ff5f14 color */}
                   <div 
                     className="rounded mb-3 mx-auto d-flex align-items-center justify-content-center"
                     style={{ 
                       width: '100%', 
                       height: '200px',
-                      background: 'linear-gradient(135deg, #ffb347 0%, #ffa500 100%)',
+                      backgroundColor: '#ff5f14',
                       color: 'white',
                       fontSize: '18px',
                       fontWeight: '600'
@@ -152,8 +148,6 @@ export default async function ElectronicsHomePage() {
                   >
                     All sale items
                   </div>
-                  
-                  <p className="text-danger fw-bold mb-0">$18.99</p>
                 </div>
               </div>
             </Col>
