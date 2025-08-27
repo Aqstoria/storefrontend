@@ -78,17 +78,19 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
 
             {/* Search Bar - LEFT SIDE (next to logo) */}
             <Col xs={12} lg={6}>
-              <div className="d-flex align-items-center">
+              <div className="d-flex align-items-center search-container">
                 <div className="position-relative d-flex flex-grow-1">
                   <FormControl 
                     type="text" 
                     placeholder="What are you looking for?" 
-                    className="border border-secondary rounded-start-pill ps-4 pe-5 py-3"
+                    className="border-0 rounded-start-pill ps-4 pe-5 py-3 search-input"
                     style={{ 
                       fontSize: '16px', 
                       minHeight: '52px',
-                      backgroundColor: '#F0F0F5',
-                      borderRight: 'none'
+                      backgroundColor: '#F8F9FA',
+                      border: 'none',
+                      boxShadow: 'none',
+                      outline: 'none'
                     }}
                   />
                   {/* Camera Icon inside search bar */}
@@ -97,20 +99,23 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
                     top: '50%', 
                     transform: 'translateY(-50%)', 
                     color: '#6c757d', 
-                    fontSize: '16px' 
+                    fontSize: '18px',
+                    zIndex: 5
                   }}></i>
                 </div>
                 {/* Search Button - Connected to input */}
                 <Button 
                   variant="danger" 
-                  className="rounded-end-pill px-4 py-3"
+                  className="rounded-end-pill px-4 py-3 border-0 search-button"
                   style={{ 
                     backgroundColor: '#dc3545', 
                     borderColor: '#dc3545',
                     minHeight: '52px',
                     fontSize: '15px',
                     fontWeight: '600',
-                    borderLeft: 'none'
+                    border: 'none',
+                    boxShadow: 'none',
+                    marginLeft: '-1px'
                   }}
                 >
                   Search
@@ -213,6 +218,35 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
           </Row>
         </Container>
       </div>
+      
+      <style jsx>{`
+        .search-container {
+          display: flex;
+          align-items: center;
+          border-radius: 50px;
+          overflow: hidden;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .search-input {
+          border: none !important;
+          box-shadow: none !important;
+          outline: none !important;
+          background-color: #F8F9FA !important;
+        }
+        
+        .search-button {
+          border: none !important;
+          box-shadow: none !important;
+          background-color: #dc3545 !important;
+          border-color: #dc3545 !important;
+        }
+        
+        .search-input:focus {
+          box-shadow: none !important;
+          outline: none !important;
+        }
+      `}</style>
     </>
   )
 }
