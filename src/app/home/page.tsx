@@ -10,13 +10,12 @@ import Col from 'react-bootstrap/Col'
 import Nav from 'react-bootstrap/Nav'
 import NavLink from 'react-bootstrap/NavLink'
 import BrandsSection from '../brands/BrandsSection'
-import { ProductService } from '@/services/product-service'
-import { Product, Category, Brand } from '@/services/products'
+import { ProductService } from '@/services/products'
 import { CategoriesProvider } from '@/contexts/categories-context'
 import Button from 'react-bootstrap/Button'
 import React from 'react'
 import AcrossBordersSection from '@/components/sections/across-borders-section'
-import HeroBannerJoom from '@/components/sections/hero-banner-joom'
+import HeroBannerJoom from '@/app/home/hero-slider'
 
 export const revalidate = 60 // ISR: Regenerate every 60 seconds
 
