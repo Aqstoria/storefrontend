@@ -84,15 +84,22 @@ export default async function ElectronicsHomePage() {
                 <p className="text-muted small mb-3">Summer Sale</p>
                 
                 <div className="text-center">
-                  {/* Frying pan image */}
-                  <Image 
-                    src="/images/weekly-promotion/frying-pan.png" 
-                    width={120} 
-                    height={120} 
-                    alt="Frying pan with egg"
-                    className="mb-3 rounded"
-                    style={{ objectFit: 'cover' }}
-                  />
+                  {/* Frying pan gradient placeholder */}
+                  <div 
+                    className="rounded mb-3 mx-auto d-flex align-items-center justify-content-center"
+                    style={{ 
+                      width: '120px', 
+                      height: '120px',
+                      background: 'linear-gradient(135deg, #ff6b35 0%, #f7931e 100%)',
+                      color: 'white',
+                      fontSize: '14px',
+                      fontWeight: '600',
+                      textAlign: 'center',
+                      lineHeight: '1.2'
+                    }}
+                  >
+                    Frying pan<br/>with egg
+                  </div>
                   
                   <p className="text-danger fw-bold mb-0">$12.99</p>
                 </div>
@@ -108,24 +115,38 @@ export default async function ElectronicsHomePage() {
                     <h5 className="mb-2">Hot deals</h5>
                     <p className="text-muted small mb-3">Summer Sale</p>
                     
-                    {/* Multiple images for this card */}
+                    {/* Multiple gradient images for this card */}
                     <div className="d-flex gap-2 mb-3">
-                      <Image 
-                        src="/images/weekly-promotion/gold-earrings.png" 
-                        width={60} 
-                        height={60} 
-                        alt="Gold earrings"
-                        className="rounded"
-                        style={{ objectFit: 'cover' }}
-                      />
-                      <Image 
-                        src="/images/weekly-promotion/pink-ballet-flats.png" 
-                        width={60} 
-                        height={60} 
-                        alt="Pink ballet flats"
-                        className="rounded"
-                        style={{ objectFit: 'cover' }}
-                      />
+                      <div 
+                        className="rounded d-flex align-items-center justify-content-center"
+                        style={{ 
+                          width: '60px', 
+                          height: '60px',
+                          background: 'linear-gradient(135deg, #ffd700 0%, #ffb347 100%)',
+                          color: 'white',
+                          fontSize: '10px',
+                          fontWeight: '600',
+                          textAlign: 'center',
+                          lineHeight: '1.1'
+                        }}
+                      >
+                        Gold<br/>Earrings
+                      </div>
+                      <div 
+                        className="rounded d-flex align-items-center justify-content-center"
+                        style={{ 
+                          width: '60px', 
+                          height: '60px',
+                          background: 'linear-gradient(135deg, #ff69b4 0%, #ff1493 100%)',
+                          color: 'white',
+                          fontSize: '10px',
+                          fontWeight: '600',
+                          textAlign: 'center',
+                          lineHeight: '1.1'
+                        }}
+                      >
+                        Pink<br/>Ballet Flats
+                      </div>
                     </div>
                     
                     <div className="d-flex justify-content-between align-items-end">
@@ -143,24 +164,38 @@ export default async function ElectronicsHomePage() {
                     <h5 className="mb-2">All sale items here</h5>
                     <p className="text-muted small mb-3">Summer Sale</p>
                     
-                    {/* Multiple images for this card */}
+                    {/* Multiple gradient images for this card */}
                     <div className="d-flex gap-2 mb-3">
-                      <Image 
-                        src="/images/weekly-promotion/beige-jacket.png" 
-                        width={60} 
-                        height={60} 
-                        alt="Beige jacket"
-                        className="rounded"
-                        style={{ objectFit: 'cover' }}
-                      />
-                      <Image 
-                        src="/images/weekly-promotion/pink-gua-sha.png" 
-                        width={60} 
-                        height={60} 
-                        alt="Pink gua sha tool"
-                        className="rounded"
-                        style={{ objectFit: 'cover' }}
-                      />
+                      <div 
+                        className="rounded d-flex align-items-center justify-content-center"
+                        style={{ 
+                          width: '60px', 
+                          height: '60px',
+                          background: 'linear-gradient(135deg, #deb887 0%, #d2691e 100%)',
+                          color: 'white',
+                          fontSize: '10px',
+                          fontWeight: '600',
+                          textAlign: 'center',
+                          lineHeight: '1.1'
+                        }}
+                      >
+                        Beige<br/>Jacket
+                      </div>
+                      <div 
+                        className="rounded d-flex align-items-center justify-content-center"
+                        style={{ 
+                          width: '60px', 
+                          height: '60px',
+                          background: 'linear-gradient(135deg, #ff69b4 0%, #ff1493 100%)',
+                          color: 'white',
+                          fontSize: '10px',
+                          fontWeight: '600',
+                          textAlign: 'center',
+                          lineHeight: '1.1'
+                        }}
+                      >
+                        Pink<br/>Gua Sha
+                      </div>
                     </div>
                     
                     <div className="d-flex justify-content-between align-items-end">
@@ -178,15 +213,22 @@ export default async function ElectronicsHomePage() {
                     <h5 className="mb-2">Premium deals</h5>
                     <p className="text-muted small mb-3">Summer Sale</p>
                     
-                    {/* GOLD bottle image */}
-                    <Image 
-                      src="/images/weekly-promotion/gold-bottle.png" 
-                      width={80} 
-                      height={80} 
-                      alt="GOLD bottle with dropper"
-                      className="mb-3 rounded mx-auto d-block"
-                      style={{ objectFit: 'cover' }}
-                    />
+                    {/* GOLD bottle gradient placeholder */}
+                    <div 
+                      className="rounded mb-3 mx-auto d-block d-flex align-items-center justify-content-center"
+                      style={{ 
+                        width: '80px', 
+                        height: '80px',
+                        background: 'linear-gradient(135deg, #ffd700 0%, #ffb347 100%)',
+                        color: 'white',
+                        fontSize: '12px',
+                        fontWeight: '600',
+                        textAlign: 'center',
+                        lineHeight: '1.1'
+                      }}
+                    >
+                      GOLD<br/>Serum
+                    </div>
                     
                     <div className="d-flex justify-content-between align-items-end">
                       <div>
