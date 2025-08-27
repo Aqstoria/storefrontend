@@ -73,13 +73,35 @@ export default async function ElectronicsHomePage() {
           <HeroBannerJoom />
         </div>
         
-        {/* Weekly Promotion Section - EXACT Joom Layout: Large vertical banner + 3 cards */}
+        {/* Weekly Promotion Section - EXACT Joom Layout: 3 cards + vertical banner below left card */}
         <Container as="section" className="py-4 mt-3">
           <h4 className="mb-4">Weekly promotion</h4>
           <Row className="g-3">
-            {/* Large Vertical Banner - Left Side */}
-            <Col lg={3}>
+            {/* Left Card: Bestsellers */}
+            <Col lg={4}>
               <div className="bg-light rounded-3 p-4 h-100" style={{ backgroundColor: '#fff8e1' }}>
+                <h5 className="mb-2">Bestsellers</h5>
+                <p className="text-muted small mb-3">Summer Sale</p>
+                
+                <div className="text-center">
+                  <div 
+                    className="rounded mb-3 mx-auto d-flex align-items-center justify-content-center"
+                    style={{ 
+                      width: '100%', 
+                      height: '120px',
+                      backgroundColor: '#ff5f14',
+                      color: 'white',
+                      fontSize: '16px',
+                      fontWeight: '600'
+                    }}
+                  >
+                    Bestsellers
+                  </div>
+                </div>
+              </div>
+              
+              {/* Vertical Banner Below Left Card */}
+              <div className="bg-light rounded-3 p-4 mt-3" style={{ backgroundColor: '#fff8e1' }}>
                 <h5 className="mb-2">Low prices on trending items</h5>
                 <p className="text-muted small mb-3">Summer Sale</p>
                 
@@ -103,85 +125,56 @@ export default async function ElectronicsHomePage() {
                 </div>
               </div>
             </Col>
-              
-              {/* Right Side: 3 Cards */}
-              <Col lg={9}>
-                <Row className="g-3">
-                  {/* Card 1: Bestsellers */}
-                  <Col lg={4}>
-                    <div className="bg-light rounded-3 p-4 h-100" style={{ backgroundColor: '#fff8e1' }}>
-                      <h5 className="mb-2">Bestsellers</h5>
-                      <p className="text-muted small mb-3">Summer Sale</p>
-                      
-                      <div className="text-center">
-                        <div 
-                          className="rounded mb-3 mx-auto d-flex align-items-center justify-content-center"
-                          style={{ 
-                            width: '100%', 
-                            height: '120px',
-                            backgroundColor: '#ff5f14',
-                            color: 'white',
-                            fontSize: '16px',
-                            fontWeight: '600'
-                          }}
-                        >
-                          Bestsellers
-                        </div>
-                      </div>
-                    </div>
-                  </Col>
-                  
-                  {/* Card 2: Hot deals */}
-                  <Col lg={4}>
-                    <div className="bg-light rounded-3 p-4 h-100" style={{ backgroundColor: '#fff8e1' }}>
-                      <h5 className="mb-2">Hot deals</h5>
-                      <p className="text-muted small mb-3">Summer Sale</p>
-                      
-                      <div className="text-center">
-                        <div 
-                          className="rounded mb-3 mx-auto d-flex align-items-center justify-content-center"
-                          style={{ 
-                            width: '100%', 
-                            height: '120px',
-                            backgroundColor: '#ff5f14',
-                            color: 'white',
-                            fontSize: '16px',
-                            fontWeight: '600'
-                          }}
-                        >
-                          Hot deals
-                        </div>
-                      </div>
-                    </div>
-                  </Col>
-                  
-                  {/* Card 3: All sale items */}
-                  <Col lg={4}>
-                    <div className="bg-light rounded-3 p-4 h-100" style={{ backgroundColor: '#fff8e1' }}>
-                      <h5 className="mb-2">All sale items</h5>
-                      <p className="text-muted small mb-3">Summer Sale</p>
-                      
-                      <div className="text-center">
-                        <div 
-                          className="rounded mb-3 mx-auto d-flex align-items-center justify-content-center"
-                          style={{ 
-                            width: '100%', 
-                            height: '120px',
-                            backgroundColor: '#ff5f14',
-                            color: 'white',
-                            fontSize: '16px',
-                            fontWeight: '600'
-                          }}
-                        >
-                          All sale items
-                        </div>
-                      </div>
-                    </div>
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
-          </Container>
+            
+            {/* Middle Card: Hot deals */}
+            <Col lg={4}>
+              <div className="bg-light rounded-3 p-4 h-100" style={{ backgroundColor: '#fff8e1' }}>
+                <h5 className="mb-2">Hot deals</h5>
+                <p className="text-muted small mb-3">Summer Sale</p>
+                
+                <div className="text-center">
+                  <div 
+                    className="rounded mb-3 mx-auto d-flex align-items-center justify-content-center"
+                    style={{ 
+                      width: '100%', 
+                      height: '120px',
+                      backgroundColor: '#ff5f14',
+                      color: 'white',
+                      fontSize: '16px',
+                      fontWeight: '600'
+                    }}
+                  >
+                    Hot deals
+                  </div>
+                </div>
+              </div>
+            </Col>
+            
+            {/* Right Card: All sale items */}
+            <Col lg={4}>
+              <div className="bg-light rounded-3 p-4 h-100" style={{ backgroundColor: '#fff8e1' }}>
+                <h5 className="mb-2">All sale items</h5>
+                <p className="text-muted small mb-3">Summer Sale</p>
+                
+                <div className="text-center">
+                  <div 
+                    className="rounded mb-3 mx-auto d-flex align-items-center justify-content-center"
+                    style={{ 
+                      width: '100%', 
+                      height: '120px',
+                      backgroundColor: '#ff5f14',
+                      color: 'white',
+                      fontSize: '16px',
+                      fontWeight: '600'
+                    }}
+                  >
+                    All sale items
+                  </div>
+                </div>
+              </div>
+            </Col>
+          </Row>
+        </Container>
 
         {/* The Populars Section - 2x3 Grid */}
         <Container as="section" className="py-4">
