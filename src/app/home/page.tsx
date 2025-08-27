@@ -78,7 +78,7 @@ export default async function ElectronicsHomePage() {
           <Row className="g-3">
             {/* Small card on the left */}
             <Col lg={3}>
-              <div className="bg-warning bg-opacity-20 rounded-3 p-4 h-100">
+              <div className="bg-light rounded-3 p-4 h-100" style={{ backgroundColor: '#fff8e1' }}>
                 <h5 className="mb-2">Bestsellers for less</h5>
                 <p className="text-muted small mb-3">Summer Sale</p>
                 
@@ -116,7 +116,7 @@ export default async function ElectronicsHomePage() {
               <Row className="g-3">
                 {/* Card 1: Hot deals */}
                 <Col lg={4}>
-                  <div className="bg-warning bg-opacity-20 rounded-3 p-4 h-100 position-relative">
+                  <div className="bg-light rounded-3 p-4 h-100 position-relative" style={{ backgroundColor: '#fff8e1' }}>
                     <h5 className="mb-2">Hot deals</h5>
                     <p className="text-muted small mb-3">Summer Sale</p>
                     
@@ -179,7 +179,7 @@ export default async function ElectronicsHomePage() {
                 
                 {/* Card 2: All sale items here */}
                 <Col lg={4}>
-                  <div className="bg-warning bg-opacity-20 rounded-3 p-4 h-100 position-relative">
+                  <div className="bg-light rounded-3 p-4 h-100 position-relative" style={{ backgroundColor: '#fff8e1' }}>
                     <h5 className="mb-2">All sale items here</h5>
                     <p className="text-muted small mb-3">Summer Sale</p>
                     
@@ -242,7 +242,7 @@ export default async function ElectronicsHomePage() {
                 
                 {/* Card 3: Additional sale item */}
                 <Col lg={4}>
-                  <div className="bg-warning bg-opacity-20 rounded-3 p-4 h-100 position-relative">
+                  <div className="bg-light rounded-3 p-4 h-100 position-relative" style={{ backgroundColor: '#fff8e1' }}>
                     <h5 className="mb-2">Premium deals</h5>
                     <p className="text-muted small mb-3">Summer Sale</p>
                     

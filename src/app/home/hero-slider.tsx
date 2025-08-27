@@ -37,20 +37,9 @@ export default function HeroBannerJoom() {
                 <h1 className="display-4 fw-bold mb-3" style={{ fontSize: '3.5rem' }}>
                   {slides[currentSlide].title}
                 </h1>
-                <h2 className="h3 mb-4" style={{ fontSize: '1.5rem', opacity: 0.9 }}>
+                <h2 className="h3 mb-0" style={{ fontSize: '1.5rem', opacity: 0.9 }}>
                   {slides[currentSlide].subtitle}
                 </h2>
-                <p className="lead mb-4" style={{ fontSize: '1.1rem', opacity: 0.8 }}>
-                  {slides[currentSlide].description}
-                </p>
-                <Button 
-                  variant="light" 
-                  size="lg" 
-                  className="px-4 py-3 fw-bold"
-                  href={slides[currentSlide].buttonLink}
-                >
-                  {slides[currentSlide].buttonText}
-                </Button>
               </Col>
               
               {/* Illustration - Right Side */}
