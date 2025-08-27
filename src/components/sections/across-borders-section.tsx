@@ -47,8 +47,8 @@ export default function AcrossBordersSection() {
                   style={{ 
                     objectFit: 'cover',
                     borderRadius: '12px',
-                    width: '100%',
-                    height: '300px'
+                    width: '120%',
+                    height: '294px'
                   }}
                 />
               </div>

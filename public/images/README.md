@@ -13,30 +13,27 @@ Frontend/public/images/
 
 ## 🌍 Across Borders Section
 
-**Location:** `Frontend/src/app/home/page.tsx` (Lines 434-520)
+**Location:** `Frontend/src/components/sections/across-borders-section.tsx`
 
 ### Required Images (PNG format):
 ```
 Frontend/public/images/countries/
 ├── korea.png      ← Korea country image (1440x640px HD)
 ├── china.png      ← China country image (1440x640px HD)
-├── india.png      ← India country image (1440x640px HD)
-├── france.png     ← France country image (1440x640px HD)
-├── japan.png      ← Japan country image (1440x640px HD)
-└── italy.png      ← Italy country image (1440x640px HD)
+└── india.png      ← India country image (1440x640px HD)
 ```
 
 ### Image Specifications:
 - **Format:** PNG
 - **Size:** 1440x640 pixels (HD resolution)
-- **Shape:** Circular (will be styled with `border-radius: 50%`)
+- **Display:** Width 120%, Height 294px
 - **Style:** `object-fit: cover` for proper scaling
 - **Text:** All show "Ultimate finds from around the world"
 
-### Pagination:
-- **Page 1:** Korea, China, India
-- **Page 2:** France, Japan, Italy
-- **Navigation:** Left arrow, 2 dots, right arrow
+### Layout:
+- **3 cards** displayed in a row (no pagination)
+- **Responsive:** Col lg={4} for each country
+- **Styling:** Light background, rounded corners, centered text
 
 ---
 
