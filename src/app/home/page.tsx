@@ -15,6 +15,7 @@ import { ProductService } from '@/services/products'
 import { Product, Category, Brand } from '@/services/products'
 import { CategoriesProvider } from '@/contexts/categories-context'
 import Button from 'react-bootstrap/Button'
+import React from 'react'
 
 export const revalidate = 60 // ISR: Regenerate every 60 seconds
 
@@ -77,19 +78,34 @@ export default async function ElectronicsHomePage() {
             {/* Small card on the left */}
             <Col lg={3}>
               <div className="bg-warning bg-opacity-20 rounded-3 p-4 h-100">
-                <h5 className="mb-2">Low prices on trending items</h5>
+                <h5 className="mb-2">Bestsellers for less</h5>
                 <p className="text-muted small mb-3">Summer Sale</p>
                 
                 <div className="text-center">
-                  {trendingProducts[0] && trendingProducts[0].images && trendingProducts[0].images.length > 0 && (
-                    <Image 
-                      src={ProductService.getProductImage(trendingProducts[0])} 
-                      width={120} 
-                      height={120} 
-                      alt={trendingProducts[0].name}
-                      className="mb-3"
-                    />
-                  )}
+                  {/* TODO: Replace with your frying pan image */}
+                  <div 
+                    className="bg-light rounded mb-3 d-flex align-items-center justify-content-center mx-auto"
+                    style={{ 
+                      width: '120px', 
+                      height: '120px',
+                      background: 'linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%)'
+                    }}
+                  >
+                    <span className="text-muted">🍳</span>
+                  </div>
+                  
+                  {/* TODO: Uncomment and use your actual images:
+                  <Image 
+                    src="/images/weekly-promotion/frying-pan.png" 
+                    width={120} 
+                    height={120} 
+                    alt="Frying pan with egg"
+                    className="mb-3 rounded"
+                    style={{ objectFit: 'cover' }}
+                  />
+                  */}
+                  
+                  <p className="text-danger fw-bold mb-0">$12.99</p>
                 </div>
               </div>
             </Col>
@@ -97,36 +113,169 @@ export default async function ElectronicsHomePage() {
             {/* 3 large cards on the right */}
             <Col lg={9}>
               <Row className="g-3">
-                {featuredProducts.slice(0, 3).map((product, index) => {
-                  const titles = ['Bestsellers for less', 'Hot deals', 'All sale items here']
-                  const subtitles = ['Summer Sale', 'Summer Sale', 'Summer Sale']
-                  
-                  return (
-                    <Col lg={4} key={product.id}>
-                      <div className="bg-warning bg-opacity-20 rounded-3 p-4 h-100 position-relative">
-                        <h5 className="mb-2">{titles[index]}</h5>
-                        <p className="text-muted small mb-3">{subtitles[index]}</p>
-                        <div className="d-flex justify-content-between align-items-end">
-                          <div>
-                            <p className="mb-0 fw-bold text-danger">${ProductService.getProductPrice(product).toFixed(2)}</p>
-                            <small className="text-muted">{product.name}</small>
-                          </div>
-                          {product.images && product.images.length > 0 && (
-                            <div className="position-absolute end-0 bottom-0 me-3">
-                              <Image 
-                                src={ProductService.getProductImage(product)} 
-                                width={80} 
-                                height={80} 
-                                alt={product.name}
-                                className="rounded"
-                              />
-                            </div>
-                          )}
-                        </div>
+                {/* Card 1: Hot deals */}
+                <Col lg={4}>
+                  <div className="bg-warning bg-opacity-20 rounded-3 p-4 h-100 position-relative">
+                    <h5 className="mb-2">Hot deals</h5>
+                    <p className="text-muted small mb-3">Summer Sale</p>
+                    
+                    {/* Multiple images for this card */}
+                    <div className="d-flex gap-2 mb-3">
+                      {/* TODO: Replace with your gold earrings image */}
+                      <div 
+                        className="bg-light rounded d-flex align-items-center justify-content-center"
+                        style={{ 
+                          width: '60px', 
+                          height: '60px',
+                          background: 'linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%)'
+                        }}
+                      >
+                        <span className="text-muted">💍</span>
                       </div>
-                    </Col>
-                  )
-                })}
+                      
+                      {/* TODO: Replace with your pink ballet flats image */}
+                      <div 
+                        className="bg-light rounded d-flex align-items-center justify-content-center"
+                        style={{ 
+                          width: '60px', 
+                          height: '60px',
+                          background: 'linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%)'
+                        }}
+                      >
+                        <span className="text-muted">👠</span>
+                      </div>
+                    </div>
+                    
+                    {/* TODO: Uncomment and use your actual images:
+                    <div className="d-flex gap-2 mb-3">
+                      <Image 
+                        src="/images/weekly-promotion/gold-earrings.png" 
+                        width={60} 
+                        height={60} 
+                        alt="Gold earrings"
+                        className="rounded"
+                        style={{ objectFit: 'cover' }}
+                      />
+                      <Image 
+                        src="/images/weekly-promotion/pink-ballet-flats.png" 
+                        width={60} 
+                        height={60} 
+                        alt="Pink ballet flats"
+                        className="rounded"
+                        style={{ objectFit: 'cover' }}
+                      />
+                    </div>
+                    */}
+                    
+                    <div className="d-flex justify-content-between align-items-end">
+                      <div>
+                        <p className="mb-0 fw-bold text-danger">$24.99</p>
+                        <small className="text-muted">Elegant accessories</small>
+                      </div>
+                    </div>
+                  </div>
+                </Col>
+                
+                {/* Card 2: All sale items here */}
+                <Col lg={4}>
+                  <div className="bg-warning bg-opacity-20 rounded-3 p-4 h-100 position-relative">
+                    <h5 className="mb-2">All sale items here</h5>
+                    <p className="text-muted small mb-3">Summer Sale</p>
+                    
+                    {/* Multiple images for this card */}
+                    <div className="d-flex gap-2 mb-3">
+                      {/* TODO: Replace with your beige jacket image */}
+                      <div 
+                        className="bg-light rounded d-flex align-items-center justify-content-center"
+                        style={{ 
+                          width: '60px', 
+                          height: '60px',
+                          background: 'linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%)'
+                        }}
+                      >
+                        <span className="text-muted">🧥</span>
+                      </div>
+                      
+                      {/* TODO: Replace with your pink gua sha tool image */}
+                      <div 
+                        className="bg-light rounded d-flex align-items-center justify-content-center"
+                        style={{ 
+                          width: '60px', 
+                          height: '60px',
+                          background: 'linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%)'
+                        }}
+                      >
+                        <span className="text-muted">💆</span>
+                      </div>
+                    </div>
+                    
+                    {/* TODO: Uncomment and use your actual images:
+                    <div className="d-flex gap-2 mb-3">
+                      <Image 
+                        src="/images/weekly-promotion/beige-jacket.png" 
+                        width={60} 
+                        height={60} 
+                        alt="Beige jacket"
+                        className="rounded"
+                        style={{ objectFit: 'cover' }}
+                      />
+                      <Image 
+                        src="/images/weekly-promotion/pink-gua-sha.png" 
+                        width={60} 
+                        height={60} 
+                        alt="Pink gua sha tool"
+                        className="rounded"
+                        style={{ objectFit: 'cover' }}
+                      />
+                    </div>
+                    */}
+                    
+                    <div className="d-flex justify-content-between align-items-end">
+                      <div>
+                        <p className="mb-0 fw-bold text-danger">$18.99</p>
+                        <small className="text-muted">Fashion & beauty</small>
+                      </div>
+                    </div>
+                  </div>
+                </Col>
+                
+                {/* Card 3: Additional sale item */}
+                <Col lg={4}>
+                  <div className="bg-warning bg-opacity-20 rounded-3 p-4 h-100 position-relative">
+                    <h5 className="mb-2">Premium deals</h5>
+                    <p className="text-muted small mb-3">Summer Sale</p>
+                    
+                    {/* TODO: Replace with your GOLD bottle image */}
+                    <div 
+                      className="bg-light rounded mb-3 d-flex align-items-center justify-content-center mx-auto"
+                      style={{ 
+                        width: '80px', 
+                        height: '80px',
+                        background: 'linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%)'
+                      }}
+                    >
+                      <span className="text-muted">🧴</span>
+                    </div>
+                    
+                    {/* TODO: Uncomment and use your actual image:
+                    <Image 
+                      src="/images/weekly-promotion/gold-bottle.png" 
+                      width={80} 
+                      height={80} 
+                      alt="GOLD bottle with dropper"
+                      className="mb-3 rounded mx-auto d-block"
+                      style={{ objectFit: 'cover' }}
+                    />
+                    */}
+                    
+                    <div className="d-flex justify-content-between align-items-end">
+                      <div>
+                        <p className="mb-0 fw-bold text-danger">$32.99</p>
+                        <small className="text-muted">GOLD serum</small>
+                      </div>
+                    </div>
+                  </div>
+                </Col>
               </Row>
             </Col>
           </Row>
@@ -283,26 +432,159 @@ export default async function ElectronicsHomePage() {
           </Row>
         </Container>
 
-        {/* Across Borders Section */}
+        {/* Across Borders Section - With Pagination */}
         <Container as="section" className="py-4">
           <h5 className="mb-4">Across borders</h5>
-          <Row className="g-3">
-            {[
-              { country: 'Korea', flag: '🇰🇷', desc: 'Discover fresh finds from around the world' },
-              { country: 'India', flag: '🇮🇳', desc: 'Discover fresh finds from around the world' },
-              { country: 'France', flag: '🇫🇷', desc: 'Discover fresh finds from around the world' },
-            ].map((item, index) => (
-              <Col lg={4} key={index}>
-                <div className="bg-light rounded-3 p-4 text-center">
-                  <h6 className="mb-3">Products from {item.country}</h6>
-                  <div className="mb-3">
-                    <span className="fs-1">{item.flag}</span>
+          
+          {/* Countries Data - Add your 6 country images here */}
+          {(() => {
+            const countries = [
+              { 
+                country: 'Korea', 
+                flag: '🇰🇷', 
+                desc: 'Ultimate finds from around the world',
+                // TODO: Replace with your Korea image
+                image: '/images/countries/korea.png' // Add your Korea image here
+              },
+              { 
+                country: 'India', 
+                flag: '🇮🇳', 
+                desc: 'Ultimate finds from around the world',
+                // TODO: Replace with your India image
+                image: '/images/countries/india.png' // Add your India image here
+              },
+              { 
+                country: 'France', 
+                flag: '🇫🇷', 
+                desc: 'Ultimate finds from around the world',
+                // TODO: Replace with your France image
+                image: '/images/countries/france.png' // Add your France image here
+              },
+              { 
+                country: 'Japan', 
+                flag: '🇯🇵', 
+                desc: 'Ultimate finds from around the world',
+                // TODO: Replace with your Japan image
+                image: '/images/countries/japan.png' // Add your Japan image here
+              },
+              { 
+                country: 'Italy', 
+                flag: '🇮🇹', 
+                desc: 'Ultimate finds from around the world',
+                // TODO: Replace with your Italy image
+                image: '/images/countries/italy.png' // Add your Italy image here
+              },
+              { 
+                country: 'Germany', 
+                flag: '🇩🇪', 
+                desc: 'Ultimate finds from around the world',
+                // TODO: Replace with your Germany image
+                image: '/images/countries/germany.png' // Add your Germany image here
+              }
+            ];
+
+            // Pagination logic - show 3 countries per page
+            const [currentPage, setCurrentPage] = React.useState(0);
+            const countriesPerPage = 3;
+            const totalPages = Math.ceil(countries.length / countriesPerPage);
+            const startIndex = currentPage * countriesPerPage;
+            const endIndex = startIndex + countriesPerPage;
+            const currentCountries = countries.slice(startIndex, endIndex);
+
+            return (
+              <>
+                {/* Countries Display */}
+                <Row className="g-3 mb-3">
+                  {currentCountries.map((item, index) => (
+                    <Col lg={4} key={index}>
+                      <div className="bg-light rounded-3 p-4 text-center position-relative">
+                        <h6 className="mb-3">Products from {item.country}</h6>
+                        
+                        {/* Country Image - Replace with your actual images */}
+                        <div className="mb-3 position-relative">
+                          {/* TODO: Replace this div with your actual country image */}
+                          <div 
+                            className="bg-secondary rounded-circle d-flex align-items-center justify-content-center mx-auto"
+                            style={{ 
+                              width: '120px', 
+                              height: '120px',
+                              background: 'linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%)'
+                            }}
+                          >
+                            <span className="fs-1">{item.flag}</span>
+                          </div>
+                          
+                          {/* TODO: Uncomment and use your actual images:
+                          <Image 
+                            src={item.image} 
+                            width={120} 
+                            height={120} 
+                            alt={`Products from ${item.country}`}
+                            className="rounded-circle mx-auto"
+                            style={{ objectFit: 'cover' }}
+                          />
+                          */}
+                        </div>
+                        
+                        <p className="text-muted small mb-0">{item.desc}</p>
+                      </div>
+                    </Col>
+                  ))}
+                </Row>
+
+                {/* Pagination Controls - Exactly like Joom.com */}
+                <div className="d-flex align-items-center justify-content-center gap-2">
+                  {/* Left Arrow */}
+                  <button
+                    onClick={() => setCurrentPage(prev => Math.max(0, prev - 1))}
+                    disabled={currentPage === 0}
+                    className="btn btn-outline-secondary rounded-circle p-2"
+                    style={{ 
+                      width: '40px', 
+                      height: '40px',
+                      border: '1px solid #dee2e6'
+                    }}
+                  >
+                    <i className="ci-arrow-left" style={{ fontSize: '16px' }}></i>
+                  </button>
+                  
+                  {/* Page Dots */}
+                  <div className="d-flex gap-2 mx-3">
+                    {Array.from({ length: totalPages }, (_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentPage(index)}
+                        className={`btn rounded-circle p-0 ${
+                          currentPage === index 
+                            ? 'bg-primary' 
+                            : 'bg-secondary bg-opacity-25'
+                        }`}
+                        style={{ 
+                          width: '10px', 
+                          height: '10px',
+                          border: 'none'
+                        }}
+                      />
+                    ))}
                   </div>
-                  <p className="text-muted small">{item.desc}</p>
+                  
+                  {/* Right Arrow */}
+                  <button
+                    onClick={() => setCurrentPage(prev => Math.min(totalPages - 1, prev + 1))}
+                    disabled={currentPage === totalPages - 1}
+                    className="btn btn-outline-secondary rounded-circle p-2"
+                    style={{ 
+                      width: '40px', 
+                      height: '40px',
+                      border: '1px solid #dee2e6'
+                    }}
+                  >
+                    <i className="ci-arrow-right" style={{ fontSize: '16px' }}></i>
+                  </button>
                 </div>
-              </Col>
-            ))}
-          </Row>
+              </>
+            );
+          })()}
         </Container>
 
         {/* Our Top Picks Section - Multiple Rows */}

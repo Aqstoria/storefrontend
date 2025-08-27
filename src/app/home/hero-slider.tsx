@@ -81,7 +81,7 @@ const HeroBannerJoom = () => {
               <div className="d-flex gap-3">
                 <div className="bg-white rounded-circle" style={{ width: '10px', height: '10px' }}></div>
                 <div className="bg-white bg-opacity-50 rounded-circle" style={{ width: '10px', height: '10px' }}></div>
-                <div className="bg-white bg-opacity-50 rounded-circle" style={{ width: '10px', height: '10px' }}></div>
+                <div className="bg-white bg-opacity-50 rounded-circle" style={{ width: '10px', height: '10px' }}></div>500
               </div>
             </div>
           </div>
