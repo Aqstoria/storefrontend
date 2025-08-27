@@ -73,32 +73,30 @@ export default async function ElectronicsHomePage() {
           <HeroBannerJoom />
         </div>
         
-        {/* Weekly Promotion Section - EXACT Joom Layout: 1 small left + 3 large right */}
+        {/* Weekly Promotion Section - EXACT Joom Layout: 3 simple cards */}
         <Container as="section" className="py-4 mt-3">
           <h4 className="mb-4">Weekly promotion</h4>
           <Row className="g-3">
-            {/* Small card on the left */}
-            <Col lg={3}>
+            {/* Left Card: Bestsellers */}
+            <Col lg={4}>
               <div className="bg-light rounded-3 p-4 h-100" style={{ backgroundColor: '#fff8e1' }}>
-                <h5 className="mb-2">Bestsellers for less</h5>
+                <h5 className="mb-2">Bestsellers</h5>
                 <p className="text-muted small mb-3">Summer Sale</p>
                 
                 <div className="text-center">
-                  {/* Frying pan gradient placeholder */}
+                  {/* Simple light orange gradient */}
                   <div 
                     className="rounded mb-3 mx-auto d-flex align-items-center justify-content-center"
                     style={{ 
-                      width: '700px', 
-                      height: '300px',
-                      background: 'linear-gradient(135deg, #ff6b35 0%, #f7931e 100%)',
+                      width: '100%', 
+                      height: '200px',
+                      background: 'linear-gradient(135deg, #ffb347 0%, #ffa500 100%)',
                       color: 'white',
-                      fontSize: '24px',
-                      fontWeight: '600',
-                      textAlign: 'center',
-                      lineHeight: '1.2'
+                      fontSize: '18px',
+                      fontWeight: '600'
                     }}
                   >
-                    Frying pan<br/>with egg
+                    Bestsellers
                   </div>
                   
                   <p className="text-danger fw-bold mb-0">$12.99</p>
@@ -106,139 +104,58 @@ export default async function ElectronicsHomePage() {
               </div>
             </Col>
             
-            {/* 3 large cards on the right */}
-            <Col lg={9}>
-              <Row className="g-3">
-                {/* Card 1: Hot deals */}
-                <Col lg={4}>
-                  <div className="bg-light rounded-3 p-4 h-100 position-relative" style={{ backgroundColor: '#fff8e1' }}>
-                    <h5 className="mb-2">Hot deals</h5>
-                    <p className="text-muted small mb-3">Summer Sale</p>
-                    
-                    {/* Multiple gradient images for this card */}
-                    <div className="d-flex gap-2 mb-3">
-                      <div 
-                        className="rounded d-flex align-items-center justify-content-center"
-                        style={{ 
-                          width: '700px', 
-                          height: '300px',
-                          background: 'linear-gradient(135deg, #ffd700 0%, #ffb347 100%)',
-                          color: 'white',
-                          fontSize: '24px',
-                          fontWeight: '600',
-                          textAlign: 'center',
-                          lineHeight: '1.1'
-                        }}
-                      >
-                        Gold<br/>Earrings
-                      </div>
-                      <div 
-                        className="rounded d-flex align-items-center justify-content-center"
-                        style={{ 
-                          width: '700px', 
-                          height: '300px',
-                          background: 'linear-gradient(135deg, #ff69b4 0%, #ff1493 100%)',
-                          color: 'white',
-                          fontSize: '24px',
-                          fontWeight: '600',
-                          textAlign: 'center',
-                          lineHeight: '1.1'
-                        }}
-                      >
-                        Pink<br/>Ballet Flats
-                      </div>
-                    </div>
-                    
-                    <div className="d-flex justify-content-between align-items-end">
-                      <div>
-                        <p className="mb-0 fw-bold text-danger">$24.99</p>
-                        <small className="text-muted">Elegant accessories</small>
-                      </div>
-                    </div>
-                  </div>
-                </Col>
+            {/* Middle Card: Hot deals */}
+            <Col lg={4}>
+              <div className="bg-light rounded-3 p-4 h-100" style={{ backgroundColor: '#fff8e1' }}>
+                <h5 className="mb-2">Hot deals</h5>
+                <p className="text-muted small mb-3">Summer Sale</p>
                 
-                {/* Card 2: All sale items here */}
-                <Col lg={4}>
-                  <div className="bg-light rounded-3 p-4 h-100 position-relative" style={{ backgroundColor: '#fff8e1' }}>
-                    <h5 className="mb-2">All sale items here</h5>
-                    <p className="text-muted small mb-3">Summer Sale</p>
-                    
-                    {/* Multiple gradient images for this card */}
-                    <div className="d-flex gap-2 mb-3">
-                      <div 
-                        className="rounded d-flex align-items-center justify-content-center"
-                        style={{ 
-                          width: '700px', 
-                          height: '300px',
-                          background: 'linear-gradient(135deg, #deb887 0%, #d2691e 100%)',
-                          color: 'white',
-                          fontSize: '24px',
-                          fontWeight: '600',
-                          textAlign: 'center',
-                          lineHeight: '1.1'
-                        }}
-                      >
-                        Beige<br/>Jacket
-                      </div>
-                      <div 
-                        className="rounded d-flex align-items-center justify-content-center"
-                        style={{ 
-                          width: '700px', 
-                          height: '300px',
-                          background: 'linear-gradient(135deg, #ff69b4 0%, #ff1493 100%)',
-                          color: 'white',
-                          fontSize: '24px',
-                          fontWeight: '600',
-                          textAlign: 'center',
-                          lineHeight: '1.1'
-                        }}
-                      >
-                        Pink<br/>Gua Sha
-                      </div>
-                    </div>
-                    
-                    <div className="d-flex justify-content-between align-items-end">
-                      <div>
-                        <p className="mb-0 fw-bold text-danger">$18.99</p>
-                        <small className="text-muted">Fashion & beauty</small>
-                      </div>
-                    </div>
+                <div className="text-center">
+                  {/* Simple light orange gradient */}
+                  <div 
+                    className="rounded mb-3 mx-auto d-flex align-items-center justify-content-center"
+                    style={{ 
+                      width: '100%', 
+                      height: '200px',
+                      background: 'linear-gradient(135deg, #ffb347 0%, #ffa500 100%)',
+                      color: 'white',
+                      fontSize: '18px',
+                      fontWeight: '600'
+                    }}
+                  >
+                    Hot deals
                   </div>
-                </Col>
+                  
+                  <p className="text-danger fw-bold mb-0">$24.99</p>
+                </div>
+              </div>
+            </Col>
+            
+            {/* Right Card: All sale items */}
+            <Col lg={4}>
+              <div className="bg-light rounded-3 p-4 h-100" style={{ backgroundColor: '#fff8e1' }}>
+                <h5 className="mb-2">All sale items</h5>
+                <p className="text-muted small mb-3">Summer Sale</p>
                 
-                {/* Card 3: Additional sale item */}
-                <Col lg={4}>
-                  <div className="bg-light rounded-3 p-4 h-100 position-relative" style={{ backgroundColor: '#fff8e1' }}>
-                    <h5 className="mb-2">Premium deals</h5>
-                    <p className="text-muted small mb-3">Summer Sale</p>
-                    
-                    {/* GOLD bottle gradient placeholder */}
-                    <div 
-                      className="rounded mb-3 mx-auto d-block d-flex align-items-center justify-content-center"
-                      style={{ 
-                        width: '700px', 
-                        height: '300px',
-                        background: 'linear-gradient(135deg, #ffd700 0%, #ffb347 100%)',
-                        color: 'white',
-                        fontSize: '24px',
-                        fontWeight: '600',
-                        textAlign: 'center',
-                        lineHeight: '1.1'
-                      }}
-                    >
-                      GOLD<br/>Serum
-                    </div>
-                    
-                    <div className="d-flex justify-content-between align-items-end">
-                      <div>
-                        <p className="mb-0 fw-bold text-danger">$32.99</p>
-                        <small className="text-muted">GOLD serum</small>
-                      </div>
-                    </div>
+                <div className="text-center">
+                  {/* Simple light orange gradient */}
+                  <div 
+                    className="rounded mb-3 mx-auto d-flex align-items-center justify-content-center"
+                    style={{ 
+                      width: '100%', 
+                      height: '200px',
+                      background: 'linear-gradient(135deg, #ffb347 0%, #ffa500 100%)',
+                      color: 'white',
+                      fontSize: '18px',
+                      fontWeight: '600'
+                    }}
+                  >
+                    All sale items
                   </div>
-                </Col>
-              </Row>
+                  
+                  <p className="text-danger fw-bold mb-0">$18.99</p>
+                </div>
+              </div>
             </Col>
           </Row>
         </Container>
