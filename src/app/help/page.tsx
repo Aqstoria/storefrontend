@@ -6,7 +6,7 @@ import FooterElectronics from '@/components/layout/footer-electronics'
 export default function HelpCentrePage() {
   return (
     <>
-      <HeaderElectronics />
+    <HeaderElectronics />
       <div className="min-vh-100 bg-light">
         <div className="container py-5">
           <h1>Help Centre</h1>

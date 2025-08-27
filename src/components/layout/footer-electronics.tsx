@@ -127,7 +127,7 @@ const FooterElectronics = ({ className, logoHref }: { className?: string; logoHr
               <li className="mb-2">
                 <Link href="/size-guide" className="text-white-75 text-decoration-none footer-link" style={{ fontSize: '13px' }}>
                   Size Guide
-                </Link>
+              </Link>
               </li>
             </ul>
           </Col>
@@ -167,7 +167,7 @@ const FooterElectronics = ({ className, logoHref }: { className?: string; logoHr
                 </Link>
               </li>
             </ul>
-          </Col>
+                </Col>
 
           {/* Company & Legal */}
           <Col lg={2} md={6} className="mb-3">
@@ -207,7 +207,7 @@ const FooterElectronics = ({ className, logoHref }: { className?: string; logoHr
           </Col>
         </Row>
       </Container>
-    </div>
+      </div>
 
     {/* Premium Bottom Section */}
     <div className="border-top border-secondary border-opacity-25">
@@ -251,11 +251,11 @@ const FooterElectronics = ({ className, logoHref }: { className?: string; logoHr
                 <div className="bg-white rounded p-1">
                   <i className="ci-paypal" style={{ color: '#ff6b35' }}></i>
                 </div>
-              </div>
-            </div>
+        </div>
+      </div>
           </Col>
         </Row>
-      </Container>
+    </Container>
     </div>
   </footer>
 )

@@ -84,6 +84,7 @@ export default async function ElectronicsHomePage() {
                 <p className="text-muted small mb-3">Summer Sale</p>
                 
                 <div className="text-center">
+                  {/* Simple #ff5f14 color */}
                   <div 
                     className="rounded mb-3 mx-auto d-flex align-items-center justify-content-center"
                     style={{ 
@@ -97,9 +98,9 @@ export default async function ElectronicsHomePage() {
                   >
                     Bestsellers
                   </div>
+                  </div>
                 </div>
-              </div>
-            </Col>
+              </Col>
             
             {/* Middle Card: Hot deals */}
             <Col lg={4}>
@@ -108,6 +109,7 @@ export default async function ElectronicsHomePage() {
                 <p className="text-muted small mb-3">Summer Sale</p>
                 
                 <div className="text-center">
+                  {/* Simple #ff5f14 color */}
                   <div 
                     className="rounded mb-3 mx-auto d-flex align-items-center justify-content-center"
                     style={{ 
@@ -124,7 +126,7 @@ export default async function ElectronicsHomePage() {
                 </div>
               </div>
             </Col>
-            
+
             {/* Right Card: All sale items */}
             <Col lg={4}>
               <div className="bg-light rounded-3 p-4 h-100" style={{ backgroundColor: '#fff8e1' }}>
@@ -132,6 +134,7 @@ export default async function ElectronicsHomePage() {
                 <p className="text-muted small mb-3">Summer Sale</p>
                 
                 <div className="text-center">
+                  {/* Simple #ff5f14 color */}
                   <div 
                     className="rounded mb-3 mx-auto d-flex align-items-center justify-content-center"
                     style={{ 
@@ -144,153 +147,135 @@ export default async function ElectronicsHomePage() {
                     }}
                   >
                     All sale items
-                  </div>
-                </div>
+                      </div>
+                    </div>
               </div>
             </Col>
           </Row>
         </Container>
 
-          {/* The Populars Section - 2x3 Grid + Vertical Banner */}
-          <Container as="section" className="py-4">
-            <div className="d-flex align-items-center justify-content-between mb-4">
-              <h4 className="mb-0">The populars</h4>
-              <Link href="/shop" className="text-decoration-none small">All products</Link>
-            </div>
-            
-            <Row className="g-3">
-              <Col lg={4}>
-                {/* Large featured item */}
-                {featuredProducts[0] && (
-                  <div className="bg-light rounded-3 p-4 h-100 position-relative">
-                    {/* Heart icon - top right */}
-                    <div className="position-absolute top-0 end-0 m-3">
-                      <i className="ci-heart text-muted" style={{ fontSize: '18px', cursor: 'pointer' }}></i>
-                    </div>
-                    
-                    <div className="position-absolute top-0 start-0 m-3">
-                      <span className="badge bg-warning">Top buy today</span>
-                    </div>
-                    <div className="text-center pt-4">
-                      {featuredProducts[0].images && featuredProducts[0].images.length > 0 && (
-                        <Image 
-                          src={ProductService.getProductImage(featuredProducts[0])} 
-                          width={120} 
-                          height={120} 
-                          alt={featuredProducts[0].name}
-                          className="mb-3"
-                        />
-                      )}
-                      <h6 className="mb-2">{featuredProducts[0].name}</h6>
-                      <p className="text-danger fw-bold mb-2">${ProductService.getProductPrice(featuredProducts[0]).toFixed(2)}</p>
-                      <div className="d-flex align-items-center justify-content-center mb-3">
-                        <div className="text-warning me-1">★★★★★</div>
-                        <small className="text-muted">(120)</small>
-                      </div>
-                      {/* Shopping cart icon - bottom */}
-                      <div className="text-center">
-                        <i className="ci-cart text-muted" style={{ fontSize: '18px', cursor: 'pointer' }}></i>
-                      </div>
-                    </div>
+        {/* The Populars Section - 2x3 Grid */}
+        <Container as="section" className="py-4">
+          <div className="d-flex align-items-center justify-content-between mb-4">
+            <h4 className="mb-0">The populars</h4>
+            <Link href="/shop" className="text-decoration-none small">All products</Link>
+          </div>
+          
+          <Row className="g-3">
+            <Col lg={4}>
+              {/* Large featured item */}
+              {featuredProducts[0] && (
+                <div className="bg-light rounded-3 p-4 h-100 position-relative">
+                  {/* Heart icon - top right */}
+                  <div className="position-absolute top-0 end-0 m-3">
+                    <i className="ci-heart text-muted" style={{ fontSize: '18px', cursor: 'pointer' }}></i>
                   </div>
-                )}
-                
-                {/* Vertical Banner Below Left Column */}
-                <div className="bg-light rounded-3 p-4 mt-3" style={{ backgroundColor: '#fff8e1' }}>
-                  <h5 className="mb-2">Low prices on trending items</h5>
-                  <p className="text-muted small mb-3">Summer Sale</p>
                   
-                  <div className="text-center">
-                    {/* Vertical #ff5f14 banner */}
-                    <div 
-                      className="rounded mb-3 mx-auto d-flex align-items-center justify-content-center flex-column"
-                      style={{ 
-                        width: '400px', 
-                        height: '750px',
-                        backgroundColor: '#ff5f14',
-                        color: 'white',
-                        fontSize: '18px',
-                        fontWeight: '600'
-                      }}
-                    >
-                      <div style={{ fontSize: '24px', marginBottom: '10px' }}>👟</div>
-                      <div style={{ fontSize: '20px', marginBottom: '5px' }}>🫙</div>
-                      <div style={{ fontSize: '16px' }}>Trending Items</div>
+                  <div className="position-absolute top-0 start-0 m-3">
+                    <span className="badge bg-warning">Top buy today</span>
+                  </div>
+                  <div className="text-center pt-4">
+                    {featuredProducts[0].images && featuredProducts[0].images.length > 0 && (
+                      <Image 
+                        src={ProductService.getProductImage(featuredProducts[0])} 
+                        width={120} 
+                        height={120} 
+                        alt={featuredProducts[0].name}
+                        className="mb-3"
+                      />
+                    )}
+                    <h6 className="mb-2">{featuredProducts[0].name}</h6>
+                    <p className="text-danger fw-bold mb-2">${ProductService.getProductPrice(featuredProducts[0]).toFixed(2)}</p>
+                    <div className="d-flex align-items-center justify-content-center mb-3">
+                      <div className="text-warning me-1">★★★★★</div>
+                      <small className="text-muted">(120)</small>
+                    </div>
+                    {/* Shopping cart icon - bottom */}
+                    <div className="text-center">
+                      <i className="ci-cart text-muted" style={{ fontSize: '18px', cursor: 'pointer' }}></i>
                     </div>
                   </div>
-                </div>
-              </Col>
-              
-              <Col lg={8}>
-                <Row className="g-3 h-100">
-                  {trendingProducts.slice(0, 6).map((product, index) => (
-                    <Col lg={4} md={6} sm={6} xs={6} key={product.id}>
-                      <Link href={ProductService.getProductUrl(product)} className="text-decoration-none">
-                        <div className="bg-white border rounded-3 p-3 h-100 text-center product-card position-relative">
-                          {/* Heart icon - top right */}
-                          <div className="position-absolute top-0 end-0 m-2">
-                            <i className="ci-heart text-muted" style={{ fontSize: '16px', cursor: 'pointer' }}></i>
-                          </div>
-                          
-                          {product.images && product.images.length > 0 ? (
-                            <Image 
-                              src={ProductService.getProductImage(product)} 
-                              width={80} 
-                              height={80} 
-                              alt={product.name}
-                              className="mb-2 img-fluid"
-                              style={{ objectFit: 'cover' }}
-                            />
-                          ) : (
-                            <div className="bg-light rounded mb-2 d-flex align-items-center justify-content-center" style={{ height: '80px' }}>
-                              <span className="text-muted small">No Image</span>
                             </div>
                           )}
-                          <h6 className="small mb-1 text-dark text-truncate" style={{ fontSize: '12px' }}>{product.name}</h6>
-                          <p className="text-danger fw-bold mb-1">${ProductService.getProductPrice(product).toFixed(2)}</p>
-                          <div className="d-flex align-items-center justify-content-center mb-2">
-                            <div className="text-warning me-1" style={{ fontSize: '12px' }}>★★★★</div>
-                            <small className="text-muted">(85)</small>
-                          </div>
-                          {/* Shopping cart icon - bottom */}
-                          <div className="text-center">
-                            <i className="ci-cart text-muted" style={{ fontSize: '16px', cursor: 'pointer' }}></i>
-                          </div>
-                        </div>
-                      </Link>
-                    </Col>
-                  ))}
-                </Row>
-              </Col>
-            </Row>
-          </Container>
-
-          {/* Across Borders Section - With Pagination */}
-          <Container as="section" className="py-4">
-            <h5 className="mb-4">Across borders</h5>
+            </Col>
             
-            {/* Countries Data - Add your 6 country images here */}
-            <AcrossBordersSection />
-          </Container>
-
-          {/* Our Top Picks Section - Multiple Rows */}
-          <Container as="section" className="py-4">
-            <div className="d-flex align-items-center justify-content-between mb-4">
-              <h5 className="mb-0">Our top picks just for you</h5>
-              <Link href="/shop" className="text-decoration-none small">All products</Link>
-            </div>
-            
-            {/* Multiple rows of products */}
-            {[0, 6, 12, 18].map((startIndex) => (
-              <Row className="g-3 mb-4" key={startIndex}>
-                {featuredProducts.slice(startIndex, startIndex + 6).map((product) => (
-                  <Col xl={2} lg={3} md={4} sm={6} xs={6} key={product.id}>
+            <Col lg={8}>
+              <Row className="g-3 h-100">
+                {trendingProducts.slice(0, 6).map((product, index) => (
+                  <Col lg={4} md={6} sm={6} xs={6} key={product.id}>
                     <Link href={ProductService.getProductUrl(product)} className="text-decoration-none">
-                      <div className="bg-white border rounded-3 p-3 text-center h-100 position-relative">
+                      <div className="bg-white border rounded-3 p-3 h-100 text-center product-card position-relative">
+                        {/* Heart icon - top right */}
+                        <div className="position-absolute top-0 end-0 m-2">
+                          <i className="ci-heart text-muted" style={{ fontSize: '16px', cursor: 'pointer' }}></i>
+                        </div>
+                        
+                        {product.images && product.images.length > 0 ? (
+                          <Image
+                            src={ProductService.getProductImage(product)}
+                            width={80} 
+                            height={80} 
+                            alt={product.name}
+                            className="mb-2 img-fluid"
+                            style={{ objectFit: 'cover' }}
+                          />
+                        ) : (
+                          <div className="bg-light rounded mb-2 d-flex align-items-center justify-content-center" style={{ height: '80px' }}>
+                            <span className="text-muted small">No Image</span>
+                          </div>
+                        )}
+                        <h6 className="small mb-1 text-dark text-truncate" style={{ fontSize: '12px' }}>{product.name}</h6>
+                        <p className="text-danger fw-bold mb-1">${ProductService.getProductPrice(product).toFixed(2)}</p>
+                        <div className="d-flex align-items-center justify-content-center mb-2">
+                          <div className="text-warning me-1" style={{ fontSize: '12px' }}>★★★★</div>
+                          <small className="text-muted">(85)</small>
+                        </div>
+                        {/* Shopping cart icon - bottom */}
+                        <div className="text-center">
+                          <i className="ci-cart text-muted" style={{ fontSize: '16px', cursor: 'pointer' }}></i>
+                        </div>
+                      </div>
+                    </Link>
+                  </Col>
+                ))}
+              </Row>
+            </Col>
+          </Row>
+        </Container>
+
+        {/* Low Prices on Trending Items */}
+        <Container as="section" className="py-4">
+          <Row className="g-4">
+            <Col lg={4}>
+              <div className="bg-warning bg-opacity-20 rounded-3 p-4 h-100">
+                <h5 className="mb-2">Low prices on trending items</h5>
+                <p className="text-muted small mb-4">Summer Sale</p>
+                
+                <div className="text-center">
+                  {trendingProducts[0] && trendingProducts[0].images && trendingProducts[0].images.length > 0 && (
+                    <Image 
+                      src={ProductService.getProductImage(trendingProducts[0])} 
+                      width={150} 
+                      height={150} 
+                      alt={trendingProducts[0].name}
+                      className="mb-3"
+                    />
+                  )}
+          </div>
+              </div>
+            </Col>
+            
+            <Col lg={8}>
+              <h5 className="mb-4">New arrivals</h5>
+              <div className="d-flex gap-3 overflow-auto pb-2">
+                {featuredProducts.slice(3, 9).map((product) => (
+                  <div key={product.id} className="flex-shrink-0" style={{ minWidth: '150px' }}>
+                    <Link href={ProductService.getProductUrl(product)} className="text-decoration-none">
+                      <div className="bg-white border rounded-3 p-3 text-center position-relative">
                         {/* Heart icon - top right */}
                         <div className="position-absolute top-0 end-0 m-2">
                           <i className="ci-heart text-muted" style={{ fontSize: '14px', cursor: 'pointer' }}></i>
-                        </div>
+            </div>
                         
                         {product.images && product.images.length > 0 ? (
                           <Image 
@@ -305,77 +290,132 @@ export default async function ElectronicsHomePage() {
                             <span className="text-muted small">No Image</span>
                           </div>
                         )}
-                        <h6 className="small mb-1 text-dark text-truncate">{product.name}</h6>
-                        <p className="text-danger fw-bold mb-1">${ProductService.getProductPrice(product).toFixed(2)}</p>
-                        <div className="d-flex align-items-center justify-content-center mb-2">
-                          <div className="text-warning me-1">★★★★</div>
-                          <small className="text-muted">(42)</small>
-                        </div>
+                        <p className="text-danger fw-bold mb-1 small">${ProductService.getProductPrice(product).toFixed(2)}</p>
+                        <small className="text-muted d-block mb-2">From USA</small>
                         {/* Shopping cart icon - bottom */}
                         <div className="text-center">
                           <i className="ci-cart text-muted" style={{ fontSize: '14px', cursor: 'pointer' }}></i>
                         </div>
                       </div>
                     </Link>
-                  </Col>
-                ))}
-              </Row>
-            ))}
-            
-            {/* Show more button - exactly like Joom.com */}
-            <div className="text-center mt-4">
-              <Button variant="dark" size="lg" className="px-5 py-3">
-                Show more
-              </Button>
-            </div>
-          </Container>
-
-          {/* Newsletter Signup Section - Full Width with Theme Colors */}
-          <section className="py-4" style={{ background: 'linear-gradient(135deg, #ff6b35 0%, #f7931e 100%)' }}>
-            <Container>
-              <div className="text-center">
-                <h3 className="h4 mb-2 fw-bold text-white">Stay Updated with Cartzilla</h3>
-                <p className="text-white mb-3" style={{ fontSize: '14px' }}>
-                  Subscribe to our newsletter and get the latest deals, product updates, and exclusive offers delivered to your inbox.
-                </p>
-                <form className="d-flex flex-column flex-sm-row gap-2 justify-content-center align-items-center">
-                  <div className="flex-grow-1" style={{ maxWidth: '350px' }}>
-                    <input
-                      type="email"
-                      className="form-control border-0"
-                      placeholder="Enter your email address"
-                      style={{ 
-                        height: '48px',
-                        fontSize: '14px',
-                        backgroundColor: 'rgba(255, 255, 255, 0.9)'
-                      }}
-                      required
-                    />
                   </div>
-                  <button 
-                    type="submit" 
-                    className="btn border-0 px-4"
+                ))}
+              </div>
+            </Col>
+          </Row>
+        </Container>
+
+        {/* Across Borders Section - With Pagination */}
+        <Container as="section" className="py-4">
+          <h5 className="mb-4">Across borders</h5>
+          
+          {/* Countries Data - Add your 6 country images here */}
+          <AcrossBordersSection />
+        </Container>
+
+        {/* Our Top Picks Section - Multiple Rows */}
+        <Container as="section" className="py-4">
+          <div className="d-flex align-items-center justify-content-between mb-4">
+            <h5 className="mb-0">Our top picks just for you</h5>
+            <Link href="/shop" className="text-decoration-none small">All products</Link>
+          </div>
+          
+          {/* Multiple rows of products */}
+          {[0, 6, 12, 18].map((startIndex) => (
+            <Row className="g-3 mb-4" key={startIndex}>
+              {featuredProducts.slice(startIndex, startIndex + 6).map((product) => (
+                <Col xl={2} lg={3} md={4} sm={6} xs={6} key={product.id}>
+                  <Link href={ProductService.getProductUrl(product)} className="text-decoration-none">
+                    <div className="bg-white border rounded-3 p-3 text-center h-100 position-relative">
+                      {/* Heart icon - top right */}
+                      <div className="position-absolute top-0 end-0 m-2">
+                        <i className="ci-heart text-muted" style={{ fontSize: '14px', cursor: 'pointer' }}></i>
+              </div>
+                      
+                      {product.images && product.images.length > 0 ? (
+                          <Image
+                          src={ProductService.getProductImage(product)} 
+                            width={80}
+                          height={80} 
+                          alt={product.name}
+                          className="mb-2"
+                          />
+                        ) : (
+                        <div className="bg-light rounded mb-2 d-flex align-items-center justify-content-center" style={{ height: '80px' }}>
+                          <span className="text-muted small">No Image</span>
+                          </div>
+                        )}
+                      <h6 className="small mb-1 text-dark text-truncate">{product.name}</h6>
+                      <p className="text-danger fw-bold mb-1">${ProductService.getProductPrice(product).toFixed(2)}</p>
+                      <div className="d-flex align-items-center justify-content-center mb-2">
+                        <div className="text-warning me-1">★★★★</div>
+                        <small className="text-muted">(42)</small>
+                      </div>
+                      {/* Shopping cart icon - bottom */}
+                      <div className="text-center">
+                        <i className="ci-cart text-muted" style={{ fontSize: '14px', cursor: 'pointer' }}></i>
+                      </div>
+                    </div>
+                  </Link>
+                </Col>
+              ))}
+            </Row>
+          ))}
+          
+          {/* Show more button - exactly like Joom.com */}
+          <div className="text-center mt-4">
+            <Button variant="dark" size="lg" className="px-5 py-3">
+              Show more
+            </Button>
+          </div>
+        </Container>
+
+        {/* Newsletter Signup Section - Full Width with Theme Colors */}
+        <section className="py-4" style={{ background: 'linear-gradient(135deg, #ff6b35 0%, #f7931e 100%)' }}>
+          <Container>
+            <div className="text-center">
+              <h3 className="h4 mb-2 fw-bold text-white">Stay Updated with Cartzilla</h3>
+              <p className="text-white mb-3" style={{ fontSize: '14px' }}>
+                Subscribe to our newsletter and get the latest deals, product updates, and exclusive offers delivered to your inbox.
+              </p>
+              <form className="d-flex flex-column flex-sm-row gap-2 justify-content-center align-items-center">
+                <div className="flex-grow-1" style={{ maxWidth: '350px' }}>
+                  <input
+                    type="email"
+                    className="form-control border-0"
+                    placeholder="Enter your email address"
                     style={{ 
                       height: '48px',
-                      backgroundColor: '#dc3545',
-                      color: 'white',
-                      fontWeight: '600',
-                      fontSize: '14px'
+                      fontSize: '14px',
+                      backgroundColor: 'rgba(255, 255, 255, 0.9)'
                     }}
-                  >
-                    Subscribe Now
-                  </button>
-                </form>
-                <p className="text-white small mt-2 mb-0" style={{ fontSize: '12px' }}>
-                  By subscribing, you agree to our Privacy Policy and consent to receive updates from our company.
-                </p>
-              </div>
-            </Container>
-          </section>
+                    required
+                  />
+                </div>
+                <button 
+                  type="submit" 
+                  className="btn border-0 px-4"
+                  style={{ 
+                    height: '48px',
+                    backgroundColor: '#dc3545',
+                    color: 'white',
+                    fontWeight: '600',
+                    fontSize: '14px'
+                  }}
+                >
+                  Subscribe Now
+                </button>
+              </form>
+              <p className="text-white small mt-2 mb-0" style={{ fontSize: '12px' }}>
+                By subscribing, you agree to our Privacy Policy and consent to receive updates from our company.
+              </p>
+            </div>
+          </Container>
+        </section>
 
-          {/* Footer */}
-          <FooterElectronics />
-        </main>
-      </CategoriesProvider>
-    )
-  }
+        {/* Footer */}
+        <FooterElectronics />
+      </main>
+    </CategoriesProvider>
+  )
+}

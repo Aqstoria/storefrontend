@@ -74,10 +74,10 @@ const WeeklyPromotionSection = ({ products = [] }: WeeklyPromotionSectionProps) 
                         <div className="w-100 h-100 d-flex align-items-center justify-content-center">
                           <span className="text-muted small">Product {i + 1}</span>
                         </div>
-                      </div>
+          </div>
                     ))
                   )}
-                </div>
+          </div>
 
                 {/* Navigation Arrows */}
                 <div className="d-flex justify-content-between align-items-center">
@@ -90,9 +90,9 @@ const WeeklyPromotionSection = ({ products = [] }: WeeklyPromotionSectionProps) 
                   <button className="btn btn-outline-secondary btn-sm rounded-circle p-2">
                     <i className="ci-chevron-right" />
                   </button>
-                </div>
-              </div>
-            </div>
+          </div>
+      </div>
+    </div>
           </Col>
         ))}
       </Row>

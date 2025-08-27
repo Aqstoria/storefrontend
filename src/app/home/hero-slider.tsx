@@ -60,7 +60,7 @@ export default function HeroBannerJoom() {
                     }}
                   >
                     👕
-                  </div>
+                      </div>
                 </div>
               </Col>
             </Row>
@@ -68,12 +68,13 @@ export default function HeroBannerJoom() {
 
           {/* Navigation Arrows */}
           <button 
-            className="btn btn-outline-light rounded-circle position-absolute start-0 top-50 translate-middle-y ms-4"
+            className="btn rounded-circle position-absolute start-0 top-50 translate-middle-y ms-4"
             style={{ 
               width: '48px', 
               height: '48px',
-              border: '2px solid white',
-              background: 'transparent',
+              border: '2px solid #ff6b35',
+              background: '#ff6b35',
+              color: 'white',
               zIndex: 10
             }}
             onClick={() => setCurrentSlide(0)}
@@ -82,12 +83,13 @@ export default function HeroBannerJoom() {
           </button>
           
           <button 
-            className="btn btn-outline-light rounded-circle position-absolute end-0 top-50 translate-middle-y me-4"
+            className="btn rounded-circle position-absolute end-0 top-50 translate-middle-y me-4"
             style={{ 
               width: '48px', 
               height: '48px',
-              border: '2px solid white',
-              background: 'transparent',
+              border: '2px solid #ff6b35',
+              background: '#ff6b35',
+              color: 'white',
               zIndex: 10
             }}
             onClick={() => setCurrentSlide(0)}
@@ -99,17 +101,27 @@ export default function HeroBannerJoom() {
           <div className="position-absolute bottom-0 start-50 translate-middle-x mb-4">
             <div className="d-flex gap-2">
               <div 
-                className="bg-white rounded-circle" 
-                style={{ width: '10px', height: '10px', opacity: 1 }}
+                className="rounded-circle" 
+                style={{ 
+                  width: '10px', 
+                  height: '10px', 
+                  background: '#ff6b35',
+                  opacity: 1 
+                }}
               ></div>
               <div 
-                className="bg-white rounded-circle" 
-                style={{ width: '10px', height: '10px', opacity: 0.5 }}
+                className="rounded-circle" 
+                style={{ 
+                  width: '10px', 
+                  height: '10px', 
+                  background: '#ff6b35',
+                  opacity: 0.5 
+                }}
               ></div>
             </div>
           </div>
         </div>
-      </Container>
+    </Container>
       
       <style jsx>{`
         .hero-banner-joom {
