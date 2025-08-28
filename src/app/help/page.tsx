@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Link from 'next/link'
 
 interface HelpCategory {
   title: string
@@ -133,31 +134,28 @@ export default function HelpCentrePage() {
                   </Card>
                 ) : (
                   // Regular Category Card
-                  <Card className="h-100 border-0 shadow-sm" style={{ backgroundColor: '#f8f9fa' }}>
-                    <Card.Body className="p-4">
-                      <h4 className="fw-bold text-dark mb-3">{category.title}</h4>
-                      <ul className="list-unstyled mb-3">
-                        {category.questions?.map((question, qIndex) => (
-                          <li key={qIndex} className="mb-2">
-                            <a 
-                              href="#" 
-                              className="text-decoration-underline text-muted"
-                              style={{ color: '#6c757d' }}
-                            >
-                              {question}
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-                      <a 
-                        href="#" 
-                        className="text-decoration-underline text-muted small"
-                        style={{ color: '#6c757d' }}
-                      >
-                        View {category.moreCount} more questions
-                      </a>
-                    </Card.Body>
-                  </Card>
+                  <Link 
+                    href={category.title === 'Delivery & Tracking' ? '/help/delivery' : '#'} 
+                    className="text-decoration-none"
+                  >
+                    <Card className="h-100 border-0 shadow-sm" style={{ backgroundColor: '#f8f9fa' }}>
+                      <Card.Body className="p-4">
+                        <h4 className="fw-bold text-dark mb-3">{category.title}</h4>
+                        <ul className="list-unstyled mb-3">
+                          {category.questions?.map((question, qIndex) => (
+                            <li key={qIndex} className="mb-2">
+                              <span className="text-muted">
+                                {question}
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
+                        <span className="text-muted small">
+                          View {category.moreCount} more questions
+                        </span>
+                      </Card.Body>
+                    </Card>
+                  </Link>
                 )}
               </Col>
             ))}
