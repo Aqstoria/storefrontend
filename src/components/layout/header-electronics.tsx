@@ -129,8 +129,8 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
         </Container>
       </div>
 
-      {/* Search Bar - Full Width on Mobile */}
-      <div className="bg-white border-bottom">
+      {/* Mobile Search Bar - Full Width on Mobile */}
+      <div className="bg-white border-bottom d-lg-none">
         <Container fluid className="px-3">
           <Row className="py-3">
             <Col>
@@ -179,8 +179,55 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
               </Link>
             </Col>
 
+            {/* Search Bar - CENTER */}
+            <Col lg={6}>
+              <div className="d-flex align-items-center search-container">
+                <div className="position-relative d-flex flex-grow-1">
+                  <FormControl 
+                    type="text" 
+                    placeholder="What are you looking for?" 
+                    className="border-0 rounded-start-pill ps-4 pe-5 py-3 search-input"
+                    style={{ 
+                      fontSize: '16px', 
+                      minHeight: '52px',
+                      backgroundColor: '#F8F9FA',
+                      border: 'none',
+                      boxShadow: 'none',
+                      outline: 'none'
+                    }}
+                  />
+                  {/* Camera Icon inside search bar */}
+                  <i className="ci-camera position-absolute" style={{ 
+                    right: '60px', 
+                    top: '50%', 
+                    transform: 'translateY(-50%)', 
+                    color: '#6c757d', 
+                    fontSize: '18px',
+                    zIndex: 5
+                  }}></i>
+                </div>
+                {/* Search Button - Connected to input */}
+                <Button
+                  variant="danger" 
+                  className="rounded-end-pill px-4 py-3 border-0 search-button"
+                  style={{ 
+                    backgroundColor: '#dc3545', 
+                    borderColor: '#dc3545',
+                    minHeight: '52px',
+                    fontSize: '15px',
+                    fontWeight: '600',
+                    border: 'none',
+                    boxShadow: 'none',
+                    marginLeft: '-1px'
+                  }}
+                >
+                  Search
+                </Button>
+              </div>
+            </Col>
+
             {/* Right Icons - RIGHT SIDE */}
-            <Col lg={9}>
+            <Col lg={3}>
               <div className="d-flex gap-4 align-items-center justify-content-end">
                 {/* Notifications */}
                 <Link href="/notifications" className="text-decoration-none">
@@ -334,6 +381,12 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
           border: none !important;
           box-shadow: none !important;
           outline: none !important;
+        }
+        
+        .search-button {
+          border: none !important;
+          box-shadow: none !important;
+          margin-left: -1px !important;
         }
         
         .category-nav::-webkit-scrollbar {
