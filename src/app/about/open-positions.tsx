@@ -11,6 +11,7 @@ import Badge from 'react-bootstrap/Badge'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper/modules'
 import 'swiper/css'
+import 'swiper/css/navigation'
 
 const OpenPositions = () => (
   <Container as="section" className="py-5 mt-2 mb-1 my-sm-3 my-md-4 my-lg-5">

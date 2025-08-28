@@ -9,7 +9,6 @@ import FooterElectronics from '@/components/layout/footer-electronics'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import Button from 'react-bootstrap/Button'
 import Accordion from 'react-bootstrap/Accordion'
 import AccordionItem from 'react-bootstrap/AccordionItem'
@@ -31,14 +30,18 @@ const About_V1_Page = () => (
     {/* Page content */}
     <main className="content-wrapper">
       {/* Breadcrumb */}
-      <Breadcrumb as={Container} className="pt-3 my-3 my-md-4">
-        <li className="breadcrumb-item">
-          <Link href="/home">Home</Link>
-        </li>
-        <li className="breadcrumb-item active" aria-current="page">
-          About
-        </li>
-      </Breadcrumb>
+      <Container className="pt-3 my-3 my-md-4">
+        <nav aria-label="breadcrumb">
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item">
+              <Link href="/home">Home</Link>
+            </li>
+            <li className="breadcrumb-item active" aria-current="page">
+              About
+            </li>
+          </ol>
+        </nav>
+      </Container>
 
       {/* Hero Section */}
       <Container as="section" className="py-5">
