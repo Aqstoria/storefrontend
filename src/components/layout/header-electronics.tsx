@@ -151,7 +151,7 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
                   />
                   {/* Camera Icon inside search bar */}
                   <i className="ci-camera position-absolute" style={{ 
-                    right: '80px', 
+                    right: '5%', 
                     top: '50%', 
                     transform: 'translateY(-50%)', 
                     color: '#6c757d', 
