@@ -11,6 +11,7 @@ import Badge from 'react-bootstrap/Badge'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Offcanvas from 'react-bootstrap/Offcanvas'
+import AuthModal from '@/components/auth/auth-modal'
 
 interface HeaderElectronicsProps {
   logoHref?: string
@@ -25,11 +26,18 @@ interface HeaderElectronicsProps {
 const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, categories }: HeaderElectronicsProps = {}) => {
   const [showMobileMenu, setShowMobileMenu] = useState(false)
   const [showCategories, setShowCategories] = useState(false)
+  const [showAuthModal, setShowAuthModal] = useState(false)
+  const [authMode, setAuthMode] = useState<'login' | 'signup'>('login')
 
   // Use provided categories or fallback to simplified ones
   const joomCategories = categories && categories.length > 0 
     ? categories.map((cat: any) => cat.name).slice(0, 20)
     : ['Outlet', 'Free gift with purchase', 'Xiaomi', 'Men\'s Fashion', 'Pet Supplies', 'Shoes', 'Home Improvement', 'Electronics', 'Smartphone Cases', 'Home Appliances', 'Home & Kitchen', 'Kids', 'Parties & Events', 'Beauty', 'Health', 'Bags & Suitcases', 'Women\'s Fashion', 'Office & School', 'Watches & Clocks']
+
+  const handleAuthClick = (mode: 'login' | 'signup') => {
+    setAuthMode(mode)
+    setShowAuthModal(true)
+  }
 
   return (
     <>
@@ -70,9 +78,13 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
               </Link>
               
               {/* Profile */}
-              <Link href="/account" className="text-decoration-none">
+              <Button 
+                variant="link" 
+                className="text-decoration-none p-0"
+                onClick={() => handleAuthClick('login')}
+              >
                 <i className="ci-user text-dark" style={{ fontSize: '18px' }}></i>
-              </Link>
+              </Button>
               
               {/* Orders */}
               <Link href="/account/orders" className="text-decoration-none">
@@ -245,12 +257,16 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
                 </Link>
 
                 {/* Log in */}
-                <Link href="/account" className="text-decoration-none">
+                <Button 
+                  variant="link" 
+                  className="text-decoration-none p-0"
+                  onClick={() => handleAuthClick('login')}
+                >
                   <div className="text-center">
                     <i className="ci-user fs-4 text-dark" style={{ fontSize: '20px', color: '#333' }}></i>
                     <div className="small text-dark" style={{ fontSize: '13px', marginTop: '4px', color: '#333' }}>Log in</div>
                   </div>
-                </Link>
+                </Button>
 
                 {/* My orders */}
                 <Link href="/account/orders" className="text-decoration-none">
@@ -366,6 +382,13 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
           </div>
         </Offcanvas.Body>
       </Offcanvas>
+      
+      {/* Auth Modal */}
+      <AuthModal 
+        show={showAuthModal}
+        onHide={() => setShowAuthModal(false)}
+        initialMode={authMode}
+      />
       
       <style jsx>{`
         .search-container {
