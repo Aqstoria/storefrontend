@@ -162,11 +162,13 @@ export default async function ElectronicsHomePage() {
           </div>
           
           <Row className="g-3">
-            {/* Left Vertical Banner - Spans 2 rows */}
-            <Col lg={3}>
+            {/* Left Vertical Banner - Spans 2 rows, extended width */}
+            <Col lg={4}>
               <div className="bg-light rounded-3 p-4 h-100 position-relative" style={{ 
                 background: 'linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%)',
-                minHeight: '500px'
+                minHeight: '400px',
+                marginLeft: '-20px',
+                marginRight: '-20px'
               }}>
                 <div className="text-center text-white h-100 d-flex flex-column justify-content-center">
                   <h5 className="mb-3 fw-bold">Special Offers</h5>
@@ -190,10 +192,10 @@ export default async function ElectronicsHomePage() {
               </div>
             </Col>
             
-            {/* Right Products Grid - 9 columns for more products */}
-            <Col lg={9}>
+            {/* Right Products Grid - 2 rows (6 products) */}
+            <Col lg={8}>
               <Row className="g-3 h-100">
-                {trendingProducts.slice(0, 9).map((product, index) => (
+                {trendingProducts.slice(0, 6).map((product, index) => (
                   <Col lg={4} md={6} sm={6} xs={6} key={product.id}>
                     <Link href={ProductService.getProductUrl(product)} className="text-decoration-none">
                       <div className="bg-white border rounded-3 p-3 h-100 text-center product-card position-relative">
