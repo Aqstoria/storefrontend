@@ -135,7 +135,7 @@ export default function HelpCentrePage() {
                 ) : (
                   // Regular Category Card
                   <Link 
-                    href={category.title === 'Delivery & Tracking' ? '/help/delivery' : '#'} 
+                    href={category.title === 'Delivery & Tracking' ? '/delivery' : '#'} 
                     className="text-decoration-none"
                   >
                     <Card className="h-100 border-0 shadow-sm" style={{ backgroundColor: '#f8f9fa' }}>

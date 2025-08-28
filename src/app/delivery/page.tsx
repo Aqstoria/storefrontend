@@ -2,35 +2,96 @@
 
 import HeaderElectronics from '@/components/layout/header-electronics'
 import FooterElectronics from '@/components/layout/footer-electronics'
+import Link from 'next/link'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 export default function DeliveryPage() {
+  const helpCategories = [
+    { name: 'Delivery & Tracking', path: '/delivery', active: true },
+    { name: 'Refunds & Returns', path: '/help/refunds', active: false },
+    { name: 'Ordering', path: '/help/ordering', active: false },
+    { name: 'Sales, Promotions and Coupons', path: '/help/sales', active: false },
+    { name: 'Legal Information & Safety', path: '/help/legal', active: false },
+    { name: 'Products & Reviews', path: '/help/products', active: false },
+    { name: 'Payment', path: '/help/payment', active: false }
+  ]
+
+  const deliveryQuestions = [
+    'What is a non-delivery warranty?',
+    'How do I confirm receipt of an item?',
+    'I\'ve mistakenly marked my order as Delivered. What should I do?',
+    'Will my orders be shipped together?',
+    'When will my order be shipped?',
+    'My order is delayed! What should I do?',
+    'Where\'s my order now?',
+    'Why can\'t I track my order?',
+    'Fees & Taxes',
+    'One of the orders is missing from a consolidated parcel. What should I do?',
+    'My order is marked as delivered, but I have not received it',
+    'Where is my order?'
+  ]
+
   return (
     <>
       <HeaderElectronics />
-      <div className="min-vh-100 bg-light">
+      <div className="min-vh-100 bg-white">
         <div className="container py-5">
-          <h1>Delivery Information</h1>
-          <p>Fast, reliable shipping to your doorstep with real-time tracking.</p>
-          
-          <div className="row mt-4">
-            <div className="col-md-6">
-              <h3>Shipping Options</h3>
-              <ul>
-                <li>Standard Shipping: Free (3-5 business days)</li>
-                <li>Express Shipping: $9.99 (1-2 business days)</li>
-                <li>Overnight Shipping: $19.99 (Next business day)</li>
-              </ul>
-            </div>
-            <div className="col-md-6">
-              <h3>Features</h3>
-              <ul>
-                <li>Real-time Tracking</li>
-                <li>Delivery Notifications</li>
-                <li>Flexible Delivery</li>
-                <li>Secure Packaging</li>
-              </ul>
-            </div>
+          {/* Breadcrumb */}
+          <div className="d-flex justify-content-end mb-4">
+            <nav aria-label="breadcrumb">
+              <ol className="breadcrumb mb-0">
+                <li className="breadcrumb-item">
+                  <Link href="/" className="text-muted text-decoration-none">Home</Link>
+                </li>
+                <li className="breadcrumb-item active text-muted" aria-current="page">
+                  Help centre
+                </li>
+              </ol>
+            </nav>
           </div>
+
+          <Row>
+            {/* Left Sidebar Navigation */}
+            <Col lg={3} className="mb-4">
+              <div className="border-end pe-4">
+                <h5 className="fw-bold text-dark mb-3">Help Categories</h5>
+                <nav className="nav flex-column">
+                  {helpCategories.map((category, index) => (
+                    <Link
+                      key={index}
+                      href={category.path}
+                      className={`nav-link px-0 py-2 text-decoration-none ${
+                        category.active 
+                          ? 'text-danger fw-bold' 
+                          : 'text-dark'
+                      }`}
+                    >
+                      {category.name}
+                    </Link>
+                  ))}
+                </nav>
+              </div>
+            </Col>
+
+            {/* Main Content Area */}
+            <Col lg={9}>
+              <h1 className="display-6 fw-bold text-dark mb-4">Delivery & Tracking</h1>
+              
+              <div className="d-flex flex-column gap-3">
+                {deliveryQuestions.map((question, index) => (
+                  <Link
+                    key={index}
+                    href={`/delivery/${index + 1}`}
+                    className="text-decoration-underline text-danger fw-medium"
+                    style={{ fontSize: '16px' }}
+                  >
+                    {question}
+                  </Link>
+                ))}
+              </div>
+            </Col>
+          </Row>
         </div>
       </div>
       <FooterElectronics />
