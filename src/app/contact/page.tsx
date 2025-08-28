@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import HeaderFashion from '@/components/layout/header-fashion'
-import FooterFashion from '@/components/layout/footer-fashion'
+import HeaderElectronics from '@/components/layout/header-electronics'
+import FooterElectronics from '@/components/layout/footer-electronics'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -16,13 +16,13 @@ import AccordionBody from 'react-bootstrap/AccordionBody'
 import Lightbox from '@/components/lightbox'
 
 export const metadata: Metadata = {
-  title: 'Cartzilla | Contact v.1',
+  title: 'Cartzilla | Contact Us - Get in Touch',
 }
 
 const Contact_V1_Page = () => (
   <>
     {/* Navigation bar (Page header) */}
-    <HeaderFashion />
+    <HeaderElectronics />
 
     {/* Page content */}
     <main className="content-wrapper">
@@ -39,8 +39,8 @@ const Contact_V1_Page = () => (
         <Container className="position-relative z-2 py-4 py-md-5 my-lg-3 my-xl-4 my-xxl-5">
           <Row className="pt-lg-2 pb-2 pb-sm-3 pb-lg-4">
             <Col xs={9} md={8} lg={6}>
-              <h1 className="display-4 mb-lg-4">Contact us</h1>
-              <p className="mb-0">Feel free to contact us and we will be happy to help you!</p>
+              <h1 className="display-4 mb-lg-4">Contact Cartzilla</h1>
+              <p className="mb-0">We're here to help! Get in touch with our friendly support team.</p>
             </Col>
           </Row>
         </Container>
@@ -96,8 +96,8 @@ const Contact_V1_Page = () => (
               We might already have what you&apos;re looking for. See our FAQs or head to our dedicated Help Center.
             </p>
           </div>
-          <Button href="#" variant="outline-dark" size="lg">
-            Help center
+          <Button href="/help" variant="outline-primary" size="lg">
+            Help Center
           </Button>
         </div>
       </Container>
@@ -196,7 +196,7 @@ const Contact_V1_Page = () => (
     </main>
 
     {/* Page footer */}
-    <FooterFashion className="pt-5 mt-2 mt-sm-3 mt-lg-4 mt-xl-5" />
+    <FooterElectronics className="pt-5 mt-2 mt-sm-3 mt-lg-4 mt-xl-5" />
   </>
 )
 
