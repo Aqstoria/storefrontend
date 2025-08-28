@@ -236,8 +236,8 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
         </Container>
       </div>
 
-      {/* Category Navigation Bar - Perfect Spacing */}
-      <div className="bg-white border-top border-bottom">
+      {/* Category Navigation Bar - Perfect Spacing - Hidden on Mobile */}
+      <div className="bg-white border-top border-bottom d-none d-lg-block">
         <Container>
           <Row className="py-2">
             <Col>
@@ -246,22 +246,22 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
                 <Button variant="outline-dark" size="sm" className="text-nowrap border me-3">
                   <i className="ci-menu me-1"></i>
                   All categories
-                          </Button>
+                </Button>
 
                 {/* Special Links with Icons */}
                 <Link href="/outlet" className="text-dark text-decoration-none small text-nowrap d-flex align-items-center me-4">
                   <i className="ci-tag text-danger me-1"></i>
                   Outlet
-                                </Link>
+                </Link>
                 <Link href="/free-gift" className="text-dark text-decoration-none small text-nowrap d-flex align-items-center me-4">
                   <i className="ci-gift text-danger me-1"></i>
                   Free gift with purchase
-                                  </Link>
+                </Link>
 
                 {/* Category Links */}
                 {joomCategories.slice(2).map((category, index) => (
                   <Link 
-                                key={index}
+                    key={index}
                     href={`/category/${category.toLowerCase().replace(/\s+/g, '-')}`}
                     className="text-muted text-decoration-none text-nowrap small me-4"
                     style={{ fontSize: '13px' }}
@@ -269,10 +269,10 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
                     {category}
                   </Link>
                 ))}
-                                  </div>
-                    </Col>
-                  </Row>
-                </Container>
+              </div>
+            </Col>
+          </Row>
+        </Container>
       </div>
       
       {/* Mobile Offcanvas Menu */}
