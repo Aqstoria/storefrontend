@@ -190,48 +190,10 @@ export default async function ElectronicsHomePage() {
               </div>
             </Col>
             
-            {/* Featured Product - Top buy today */}
-            <Col lg={3}>
-              {/* Large featured item */}
-              {featuredProducts[0] && (
-                <div className="bg-light rounded-3 p-4 h-100 position-relative">
-                  {/* Heart icon - top right */}
-                  <div className="position-absolute top-0 end-0 m-3">
-                    <i className="ci-heart text-muted" style={{ fontSize: '18px', cursor: 'pointer' }}></i>
-                  </div>
-                  
-                  <div className="position-absolute top-0 start-0 m-3">
-                    <span className="badge bg-warning">Top buy today</span>
-                  </div>
-                  <div className="text-center pt-4">
-                    {featuredProducts[0].images && featuredProducts[0].images.length > 0 && (
-                      <Image 
-                        src={ProductService.getProductImage(featuredProducts[0])} 
-                        width={120} 
-                        height={120} 
-                        alt={featuredProducts[0].name}
-                        className="mb-3"
-                      />
-                    )}
-                    <h6 className="mb-2">{featuredProducts[0].name}</h6>
-                    <p className="text-danger fw-bold mb-2">${ProductService.getProductPrice(featuredProducts[0]).toFixed(2)}</p>
-                    <div className="d-flex align-items-center justify-content-center mb-3">
-                      <div className="text-warning me-1">★★★★★</div>
-                      <small className="text-muted">(120)</small>
-                    </div>
-                    {/* Shopping cart icon - bottom */}
-                    <div className="text-center">
-                      <i className="ci-cart text-muted" style={{ fontSize: '18px', cursor: 'pointer' }}></i>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </Col>
-            
-            {/* Right Products Grid - 3 columns */}
-            <Col lg={6}>
+            {/* Right Products Grid - 9 columns for more products */}
+            <Col lg={9}>
               <Row className="g-3 h-100">
-                {trendingProducts.slice(0, 6).map((product, index) => (
+                {trendingProducts.slice(0, 9).map((product, index) => (
                   <Col lg={4} md={6} sm={6} xs={6} key={product.id}>
                     <Link href={ProductService.getProductUrl(product)} className="text-decoration-none">
                       <div className="bg-white border rounded-3 p-3 h-100 text-center product-card position-relative">
