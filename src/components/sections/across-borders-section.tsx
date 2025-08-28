@@ -47,7 +47,7 @@ export default function AcrossBordersSection() {
                   style={{ 
                     objectFit: 'cover',
                     borderRadius: '12px',
-                    width: '144%',
+                    width: '172.8%',
                     height: '291px'
                   }}
                 />
