@@ -16,9 +16,11 @@ import AccordionItem from 'react-bootstrap/AccordionItem'
 import AccordionHeader from 'react-bootstrap/AccordionHeader'
 import AccordionBody from 'react-bootstrap/AccordionBody'
 import Lightbox from '@/components/lightbox'
+import Card from 'react-bootstrap/Card'
+import Badge from 'react-bootstrap/Badge'
 
 export const metadata: Metadata = {
-  title: 'Cartzilla | About v.1',
+  title: 'Cartzilla | About Us - Your Trusted Shopping Partner',
 }
 
 const About_V1_Page = () => (
@@ -38,125 +40,166 @@ const About_V1_Page = () => (
         </li>
       </Breadcrumb>
 
-      {/* Hero */}
-      <Container as="section">
-        <Row>
-          <Col md={7} className="order-md-2 mb-4 mb-md-0">
-            <div className="position-relative h-100">
-              <div className="ratio ratio-16x9" />
-              <Image
-                priority
-                fill
-                src="/img/about/v1/hero.jpg"
-                sizes="1000px"
-                className="object-fit-cover rounded-5"
-                alt="Image"
-              />
+      {/* Hero Section */}
+      <Container as="section" className="py-5">
+        <Row className="align-items-center">
+          <Col lg={6} className="mb-5 mb-lg-0">
+            <div className="pe-lg-4">
+              <Badge bg="warning" className="mb-3 px-3 py-2 fs-6">Since 2015</Badge>
+              <h1 className="display-4 fw-bold text-dark mb-4">
+                🚀 Cartzilla - More than just shopping
+              </h1>
+              <p className="lead text-muted mb-4">
+                We're your trusted partner in discovering amazing products at unbeatable prices. From electronics to fashion, 
+                home goods to gadgets - we've got everything you need to make life better, easier, and more enjoyable.
+              </p>
+              <div className="d-flex flex-wrap gap-3">
+                <Button href="#mission" variant="primary" size="lg" className="px-4 py-3">
+                  🎯 Our Mission
+                  <i className="ci-arrow-down ms-2" />
+                </Button>
+                <Button href="#stats" variant="outline-primary" size="lg" className="px-4 py-3">
+                  📊 Company Stats
+                </Button>
+              </div>
             </div>
           </Col>
-          <Col md={5} className="order-md-1">
-            <div className="position-relative py-5 px-4 px-sm-5">
-              <span
-                className="position-absolute top-0 start-0 w-100 h-100 rounded-5 d-none-dark rtl-flip"
-                style={{ background: 'linear-gradient(-90deg, #accbee 0%, #e7f0fd 100%)' }}
-              />
-              <span
-                className="position-absolute top-0 start-0 w-100 h-100 rounded-5 d-none d-block-dark rtl-flip"
-                style={{ background: 'linear-gradient(-90deg, #1b273a 0%, #1f2632 100%)' }}
-              />
-              <div className="position-relative z-1 py-md-2 py-lg-4 py-xl-5 px-xl-2 px-xxl-4 my-xxl-3">
-                <h1 className="pb-1 pb-md-2 pb-lg-3">Cartzilla - More than a retailer</h1>
-                <p className="text-dark-emphasis pb-sm-2 pb-lg-0 mb-4 mb-lg-5">
-                  Since 2015, we have been fulfilling the small dreams and big plans of millions of people. You can find
-                  literally everything here.
-                </p>
-                <Button href="#mission" variant="outline-dark" size="lg" className="animate-slide-down">
-                  Learn more
-                  <i className="ci-arrow-down fs-lg animate-target ms-2 me-n1" />
-                </Button>
+          <Col lg={6}>
+            <div className="position-relative">
+              <div className="ratio ratio-16x9">
+                <Image
+                  priority
+                  fill
+                  src="/img/about/v1/hero.jpg"
+                  sizes="(max-width: 992px) 100vw, 50vw"
+                  className="object-fit-cover rounded-4"
+                  alt="Cartzilla Team"
+                />
+              </div>
+              {/* Floating stats card */}
+              <div className="position-absolute top-0 end-0 bg-white rounded-4 p-4 shadow-lg" style={{ transform: 'translate(20px, -20px)' }}>
+                <div className="text-center">
+                  <div className="h2 fw-bold text-primary mb-1">8+</div>
+                  <div className="small text-muted">Years of Excellence</div>
+                </div>
               </div>
             </div>
           </Col>
         </Row>
       </Container>
 
-      {/* Stats */}
-      <Container as="section" className="py-5 mt-md-2 mt-lg-4">
-        <Row xs={2} md={4} className="g-4">
+      {/* Stats Section */}
+      <Container as="section" id="stats" className="py-5 bg-light rounded-4">
+        <Row xs={2} md={4} className="g-4 text-center">
           {[
-            ['14k', 'products available for purchase'],
-            ['120m', 'users visited site from 2015'],
-            ['800+', 'employees around the world'],
-            ['92%', 'of our customers return'],
+            { number: '14k+', label: 'Products Available', icon: '🛍️' },
+            { number: '120M+', label: 'Happy Customers', icon: '😊' },
+            { number: '800+', label: 'Global Team', icon: '🌍' },
+            { number: '92%', label: 'Return Rate', icon: '🔄' },
           ].map((item, index) => (
-            <Col key={index} className="text-center">
-              <div className="display-4 text-dark-emphasis mb-2">{item[0]}</div>
-              <p className="fs-sm mb-0">{item[1]}</p>
+            <Col key={index}>
+              <div className="p-4">
+                <div className="fs-1 mb-2">{item.icon}</div>
+                <div className="h2 fw-bold text-primary mb-2">{item.number}</div>
+                <p className="text-muted mb-0 small">{item.label}</p>
+              </div>
             </Col>
           ))}
         </Row>
       </Container>
 
-      {/* CEO quotation (Mission) */}
+      {/* Mission Section */}
       <Container
         as="section"
         id="mission"
-        className="pt-3 pt-sm-4 pt-lg-5 mt-lg-2 mt-xl-4 mt-xxl-5"
+        className="py-5 mt-5"
         style={{ scrollMarginTop: 60 }}
       >
-        <div className="text-center mx-auto" style={{ maxWidth: 690 }}>
-          <h2 className="text-body fs-sm fw-normal">Mission</h2>
-          <h3 className="h1 pb-2 pb-md-3 mx-auto" style={{ maxWidth: 400 }}>
+        <div className="text-center mx-auto" style={{ maxWidth: 800 }}>
+          <Badge bg="info" className="mb-3 px-3 py-2 fs-6">Our Mission</Badge>
+          <h2 className="display-5 fw-bold text-dark mb-4">
             The best products at fair prices
-          </h3>
-          <p className="fs-xl pb-2 pb-md-3 pb-lg-4">
-            &quot;We believe that things exist to make life easier, more pleasant and kinder. That&apos;s why the search
-            for the right thing should be quick, convenient and enjoyable. We do not just sell household appliances and
-            electronics, but comfort and accessibility.&quot;
-          </p>
-          <div className="d-inline-flex mb-3" style={{ width: 64 }}>
-            <Image src="/img/about/v1/avatar.jpg" width={128} height={128} className="rounded-circle" alt="Avatar" />
+          </h2>
+          <div className="bg-light rounded-4 p-5 mb-5">
+            <p className="fs-xl text-muted mb-4 fst-italic">
+              "We believe that things exist to make life easier, more pleasant and kinder. That's why the search
+              for the right thing should be quick, convenient and enjoyable. We do not just sell household appliances and
+              electronics, but comfort and accessibility."
+            </p>
+            <div className="d-flex align-items-center justify-content-center">
+              <Image 
+                src="/img/about/v1/avatar.jpg" 
+                width={80} 
+                height={80} 
+                className="rounded-circle me-3" 
+                alt="William Lacker" 
+              />
+              <div className="text-start">
+                <h6 className="mb-1 fw-bold">William Lacker</h6>
+                <p className="text-muted mb-0 small">Founder & CEO, Cartzilla</p>
+              </div>
+            </div>
           </div>
-          <h6 className="mb-0">William Lacker, Cartzilla CEO</h6>
         </div>
       </Container>
 
-      {/* Principles */}
-      <Container as="section" className="pt-5">
-        <Row className="pt-2 pt-sm-3 pt-md-4 pt-lg-5">
-          <Col md={5} lg={6} className="pb-1 pb-sm-2 pb-md-0 mb-4 mb-md-0">
-            <Image src="/img/about/v1/delivery.jpg" width={954} height={954} className="rounded-5" alt="Image" />
+      {/* Principles Section */}
+      <Container as="section" className="py-5">
+        <Row className="align-items-center">
+          <Col lg={6} className="mb-5 mb-lg-0">
+            <div className="position-relative">
+              <Image 
+                src="/img/about/v1/delivery.jpg" 
+                width={600} 
+                height={600} 
+                className="rounded-4 w-100" 
+                alt="Cartzilla Principles" 
+              />
+              {/* Floating badge */}
+              <div className="position-absolute top-0 start-0 bg-primary text-white rounded-3 px-3 py-2">
+                <span className="fw-bold">Core Values</span>
+              </div>
+            </div>
           </Col>
-          <Col md={7} lg={6} className="pt-md-3 pt-xl-4 pt-xxl-5">
-            <div className="ps-md-3 ps-lg-4 ps-xl-5 ms-xxl-4">
-              <h2 className="text-body fs-sm fw-normal">Principles</h2>
-              <h3 className="h1 pb-1 pb-sm-2 pb-lg-3">The main principles that will allow us to grow</h3>
-              <p className="pb-xl-3">
-                Cartzilla is a comprehensive solution to fulfill any customer&apos;s needs, serving as both the starting
-                point and end destination of their search. It operates as a reliable assistant, dedicated to eliminating
-                the need for any unpleasant compromises, making their dreams a reality, and empowering them to think
-                big.
+          <Col lg={6}>
+            <div className="ps-lg-4">
+              <Badge bg="success" className="mb-3 px-3 py-2 fs-6">Our Principles</Badge>
+              <h2 className="h1 fw-bold text-dark mb-4">
+                The foundation of our success
+              </h2>
+              <p className="text-muted mb-4">
+                Cartzilla is a comprehensive solution to fulfill any customer's needs, serving as both the starting
+                point and end destination of their search. We operate as a reliable assistant, dedicated to eliminating
+                the need for any unpleasant compromises.
               </p>
-              <Accordion defaultActiveKey="0" className="accordion-alt-icon">
+              <Accordion defaultActiveKey="0" className="accordion-modern">
                 {[
-                  [
-                    'Customer focus',
-                    "We prioritize understanding and anticipating our customers' needs, delivering an exceptional and personalized experience from start to finish.",
-                  ],
-                  [
-                    'Betting on reputation',
-                    'We value a solid reputation built on integrity, transparency, and quality - ensuring our customers trust and rely on our brand.',
-                  ],
-                  [
-                    'Fast, convenient and enjoyable',
-                    "We've streamlined our process for speed, convenience, and an enjoyable shopping experience, redefining online standards for our delighted customers.",
-                  ],
+                  {
+                    title: 'Customer Focus',
+                    icon: '🎯',
+                    description: "We prioritize understanding and anticipating our customers' needs, delivering an exceptional and personalized experience from start to finish."
+                  },
+                  {
+                    title: 'Quality & Trust',
+                    icon: '⭐',
+                    description: 'We value a solid reputation built on integrity, transparency, and quality - ensuring our customers trust and rely on our brand.'
+                  },
+                  {
+                    title: 'Innovation & Speed',
+                    icon: '🚀',
+                    description: "We've streamlined our process for speed, convenience, and an enjoyable shopping experience, redefining online standards for our delighted customers."
+                  },
                 ].map((item, index) => (
-                  <AccordionItem key={index} eventKey={`${index}`}>
-                    <AccordionHeader as="h3" className="animate-underline">
-                      <span className="animate-target me-2">{item[0]}</span>
+                  <AccordionItem key={index} eventKey={`${index}`} className="border-0 mb-3">
+                    <AccordionHeader className="bg-light rounded-3 p-3">
+                      <div className="d-flex align-items-center">
+                        <span className="fs-4 me-3">{item.icon}</span>
+                        <span className="fw-bold">{item.title}</span>
+                      </div>
                     </AccordionHeader>
-                    <AccordionBody>{item[1]}</AccordionBody>
+                    <AccordionBody className="bg-light rounded-bottom-3 p-3">
+                      <p className="text-muted mb-0">{item.description}</p>
+                    </AccordionBody>
                   </AccordionItem>
                 ))}
               </Accordion>
@@ -165,55 +208,60 @@ const About_V1_Page = () => (
         </Row>
       </Container>
 
-      {/* Values (Carousel of icon boxes) */}
+      {/* Values Carousel */}
       <ValuesCarousel />
 
-      {/* Video + Blog post */}
-      <Container as="section" className="pt-5 mt-2 mt-sm-3 mt-md-4 mt-lg-5">
+      {/* Video & Blog Section */}
+      <Container as="section" className="py-5">
         <Row xs={1} md={2} className="g-4">
           <Col>
             <div className="position-relative h-100">
-              <div className="ratio ratio-16x9" />
-              <Image
-                src="/img/about/v1/video-cover.jpg"
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-fit-cover rounded-5"
-                alt="Image"
-              />
+              <div className="ratio ratio-16x9">
+                <Image
+                  src="/img/about/v1/video-cover.jpg"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-fit-cover rounded-4"
+                  alt="Cartzilla Story"
+                />
+              </div>
               <div className="position-absolute start-0 bottom-0 d-flex align-items-end w-100 h-100 z-2 p-4">
                 <Lightbox
                   href="https://www.youtube.com/watch?v=Sqqj_14wBxU"
                   gallery="video"
-                  className="btn btn-lg btn-light rounded-pill m-md-2"
+                  className="btn btn-lg btn-light rounded-pill shadow"
                 >
                   <i className="ci-play fs-lg ms-n1 me-2" />
-                  Play
+                  Watch Our Story
                 </Lightbox>
               </div>
             </div>
           </Col>
           <Col>
-            <div className="bg-body-tertiary rounded-5 py-5 px-4 px-sm-5">
-              <div className="py-md-3 py-lg-4 py-xl-5 px-lg-4 px-xl-5 my-lg-2 my-xl-4 my-xxl-5">
-                <h2 className="h3 pb-sm-1 pb-lg-2">The role of philanthropy in building a better world</h2>
-                <p className="pb-sm-2 pb-lg-0 mb-4 mb-lg-5">
-                  Charitable contributions are a vital aspect of building a better world. These contributions come in
-                  various forms, including monetary donations...
+            <Card className="border-0 shadow-sm h-100">
+              <Card.Body className="p-5">
+                <Badge bg="warning" className="mb-3 px-3 py-2 fs-6">Latest News</Badge>
+                <h3 className="h4 fw-bold text-dark mb-3">
+                  Building a better world through innovation
+                </h3>
+                <p className="text-muted mb-4">
+                  Discover how Cartzilla is making a difference in the world through innovative solutions, 
+                  sustainable practices, and commitment to customer satisfaction...
                 </p>
-                <Link href="#" className="btn btn-lg btn-outline-dark">
-                  Learn more
-                </Link>
-              </div>
-            </div>
+                <Button variant="outline-primary" size="lg" className="rounded-pill">
+                  Read More
+                  <i className="ci-arrow-right ms-2" />
+                </Button>
+              </Card.Body>
+            </Card>
           </Col>
         </Row>
       </Container>
 
-      {/* Open positions (Carousel of cards) */}
+      {/* Open Positions */}
       <OpenPositions />
 
-      {/* Subscription form + Vlog section */}
+      {/* Subscription & Vlog */}
       <SubscriptionVlogElectronics />
     </main>
 
