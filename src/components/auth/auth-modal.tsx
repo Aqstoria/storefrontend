@@ -104,8 +104,8 @@ export default function AuthModal({ show, onHide, initialMode = 'login' }: AuthM
       show={show} 
       onHide={onHide}
       centered
-      size="md"
       onExited={resetForms}
+      style={{ maxWidth: '500px' }}
     >
       <Modal.Header className="border-0 pb-0">
         <Modal.Title className="w-100 text-center">
