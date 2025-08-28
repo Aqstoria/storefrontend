@@ -104,7 +104,7 @@ export default function AuthModal({ show, onHide, initialMode = 'login' }: AuthM
       show={show} 
       onHide={onHide}
       centered
-      size="sm"
+      size="lg"
       onExited={resetForms}
     >
       <Modal.Header className="border-0 pb-0">
