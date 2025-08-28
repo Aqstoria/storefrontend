@@ -162,13 +162,11 @@ export default async function ElectronicsHomePage() {
           </div>
           
           <Row className="g-3">
-            {/* Left Vertical Banner - Spans 2 rows, extended width */}
-            <Col lg={4}>
+            {/* Left Vertical Banner - Spans 2 rows, original size */}
+            <Col lg={3}>
               <div className="bg-light rounded-3 p-4 h-100 position-relative" style={{ 
                 background: 'linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%)',
-                minHeight: '400px',
-                marginLeft: '-20px',
-                marginRight: '-20px'
+                minHeight: '400px'
               }}>
                 <div className="text-center text-white h-100 d-flex flex-column justify-content-center">
                   <h5 className="mb-3 fw-bold">Special Offers</h5>
@@ -193,7 +191,7 @@ export default async function ElectronicsHomePage() {
             </Col>
             
             {/* Right Products Grid - 2 rows (6 products) */}
-            <Col lg={8}>
+            <Col lg={9}>
               <Row className="g-3 h-100">
                 {trendingProducts.slice(0, 6).map((product, index) => (
                   <Col lg={4} md={6} sm={6} xs={6} key={product.id}>
@@ -233,68 +231,6 @@ export default async function ElectronicsHomePage() {
                   </Col>
                 ))}
               </Row>
-            </Col>
-          </Row>
-        </Container>
-
-        {/* Low Prices on Trending Items */}
-        <Container as="section" className="py-4">
-          <Row className="g-4">
-            <Col lg={4}>
-              <div className="bg-warning bg-opacity-20 rounded-3 p-4 h-100">
-                <h5 className="mb-2">Low prices on trending items</h5>
-                <p className="text-muted small mb-4">Summer Sale</p>
-                
-                <div className="text-center">
-                  {trendingProducts[0] && trendingProducts[0].images && trendingProducts[0].images.length > 0 && (
-                    <Image 
-                      src={ProductService.getProductImage(trendingProducts[0])} 
-                      width={150} 
-                      height={150} 
-                      alt={trendingProducts[0].name}
-                      className="mb-3"
-                    />
-                  )}
-          </div>
-              </div>
-            </Col>
-            
-            <Col lg={8}>
-              <h5 className="mb-4">New arrivals</h5>
-              <div className="d-flex gap-3 overflow-auto pb-2">
-                {featuredProducts.slice(3, 9).map((product) => (
-                  <div key={product.id} className="flex-shrink-0" style={{ minWidth: '150px' }}>
-                    <Link href={ProductService.getProductUrl(product)} className="text-decoration-none">
-                      <div className="bg-white border rounded-3 p-3 text-center position-relative">
-                        {/* Heart icon - top right */}
-                        <div className="position-absolute top-0 end-0 m-2">
-                          <i className="ci-heart text-muted" style={{ fontSize: '14px', cursor: 'pointer' }}></i>
-            </div>
-                        
-                        {product.images && product.images.length > 0 ? (
-                          <Image 
-                            src={ProductService.getProductImage(product)} 
-                            width={80} 
-                            height={80} 
-                            alt={product.name}
-                            className="mb-2"
-                          />
-                        ) : (
-                          <div className="bg-light rounded mb-2 d-flex align-items-center justify-content-center" style={{ height: '80px' }}>
-                            <span className="text-muted small">No Image</span>
-                          </div>
-                        )}
-                        <p className="text-danger fw-bold mb-1 small">${ProductService.getProductPrice(product).toFixed(2)}</p>
-                        <small className="text-muted d-block mb-2">From USA</small>
-                        {/* Shopping cart icon - bottom */}
-                        <div className="text-center">
-                          <i className="ci-cart text-muted" style={{ fontSize: '14px', cursor: 'pointer' }}></i>
-                        </div>
-                      </div>
-                    </Link>
-                  </div>
-                ))}
-              </div>
             </Col>
           </Row>
         </Container>
