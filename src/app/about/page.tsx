@@ -20,6 +20,7 @@ import Badge from 'react-bootstrap/Badge'
 
 export const metadata: Metadata = {
   title: 'Cartzilla | About Us - Your Trusted Shopping Partner',
+  description: 'Learn about Cartzilla - your trusted shopping partner since 2015',
 }
 
 const About_V1_Page = () => (
