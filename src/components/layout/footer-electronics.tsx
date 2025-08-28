@@ -179,6 +179,11 @@ const FooterElectronics = ({ className, logoHref }: { className?: string; logoHr
                 </Link>
               </li>
               <li className="mb-2">
+                <Link href="/blog" className="text-white-75 text-decoration-none footer-link" style={{ fontSize: '13px' }}>
+                  Blog
+                </Link>
+              </li>
+              <li className="mb-2">
                 <Link href="/careers" className="text-white-75 text-decoration-none footer-link" style={{ fontSize: '13px' }}>
                   Careers
                 </Link>
