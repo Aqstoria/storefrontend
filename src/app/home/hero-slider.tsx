@@ -138,6 +138,13 @@ export default function HeroBannerJoom() {
           border-radius: 16px !important;
         }
         
+        @media (min-width: 992px) {
+          .hero-banner {
+            width: calc(100% - 100px) !important;
+            margin: 20px 50px 0 50px !important;
+          }
+        }
+        
         @media (max-width: 768px) {
           .hero-banner {
             min-height: 288px !important; /* 320px - 10% = 288px */
