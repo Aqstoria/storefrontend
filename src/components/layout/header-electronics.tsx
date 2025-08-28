@@ -139,7 +139,7 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
                   <FormControl 
                     type="text" 
                     placeholder="What are you looking for?" 
-                    className="border-0 rounded-start-pill ps-4 pe-5 py-3 search-input"
+                    className="border-0 rounded-pill ps-4 pe-5 py-3 search-input"
                     style={{ 
                       fontSize: '16px', 
                       minHeight: '48px',
@@ -159,23 +159,6 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
                     zIndex: 5
                   }}></i>
                 </div>
-                {/* Search Button - Connected to input */}
-                <Button
-                  variant="danger" 
-                  className="rounded-end-pill px-4 py-3 border-0 search-button"
-                  style={{ 
-                    backgroundColor: '#dc3545', 
-                    borderColor: '#dc3545',
-                    minHeight: '48px',
-                    fontSize: '15px',
-                    fontWeight: '600',
-                    border: 'none',
-                    boxShadow: 'none',
-                    marginLeft: '-1px'
-                  }}
-                >
-                  Search
-                </Button>
               </div>
             </Col>
           </Row>
@@ -299,23 +282,6 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
         </Offcanvas.Header>
         <Offcanvas.Body>
           <div className="d-flex flex-column gap-3">
-            {/* Categories */}
-            <div>
-              <h6 className="fw-bold mb-3">Categories</h6>
-              <div className="d-flex flex-column gap-2">
-                {joomCategories.map((category, index) => (
-                  <Link 
-                    key={index}
-                    href={`/category/${category.toLowerCase().replace(/\s+/g, '-')}`}
-                    className="text-dark text-decoration-none py-2 border-bottom"
-                    onClick={() => setShowMobileMenu(false)}
-                  >
-                    {category}
-                  </Link>
-                ))}
-              </div>
-            </div>
-            
             {/* Account Links */}
             <div>
               <h6 className="fw-bold mb-3">Account</h6>
@@ -368,12 +334,6 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
           border: none !important;
           box-shadow: none !important;
           outline: none !important;
-        }
-        
-        .search-button {
-          border: none !important;
-          box-shadow: none !important;
-          margin-left: -1px !important;
         }
         
         .category-nav::-webkit-scrollbar {
