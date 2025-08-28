@@ -55,36 +55,40 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
             </Col>
             
             {/* Right: Icons */}
-            <Col xs={6} className="d-flex align-items-center justify-content-end gap-3">
+            <Col xs={6} className="d-flex align-items-center justify-content-end gap-2">
               {/* Notifications */}
               <Link href="/notifications" className="text-decoration-none position-relative">
-                <i className="ci-bell fs-5 text-dark"></i>
+                <i className="ci-bell text-dark" style={{ fontSize: '18px' }}></i>
                 <Badge bg="danger" className="position-absolute top-0 start-100 translate-middle rounded-pill" style={{ 
                   fontSize: '8px', 
                   padding: '1px 3px',
-                  minWidth: '14px',
-                  height: '14px'
+                  minWidth: '12px',
+                  height: '12px',
+                  top: '-2px',
+                  right: '-2px'
                 }}>1</Badge>
               </Link>
               
               {/* Profile */}
               <Link href="/account" className="text-decoration-none">
-                <i className="ci-user fs-5 text-dark"></i>
+                <i className="ci-user text-dark" style={{ fontSize: '18px' }}></i>
               </Link>
               
               {/* Orders */}
               <Link href="/account/orders" className="text-decoration-none">
-                <i className="ci-package fs-5 text-dark"></i>
+                <i className="ci-package text-dark" style={{ fontSize: '18px' }}></i>
               </Link>
               
               {/* Cart */}
               <Link href="/cart" className="text-decoration-none position-relative">
-                <i className="ci-shopping-cart fs-5 text-dark"></i>
+                <i className="ci-shopping-cart text-dark" style={{ fontSize: '18px' }}></i>
                 <Badge bg="danger" className="position-absolute top-0 start-100 translate-middle rounded-pill" style={{ 
                   fontSize: '8px', 
                   padding: '1px 3px',
-                  minWidth: '14px',
-                  height: '14px'
+                  minWidth: '12px',
+                  height: '12px',
+                  top: '-2px',
+                  right: '-2px'
                 }}>3</Badge>
               </Link>
             </Col>
@@ -147,11 +151,11 @@ const HeaderElectronics = ({ logoHref = '/', isLoggedIn, expandedCategories, cat
                   />
                   {/* Camera Icon inside search bar */}
                   <i className="ci-camera position-absolute" style={{ 
-                    right: '60px', 
+                    right: '80px', 
                     top: '50%', 
                     transform: 'translateY(-50%)', 
                     color: '#6c757d', 
-                    fontSize: '18px',
+                    fontSize: '16px',
                     zIndex: 5
                   }}></i>
                 </div>
