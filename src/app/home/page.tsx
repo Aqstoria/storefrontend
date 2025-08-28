@@ -154,7 +154,7 @@ export default async function ElectronicsHomePage() {
           </Row>
         </Container>
 
-        {/* The Populars Section - 2x3 Grid */}
+        {/* The Populars Section - 2x3 Grid with Left Vertical Banner */}
         <Container as="section" className="py-4">
           <div className="d-flex align-items-center justify-content-between mb-4">
             <h4 className="mb-0">The populars</h4>
@@ -162,7 +162,36 @@ export default async function ElectronicsHomePage() {
           </div>
           
           <Row className="g-3">
-            <Col lg={4}>
+            {/* Left Vertical Banner - Spans 2 rows */}
+            <Col lg={3}>
+              <div className="bg-light rounded-3 p-4 h-100 position-relative" style={{ 
+                background: 'linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%)',
+                minHeight: '500px'
+              }}>
+                <div className="text-center text-white h-100 d-flex flex-column justify-content-center">
+                  <h5 className="mb-3 fw-bold">Special Offers</h5>
+                  <p className="mb-4 opacity-75">Exclusive deals just for you</p>
+                  
+                  {/* Sneaker and water bottle illustration */}
+                  <div className="mb-4">
+                    <div className="d-flex align-items-center justify-content-center mb-3">
+                      <span className="fs-1 me-3">👟</span>
+                      <span className="fs-1">💧</span>
+                    </div>
+                  </div>
+                  
+                  <h6 className="mb-2">Low prices on trending items</h6>
+                  <p className="mb-3 opacity-75">Summer Sale</p>
+                  
+                  <Button variant="light" size="sm" className="mt-auto">
+                    Shop Now
+                  </Button>
+                </div>
+              </div>
+            </Col>
+            
+            {/* Featured Product - Top buy today */}
+            <Col lg={3}>
               {/* Large featured item */}
               {featuredProducts[0] && (
                 <div className="bg-light rounded-3 p-4 h-100 position-relative">
@@ -195,11 +224,12 @@ export default async function ElectronicsHomePage() {
                       <i className="ci-cart text-muted" style={{ fontSize: '18px', cursor: 'pointer' }}></i>
                     </div>
                   </div>
-                            </div>
-                          )}
+                </div>
+              )}
             </Col>
             
-            <Col lg={8}>
+            {/* Right Products Grid - 3 columns */}
+            <Col lg={6}>
               <Row className="g-3 h-100">
                 {trendingProducts.slice(0, 6).map((product, index) => (
                   <Col lg={4} md={6} sm={6} xs={6} key={product.id}>
