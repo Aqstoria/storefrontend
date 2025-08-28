@@ -1,12 +1,5 @@
-[33m16a8e7a[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Fix Categories dropdown to be expandable/collapsible instead of always open
-[33m2705e22[m Fix CORS configuration and API endpoints for production
-[33mf055e03[m Update page.tsx
-[33m80d3e6a[m Initial commit: Frontend with GitHub-ready setup
-[33m16a8e7a[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Fix Categories dropdown to be expandable/collapsible instead of always open
-[33m2705e22[m Fix CORS configuration and API endpoints for production
-[33mf055e03[m Update page.tsx
-[33m5df7451[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Fix TypeScript error: Access products.data array from ProductsResponse
-[33md6fa8fe[m Fix Next.js 15 compatibility: Make params async in category page
-[33ma6cf7a3[m Fix page routing: Add header and footer to all pages for proper navigation and layout
-[33m35b5b43[m Add Help Centre, Delivery, and Warranty pages with dynamic category routing and product display
-[33m6a356b8[m Implement exact Joom-style header: cookie consent banner, proper icon spacing, backend categories integration, and improved visual hierarchy
+[33mf81677d[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Fix about page build errors: remove unused Breadcrumb import, fix Swiper CSS imports for v11 compatibility, resolve component import issues
+[33mccd9f81[m Fix contact page: replace fashion header/footer with Cartzilla electronics components, update branding, remove Instagram content, link help center button to actual help page
+[33mf1a2677[m Redesign about page with Cartzilla theme: modern hero section, enhanced stats with icons, improved principles section, better visual elements and badges
+[33m9fdbe63[m Fix delivery page layout: correct left sidebar to show help categories, update help page link to point to main delivery page, match image design exactly
+[33m678e36a[m Create delivery page: add two-column layout with left sidebar navigation and right content area, update main help page to link to delivery page
