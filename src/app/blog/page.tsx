@@ -29,10 +29,14 @@ export default function BlogPage() {
   const fetchBlogPosts = async () => {
     try {
       setLoading(true)
+      console.log('fetchBlogPosts called with page:', currentPage);
+      
       const fetchedPosts = await BlogService.getPosts({
         page: currentPage,
         per_page: postsPerPage
       })
+      
+      console.log('fetchBlogPosts received posts:', fetchedPosts);
       setPosts(fetchedPosts)
       setTotalPosts(fetchedPosts.length) // This will be updated when we get pagination info
     } catch (error) {

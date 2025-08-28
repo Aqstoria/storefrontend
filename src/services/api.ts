@@ -835,26 +835,55 @@ class BotbleAPI {
         });
       }
 
-      const response = await fetch(`${this.baseURL}/blog/posts?${queryParams}`, {
+      // Try the configured baseURL first
+      let url = `${this.baseURL}/blog/posts?${queryParams}`;
+      console.log('Fetching blog posts from:', url);
+
+      let response = await fetch(url, {
         method: 'GET',
         headers: {
           'Accept': 'application/json',
         },
       });
 
+      // If the first attempt fails, try the production URL as fallback
+      if (!response.ok) {
+        console.log('First attempt failed, trying production URL...');
+        const productionURL = 'https://store.earnyourdollar.com/api/v1';
+        url = `${productionURL}/blog/posts?${queryParams}`;
+        console.log('Trying production URL:', url);
+        
+        response = await fetch(url, {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+          },
+        });
+      }
+
+      console.log('Blog API response status:', response.status);
+      console.log('Blog API response headers:', response.headers);
+
       const data = await response.json();
+      console.log('Blog API response data:', data);
 
       if (!response.ok) {
+        console.error('Blog API error response:', data);
         return {
           success: false,
-          message: data.message || 'Failed to fetch blog posts.'
+          message: data.message || 'Failed to fetch blog posts.',
+          error: data
         };
       }
 
       return { success: true, data: data.data || [] };
     } catch (error) {
       console.error('Get blog posts error:', error);
-      return { success: true, data: [] };
+      return { 
+        success: false, 
+        message: 'Failed to fetch blog posts due to network error.',
+        error: error 
+      };
     }
   }
 
