@@ -18,6 +18,7 @@ import Spinner from 'react-bootstrap/Spinner'
 import Badge from 'react-bootstrap/Badge'
 import Image from 'next/image'
 import Link from 'next/link'
+import CustomFooter from '@/components/layout/custom-footer'
 
 interface WishlistItem {
   id: number
@@ -72,7 +73,7 @@ const AccountWishlistPage = () => {
     try {
       setLoading(true)
       setError(null)
-      
+
       const response = await botbleAPI.getWishlist()
 
       if (response.success && response.data) {
@@ -91,12 +92,12 @@ const AccountWishlistPage = () => {
 
   const handleRemoveFromWishlist = async (itemId: number) => {
     try {
-      setRemovingItems(prev => new Set(prev).add(itemId))
-      
+      setRemovingItems((prev) => new Set(prev).add(itemId))
+
       const response = await botbleAPI.removeFromWishlist(itemId)
-      
+
       if (response.success) {
-        setWishlistItems(prev => prev.filter(item => item.id !== itemId))
+        setWishlistItems((prev) => prev.filter((item) => item.id !== itemId))
       } else {
         setError(response.message || 'Failed to remove item from wishlist')
       }
@@ -104,7 +105,7 @@ const AccountWishlistPage = () => {
       console.error('Error removing from wishlist:', err)
       setError('Failed to remove item. Please try again.')
     } finally {
-      setRemovingItems(prev => {
+      setRemovingItems((prev) => {
         const newSet = new Set(prev)
         newSet.delete(itemId)
         return newSet
@@ -114,12 +115,12 @@ const AccountWishlistPage = () => {
 
   const handleAddToCart = async (product: WishlistItem) => {
     try {
-      setAddingToCart(prev => new Set(prev).add(product.id))
-      
+      setAddingToCart((prev) => new Set(prev).add(product.id))
+
       await addToCart(product)
-      
+
       // Optionally remove from wishlist after adding to cart
-      const wishlistItem = wishlistItems.find(item => item.id === product.id)
+      const wishlistItem = wishlistItems.find((item) => item.id === product.id)
       if (wishlistItem) {
         await handleRemoveFromWishlist(wishlistItem.id)
       }
@@ -127,7 +128,7 @@ const AccountWishlistPage = () => {
       console.error('Error adding to cart:', err)
       setError('Failed to add item to cart. Please try again.')
     } finally {
-      setAddingToCart(prev => {
+      setAddingToCart((prev) => {
         const newSet = new Set(prev)
         newSet.delete(product.id)
         return newSet
@@ -182,9 +183,7 @@ const AccountWishlistPage = () => {
           <Row className="pt-md-2 pt-lg-3 pb-sm-2 pb-md-3 pb-lg-4 pb-xl-5">
             {/* Sidebar */}
             <Col as="aside" lg={3}>
-              <AccountSidebarShop 
-                name={user?.name || 'User'} 
-              />
+              <AccountSidebarShop name={user?.name || 'User'} />
             </Col>
 
             {/* Main content */}
@@ -244,16 +243,13 @@ const AccountWishlistPage = () => {
                                 style={{ objectFit: 'cover', height: '200px' }}
                               />
                             </a>
-                            
+
                             {item.sale_price && (
-                              <Badge 
-                                bg="danger" 
-                                className="position-absolute top-0 start-0 m-2"
-                              >
+                              <Badge bg="danger" className="position-absolute top-0 start-0 m-2">
                                 Sale
                               </Badge>
                             )}
-                            
+
                             <Button
                               variant="outline-danger"
                               size="sm"
@@ -268,34 +264,25 @@ const AccountWishlistPage = () => {
                               )}
                             </Button>
                           </div>
-                          
+
                           <Card.Body className="d-flex flex-column">
                             <h6 className="mb-2">
-                              <a 
-                                href={`/shop/electronics/${item.slug}`}
-                                className="text-decoration-none text-dark"
-                              >
+                              <a href={`/shop/electronics/${item.slug}`} className="text-decoration-none text-dark">
                                 {item.name}
                               </a>
                             </h6>
-                            
+
                             <div className="mb-2">
                               <div className="d-flex align-items-center mb-1">
-                                <div className="me-2">
-                                  {renderStars(item.rating)}
-                                </div>
-                                <small className="text-muted">
-                                  ({item.reviews_count})
-                                </small>
+                                <div className="me-2">{renderStars(item.rating)}</div>
+                                <small className="text-muted">({item.reviews_count})</small>
                               </div>
                             </div>
-                            
+
                             <div className="mb-3">
                               {item.sale_price ? (
                                 <div>
-                                  <span className="h6 text-danger me-2">
-                                    {item.sale_price_formatted}
-                                  </span>
+                                  <span className="h6 text-danger me-2">{item.sale_price_formatted}</span>
                                   <span className="text-muted text-decoration-line-through">
                                     {item.price_formatted}
                                   </span>
@@ -304,7 +291,7 @@ const AccountWishlistPage = () => {
                                 <span className="h6">{item.price_formatted}</span>
                               )}
                             </div>
-                            
+
                             <div className="mt-auto">
                               {item.is_out_of_stock ? (
                                 <Button variant="outline-secondary" disabled className="w-100">
@@ -343,7 +330,8 @@ const AccountWishlistPage = () => {
         </Container>
       </main>
 
-      <FooterElectronics className="border-top" />
+      {/* <FooterElectronics className="border-top" /> */}
+      <CustomFooter />
     </>
   )
 }

@@ -10,7 +10,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Spinner from 'react-bootstrap/Spinner'
 import { useAuth } from '@/contexts/auth-context'
-
+import CustomFooter from '@/components/layout/custom-footer'
 
 const ShopAccountLayout = ({ children }: React.PropsWithChildren) => {
   const { user, isAuthenticated, isLoading } = useAuth()
@@ -55,9 +55,7 @@ const ShopAccountLayout = ({ children }: React.PropsWithChildren) => {
           <Row className="pt-md-2 pt-lg-3 pb-sm-2 pb-md-3 pb-lg-4 pb-xl-5">
             {/* Sidebar navigation that turns into offcanvas on screens < 992px wide (lg breakpoint) */}
             <Col as="aside" lg={3}>
-              <AccountSidebarShop 
-                name={user.name} 
-              />
+              <AccountSidebarShop name={user.name} />
             </Col>
 
             {/* Page content */}
@@ -69,7 +67,8 @@ const ShopAccountLayout = ({ children }: React.PropsWithChildren) => {
       </main>
 
       {/* Page footer */}
-      <FooterElectronics className="border-top" />
+      {/* <FooterElectronics className="border-top" /> */}
+      <CustomFooter />
     </>
   )
 }

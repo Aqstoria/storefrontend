@@ -18,6 +18,7 @@ import Spinner from 'react-bootstrap/Spinner'
 import Table from 'react-bootstrap/Table'
 import Pagination from 'react-bootstrap/Pagination'
 import Link from 'next/link'
+import CustomFooter from '@/components/layout/custom-footer'
 
 interface Order {
   id: number
@@ -70,9 +71,9 @@ const AccountOrdersPage = () => {
     try {
       setLoading(true)
       setError(null)
-      
+
       const response = await botbleAPI.getOrders({
-        per_page: 10
+        per_page: 10,
       })
 
       if (response.success && response.data) {
@@ -120,7 +121,7 @@ const AccountOrdersPage = () => {
       month: 'short',
       day: 'numeric',
       hour: '2-digit',
-      minute: '2-digit'
+      minute: '2-digit',
     })
   }
 
@@ -150,9 +151,7 @@ const AccountOrdersPage = () => {
           <Row className="pt-md-2 pt-lg-3 pb-sm-2 pb-md-3 pb-lg-4 pb-xl-5">
             {/* Sidebar */}
             <Col as="aside" lg={3}>
-              <AccountSidebarShop 
-                name={user?.name || 'User'} 
-              />
+              <AccountSidebarShop name={user?.name || 'User'} />
             </Col>
 
             {/* Main content */}
@@ -224,22 +223,16 @@ const AccountOrdersPage = () => {
                                   </div>
                                 </td>
                                 <td className="py-3">
-                                  <small className="text-muted">
-                                    {formatDate(order.created_at)}
-                                  </small>
+                                  <small className="text-muted">{formatDate(order.created_at)}</small>
                                 </td>
                                 <td className="py-3">
-                                  <Badge bg={getStatusVariant(order.status)}>
-                                    {order.status}
-                                  </Badge>
+                                  <Badge bg={getStatusVariant(order.status)}>{order.status}</Badge>
                                 </td>
                                 <td className="py-3">
                                   <div>
-                                    <small className="text-muted d-block">
-                                      {order.payment_method || 'N/A'}
-                                    </small>
+                                    <small className="text-muted d-block">{order.payment_method || 'N/A'}</small>
                                     {order.payment_status && (
-                                      <Badge 
+                                      <Badge
                                         bg={order.payment_status === 'completed' ? 'success' : 'warning'}
                                         className="small"
                                       >
@@ -249,9 +242,7 @@ const AccountOrdersPage = () => {
                                   </div>
                                 </td>
                                 <td className="py-3">
-                                  <div className="fw-medium">
-                                    {order.amount_formatted}
-                                  </div>
+                                  <div className="fw-medium">{order.amount_formatted}</div>
                                 </td>
                                 <td className="py-3">
                                   <div className="d-flex gap-2">
@@ -292,7 +283,7 @@ const AccountOrdersPage = () => {
                             disabled={currentPage === 1}
                             onClick={() => handlePageChange(currentPage - 1)}
                           />
-                          
+
                           {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
                             <Pagination.Item
                               key={page}
@@ -302,7 +293,7 @@ const AccountOrdersPage = () => {
                               {page}
                             </Pagination.Item>
                           ))}
-                          
+
                           <Pagination.Next
                             disabled={currentPage === totalPages}
                             onClick={() => handlePageChange(currentPage + 1)}
@@ -318,9 +309,10 @@ const AccountOrdersPage = () => {
         </Container>
       </main>
 
-      <FooterElectronics className="border-top" />
+      {/* <FooterElectronics className="border-top" /> */}
+      <CustomFooter />
     </>
   )
 }
 
-export default AccountOrdersPage 
+export default AccountOrdersPage

@@ -12,6 +12,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import { BlogService, BlogPost } from '@/services/blog'
+import CustomFooter from '@/components/layout/custom-footer'
 
 export const metadata: Metadata = {
   title: 'Cartzilla | Blog Grid View v.2',
@@ -64,7 +65,8 @@ const BlogGridV2Page = async () => {
       </main>
 
       {/* Page footer */}
-      <FooterElectronics className="border-top" />
+      {/* <FooterElectronics className="border-top" /> */}
+      <CustomFooter />
     </>
   )
 }

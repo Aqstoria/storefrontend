@@ -10,6 +10,7 @@ import FooterElectronics from '@/components/layout/footer-electronics'
 import Container from 'react-bootstrap/Container'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import { ProductService } from '@/services/products'
+import CustomFooter from '@/components/layout/custom-footer'
 
 interface ProductPageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
@@ -19,7 +20,7 @@ interface ProductPageProps {
 export async function generateMetadata({ searchParams }: ProductPageProps): Promise<Metadata> {
   const params = await searchParams
   const productSlug = params.slug as string
-  
+
   if (!productSlug) {
     return {
       title: 'Product Not Found | Cartzilla',
@@ -28,7 +29,7 @@ export async function generateMetadata({ searchParams }: ProductPageProps): Prom
 
   try {
     const product = await ProductService.getProduct(productSlug)
-    
+
     if (!product) {
       return {
         title: 'Product Not Found | Cartzilla',
@@ -55,9 +56,9 @@ const ElectronicsProductPage = async ({ searchParams }: ProductPageProps) => {
   // Get product slug from URL params
   const params = await searchParams
   const productSlug = params.slug as string
-  
+
   let product = null
-  
+
   if (productSlug) {
     try {
       product = await ProductService.getProduct(productSlug)
@@ -89,9 +90,7 @@ const ElectronicsProductPage = async ({ searchParams }: ProductPageProps) => {
           </li>
           {product.categories && product.categories.length > 0 && product.categories[0] && (
             <li className="breadcrumb-item">
-              <Link href={ProductService.getCategoryUrl(product.categories[0])}>
-                {product.categories[0].name}
-              </Link>
+              <Link href={ProductService.getCategoryUrl(product.categories[0])}>{product.categories[0].name}</Link>
             </li>
           )}
           <li className="breadcrumb-item active" aria-current="page">
@@ -114,7 +113,8 @@ const ElectronicsProductPage = async ({ searchParams }: ProductPageProps) => {
       </main>
 
       {/* Page footer */}
-      <FooterElectronics />
+      {/* <FooterElectronics /> */}
+      <CustomFooter />
     </>
   )
 }

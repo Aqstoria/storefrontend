@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
+import CustomFooter from '@/components/layout/custom-footer'
 
 export const metadata: Metadata = {
   title: 'Cartzilla | About Us - Your Trusted Shopping Partner',
@@ -38,12 +39,11 @@ const About_V1_Page = () => (
         <Row className="align-items-center">
           <Col lg={6} className="mb-5 mb-lg-0">
             <div className="pe-lg-4">
-              <h1 className="display-4 fw-bold text-dark mb-4">
-                🚀 Cartzilla - More than just shopping
-              </h1>
+              <h1 className="display-4 fw-bold text-dark mb-4">🚀 Cartzilla - More than just shopping</h1>
               <p className="lead text-muted mb-4">
-                We're your trusted partner in discovering amazing products at unbeatable prices. From electronics to fashion, 
-                home goods to gadgets - we've got everything you need to make life better, easier, and more enjoyable.
+                We're your trusted partner in discovering amazing products at unbeatable prices. From electronics to
+                fashion, home goods to gadgets - we've got everything you need to make life better, easier, and more
+                enjoyable.
               </p>
               <div className="d-flex flex-wrap gap-3">
                 <Button href="#mission" variant="primary" size="lg" className="px-4 py-3">
@@ -86,24 +86,20 @@ const About_V1_Page = () => (
       </Container>
 
       {/* Mission Section */}
-      <Container
-        as="section"
-        id="mission"
-        className="py-5 mt-5"
-        style={{ scrollMarginTop: 60 }}
-      >
+      <Container as="section" id="mission" className="py-5 mt-5" style={{ scrollMarginTop: 60 }}>
         <div className="text-center mx-auto" style={{ maxWidth: 800 }}>
-          <h2 className="display-5 fw-bold text-dark mb-4">
-            The best products at fair prices
-          </h2>
+          <h2 className="display-5 fw-bold text-dark mb-4">The best products at fair prices</h2>
           <div className="bg-light rounded-4 p-5 mb-5">
             <p className="fs-xl text-muted mb-4 fst-italic">
-              "We believe that things exist to make life easier, more pleasant and kinder. That's why the search
-              for the right thing should be quick, convenient and enjoyable. We do not just sell household appliances and
+              "We believe that things exist to make life easier, more pleasant and kinder. That's why the search for the
+              right thing should be quick, convenient and enjoyable. We do not just sell household appliances and
               electronics, but comfort and accessibility."
             </p>
             <div className="d-flex align-items-center justify-content-center">
-              <div className="bg-primary rounded-circle me-3 d-flex align-items-center justify-content-center" style={{ width: '80px', height: '80px' }}>
+              <div
+                className="bg-primary rounded-circle me-3 d-flex align-items-center justify-content-center"
+                style={{ width: '80px', height: '80px' }}
+              >
                 <span className="fs-1 text-white">👨‍💼</span>
               </div>
               <div className="text-start">
@@ -119,9 +115,7 @@ const About_V1_Page = () => (
       <Container as="section" className="py-5">
         <div className="text-center">
           <h3 className="mb-3">Ready to start shopping?</h3>
-          <p className="mb-4">
-            Join millions of satisfied customers worldwide
-          </p>
+          <p className="mb-4">Join millions of satisfied customers worldwide</p>
           <Button variant="primary" size="lg" href="/shop">
             Start Shopping
           </Button>
@@ -130,7 +124,8 @@ const About_V1_Page = () => (
     </main>
 
     {/* Page footer */}
-    <FooterElectronics />
+    {/* <FooterElectronics /> */}
+    <CustomFooter />
   </>
 )
 

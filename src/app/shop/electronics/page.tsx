@@ -19,6 +19,7 @@ import AccordionCollapse from 'react-bootstrap/AccordionCollapse'
 import Button from 'react-bootstrap/Button'
 import FormLabel from 'react-bootstrap/FormLabel'
 import SelectBox from '@/components/forms/select-box'
+import CustomFooter from '@/components/layout/custom-footer'
 
 export const metadata: Metadata = {
   title: 'Cartzilla | Electronics Store - Catalog',
@@ -116,10 +117,7 @@ const ElectronicsCatalogPage = () => (
 
           {/* Products grid */}
           <Col lg={9}>
-            <ProductsGridElectronics
-              dataSlice={[0, 6]}
-              className="pb-3 mb-3"
-            />
+            <ProductsGridElectronics dataSlice={[0, 6]} className="pb-3 mb-3" />
 
             {/* Banner */}
             <div className="position-relative rounded-5 overflow-hidden mb-4">
@@ -198,7 +196,8 @@ const ElectronicsCatalogPage = () => (
     </main>
 
     {/* Page footer */}
-    <FooterElectronics />
+    {/* <FooterElectronics /> */}
+    <CustomFooter />
   </>
 )
 

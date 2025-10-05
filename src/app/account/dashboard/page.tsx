@@ -19,6 +19,7 @@ import Alert from 'react-bootstrap/Alert'
 import Link from 'next/link'
 import Table from 'react-bootstrap/Table'
 import Form from 'react-bootstrap/Form'
+import CustomFooter from '@/components/layout/custom-footer'
 
 interface DashboardStats {
   totalOrders: number
@@ -56,26 +57,34 @@ interface Address {
   is_default: boolean
 }
 
-type DashboardView = 'dashboard' | 'orders' | 'wishlist' | 'payment' | 'reviews' | 'info' | 'addresses' | 'notifications'
+type DashboardView =
+  | 'dashboard'
+  | 'orders'
+  | 'wishlist'
+  | 'payment'
+  | 'reviews'
+  | 'info'
+  | 'addresses'
+  | 'notifications'
 
 const AccountDashboardPage = () => {
   const { user, isAuthenticated, isLoading: authLoading } = useAuth()
   const router = useRouter()
-  
+
   const [currentView, setCurrentView] = useState<DashboardView>('dashboard')
   const [stats, setStats] = useState<DashboardStats>({
     totalOrders: 0,
     pendingOrders: 0,
     completedOrders: 0,
     totalSpent: 0,
-    wishlistItems: 0
+    wishlistItems: 0,
   })
   const [recentOrders, setRecentOrders] = useState<RecentOrder[]>([])
   const [reviews, setReviews] = useState<Review[]>([])
   const [addresses, setAddresses] = useState<Address[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  
+
   // Address form state
   const [showAddForm, setShowAddForm] = useState(false)
   const [editingAddress, setEditingAddress] = useState<Address | null>(null)
@@ -86,7 +95,7 @@ const AccountDashboardPage = () => {
     state: '',
     country: '',
     zip_code: '',
-    is_default: false
+    is_default: false,
   })
 
   useEffect(() => {
@@ -116,28 +125,28 @@ const AccountDashboardPage = () => {
       setLoading(true)
       setError(null)
       console.log('Dashboard: Starting to fetch data...')
-      
+
       const authToken = localStorage.getItem('auth_token')
       console.log('Dashboard: Auth token exists:', !!authToken)
-      
+
       const ordersResponse = await botbleAPI.getOrders({ per_page: 10 })
       console.log('Dashboard: Orders response:', ordersResponse)
-      
+
       if (ordersResponse.success && ordersResponse.data) {
         const orders = ordersResponse.data.data || ordersResponse.data || []
         console.log('Dashboard: Orders data:', orders)
-        
+
         const totalOrders = orders.length
         const pendingOrders = orders.filter((order: any) => order.status === 'pending').length
         const completedOrders = orders.filter((order: any) => order.status === 'completed').length
         const totalSpent = orders.reduce((sum: number, order: any) => sum + parseFloat(order.amount || 0), 0)
-        
+
         setStats({
           totalOrders,
           pendingOrders,
           completedOrders,
           totalSpent,
-          wishlistItems: 0
+          wishlistItems: 0,
         })
 
         const recentOrdersData = orders.slice(0, 5)
@@ -149,7 +158,7 @@ const AccountDashboardPage = () => {
           pendingOrders: 0,
           completedOrders: 0,
           totalSpent: 0,
-          wishlistItems: 0
+          wishlistItems: 0,
         })
         setRecentOrders([])
       }
@@ -159,12 +168,11 @@ const AccountDashboardPage = () => {
         console.log('Dashboard: Wishlist response:', wishlistResponse)
         if (wishlistResponse.success && wishlistResponse.data) {
           const wishlistItems = wishlistResponse.data.items?.length || 0
-          setStats(prev => ({ ...prev, wishlistItems }))
+          setStats((prev) => ({ ...prev, wishlistItems }))
         }
       } catch (wishlistError) {
         console.log('Wishlist fetch failed:', wishlistError)
       }
-
     } catch (err) {
       console.error('Error fetching dashboard data:', err)
       setError('Failed to load dashboard data. Please try again.')
@@ -211,15 +219,15 @@ const AccountDashboardPage = () => {
           product_name: 'Wireless Headphones',
           rating: 5,
           comment: 'Great sound quality and comfortable to wear!',
-          created_at: '2024-01-15T10:30:00Z'
+          created_at: '2024-01-15T10:30:00Z',
         },
         {
           id: 2,
           product_name: 'Smart Watch',
           rating: 4,
           comment: 'Good features but battery life could be better.',
-          created_at: '2024-01-10T14:20:00Z'
-        }
+          created_at: '2024-01-10T14:20:00Z',
+        },
       ]
       setReviews(mockReviews)
     } catch (error) {
@@ -240,7 +248,7 @@ const AccountDashboardPage = () => {
           state: 'NY',
           country: 'USA',
           zip_code: '10001',
-          is_default: true
+          is_default: true,
         },
         {
           id: 2,
@@ -250,8 +258,8 @@ const AccountDashboardPage = () => {
           state: 'CA',
           country: 'USA',
           zip_code: '90210',
-          is_default: false
-        }
+          is_default: false,
+        },
       ]
       setAddresses(mockAddresses)
     } catch (error) {
@@ -308,14 +316,14 @@ const AccountDashboardPage = () => {
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'short',
-      day: 'numeric'
+      day: 'numeric',
     })
   }
 
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
-      currency: 'USD'
+      currency: 'USD',
     }).format(amount)
   }
 
@@ -326,7 +334,10 @@ const AccountDashboardPage = () => {
         <Col sm={6} lg={3}>
           <Card className="border-0 shadow-sm h-100">
             <Card.Body className="text-center">
-              <div className="bg-primary-subtle rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{ width: '3rem', height: '3rem' }}>
+              <div
+                className="bg-primary-subtle rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                style={{ width: '3rem', height: '3rem' }}
+              >
                 <i className="ci-shopping-bag text-primary fs-5"></i>
               </div>
               <h3 className="h4 mb-1">{stats.totalOrders}</h3>
@@ -337,7 +348,10 @@ const AccountDashboardPage = () => {
         <Col sm={6} lg={3}>
           <Card className="border-0 shadow-sm h-100">
             <Card.Body className="text-center">
-              <div className="bg-warning-subtle rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{ width: '3rem', height: '3rem' }}>
+              <div
+                className="bg-warning-subtle rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                style={{ width: '3rem', height: '3rem' }}
+              >
                 <i className="ci-time text-warning fs-5"></i>
               </div>
               <h3 className="h4 mb-1">{stats.pendingOrders}</h3>
@@ -348,7 +362,10 @@ const AccountDashboardPage = () => {
         <Col sm={6} lg={3}>
           <Card className="border-0 shadow-sm h-100">
             <Card.Body className="text-center">
-              <div className="bg-success-subtle rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{ width: '3rem', height: '3rem' }}>
+              <div
+                className="bg-success-subtle rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                style={{ width: '3rem', height: '3rem' }}
+              >
                 <i className="ci-check-circle text-success fs-5"></i>
               </div>
               <h3 className="h4 mb-1">{stats.completedOrders}</h3>
@@ -359,7 +376,10 @@ const AccountDashboardPage = () => {
         <Col sm={6} lg={3}>
           <Card className="border-0 shadow-sm h-100">
             <Card.Body className="text-center">
-              <div className="bg-info-subtle rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{ width: '3rem', height: '3rem' }}>
+              <div
+                className="bg-info-subtle rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
+                style={{ width: '3rem', height: '3rem' }}
+              >
                 <i className="ci-heart text-info fs-5"></i>
               </div>
               <h3 className="h4 mb-1">{stats.wishlistItems}</h3>
@@ -379,11 +399,7 @@ const AccountDashboardPage = () => {
                   <i className="ci-package me-2"></i>
                   Recent Orders
                 </h5>
-                <Button 
-                  variant="outline-primary" 
-                  size="sm"
-                  onClick={() => setCurrentView('orders')}
-                >
+                <Button variant="outline-primary" size="sm" onClick={() => setCurrentView('orders')}>
                   View All
                 </Button>
               </div>
@@ -410,9 +426,7 @@ const AccountDashboardPage = () => {
                           </td>
                           <td>{formatDate(order.created_at)}</td>
                           <td>
-                            <Badge bg={getStatusVariant(order.status)}>
-                              {order.status}
-                            </Badge>
+                            <Badge bg={getStatusVariant(order.status)}>{order.status}</Badge>
                           </td>
                           <td>{formatCurrency(order.amount)}</td>
                         </tr>
@@ -445,28 +459,16 @@ const AccountDashboardPage = () => {
             </Card.Header>
             <Card.Body>
               <div className="d-grid gap-2">
-                <Button 
-                  variant="outline-danger" 
-                  onClick={() => setCurrentView('orders')}
-                >
+                <Button variant="outline-danger" onClick={() => setCurrentView('orders')}>
                   View All Orders
                 </Button>
-                <Button 
-                  variant="outline-danger" 
-                  onClick={() => setCurrentView('wishlist')}
-                >
+                <Button variant="outline-danger" onClick={() => setCurrentView('wishlist')}>
                   My Wishlist
                 </Button>
-                <Button 
-                  variant="outline-danger" 
-                  onClick={() => setCurrentView('addresses')}
-                >
+                <Button variant="outline-danger" onClick={() => setCurrentView('addresses')}>
                   Manage Addresses
                 </Button>
-                <Button 
-                  variant="outline-danger" 
-                  onClick={() => setCurrentView('info')}
-                >
+                <Button variant="outline-danger" onClick={() => setCurrentView('info')}>
                   Edit Profile
                 </Button>
               </div>
@@ -508,9 +510,7 @@ const AccountDashboardPage = () => {
                     </td>
                     <td>{formatDate(order.created_at)}</td>
                     <td>
-                      <Badge bg={getStatusVariant(order.status)}>
-                        {order.status}
-                      </Badge>
+                      <Badge bg={getStatusVariant(order.status)}>{order.status}</Badge>
                     </td>
                     <td>{formatCurrency(order.amount)}</td>
                     <td>
@@ -555,10 +555,7 @@ const AccountDashboardPage = () => {
                     <h6 className="mb-1">{review.product_name}</h6>
                     <div className="mb-2">
                       {[...Array(5)].map((_, i) => (
-                        <i 
-                          key={i} 
-                          className={`ci-star${i < review.rating ? '-filled' : ''} text-warning`}
-                        />
+                        <i key={i} className={`ci-star${i < review.rating ? '-filled' : ''} text-warning`} />
                       ))}
                     </div>
                     <p className="text-muted mb-1">{review.comment}</p>
@@ -590,7 +587,7 @@ const AccountDashboardPage = () => {
       // Mock add functionality - replace with actual API call
       const newAddress: Address = {
         id: Date.now(),
-        ...addressFormData
+        ...addressFormData,
       }
       setAddresses([...addresses, newAddress])
       setShowAddForm(false)
@@ -601,7 +598,7 @@ const AccountDashboardPage = () => {
         state: '',
         country: '',
         zip_code: '',
-        is_default: false
+        is_default: false,
       })
     }
 
@@ -614,16 +611,14 @@ const AccountDashboardPage = () => {
         state: address.state,
         country: address.country,
         zip_code: address.zip_code,
-        is_default: address.is_default
+        is_default: address.is_default,
       })
     }
 
     const handleUpdateAddress = () => {
       if (editingAddress) {
         // Mock update functionality - replace with actual API call
-        setAddresses(addresses.map(addr => 
-          addr.id === editingAddress.id ? { ...addr, ...addressFormData } : addr
-        ))
+        setAddresses(addresses.map((addr) => (addr.id === editingAddress.id ? { ...addr, ...addressFormData } : addr)))
         setEditingAddress(null)
         setAddressFormData({
           name: '',
@@ -632,14 +627,14 @@ const AccountDashboardPage = () => {
           state: '',
           country: '',
           zip_code: '',
-          is_default: false
+          is_default: false,
         })
       }
     }
 
     const handleDeleteAddress = (addressId: number) => {
       // Mock delete functionality - replace with actual API call
-      setAddresses(addresses.filter(addr => addr.id !== addressId))
+      setAddresses(addresses.filter((addr) => addr.id !== addressId))
     }
 
     return (
@@ -650,11 +645,7 @@ const AccountDashboardPage = () => {
               <i className="ci-map-pin me-2"></i>
               My Addresses
             </h5>
-            <Button 
-              variant="primary" 
-              size="sm"
-              onClick={() => setShowAddForm(true)}
-            >
+            <Button variant="primary" size="sm" onClick={() => setShowAddForm(true)}>
               Add New Address
             </Button>
           </div>
@@ -671,23 +662,23 @@ const AccountDashboardPage = () => {
                     <Col md={6}>
                       <Form.Group className="mb-3">
                         <Form.Label>Address Name</Form.Label>
-                                                 <Form.Control 
-                           type="text" 
-                           value={addressFormData.name}
-                           onChange={(e) => setAddressFormData({...addressFormData, name: e.target.value})}
-                           placeholder="e.g., Home, Office"
-                         />
+                        <Form.Control
+                          type="text"
+                          value={addressFormData.name}
+                          onChange={(e) => setAddressFormData({ ...addressFormData, name: e.target.value })}
+                          placeholder="e.g., Home, Office"
+                        />
                       </Form.Group>
                     </Col>
                     <Col md={6}>
                       <Form.Group className="mb-3">
                         <Form.Label>Street Address</Form.Label>
-                                                 <Form.Control 
-                           type="text" 
-                           value={addressFormData.address}
-                           onChange={(e) => setAddressFormData({...addressFormData, address: e.target.value})}
-                           placeholder="123 Main Street"
-                         />
+                        <Form.Control
+                          type="text"
+                          value={addressFormData.address}
+                          onChange={(e) => setAddressFormData({ ...addressFormData, address: e.target.value })}
+                          placeholder="123 Main Street"
+                        />
                       </Form.Group>
                     </Col>
                   </Row>
@@ -695,59 +686,56 @@ const AccountDashboardPage = () => {
                     <Col md={4}>
                       <Form.Group className="mb-3">
                         <Form.Label>City</Form.Label>
-                        <Form.Control 
-                          type="text" 
+                        <Form.Control
+                          type="text"
                           value={addressFormData.city}
-                          onChange={(e) => setAddressFormData({...addressFormData, city: e.target.value})}
+                          onChange={(e) => setAddressFormData({ ...addressFormData, city: e.target.value })}
                         />
                       </Form.Group>
                     </Col>
                     <Col md={4}>
                       <Form.Group className="mb-3">
                         <Form.Label>State</Form.Label>
-                        <Form.Control 
-                          type="text" 
+                        <Form.Control
+                          type="text"
                           value={addressFormData.state}
-                          onChange={(e) => setAddressFormData({...addressFormData, state: e.target.value})}
+                          onChange={(e) => setAddressFormData({ ...addressFormData, state: e.target.value })}
                         />
                       </Form.Group>
                     </Col>
                     <Col md={4}>
                       <Form.Group className="mb-3">
                         <Form.Label>ZIP Code</Form.Label>
-                        <Form.Control 
-                          type="text" 
+                        <Form.Control
+                          type="text"
                           value={addressFormData.zip_code}
-                          onChange={(e) => setAddressFormData({...addressFormData, zip_code: e.target.value})}
+                          onChange={(e) => setAddressFormData({ ...addressFormData, zip_code: e.target.value })}
                         />
                       </Form.Group>
                     </Col>
                   </Row>
                   <Form.Group className="mb-3">
                     <Form.Label>Country</Form.Label>
-                    <Form.Control 
-                      type="text" 
+                    <Form.Control
+                      type="text"
                       value={addressFormData.country}
-                      onChange={(e) => setAddressFormData({...addressFormData, country: e.target.value})}
+                      onChange={(e) => setAddressFormData({ ...addressFormData, country: e.target.value })}
                     />
                   </Form.Group>
                   <Form.Group className="mb-3">
-                    <Form.Check 
-                      type="checkbox" 
+                    <Form.Check
+                      type="checkbox"
                       label="Set as default address"
                       checked={addressFormData.is_default}
-                      onChange={(e) => setAddressFormData({...addressFormData, is_default: e.target.checked})}
+                      onChange={(e) => setAddressFormData({ ...addressFormData, is_default: e.target.checked })}
                     />
                   </Form.Group>
                   <div className="d-flex gap-2">
-                    <Button 
-                      variant="primary" 
-                      onClick={handleAddAddress}
-                    >
+                    <Button variant="primary" onClick={handleAddAddress}>
                       Save Address
                     </Button>
-                    <Button 
-                      variant="outline-secondary" 
+                    <Button
+                      variant="outline-secondary"
                       onClick={() => {
                         setShowAddForm(false)
                         setAddressFormData({
@@ -757,7 +745,7 @@ const AccountDashboardPage = () => {
                           state: '',
                           country: '',
                           zip_code: '',
-                          is_default: false
+                          is_default: false,
                         })
                       }}
                     >
@@ -780,20 +768,20 @@ const AccountDashboardPage = () => {
                     <Col md={6}>
                       <Form.Group className="mb-3">
                         <Form.Label>Address Name</Form.Label>
-                        <Form.Control 
-                          type="text" 
+                        <Form.Control
+                          type="text"
                           value={addressFormData.name}
-                          onChange={(e) => setAddressFormData({...addressFormData, name: e.target.value})}
+                          onChange={(e) => setAddressFormData({ ...addressFormData, name: e.target.value })}
                         />
                       </Form.Group>
                     </Col>
                     <Col md={6}>
                       <Form.Group className="mb-3">
                         <Form.Label>Street Address</Form.Label>
-                        <Form.Control 
-                          type="text" 
+                        <Form.Control
+                          type="text"
                           value={addressFormData.address}
-                          onChange={(e) => setAddressFormData({...addressFormData, address: e.target.value})}
+                          onChange={(e) => setAddressFormData({ ...addressFormData, address: e.target.value })}
                         />
                       </Form.Group>
                     </Col>
@@ -802,59 +790,56 @@ const AccountDashboardPage = () => {
                     <Col md={4}>
                       <Form.Group className="mb-3">
                         <Form.Label>City</Form.Label>
-                        <Form.Control 
-                          type="text" 
+                        <Form.Control
+                          type="text"
                           value={addressFormData.city}
-                          onChange={(e) => setAddressFormData({...addressFormData, city: e.target.value})}
+                          onChange={(e) => setAddressFormData({ ...addressFormData, city: e.target.value })}
                         />
                       </Form.Group>
                     </Col>
                     <Col md={4}>
                       <Form.Group className="mb-3">
                         <Form.Label>State</Form.Label>
-                        <Form.Control 
-                          type="text" 
+                        <Form.Control
+                          type="text"
                           value={addressFormData.state}
-                          onChange={(e) => setAddressFormData({...addressFormData, state: e.target.value})}
+                          onChange={(e) => setAddressFormData({ ...addressFormData, state: e.target.value })}
                         />
                       </Form.Group>
                     </Col>
                     <Col md={4}>
                       <Form.Group className="mb-3">
                         <Form.Label>ZIP Code</Form.Label>
-                        <Form.Control 
-                          type="text" 
+                        <Form.Control
+                          type="text"
                           value={addressFormData.zip_code}
-                          onChange={(e) => setAddressFormData({...addressFormData, zip_code: e.target.value})}
+                          onChange={(e) => setAddressFormData({ ...addressFormData, zip_code: e.target.value })}
                         />
                       </Form.Group>
                     </Col>
                   </Row>
                   <Form.Group className="mb-3">
                     <Form.Label>Country</Form.Label>
-                    <Form.Control 
-                      type="text" 
+                    <Form.Control
+                      type="text"
                       value={addressFormData.country}
-                      onChange={(e) => setAddressFormData({...addressFormData, country: e.target.value})}
+                      onChange={(e) => setAddressFormData({ ...addressFormData, country: e.target.value })}
                     />
                   </Form.Group>
                   <Form.Group className="mb-3">
-                    <Form.Check 
-                      type="checkbox" 
+                    <Form.Check
+                      type="checkbox"
                       label="Set as default address"
                       checked={addressFormData.is_default}
-                      onChange={(e) => setAddressFormData({...addressFormData, is_default: e.target.checked})}
+                      onChange={(e) => setAddressFormData({ ...addressFormData, is_default: e.target.checked })}
                     />
                   </Form.Group>
                   <div className="d-flex gap-2">
-                    <Button 
-                      variant="warning" 
-                      onClick={handleUpdateAddress}
-                    >
+                    <Button variant="warning" onClick={handleUpdateAddress}>
                       Update Address
                     </Button>
-                    <Button 
-                      variant="outline-secondary" 
+                    <Button
+                      variant="outline-secondary"
                       onClick={() => {
                         setEditingAddress(null)
                         setAddressFormData({
@@ -864,7 +849,7 @@ const AccountDashboardPage = () => {
                           state: '',
                           country: '',
                           zip_code: '',
-                          is_default: false
+                          is_default: false,
                         })
                       }}
                     >
@@ -884,28 +869,20 @@ const AccountDashboardPage = () => {
                     <Card.Body>
                       <div className="d-flex justify-content-between align-items-start mb-2">
                         <h6 className="mb-0">{address.name}</h6>
-                        {address.is_default && (
-                          <Badge bg="success">Default</Badge>
-                        )}
+                        {address.is_default && <Badge bg="success">Default</Badge>}
                       </div>
                       <p className="text-muted mb-2">
-                        {address.address}<br />
-                        {address.city}, {address.state} {address.zip_code}<br />
+                        {address.address}
+                        <br />
+                        {address.city}, {address.state} {address.zip_code}
+                        <br />
                         {address.country}
                       </p>
                       <div className="d-flex gap-2">
-                        <Button 
-                          variant="outline-primary" 
-                          size="sm"
-                          onClick={() => handleEditAddress(address)}
-                        >
+                        <Button variant="outline-primary" size="sm" onClick={() => handleEditAddress(address)}>
                           Edit
                         </Button>
-                        <Button 
-                          variant="outline-danger" 
-                          size="sm"
-                          onClick={() => handleDeleteAddress(address.id)}
-                        >
+                        <Button variant="outline-danger" size="sm" onClick={() => handleDeleteAddress(address.id)}>
                           Delete
                         </Button>
                       </div>
@@ -968,9 +945,7 @@ const AccountDashboardPage = () => {
           <i className="ci-credit-card display-4 text-muted"></i>
           <h5 className="mt-3">No payment methods yet</h5>
           <p className="text-muted">Add your payment methods for faster checkout.</p>
-          <Button variant="primary">
-            Add New Card
-          </Button>
+          <Button variant="primary">Add New Card</Button>
         </div>
       </Card.Body>
     </Card>
@@ -1095,8 +1070,8 @@ const AccountDashboardPage = () => {
           <Row className="pt-md-2 pt-lg-3 pb-sm-2 pb-md-3 pb-lg-4 pb-xl-5">
             {/* Sidebar */}
             <Col as="aside" lg={3}>
-              <AccountSidebarDashboard 
-                name={user.name || user.email || 'User'} 
+              <AccountSidebarDashboard
+                name={user.name || user.email || 'User'}
                 currentView={currentView}
                 onViewChange={setCurrentView}
               />
@@ -1136,9 +1111,10 @@ const AccountDashboardPage = () => {
         </Container>
       </main>
 
-      <FooterElectronics />
+      {/* <FooterElectronics /> */}
+      <CustomFooter />
     </>
   )
 }
 
-export default AccountDashboardPage 
+export default AccountDashboardPage

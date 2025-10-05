@@ -13,6 +13,7 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
 import { BlogService, BlogPost } from '@/services/blog'
+import CustomFooter from '@/components/layout/custom-footer'
 
 export default function BlogPage() {
   const [posts, setPosts] = useState<BlogPost[]>([])
@@ -29,14 +30,14 @@ export default function BlogPage() {
   const fetchBlogPosts = async () => {
     try {
       setLoading(true)
-      console.log('fetchBlogPosts called with page:', currentPage);
-      
+      console.log('fetchBlogPosts called with page:', currentPage)
+
       const fetchedPosts = await BlogService.getPosts({
         page: currentPage,
-        per_page: postsPerPage
+        per_page: postsPerPage,
       })
-      
-      console.log('fetchBlogPosts received posts:', fetchedPosts);
+
+      console.log('fetchBlogPosts received posts:', fetchedPosts)
       setPosts(fetchedPosts)
       setTotalPosts(fetchedPosts.length) // This will be updated when we get pagination info
     } catch (error) {
@@ -54,7 +55,7 @@ export default function BlogPage() {
         const searchResults = await BlogService.getPosts({
           search: searchQuery,
           page: 1,
-          per_page: postsPerPage
+          per_page: postsPerPage,
         })
         setPosts(searchResults)
         setCurrentPage(1)
@@ -80,7 +81,7 @@ export default function BlogPage() {
     return date.toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
-      day: 'numeric'
+      day: 'numeric',
     })
   }
 
@@ -99,12 +100,10 @@ export default function BlogPage() {
         <Container>
           <Row className="align-items-center">
             <Col lg={8}>
-              <h1 className="display-4 fw-bold mb-4">
-                Cartzilla Blog
-              </h1>
+              <h1 className="display-4 fw-bold mb-4">Cartzilla Blog</h1>
               <p className="lead mb-4">
-                Stay updated with the latest trends, product reviews, and shopping tips from our expert team.
-                Discover amazing deals and insights to enhance your shopping experience.
+                Stay updated with the latest trends, product reviews, and shopping tips from our expert team. Discover
+                amazing deals and insights to enhance your shopping experience.
               </p>
             </Col>
           </Row>
@@ -148,10 +147,13 @@ export default function BlogPage() {
               {searchQuery ? `No posts match your search for "${searchQuery}"` : 'Check back later for new content'}
             </p>
             {searchQuery && (
-              <Button variant="outline-primary" onClick={() => {
-                setSearchQuery('')
-                fetchBlogPosts()
-              }}>
+              <Button
+                variant="outline-primary"
+                onClick={() => {
+                  setSearchQuery('')
+                  fetchBlogPosts()
+                }}
+              >
                 Clear Search
               </Button>
             )}
@@ -159,9 +161,7 @@ export default function BlogPage() {
         ) : (
           <>
             <div className="d-flex justify-content-between align-items-center mb-4">
-              <h2 className="mb-0">
-                {searchQuery ? `Search Results for "${searchQuery}"` : 'Latest Blog Posts'}
-              </h2>
+              <h2 className="mb-0">{searchQuery ? `Search Results for "${searchQuery}"` : 'Latest Blog Posts'}</h2>
               <span className="text-muted">{posts.length} posts</span>
             </div>
 
@@ -182,27 +182,17 @@ export default function BlogPage() {
                     )}
                     <Card.Body className="p-4">
                       <div className="mb-2">
-                        <small className="text-muted">
-                          {formatDate(post.created_at || '')}
-                        </small>
+                        <small className="text-muted">{formatDate(post.created_at || '')}</small>
                       </div>
                       <h5 className="card-title fw-bold mb-3">
-                        <Link 
-                          href={`/blog/${post.slug}`} 
-                          className="text-decoration-none text-dark"
-                        >
+                        <Link href={`/blog/${post.slug}`} className="text-decoration-none text-dark">
                           {post.name}
                         </Link>
                       </h5>
                       {post.description && (
-                        <p className="card-text text-muted mb-3">
-                          {truncateText(post.description, 120)}
-                        </p>
+                        <p className="card-text text-muted mb-3">{truncateText(post.description, 120)}</p>
                       )}
-                      <Link 
-                        href={`/blog/${post.slug}`}
-                        className="btn btn-outline-primary btn-sm"
-                      >
+                      <Link href={`/blog/${post.slug}`} className="btn btn-outline-primary btn-sm">
                         Read More
                       </Link>
                     </Card.Body>
@@ -230,11 +220,7 @@ export default function BlogPage() {
                       <span className="page-link">{currentPage}</span>
                     </li>
                     <li className="page-item">
-                      <Button
-                        className="page-link"
-                        variant="link"
-                        onClick={() => setCurrentPage(currentPage + 1)}
-                      >
+                      <Button className="page-link" variant="link" onClick={() => setCurrentPage(currentPage + 1)}>
                         Next
                       </Button>
                     </li>
@@ -261,15 +247,14 @@ export default function BlogPage() {
                 className="w-auto"
                 style={{ minWidth: '300px' }}
               />
-              <Button variant="primary">
-                Subscribe
-              </Button>
+              <Button variant="primary">Subscribe</Button>
             </div>
           </Col>
         </Row>
       </Container>
 
-      <FooterElectronics />
+      {/* <FooterElectronics /> */}
+      <CustomFooter />
     </>
   )
 }

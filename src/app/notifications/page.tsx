@@ -5,6 +5,7 @@ import FooterElectronics from '@/components/layout/footer-electronics'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import CustomFooter from '@/components/layout/custom-footer'
 
 export default function NotificationsPage() {
   return (
@@ -22,7 +23,8 @@ export default function NotificationsPage() {
           </Row>
         </Container>
       </main>
-      <FooterElectronics />
+      {/* <FooterElectronics /> */}
+      <CustomFooter />
     </>
   )
 }

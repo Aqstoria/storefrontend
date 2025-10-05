@@ -65,9 +65,7 @@ const RootLayout = ({ children }: React.PropsWithChildren) => (
                   <HydrationProvider>
                     <CartProvider>
                       <CheckoutProvider>
-                        <OrderProvider>
-                          {children}
-                        </OrderProvider>
+                        <OrderProvider>{children}</OrderProvider>
                       </CheckoutProvider>
                     </CartProvider>
                   </HydrationProvider>
