@@ -191,7 +191,7 @@ export default async function ElectronicsHomePage() {
         <Container className="py-5">
           {/* <TestCard  /> */}
           {stores?.map((store, index) => (
-            <Row className="mb-5" key={index}>
+            <Row className="mb-5 mx-auto" style={{ width: '80%' }} key={index}>
               <div className="d-flex justify-content-between align-items-center mb-4">
                 <div className="d-flex align-items-center">
                   <img
@@ -219,8 +219,8 @@ export default async function ElectronicsHomePage() {
                 .slice(0, 6) // 👈 limit to 5 products
                 .map((product, i) => (
                   <Col key={i} md={2}>
-                    <Link href ={ProductService.getProductUrl(product)} className="text-decoration-none">
-                    <TestCard e={product} />
+                    <Link href={ProductService.getProductUrl(product)} className="text-decoration-none">
+                      <TestCard e={product} />
                     </Link>
                   </Col>
                 ))}
