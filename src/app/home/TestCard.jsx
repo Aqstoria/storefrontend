@@ -7,17 +7,17 @@ export default function WeeklyPromotion({ e }) {
   console.log(e)
 
   return (
-    <Container as="section" className="py-1">
+    <div as="section" className="py-1">
       {/* Section Header */}
       <Card className="h-100 border-0 shadow-sm">
         <div className="position-relative">
           {/* <Link href="#"> */}
-            <Card.Img
-              variant="top"
-              src={e.image_url}
-              className="rounded-5"
-              style={{ height: '170px', objectFit: 'cover' }}
-            />
+          <Card.Img
+            variant="top"
+            src={e.image_url}
+            className="rounded-5"
+            style={{ height: '170px', objectFit: 'cover' }}
+          />
           {/* </Link> */}
 
           {/* Sale Badge */}
@@ -39,7 +39,7 @@ export default function WeeklyPromotion({ e }) {
           </div>
         </Card.Body>
       </Card>
-    </Container>
+    </div>
   )
 }
 
