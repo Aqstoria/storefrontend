@@ -29,32 +29,36 @@ const HeroSearchGrid = () => {
           <div className="mb-2" key={sliderIdx}>
             <Swiper
               modules={[Autoplay, FreeMode]}
-              slidesPerView={6}
-              spaceBetween={20}
+              slidesPerView={7}
               loop={true}
-              freeMode={{ enabled: true, momentum: false }} // ✅ correct way
+              freeMode={{ enabled: true, momentum: false }}
               speed={speed}
               autoplay={{
-                delay: 10,
+                delay: 0, // 👈 1. Autoplay delay ko 0 kar dein
                 disableOnInteraction: false,
+                // 2. Main change yahan hai
+                reverseDirection: sliderIdx === 1, // Agar index 1 hai (second row) toh reverse kar do
+                // Ya (index odd ho toh): reverseDirection: sliderIdx % 2 !== 0,
               }}
               breakpoints={{
                 320: { slidesPerView: 2 },
                 640: { slidesPerView: 3 },
-                1024: { slidesPerView: 6 },
+                1024: { slidesPerView: 7 },
               }}
             >
               {images.map((src, idx) => (
                 <SwiperSlide key={idx}>
                   <div
-                    className="position-relative w-100"
-                    style={{
-                      // width: '100%',
-                      // height: '150px',
-                      borderRadius: '15px',
-                      overflow: 'hidden',
-                      boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
-                    }}
+                    className=""
+                    style={
+                      {
+                        // width: '100%',
+                        // height: '150px',
+                        // borderRadius: '15px',
+                        // overflow: 'hidden',
+                        // boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
+                      }
+                    }
                   >
                     <Image
                       src={src}
